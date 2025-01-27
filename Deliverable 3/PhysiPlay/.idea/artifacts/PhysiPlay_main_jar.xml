@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PhysiPlay.main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PhysiPlay_main_jar</output-path>
+    <root id="archive" name="PhysiPlay.main.jar">
+      <element id="module-output" name="PhysiPlay.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/22-ea+11/87b2d301f8b3cf364600be89b18397667a3c1126/javafx-base-22-ea+11-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-fxml/22-ea+11/aa01e0d874e1fa0f60a06e6562615168abbbe280/javafx-fxml-22-ea+11-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/22-ea+11/f7356c5524349c7d865e4a4bb9781ff4ac52102b/javafx-graphics-22-ea+11-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/22-ea+11/a5307d45af06b042085eb46d9eb2fa4b26d5e26d/javafx-graphics-22-ea+11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/22-ea+11/98eb02cc35dc8160a16b037f69bdc2ad5a0a636/javafx-base-22-ea+11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/22-ea+11/f04cf41438d4eb5d297b50f6e2061db6fa8db350/javafx-controls-22-ea+11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/22-ea+11/e84f859080b31c99dd2dc78aa3cefc53afaf9410/javafx-controls-22-ea+11-win.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
