@@ -6,7 +6,9 @@ import com.example.physiplay.components.Renderer;
 import com.example.physiplay.components.Rigidbody;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -15,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public final class HelloApplication extends Application {
 
@@ -25,9 +28,12 @@ public final class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Pane pane = new Pane(instance.canvas);
-        Scene scene = new Scene(pane, 600, 600);
+        //For Main Menu
+        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
+        Scene scene = new Scene(root, 1920, 1080);
+        //Pane pane = new Pane(instance.canvas);
 
+/*
         // Every class you see here is a specific component, all inherited from the Component class
         RectangularCollider collider = new RectangularCollider(new Vector2(160, 160));
         Renderer renderer = new Renderer();
@@ -48,19 +54,19 @@ public final class HelloApplication extends Application {
         SimulationObject square2 = new SimulationObject(new HashSet<>(List.of(renderer2)));
         square2.position = new Vector2(60, 60);
 
-        // Add childs
+        // Add children
         square.addChild(square1);
         square1.addChild(square2);
         // It will look like this:
-        /*
+        *//*
         - Square:
            - Square 1
                - Square 2
-        * */
+        * *//*
 
         instance.simulationObjectList.add(square);
 
-        instance.simulate();
+        instance.simulate();*/
         stage.setTitle("PhysiPlay");
         stage.setScene(scene);
         stage.show();
