@@ -3,6 +3,7 @@ package com.example.physiplay;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -20,7 +21,10 @@ public final class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //For Main Menu
-        Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/mainMenu.fxml")));
+        MainMenuController mainMenuController = new MainMenuController();
+        loader.setController(mainMenuController);
+        Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F && !stage.isFullScreen()) stage.setFullScreen(true);
