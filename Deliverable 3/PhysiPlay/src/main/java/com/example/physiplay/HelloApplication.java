@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -31,6 +32,11 @@ public final class HelloApplication extends Application {
         //For Main Menu
         Pane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
         Scene scene = new Scene(root, 1920, 1080);
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F && !stage.isFullScreen()) stage.setFullScreen(true);
+            else stage.setFullScreen(false);
+        });
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
         //Pane pane = new Pane(instance.canvas);
 
 /*
@@ -70,5 +76,6 @@ public final class HelloApplication extends Application {
         stage.setTitle("PhysiPlay");
         stage.setScene(scene);
         stage.show();
+        scene.getWindow().sizeToScene();
     }
 }
