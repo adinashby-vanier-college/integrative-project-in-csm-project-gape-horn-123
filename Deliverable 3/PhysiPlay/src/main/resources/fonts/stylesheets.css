@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'MadimiOne';
+    src: url('MadimiOne-Regular.ttf');
+}
+
+.text{
+    -fx-font-family: 'MadimiOne';
+}
+
+.button{
+    -fx-font-family: 'MadimiOne';
+}

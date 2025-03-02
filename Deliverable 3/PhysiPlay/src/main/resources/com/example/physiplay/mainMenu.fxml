@@ -7,25 +7,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #749C75;" stylesheets="@../../../css/stylesheets.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #749C75;" stylesheets="@../../../fonts/stylesheets.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../../../css/stylesheets.css">
+      <VBox alignment="TOP_CENTER" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../../../fonts/stylesheets.css">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PhysiPlay" textAlignment="CENTER" wrappingWidth="698.5321655273438">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: MadimiOne-Regular;" text="PhysiPlay" textAlignment="CENTER" wrappingWidth="1003.0944213867188">
                <font>
-                  <Font size="169.0" />
+                  <Font size="200.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="50.0" top="50.0" />
                </VBox.margin>
             </Text>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="177.0" prefWidth="556.0" style="-fx-background-color: #6A5D7B;" text="Play" textAlignment="CENTER" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="145.0" prefWidth="674.0" style="-fx-background-color: #6A5D7B; -fx-background-radius: 100; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 100;" text="Play" textFill="WHITE">
                <font>
-                  <Font size="100.0" />
+                  <Font size="69.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="50.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="145.0" prefWidth="674.0" style="-fx-background-color: #6A5D7B; -fx-background-radius: 100; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 100;" text="Instructions" textFill="WHITE">
+               <font>
+                  <Font size="69.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="145.0" prefWidth="399.0" style="-fx-background-color: #6A5D7B; -fx-background-radius: 100; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 100;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font size="69.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" top="50.0" />
                </VBox.margin>
             </Button>
          </children>
