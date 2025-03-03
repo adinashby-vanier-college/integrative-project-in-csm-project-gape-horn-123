@@ -29,3 +29,28 @@
     -fx-opacity: 0.5;
     -fx-text-fill: white;
 }
+
+.context-menu {
+    -fx-background-color: #5D4A66 ;
+    -fx-border-width: 0.1px;
+    -fx-border-color: black;
+    -fx-background-insets: 0.0, 1.0, 2.0;
+    -fx-background-radius: 0.0 6.0 6.0 6.0, 0.0 5.0 5.0 5.0, 0.0 4.0 4.0 4.0;
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em;
+    -fx-opacity: 0.9;
+}
+
+#pauseButton{
+    -fx-font-family: "Madimi One";
+    -fx-font-size: 12px;
+}
+
+#startButton{
+    -fx-font-family: "Madimi One";
+    -fx-font-size: 12px;
+}
+
+#stopButton{
+    -fx-font-family: "Madimi One";
+    -fx-font-size: 12px;
+}

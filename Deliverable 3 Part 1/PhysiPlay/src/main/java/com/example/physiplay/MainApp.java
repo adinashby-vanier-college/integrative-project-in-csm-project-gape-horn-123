@@ -28,7 +28,7 @@ public final class MainApp extends Application {
                 ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage)));
         ScreenController.getInstance().addScreen("instructions",
                 ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml")));
-        ScreenController.getInstance().addScreen("start",
+        ScreenController.getInstance().addScreen("play",
                 ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml")));
     }
 
