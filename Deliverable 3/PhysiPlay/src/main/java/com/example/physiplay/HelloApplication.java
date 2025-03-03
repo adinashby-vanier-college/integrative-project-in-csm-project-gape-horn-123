@@ -1,12 +1,12 @@
 package com.example.physiplay;
 
+import com.example.physiplay.controllers.MainMenuController;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -15,14 +15,14 @@ public final class HelloApplication extends Application {
 
     private static final SimulationManager instance = SimulationManager.getInstance();
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         //For Main Menu
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/mainMenu.fxml")));
-        MainMenuController mainMenuController = new MainMenuController();
+        MainMenuController mainMenuController = new MainMenuController(stage);
         loader.setController(mainMenuController);
         Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
