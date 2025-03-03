@@ -24,7 +24,7 @@ public class MainMenuController {
         this.stage = stage;
     }
 
-    public void initialize(){
+    public void initialize() {
         playButton.setOnAction(event -> {switchScene("play");});
         instructionsButton.setOnAction(event -> switchScene("instructions"));
         exitButton.setOnAction(event -> Platform.exit());

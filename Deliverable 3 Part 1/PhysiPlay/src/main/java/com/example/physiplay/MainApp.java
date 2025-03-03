@@ -1,5 +1,6 @@
 package com.example.physiplay;
 
+import com.example.physiplay.controllers.InstructionsController;
 import com.example.physiplay.controllers.MainMenuController;
 import com.example.physiplay.controllers.ScreenController;
 import com.example.physiplay.singletons.SimulationManager;
@@ -26,9 +27,9 @@ public final class MainApp extends Application {
         ScreenController.getInstance().addScreen("mainMenu",
                 ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage)));
         ScreenController.getInstance().addScreen("instructions",
-                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), null));
+                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml")));
         ScreenController.getInstance().addScreen("play",
-                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), null));
+                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml")));
     }
 
     @Override

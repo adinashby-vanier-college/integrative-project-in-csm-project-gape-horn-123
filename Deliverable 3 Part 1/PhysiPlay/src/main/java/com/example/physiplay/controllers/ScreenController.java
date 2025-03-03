@@ -41,6 +41,16 @@ public class ScreenController {
         }
     }
 
+    public Pane getRootPane(URL url) {
+        try {
+            FXMLLoader loader = new FXMLLoader(url);
+            return loader.load();
+        }
+        catch (IllegalStateException | IOException e) {
+            return new FlowPane(new Label("Unable to find scene"));
+        }
+    }
+
     public void setMainScene(Scene scene) {
         this.mainScene = scene;
     }
