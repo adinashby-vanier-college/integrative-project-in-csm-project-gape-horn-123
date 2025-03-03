@@ -1,7 +1,7 @@
-@font-face {
-    font-family: "Madimi One"
+/*@font-face {
+    font-family: "Madimi One";
     src: url("\fonts\madimione-regular.otf");
-}
+}*/
 
 .button{
     -fx-font-family: "Madimi One";
@@ -9,7 +9,7 @@
 }
 
 .label{
-    -fx-font-family: "Madimi One"
+    -fx-font-family: "Madimi One";
     -fx-font-size: 200px;
 }
 

@@ -38,7 +38,7 @@ public final class MainApp extends Application {
         //For Main Menu
 
         Scene scene = new Scene(new Pane(), 1920, 1080);
-
+        Font.loadFont(Objects.requireNonNull(getClass().getResource("/fonts/madimione-regular.otf").toExternalForm()), 50);
         loadScenes(stage);
 
         ScreenController.getInstance().setMainScene(scene);
