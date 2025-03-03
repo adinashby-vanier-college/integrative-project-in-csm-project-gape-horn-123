@@ -24,7 +24,7 @@ public class MainMenuController {
         this.stage = stage;
     }
 
-    public void initialize(){
+    public void initialize() {
         playButton.setOnAction(event -> {switchScene("play");});
         instructionsButton.setOnAction(event -> switchScene("instructions"));
         exitButton.setOnAction(event -> Platform.exit());
@@ -32,19 +32,7 @@ public class MainMenuController {
 
     public void switchScene(String sceneType) {
         try {
-            Parent root;
-            switch (sceneType){
-                case "instructions":
-                    FXMLLoader instructionsLoader = new FXMLLoader(getClass().getResource("/fxml/instructionsPage.fxml"));
-                    root = instructionsLoader.load();
-                    break;
-                default:
-                    FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/fxml/physiplay.fxml"));
-                    root = mainLoader.load();
-            }
-            Scene scene = new Scene(root, 1920, 1080);
-            stage.setScene(scene);
-            stage.show();
+            ScreenController.getInstance().activate(sceneType);
         } catch (Exception e){
             System.out.println("Error while switching to " + sceneType + " scene");
         }
