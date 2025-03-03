@@ -1,4 +1,18 @@
 @font-face {
-    font-family: 'MadimiOne';
-    src: url('MadimiOne-Regular.ttf');
+    font-family: "Madimi One"
+    src: url("\fonts\madimione-regular.otf");
+}
+
+.button{
+    -fx-font-family: "Madimi One";
+    -fx-font-size: 50px;
+}
+
+.label{
+    -fx-font-family: "Madimi One"
+    -fx-font-size: 200px;
+}
+
+.menu .label {
+    -fx-text-fill: white;
 }

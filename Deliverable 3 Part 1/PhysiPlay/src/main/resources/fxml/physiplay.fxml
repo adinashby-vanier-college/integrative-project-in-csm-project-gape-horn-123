@@ -18,7 +18,7 @@
    <top>
       <MenuBar prefHeight="35.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
             <items>
               <MenuItem mnemonicParsing="false" text="New File" />
                   <MenuItem mnemonicParsing="false" text="Open File" />
@@ -58,7 +58,7 @@
       <TreeView prefHeight="998.0" prefWidth="360.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <VBox prefHeight="854.0" prefWidth="308.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="854.0" prefWidth="308.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER">
          <children>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
@@ -71,7 +71,7 @@
    <bottom>
       <HBox prefHeight="199.0" prefWidth="1920.0" style="-fx-border-color: black; -fx-background-color: #BCA9CC;" BorderPane.alignment="CENTER">
          <children>
-            <HBox minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="1823.0">
+            <HBox minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="1755.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Presets" wrappingWidth="130.8228759765625">
                      <font>
@@ -85,9 +85,9 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="197.0" prefWidth="138.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="96.0" prefWidth="96.0" style="-fx-background-radius: 1000000000; -fx-background-color: #749C75;" text="+" textAlignment="CENTER" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 1000000000; -fx-background-color: #749C75;" text="+" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font size="50.0" />
+                        <Font size="40.0" />
                      </font>
                   </Button>
                </children>
