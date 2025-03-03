@@ -35,7 +35,6 @@ public final class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //For Main Menu
-
         Scene scene = new Scene(new Pane(), 1920, 1080);
 
         loadScenes(stage);

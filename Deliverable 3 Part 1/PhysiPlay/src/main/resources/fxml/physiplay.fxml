@@ -18,7 +18,7 @@
    <top>
       <MenuBar prefHeight="35.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
             <items>
               <MenuItem mnemonicParsing="false" text="New File" />
                   <MenuItem mnemonicParsing="false" text="Open File" />
@@ -58,7 +58,7 @@
       <TreeView prefHeight="998.0" prefWidth="360.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <VBox prefHeight="854.0" prefWidth="308.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="854.0" prefWidth="308.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER">
          <children>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
