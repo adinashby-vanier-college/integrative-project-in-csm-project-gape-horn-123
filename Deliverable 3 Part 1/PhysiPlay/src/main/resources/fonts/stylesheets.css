@@ -1,4 +1,14 @@
 @font-face {
-    font-family: 'MadimiOne';
-    src: url('MadimiOne-Regular.ttf');
+    font-family: 'madimi';
+    src: url('madimi.ttf');
+}
+
+.text{
+    -fx-font-family: 'madimi';
+    -fx-font-size: 20px;
+}
+
+.button{
+    -fx-font-family: 'madimi';
+    -fx-font-size: 20px;
 }
