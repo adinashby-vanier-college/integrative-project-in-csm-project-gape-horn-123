@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainMenuController {
     @FXML
@@ -43,6 +44,7 @@ public class MainMenuController {
                     root = mainLoader.load();
             }
             Scene scene = new Scene(root, 1920, 1080);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
             stage.setScene(scene);
             stage.show();
         } catch (Exception e){

@@ -22,7 +22,7 @@ public final class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //For Main Menu
-        Font.loadFont(Objects.requireNonNull(getClass().getResource("/fonts/madimi.ttf")).toExternalForm(), 50);
+        Font.loadFont(Objects.requireNonNull(getClass().getResource("/fonts/madimione-regular.otf")).toExternalForm(), 50);
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/mainMenu.fxml")));
         MainMenuController mainMenuController = new MainMenuController(stage);
         loader.setController(mainMenuController);
