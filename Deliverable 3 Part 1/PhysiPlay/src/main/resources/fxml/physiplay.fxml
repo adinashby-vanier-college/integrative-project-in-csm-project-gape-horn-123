@@ -10,43 +10,12 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <MenuBar prefHeight="35.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="New File" />
-                  <MenuItem mnemonicParsing="false" text="Open File" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="View">
-              <items>
-                <MenuItem mnemonicParsing="false" text="View" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Window">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Fullscreen" />
-              </items>
-            </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
    <center>
       <Canvas fx:id="canvas" height="274.0" width="393.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -91,4 +60,50 @@
          </children>
       </HBox>
    </bottom>
+   <top>
+      <StackPane prefHeight="35.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar prefHeight="35.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;">
+               <menus>
+                  <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="New File" />
+                        <MenuItem mnemonicParsing="false" text="Open File" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="View" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Window">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Fullscreen" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <HBox alignment="CENTER" maxWidth="500.0" minWidth="500.0" prefHeight="35.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="playButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="▶" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="pauseButton" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="⏸ " textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+   </top>
 </BorderPane>

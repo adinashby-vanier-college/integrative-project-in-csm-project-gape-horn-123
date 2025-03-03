@@ -16,6 +16,16 @@
     -fx-font-size: 20px;
 }
 
-#playButton{
-    -fx-font-family: "Madimi One";
+.tree-cell {
+    -fx-background-color: #D5C9DF;
+}
+
+.menu-item{
+    -fx-background-color: #D5C9DF;
+}
+
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: black ;
+    -fx-opacity: 0.5;
+    -fx-text-fill: white;
 }
