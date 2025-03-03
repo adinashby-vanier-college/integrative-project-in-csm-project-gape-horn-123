@@ -25,19 +25,8 @@ public class MainMenuController {
     }
 
     public void initialize(){
-        playButton.setOnAction(event -> {
-            Parent root;
-            FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/fxml/physiplay.fxml"));
-            try {
-                root = mainLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Scene scene = new Scene(root, 1920, 1080);
-            stage.setScene(scene);
-            stage.show();
-        });
-        instructionsButton.setOnAction(event -> switchScene("instruction"));
+        playButton.setOnAction(event -> {switchScene("play");});
+        instructionsButton.setOnAction(event -> switchScene("instructions"));
         exitButton.setOnAction(event -> Platform.exit());
     }
 

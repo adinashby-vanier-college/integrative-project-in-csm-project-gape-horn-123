@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public final class HelloApplication extends Application {
+public final class MainApp extends Application {
 
     private static final SimulationManager instance = SimulationManager.getInstance();
     public static void main(String[] args) {

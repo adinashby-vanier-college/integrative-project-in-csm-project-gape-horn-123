@@ -27,7 +27,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.example.physiplay'
-    mainClass = 'com.example.physiplay.HelloApplication'
+    mainClass = 'com.example.physiplay.MainApp'
 }
 
 javafx {
