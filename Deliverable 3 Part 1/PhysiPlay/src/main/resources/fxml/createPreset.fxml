@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="1080.0" maxWidth="1920.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="1080.0" maxWidth="1920.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.physiplay.controllers.CreatePresetController">
    <children>
       <VBox prefHeight="900.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
          <children>
@@ -45,7 +45,7 @@
             </HBox>
             <HBox prefHeight="27.0" prefWidth="500.0" style="-fx-background-color: #BCA9CC;">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #BCA9CC;" text="►" />
+                  <Button fx:id="transformDrop" mnemonicParsing="false" style="-fx-background-color: #BCA9CC;" text="►" />
                   <Label prefHeight="17.0" prefWidth="440.0" text="Transform">
                      <font>
                         <Font size="24.0" />

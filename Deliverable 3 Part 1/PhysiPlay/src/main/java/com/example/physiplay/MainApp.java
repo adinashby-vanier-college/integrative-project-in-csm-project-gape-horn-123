@@ -30,7 +30,7 @@ public final class MainApp extends Application {
         ScreenController.getInstance().addScreen("instructions",
                 ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml")));
         ScreenController.getInstance().addScreen("play",
-                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml")));
+                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage)));
     }
 
     @Override
@@ -52,9 +52,9 @@ public final class MainApp extends Application {
             else stage.setFullScreen(false);
         });
 
-
         stage.setTitle("PhysiPlay");
         stage.setScene(scene);
+        stage.setAlwaysOnTop(true);
         stage.show();
         scene.getWindow().sizeToScene();
     }
