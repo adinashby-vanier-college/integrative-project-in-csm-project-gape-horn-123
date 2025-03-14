@@ -2,6 +2,7 @@ package com.example.physiplay;
 
 import com.example.physiplay.controllers.InstructionsController;
 import com.example.physiplay.controllers.MainMenuController;
+import com.example.physiplay.controllers.PhysiplayController;
 import com.example.physiplay.controllers.ScreenController;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.application.Application;
