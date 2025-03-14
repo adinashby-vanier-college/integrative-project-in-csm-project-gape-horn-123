@@ -133,6 +133,11 @@
                   <Insets left="20.0" />
                </VBox.margin>
             </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
