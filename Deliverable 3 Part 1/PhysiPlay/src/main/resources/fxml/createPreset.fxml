@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -12,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="900.0" prefWidth="500.0">
+      <VBox prefHeight="900.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
          <children>
             <Label text="Create Preset:">
                <opaqueInsets>
@@ -42,7 +43,11 @@
                   <Insets top="20.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="502.0" />
+            <HBox prefHeight="46.0" prefWidth="500.0" style="-fx-background-color: #BCA9CC;">
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
