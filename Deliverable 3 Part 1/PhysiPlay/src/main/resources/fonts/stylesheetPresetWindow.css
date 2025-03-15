@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+.label{
+    -fx-font-family: "Madimi One";
+    -fx-font-size: 30px;
+}
+#transformDrop{
+    -fx-font-family: "Arial";
+    -fx-font-size: 20px;
+}
