@@ -25,10 +25,10 @@ public class PhysiplayController {
     }
 
     public void initialize() {
-        System.out.println("Hello");
         createPresetButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
             Stage presetWindow = new Stage();
+            loader.setController(new CreatePresetController(presetWindow));
             Parent root = null;
             try {
                 root = loader.load();
@@ -37,7 +37,6 @@ public class PhysiplayController {
             }
             Scene scene = new Scene(root, 500, 900);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheetPresetWindow.css")).toExternalForm());
-            loader.setController(new CreatePresetController(presetWindow));
             presetWindow.setScene(scene);
             presetWindow.initModality(Modality.WINDOW_MODAL);
             presetWindow.initOwner(mainWindow);
