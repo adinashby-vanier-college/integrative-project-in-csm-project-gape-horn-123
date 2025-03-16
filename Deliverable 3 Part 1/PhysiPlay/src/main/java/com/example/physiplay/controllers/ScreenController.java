@@ -25,6 +25,7 @@ public class ScreenController {
 
     private ScreenController() {}
 
+    private String currentSceneName = null;
     private Map<String, Pane> screenMap = new HashMap<>();
     private Scene mainScene;
 
@@ -51,16 +52,19 @@ public class ScreenController {
         }
     }
 
-    public void setMainScene(Scene scene) {
+    public ScreenController setMainScene(Scene scene) {
         this.mainScene = scene;
+        return this;
     }
 
-    public void addScreen(String name, Pane pane) {
+    public ScreenController addScreen(String name, Pane pane) {
         screenMap.put(name, pane);
+        return this;
     }
 
-    public void removeScreen(String name) {
+    public ScreenController removeScreen(String name) {
         screenMap.remove(name);
+        return this;
     }
 
     private void applyTransition(Parent parent) {
@@ -71,9 +75,15 @@ public class ScreenController {
         ft.play();
     }
 
-    public void activate(String name) {
+    public void printCurrentSceneName() {
+        if (currentSceneName == null) System.out.println("No scenes are defined yet!");
+        else System.out.println("Scene name: " + currentSceneName);
+    }
+    public ScreenController activate(String name) {
         Parent parent = screenMap.get(name);
+        currentSceneName = name;
         // applyTransition(parent);
         mainScene.setRoot(parent);
+        return this;
     }
 }

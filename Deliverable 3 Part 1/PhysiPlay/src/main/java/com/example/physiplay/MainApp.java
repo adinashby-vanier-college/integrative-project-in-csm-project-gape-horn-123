@@ -24,12 +24,10 @@ public final class MainApp extends Application {
 
     // These methods load all scenes
     private void loadScenes(Stage stage) {
-        ScreenController.getInstance().addScreen("mainMenu",
-                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage)));
-        ScreenController.getInstance().addScreen("instructions",
-                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml")));
-        ScreenController.getInstance().addScreen("play",
-                ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage)));
+        ScreenController.getInstance()
+                .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage)))
+                .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml")))
+                .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage)));
     }
 
     @Override
@@ -43,8 +41,10 @@ public final class MainApp extends Application {
 
         loadScenes(stage);
 
-        ScreenController.getInstance().setMainScene(scene);
-        ScreenController.getInstance().activate("mainMenu");
+        ScreenController.getInstance()
+                .setMainScene(scene)
+                .activate("mainMenu")
+                .printCurrentSceneName();
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F && !stage.isFullScreen()) stage.setFullScreen(true);
