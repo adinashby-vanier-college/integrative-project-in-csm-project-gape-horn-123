@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
 
 .button{
     -fx-font-family: "Madimi One";
@@ -47,17 +48,14 @@
     -fx-opacity: 0.9;
 }
 
-#pauseButton{
-    -fx-font-family: "Madimi One";
-    -fx-font-size: 12px;
+#startButton, pauseButton, stopButton{
+    -fx-font: 20px "Helvetica";
 }
 
-#startButton{
-    -fx-font-family: "Madimi One";
-    -fx-font-size: 12px;
+#presetsLabel{
+    -fx-font-size: 50px;
 }
 
-#stopButton{
-    -fx-font-family: "Madimi One";
-    -fx-font-size: 12px;
+.tree-view, .tree-cell {
+    -fx-font: 20px "Madimi One";
 }
