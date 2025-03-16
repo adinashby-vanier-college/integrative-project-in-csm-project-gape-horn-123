@@ -37,9 +37,35 @@ public class PhysiplayController {
     private TreeView<String> hierarchyView;
     @FXML
     FlowPane presetFlowPane;
+    @FXML
+    ScrollPane presetScrollPane;
 
     public PhysiplayController(Stage stage){
         this.mainWindow = stage;
+    }
+
+    public void initialize() {
+        presetScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        presetScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        presetFlowPane.setHgap(20);
+        presetFlowPane.setVgap(20);
+
+        createPresetButton.setOnAction(event -> createPresetWindow());
+
+        closeMenuItem.setOnAction(event ->
+            displayClosingAlertBox()
+        );
+
+        TreeItem<String> rootItem = new TreeItem<>("SampleScene");
+        rootItem.setExpanded(true);
+
+        for (int i = 1; i < 6; i++) {
+            TreeItem<String> item = new TreeItem<>("GameObject " + i);
+            rootItem.getChildren().add(item);
+        }
+
+        hierarchyView.setRoot(rootItem);
     }
 
     private void displayClosingAlertBox() {
@@ -52,38 +78,23 @@ public class PhysiplayController {
         }
         else closingAlert.close();
     }
-    public void initialize() {
-        createPresetButton.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
-            Stage presetWindow = new Stage();
-            CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane);
-            loader.setController(createPresetController);
-            Parent root = null;
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Scene scene = new Scene(root, 500, 900);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheetPresetWindow.css")).toExternalForm());
-            presetWindow.setScene(scene);
-            presetWindow.initModality(Modality.WINDOW_MODAL);
-            presetWindow.initOwner(mainWindow);
-            presetWindow.show();
-        });
 
-        closeMenuItem.setOnAction(event -> {
-            displayClosingAlertBox();
-        });
-
-        TreeItem<String> rootItem = new TreeItem<>("SampleScene");
-        rootItem.setExpanded(true);
-
-        for (int i = 1; i < 6; i++) {
-            TreeItem<String> item = new TreeItem<>("GameObject " + i);
-            rootItem.getChildren().add(item);
+    public void createPresetWindow(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
+        Stage presetWindow = new Stage();
+        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane);
+        loader.setController(createPresetController);
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-        hierarchyView.setRoot(rootItem);
+        Scene scene = new Scene(root, 500, 900);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheetPresetWindow.css")).toExternalForm());
+        presetWindow.setScene(scene);
+        presetWindow.initModality(Modality.WINDOW_MODAL);
+        presetWindow.initOwner(mainWindow);
+        presetWindow.show();
     }
 }

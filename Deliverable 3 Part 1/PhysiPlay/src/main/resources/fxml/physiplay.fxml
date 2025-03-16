@@ -47,20 +47,15 @@
                               <Font size="40.0" />
                            </font>
                         </Text>
-                        <ScrollPane prefHeight="292.0" prefWidth="1755.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
+                        <ScrollPane fx:id="presetScrollPane" prefHeight="292.0" prefWidth="1755.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
                            <content>
-                              <FlowPane fx:id="presetFlowPane" prefHeight="179.0" prefWidth="1720.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
-                                 <padding>
-                                    <Insets left="20.0" />
-                                 </padding>
+                              <FlowPane fx:id="presetFlowPane" prefHeight="207.0" prefWidth="1730.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
+                                 <opaqueInsets>
+                                    <Insets right="20.0" />
+                                 </opaqueInsets>
                               </FlowPane>
                            </content>
                         </ScrollPane>
-                        <HBox fx:id="presetHBox" prefHeight="132.0" prefWidth="1703.0" spacing="20.0">
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </HBox>
                      </children>
                   </VBox>
                </children>
