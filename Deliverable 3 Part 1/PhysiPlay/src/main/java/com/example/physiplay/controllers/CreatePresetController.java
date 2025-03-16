@@ -14,7 +14,6 @@ import java.util.*;
 
 public class CreatePresetController {
 
-    // TODO: Accordion CSS styling
     @FXML
     private Accordion componentAccordion;
     @FXML
@@ -29,15 +28,17 @@ public class CreatePresetController {
     ArrayList<SimulationObject> presetList;
     HBox presetHBox;
     FlowPane presetFlowPane;
+    TreeView<String> hierarchyView;
 
     private final List<TitledPane> openPanes = new ArrayList<>();
     Stage presetWindow;
 
-    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane){
+    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
         this.presetList = list;
         this.presetFlowPane = presetFlowPane;
+        this.hierarchyView = treeView;
     }
 
     public void initialize(){
@@ -68,6 +69,10 @@ public class CreatePresetController {
         presetName.setStyle("-fx-font-size: 12px");
         vBox.getChildren().addAll(rectangle, presetName);
         presetFlowPane.getChildren().add(vBox);
+
+        TreeItem<String> preset = new TreeItem<>(presetName.getText());
+        hierarchyView.getRoot().getChildren().add(preset);
+
         presetWindow.hide();
     }
 }

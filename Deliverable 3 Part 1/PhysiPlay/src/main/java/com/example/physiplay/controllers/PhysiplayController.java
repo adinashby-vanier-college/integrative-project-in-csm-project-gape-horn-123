@@ -2,8 +2,6 @@ package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +14,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -59,12 +56,6 @@ public class PhysiplayController {
 
         TreeItem<String> rootItem = new TreeItem<>("SampleScene");
         rootItem.setExpanded(true);
-
-        for (int i = 1; i < 6; i++) {
-            TreeItem<String> item = new TreeItem<>("GameObject " + i);
-            rootItem.getChildren().add(item);
-        }
-
         hierarchyView.setRoot(rootItem);
     }
 
@@ -82,7 +73,7 @@ public class PhysiplayController {
     public void createPresetWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
         Stage presetWindow = new Stage();
-        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane);
+        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView);
         loader.setController(createPresetController);
         Parent root = null;
         try {

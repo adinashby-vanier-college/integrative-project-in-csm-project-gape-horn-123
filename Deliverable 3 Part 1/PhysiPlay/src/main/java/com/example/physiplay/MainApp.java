@@ -1,18 +1,12 @@
 package com.example.physiplay;
 
-import com.example.physiplay.controllers.InstructionsController;
 import com.example.physiplay.controllers.MainMenuController;
 import com.example.physiplay.controllers.PhysiplayController;
 import com.example.physiplay.controllers.ScreenController;
-import com.example.physiplay.singletons.SimulationManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.Objects;
 
