@@ -53,8 +53,7 @@ public final class MainApp extends Application {
 
         stage.setTitle("PhysiPlay");
         stage.setScene(scene);
-        stage.setAlwaysOnTop(true);
+        stage.setMaximized(true);
         stage.show();
-        scene.getWindow().sizeToScene();
     }
 }

@@ -3,6 +3,13 @@
 .button{
     -fx-font-family: "Madimi One";
     -fx-font-size: 50px;
+    -fx-transition: transform 0.2s ease-in-out;
+}
+
+.button:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 
 .label{
