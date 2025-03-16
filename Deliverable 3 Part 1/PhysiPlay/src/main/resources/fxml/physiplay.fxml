@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <Canvas fx:id="canvas" height="274.0" width="393.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -38,14 +38,16 @@
          <children>
             <HBox minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="1755.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Presets" wrappingWidth="130.8228759765625">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </HBox.margin>
-                  </Text>
+                  <VBox prefHeight="197.0" prefWidth="1761.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Presets" wrappingWidth="130.8228759765625">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Text>
+                        <HBox fx:id="presetHBox" prefHeight="132.0" prefWidth="1703.0" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             <VBox alignment="CENTER" prefHeight="197.0" prefWidth="138.0">

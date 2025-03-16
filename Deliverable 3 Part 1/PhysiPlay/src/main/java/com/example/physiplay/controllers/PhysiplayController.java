@@ -1,5 +1,6 @@
 package com.example.physiplay.controllers;
 
+import com.example.physiplay.SimulationObject;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,10 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,10 +22,14 @@ import java.util.Optional;
 public class PhysiplayController {
 
     Stage mainWindow;
+    ArrayList<SimulationObject> presetList = new ArrayList<>();
+
     @FXML
     Button createPresetButton;
     @FXML
     Button startButton;
+    @FXML
+    HBox presetHBox;
     @FXML
     private MenuItem closeMenuItem;
     @FXML
@@ -46,7 +53,8 @@ public class PhysiplayController {
         createPresetButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
             Stage presetWindow = new Stage();
-            loader.setController(new CreatePresetController(presetWindow));
+            CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList);
+            loader.setController(createPresetController);
             Parent root = null;
             try {
                 root = loader.load();

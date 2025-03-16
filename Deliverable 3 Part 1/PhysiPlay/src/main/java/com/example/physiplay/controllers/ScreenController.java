@@ -1,12 +1,10 @@
 package com.example.physiplay.controllers;
 
 import javafx.animation.FadeTransition;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
