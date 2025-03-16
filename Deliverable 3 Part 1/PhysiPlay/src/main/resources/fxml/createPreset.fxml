@@ -35,7 +35,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Polygon>
-                  <TextField prefHeight="35.0" prefWidth="374.0">
+                  <TextField fx:id="presetNameField" prefHeight="35.0" prefWidth="374.0">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

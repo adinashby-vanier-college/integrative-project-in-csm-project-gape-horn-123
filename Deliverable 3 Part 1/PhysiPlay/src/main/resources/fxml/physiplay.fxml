@@ -6,9 +6,11 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -34,9 +36,9 @@
       </VBox>
    </right>
    <bottom>
-      <HBox prefHeight="199.0" prefWidth="1920.0" style="-fx-border-color: black; -fx-background-color: #BCA9CC;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="257.0" prefWidth="1920.0" style="-fx-border-color: black; -fx-background-color: #BCA9CC;" BorderPane.alignment="CENTER">
          <children>
-            <HBox minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="1755.0">
+            <HBox minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="1755.0">
                <children>
                   <VBox prefHeight="197.0" prefWidth="1761.0">
                      <children>
@@ -45,10 +47,26 @@
                               <Font size="40.0" />
                            </font>
                         </Text>
-                        <HBox fx:id="presetHBox" prefHeight="132.0" prefWidth="1703.0" />
+                        <ScrollPane prefHeight="292.0" prefWidth="1755.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
+                           <content>
+                              <FlowPane fx:id="presetFlowPane" prefHeight="179.0" prefWidth="1720.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </FlowPane>
+                           </content>
+                        </ScrollPane>
+                        <HBox fx:id="presetHBox" prefHeight="132.0" prefWidth="1703.0" spacing="20.0">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
             </HBox>
             <VBox alignment="CENTER" prefHeight="197.0" prefWidth="138.0">
                <children>

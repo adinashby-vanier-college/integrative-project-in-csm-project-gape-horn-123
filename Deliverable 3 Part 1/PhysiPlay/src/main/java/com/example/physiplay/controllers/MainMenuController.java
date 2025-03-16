@@ -21,6 +21,7 @@ public class MainMenuController {
     }
 
     public void initialize() {
+        stage.setAlwaysOnTop(true);
         playButton.setOnAction(event -> switchScene("play"));
         instructionsButton.setOnAction(event -> switchScene("instructions"));
         exitButton.setOnAction(event -> Platform.exit());

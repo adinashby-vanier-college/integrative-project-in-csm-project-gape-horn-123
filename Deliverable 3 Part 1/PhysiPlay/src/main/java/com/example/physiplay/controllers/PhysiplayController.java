@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -34,6 +35,8 @@ public class PhysiplayController {
     private MenuItem closeMenuItem;
     @FXML
     private TreeView<String> hierarchyView;
+    @FXML
+    FlowPane presetFlowPane;
 
     public PhysiplayController(Stage stage){
         this.mainWindow = stage;
@@ -53,7 +56,7 @@ public class PhysiplayController {
         createPresetButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
             Stage presetWindow = new Stage();
-            CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList);
+            CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane);
             loader.setController(createPresetController);
             Parent root = null;
             try {

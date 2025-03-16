@@ -3,11 +3,10 @@ package com.example.physiplay.controllers;
 import com.example.physiplay.SimulationObject;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -19,6 +18,7 @@ public class CreatePresetController {
     @FXML
     private Accordion componentAccordion;
     @FXML
+    public TextField presetNameField;
     public Button createPresetButton;
     public TextField positionXField;
     public TextField positionYField;
@@ -28,14 +28,16 @@ public class CreatePresetController {
 
     ArrayList<SimulationObject> presetList;
     HBox presetHBox;
+    FlowPane presetFlowPane;
 
     private final List<TitledPane> openPanes = new ArrayList<>();
     Stage presetWindow;
 
-    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list){
+    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
         this.presetList = list;
+        this.presetFlowPane = presetFlowPane;
     }
 
     public void initialize(){
@@ -60,7 +62,12 @@ public class CreatePresetController {
     }
 
     public void createPreset(){
-        presetHBox.getChildren().add(new Rectangle(10,10));
+        VBox vBox = new VBox();
+        Rectangle rectangle = new Rectangle(100,100);
+        Label presetName = new Label(presetNameField.getText());
+        presetName.setStyle("-fx-font-size: 12px");
+        vBox.getChildren().addAll(rectangle, presetName);
+        presetFlowPane.getChildren().add(vBox);
         presetWindow.hide();
     }
 }
