@@ -57,6 +57,7 @@ public class CreatePresetController {
         numberOnly(rotationField);
         numberOnly(scaleXField);
         numberOnly(scaleYField);
+
     }
 
 
@@ -83,11 +84,11 @@ public class CreatePresetController {
             gc.fillRect(10,10,10,10);
         });*/
 
-        DragShapeHandler handler = new DragShapeHandler(rectangle);
+        DragShapeHandler handler = new DragShapeHandler(rectangle, gc);
         rectangle.setOnMousePressed(handler);
         rectangle.setOnMouseDragged(handler);
 
-        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle));
+        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc));
 
         presetFlowPane.getChildren().add(vBox);
 

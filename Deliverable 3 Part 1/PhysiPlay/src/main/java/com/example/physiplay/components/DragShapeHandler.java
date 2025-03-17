@@ -2,7 +2,9 @@ package com.example.physiplay.components;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 
 public class DragShapeHandler implements EventHandler<MouseEvent> {
 
@@ -10,9 +12,11 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
     private double sceneAnchorY;
 
     public Node node ;
+    GraphicsContext gc;
 
-    public DragShapeHandler(Node node) {
+    public DragShapeHandler(Node node, GraphicsContext gc) {
         this.node = node ;
+        this.gc = gc;
     }
 
     @Override
@@ -27,7 +31,7 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
             node.setTranslateY(node.getTranslateY() + y - sceneAnchorY);
             sceneAnchorX = x;
             sceneAnchorY = y;
-            System.out.println("Hello");
+            gc.fillRect(100, 100, x, y);
         }
     }
 }
