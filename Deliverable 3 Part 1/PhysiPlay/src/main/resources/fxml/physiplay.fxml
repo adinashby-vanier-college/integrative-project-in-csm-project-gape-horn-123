@@ -24,7 +24,7 @@
    <right>
       <VBox prefHeight="854.0" prefWidth="308.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER">
          <children>
-            <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" />
+            <TabPane fx:id="tabPane" prefHeight="791.0" prefWidth="308.0" tabClosingPolicy="UNAVAILABLE" />
          </children>
       </VBox>
    </right>
