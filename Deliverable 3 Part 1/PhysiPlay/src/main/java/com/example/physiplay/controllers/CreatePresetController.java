@@ -38,11 +38,12 @@ public class CreatePresetController {
     FlowPane presetFlowPane;
     TreeView<String> hierarchyView;
     GraphicsContext gc;
+    TabPane tabPane;
 
     private final List<TitledPane> openPanes = new ArrayList<>();
     Stage presetWindow;
 
-    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList){
+    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
         this.presetList = list;
@@ -50,6 +51,7 @@ public class CreatePresetController {
         this.hierarchyView = treeView;
         this.gc = gc;
         this.objectsList = objectsList;
+        this.tabPane = tabPane;
     }
 
     public void initialize(){
@@ -86,11 +88,11 @@ public class CreatePresetController {
             gc.fillRect(10,10,10,10);
         });*/
 
-        DragShapeHandler handler = new DragShapeHandler(rectangle, gc);
+        DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane);
         //rectangle.setOnMousePressed(handler);
         rectangle.setOnMouseDragged(handler);
 
-        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc));
+        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane));
 
         presetFlowPane.getChildren().add(vBox);
 

@@ -46,6 +46,8 @@ public class PhysiplayController {
     ScrollPane presetScrollPane;
     @FXML
     Canvas canvas;
+    @FXML
+    TabPane tabPane;
 
     public PhysiplayController(Stage stage){
         this.mainWindow = stage;
@@ -95,7 +97,7 @@ public class PhysiplayController {
     public void createPresetWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
         Stage presetWindow = new Stage();
-        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView, canvas.getGraphicsContext2D(), objectsList);
+        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView, canvas.getGraphicsContext2D(), objectsList, tabPane);
         loader.setController(createPresetController);
         Parent root = null;
         try {
