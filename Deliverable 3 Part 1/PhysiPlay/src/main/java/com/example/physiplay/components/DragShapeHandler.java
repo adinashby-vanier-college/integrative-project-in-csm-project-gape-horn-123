@@ -3,6 +3,7 @@ package com.example.physiplay.components;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -18,11 +19,13 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
     public Node node ;
     GraphicsContext gc;
     TabPane tabPane;
+    TreeView<String> hierarchyView;
 
-    public DragShapeHandler(Node node, GraphicsContext gc, TabPane tabPane) {
+    public DragShapeHandler(Node node, GraphicsContext gc, TabPane tabPane, TreeView<String> hierarchyView) {
         this.node = node;
         this.gc = gc;
         this.tabPane = tabPane;
+        this.hierarchyView = hierarchyView;
     }
 
     @Override
@@ -49,6 +52,9 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
 
     public ScrollPane makeTabContent() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
+        ScrollPane root = loader.load();
+        root.getStylesheets().add(String.valueOf(getClass().getResource("/fonts/tabStylesheet.css")));
+        hierarchyView.getRoot().getChildren().add(new TreeItem<>("GameObject1"));
         /*VBox vBox = new VBox();
         HBox hBox = new HBox();
         Rectangle rectangle = new Rectangle(10,10);
@@ -62,6 +68,6 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
         TitledPane audio = new TitledPane();
         accordion.getPanes().addAll(transformPane, rigidBody, audio);*/
 
-        return loader.load();
+        return root;
     }
 }

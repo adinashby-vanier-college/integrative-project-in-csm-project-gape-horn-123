@@ -88,11 +88,11 @@ public class CreatePresetController {
             gc.fillRect(10,10,10,10);
         });*/
 
-        DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane);
+        DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView);
         //rectangle.setOnMousePressed(handler);
         rectangle.setOnMouseDragged(handler);
 
-        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane));
+        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView));
 
         presetFlowPane.getChildren().add(vBox);
 

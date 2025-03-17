@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxWidth="308.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane hbarPolicy="NEVER" maxWidth="308.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="900.0" prefWidth="305.0" style="-fx-background-color: #D5C9DF;">
          <children>
@@ -23,11 +23,11 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Polygon>
-                  <TextField fx:id="presetNameField" prefHeight="35.0" prefWidth="200.0">
+                  <Label fx:id="gameObjectName" prefHeight="50.0" prefWidth="168.0" text="GameObject">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
-                  </TextField>
+                  </Label>
                </children>
                <padding>
                   <Insets top="20.0" />
@@ -35,7 +35,7 @@
             </HBox>
             <Accordion fx:id="componentAccordion" style="-fx-background-color: #D5C9DF;">
               <panes>
-                <TitledPane animated="false" style="-fx-background-color: #D5C9DF;" text="Transform">
+                <TitledPane animated="false" prefHeight="529.0" prefWidth="305.0" style="-fx-background-color: #D5C9DF;" text="Transform">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #D5C9DF;">
                            <children>

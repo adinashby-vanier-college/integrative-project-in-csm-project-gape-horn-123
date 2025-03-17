@@ -2,8 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
 
 .button{
-    -fx-font-family: "Madimi One";
-    -fx-font-size: 50px;
+    -fx-font: 50px "Madimi One";
     -fx-transition: transform 0.2s ease-in-out;
 }
 
@@ -14,14 +13,12 @@
 }
 
 .label{
-    -fx-font-family: "Madimi One";
-    -fx-font-size: 200px;
+    -fx-font: 200px "Madimi One";
 }
 
 .menu .label {
-    -fx-font-family: "Madimi One";
     -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-font: 20px "Madimi One";
 }
 
 .tree-cell {
