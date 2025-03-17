@@ -48,8 +48,8 @@
     -fx-opacity: 0.9;
 }
 
-#startButton, pauseButton, stopButton{
-    -fx-font: 20px "Helvetica";
+#startButton, #pauseButton, #stopButton{
+    -fx-font: 12px "Madimi One";
 }
 
 #presetsLabel{

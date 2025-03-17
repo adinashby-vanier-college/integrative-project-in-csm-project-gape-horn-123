@@ -74,7 +74,7 @@
    <top>
       <StackPane prefHeight="35.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;">
+            <MenuBar maxHeight="100.0" minHeight="13.0" prefHeight="13.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;">
                <menus>
                   <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
                      <items>
@@ -105,11 +105,11 @@
                   </Menu>
                </menus>
             </MenuBar>
-            <HBox alignment="CENTER" maxWidth="500.0" minHeight="50.0" minWidth="464.0" prefHeight="35.0" prefWidth="464.0">
+            <HBox alignment="CENTER" maxWidth="500.0" minHeight="25.0" minWidth="464.0" prefHeight="25.0" prefWidth="500.0">
                <children>
-                  <Button fx:id="startButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="&#x23F5;" textFill="WHITE" />
-                  <Button fx:id="pauseButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="&#x23F8;" textFill="WHITE" />
-                  <Button fx:id="stopButton" maxHeight="35.0" maxWidth="75.0" minHeight="50.0" minWidth="35.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="&#x23F9;" textFill="WHITE" />
+                  <Button fx:id="startButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="⏵" textFill="WHITE" />
+                  <Button fx:id="pauseButton" contentDisplay="CENTER" maxHeight="25.0" maxWidth="75.0" minHeight="25.0" minWidth="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="⏸" textFill="WHITE" />
+                  <Button fx:id="stopButton" maxHeight="25.0" maxWidth="75.0" minHeight="25.0" minWidth="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="⏹" textFill="WHITE" />
                </children>
             </HBox>
          </children>
