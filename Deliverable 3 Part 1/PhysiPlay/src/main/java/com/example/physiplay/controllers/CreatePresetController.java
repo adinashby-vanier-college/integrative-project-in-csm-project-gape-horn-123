@@ -3,9 +3,7 @@ package com.example.physiplay.controllers;
 import com.example.physiplay.SimulationObject;
 import com.example.physiplay.components.DragShapeHandler;
 import javafx.beans.value.ChangeListener;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -13,11 +11,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CreatePresetController {
 

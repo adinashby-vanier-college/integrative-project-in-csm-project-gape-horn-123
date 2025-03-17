@@ -2,3 +2,7 @@
 .label{
     -fx-font: 20px "Madimi One";
 }
+.titled-pane > .title
+{
+-fx-background-color: #D5C9DF;
+}
