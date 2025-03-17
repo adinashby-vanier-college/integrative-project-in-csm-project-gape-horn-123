@@ -1,19 +1,26 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -36,6 +43,8 @@ public class PhysiplayController {
     FlowPane presetFlowPane;
     @FXML
     ScrollPane presetScrollPane;
+    @FXML
+    Canvas canvas;
 
     public PhysiplayController(Stage stage){
         this.mainWindow = stage;
@@ -57,6 +66,18 @@ public class PhysiplayController {
         TreeItem<String> rootItem = new TreeItem<>("SampleScene");
         rootItem.setExpanded(true);
         hierarchyView.setRoot(rootItem);
+
+        //setUpTimer();
+    }
+
+    private void setUpTimer() {
+        AnimationTimer animationTimer = new AnimationTimer() {
+            public void handle(long l) {
+                ObservableList<Node> vBoxList = presetFlowPane.getChildren();
+                if (!vBoxList.isEmpty())System.out.println(vBoxList.get(0));
+            }
+        };
+        animationTimer.start();
     }
 
     private void displayClosingAlertBox() {
@@ -73,7 +94,7 @@ public class PhysiplayController {
     public void createPresetWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
         Stage presetWindow = new Stage();
-        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView);
+        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView, canvas.getGraphicsContext2D());
         loader.setController(createPresetController);
         Parent root = null;
         try {

@@ -1,16 +1,23 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.components.DragShapeHandler;
 import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CreatePresetController {
 
@@ -29,16 +36,18 @@ public class CreatePresetController {
     HBox presetHBox;
     FlowPane presetFlowPane;
     TreeView<String> hierarchyView;
+    GraphicsContext gc;
 
     private final List<TitledPane> openPanes = new ArrayList<>();
     Stage presetWindow;
 
-    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView){
+    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
         this.presetList = list;
         this.presetFlowPane = presetFlowPane;
         this.hierarchyView = treeView;
+        this.gc = gc;
     }
 
     public void initialize(){
@@ -68,6 +77,18 @@ public class CreatePresetController {
         Label presetName = new Label(presetNameField.getText());
         presetName.setStyle("-fx-font-size: 12px");
         vBox.getChildren().addAll(rectangle, presetName);
+        /*vBox.setOnMouseDragged(mouseEvent -> {
+            rectangle.setX(mouseEvent.getX());
+            System.out.println(mouseEvent.getScreenX());
+            gc.fillRect(10,10,10,10);
+        });*/
+
+        DragShapeHandler handler = new DragShapeHandler(rectangle);
+        rectangle.setOnMousePressed(handler);
+        rectangle.setOnMouseDragged(handler);
+
+        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle));
+
         presetFlowPane.getChildren().add(vBox);
 
         TreeItem<String> preset = new TreeItem<>(presetName.getText());

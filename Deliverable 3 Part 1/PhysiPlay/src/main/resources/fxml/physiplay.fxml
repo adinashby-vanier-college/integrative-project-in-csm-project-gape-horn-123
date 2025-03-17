@@ -18,13 +18,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <Canvas fx:id="canvas" height="274.0" width="393.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="100.0" right="100.0" />
-         </BorderPane.margin>
-      </Canvas>
-   </center>
    <left>
       <TreeView fx:id="hierarchyView" prefHeight="998.0" prefWidth="360.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER" />
    </left>
@@ -115,4 +108,11 @@
          </children>
       </StackPane>
    </top>
+   <center>
+      <VBox prefHeight="617.0" prefWidth="1124.0" BorderPane.alignment="CENTER">
+         <children>
+            <Canvas fx:id="canvas" height="797.0" width="1256.0" />
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
