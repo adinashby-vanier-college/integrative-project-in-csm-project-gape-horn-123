@@ -5,8 +5,18 @@
     -fx-font-size: 30px;
 }
 
+.button{
+    -fx-font: 25px "Madimi One"
+}
+
 .titled-pane > .title
 {
 -fx-background-color: #D5C9DF;
 }
+
+.titled-pane > .title
+{
+    -fx-font: 25px "Madimi One"
+}
+
 
