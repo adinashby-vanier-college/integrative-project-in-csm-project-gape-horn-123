@@ -8,9 +8,6 @@ import javafx.scene.shape.Rectangle;
 
 public class DragShapeHandler implements EventHandler<MouseEvent> {
 
-    private double sceneAnchorX;
-    private double sceneAnchorY;
-
     public Node node ;
     GraphicsContext gc;
 
@@ -22,12 +19,11 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-            sceneAnchorX = event.getSceneX();
-            sceneAnchorY = event.getSceneY();
+
         }
         else if (event.getEventType() == MouseEvent.MOUSE_RELEASED){
             gc.fillRect(event.getSceneX() - 360, event.getSceneY() - 35, 10, 10);
-            
+
         }
     }
 }

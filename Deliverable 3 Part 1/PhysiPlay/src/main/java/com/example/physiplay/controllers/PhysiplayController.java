@@ -28,6 +28,7 @@ public class PhysiplayController {
 
     Stage mainWindow;
     ArrayList<SimulationObject> presetList = new ArrayList<>();
+    ArrayList<SimulationObject> objectsList = new ArrayList<>();
 
     @FXML
     Button createPresetButton;
@@ -94,7 +95,7 @@ public class PhysiplayController {
     public void createPresetWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
         Stage presetWindow = new Stage();
-        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView, canvas.getGraphicsContext2D());
+        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView, canvas.getGraphicsContext2D(), objectsList);
         loader.setController(createPresetController);
         Parent root = null;
         try {
