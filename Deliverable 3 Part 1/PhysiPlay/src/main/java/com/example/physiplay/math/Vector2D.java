@@ -46,7 +46,7 @@ public class Vector2D {
 	}
 	
 	public Vector2D project(Vector2D other) {
-		return other.multiply(this.dot(other)/other.dot(other));
+		return other.multiply(this.dot(other) / other.dot(other));
 	}
 	
 	public double distance(Vector2D start, Vector2D end) {
@@ -57,4 +57,7 @@ public class Vector2D {
 		return new Vector2D(-this.y, this.x);
 	}
 	
+	public double angleToOtherVector(Vector2D other) {
+		return Math.acos(this.dot(other) / (this.magnitude() * other.magnitude()));
+	}
 }
