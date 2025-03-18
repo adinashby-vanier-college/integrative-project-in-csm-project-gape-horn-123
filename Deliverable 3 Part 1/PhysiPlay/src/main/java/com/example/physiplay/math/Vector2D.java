@@ -2,7 +2,7 @@ package com.example.physiplay.math;
 
 public class Vector2D {
 	
-	private double x, y;
+	private final double x, y;
 	
 	public Vector2D(double x, double y) {
 		this.x = x;
@@ -41,4 +41,7 @@ public class Vector2D {
 		return this.subtract(normal.multiply(2 * this.dot(normal)));
 	}
 	
+	public Vector2D rotate(double radians) {
+		return new Vector2D(this.x * Math.cos(radians) - this.y * Math.sin(radians), this.x * Math.sin(radians) + this.y * Math.cos(radians));
+	}
 }
