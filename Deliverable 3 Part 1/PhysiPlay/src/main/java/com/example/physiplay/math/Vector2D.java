@@ -36,4 +36,9 @@ public class Vector2D {
 	public Vector2D normal() {
 		return this.multiply(1/this.magnitude());
 	}
+	
+	public Vector2D reflect(Vector2D normal) {
+		return this.subtract(normal.multiply(2 * this.dot(normal)));
+	}
+	
 }
