@@ -71,7 +71,7 @@ public class Vector2D {
 	
 	/**
 	 * vector addition
-	 * @param other: vector to add
+	 * @param other vector to add
 	 * @return new vector whose components are the sum of the corresponding components of this vector and the other vector
 	 * */
 	public Vector2D add(Vector2D other) {
@@ -80,7 +80,7 @@ public class Vector2D {
 	
 	/**
 	 * vector subtraction
-	 * @param other: vector to subtract
+	 * @param other vector to subtract
 	 * @return new vector whose components are the difference of the corresponding components of this vector and the other vector
 	 * */
 	public Vector2D subtract(Vector2D other) {
@@ -89,16 +89,18 @@ public class Vector2D {
 	
 	/**
 	 * vector multiplication
-	 * @param scalar: scalar to multiply the components of the vector with
+	 * @param scalar scalar to multiply the components of the vector with
 	 * @return new vector whose components are multiplied by the scalar
 	 * */
 	public Vector2D multiply(double scalar) {
 		return new Vector2D(this.x * scalar, this.y * scalar);
 	}
 	
+	// vector operations
+	
 	/**
 	 * vector dot multiplication
-	 * @param other: vector to do dot multiplication with
+	 * @param other vector to do dot multiplication with
 	 * @return the dot product of the two vectors
 	 * */
 	public double dot(Vector2D other) {
@@ -106,24 +108,29 @@ public class Vector2D {
 	}
 	
 	/**
-	 * vector cross multiplication
-	 * @param other: vector to do cross multiplication with
+	 * vector cross multiplication (returns scalar magnitude)
+	 * @param other vector to do cross multiplication with
 	 * @return the cross product of the two vectors
 	 * */
 	public double cross(Vector2D other) {
 		return this.x * other.y - this.y * other.x;
 	}
 	
+	// geometric Operations
+	
 	/**
-	 * @return this vector's magnitude
+	 * calculates vector magnitude
+	 * @return this vector's euclidean norm: sqrt(x^2 + y^2)
 	 * */
 	public double magnitude() {
 		return Math.sqrt(this.x * this.x + this.y * this.y);
 	}
 	
 	/**
-	 * @return a new vector representing the normalized version of this vector
-	 * */
+     * returns unit vector in same direction
+     * @throws ArithmeticException if magnitude is zero
+     * @return new normalized vector: this * (1 / magnitude())
+     */
 	public Vector2D unit() {
 		double magnitude = this.magnitude();
 		if (magnitude == 0)
@@ -131,32 +138,53 @@ public class Vector2D {
 		return this.multiply(1/magnitude);
 	}
 	
+	// physics operations
+	
 	/**
-	 * @param normal: the normal vector 
+	 * calculates reflection vector about a surface normal
+	 * @param normal surface normal vector (must be unit vector)
+	 * @throws IllegalArgumentException if the normal vector is not a unit vector
 	 * @return the reflection vector
 	 * */
 	public Vector2D reflect(Vector2D normal) {
+		if (!scalarFuzzyEquals(normal.magnitude(), 1)) {
+			throw new IllegalArgumentException("the normal vector needs to be a unit vector");
+		}
 		return this.subtract(normal.multiply(2 * this.dot(normal)));
 	}
 	
 	/**
-	 * @param normal: the normal vector 
-	 * @return the reflection vector
-	 * */
+     * rotates vector by specified angle
+     * @param radians rotation angle in radians
+     * @return New rotated vector using rotation matrix:
+     * [x*cosθ - y*sinθ, x*sinθ + y*cosθ]
+     */
 	public Vector2D rotate(double radians) {
 		return new Vector2D(this.x * Math.cos(radians) - this.y * Math.sin(radians), this.x * Math.sin(radians) + this.y * Math.cos(radians));
 	}
 	
+	// projection operations
+	
 	/**
-	 * @param other: the direction vector to use to project this vector on 
-	 * @return the projected vector
-	 * */
+     * projects this vector onto another vector
+     * @param other target vector for projection
+     * @return vector projection of this onto other:
+     * other * (this · other / ||other||^2)
+     */
 	public Vector2D project(Vector2D other) {
 		return other.multiply(this.dot(other) / other.dot(other));
 	}
 	
-	public double distance(Vector2D start, Vector2D end) {
-		return end.subtract(start).magnitude();
+	// spatial relationships
+	
+	/**
+     * calculates distance between two points (static operation)
+     * @param start starting point vector
+     * @param end ending point vector
+     * @return euclidean distance: ||end - start||
+     */
+	public double distance(Vector2D other) {
+		return other.subtract(this).magnitude();
 	}
 	
 	public Vector2D perpendicular() {
@@ -165,5 +193,25 @@ public class Vector2D {
 	
 	public double angleToOtherVector(Vector2D other) {
 		return Math.acos(this.dot(other) / (this.magnitude() * other.magnitude()));
+	}
+	
+	// utilities
+	
+	public boolean fuzzyEquals(Vector2D other) {
+		return fuzzyEquals(other, 1e-5);
+	}
+	
+	public boolean fuzzyEquals(Vector2D other, double epsilon) {
+		return this.distance(other) < epsilon;
+	}
+	
+	//private functions
+	
+	private boolean scalarFuzzyEquals(double a, double b) {
+		return scalarFuzzyEquals(a, b, 1e-5);
+	}
+	
+	private boolean scalarFuzzyEquals(double a, double b, double epsilon) {
+		return Math.abs(a-b) < epsilon;
 	}
 }
