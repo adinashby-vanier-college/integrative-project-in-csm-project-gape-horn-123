@@ -29,4 +29,11 @@ public class Vector2D {
 		return this.x * other.y - this.y * other.x;
 	}
 	
+	public double magnitude() {
+		return Math.sqrt(this.x * this.x + this.y * this.y);
+	}
+	
+	public Vector2D normal() {
+		return this.multiply(1/this.magnitude());
+	}
 }
