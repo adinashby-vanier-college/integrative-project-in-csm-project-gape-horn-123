@@ -1,10 +1,10 @@
 package com.example.physiplay.math;
 
 /**
- * a 2d vector class for physics and math shit
+ * a 2d vector class for physics and math stuff
  * 
  * <p>
- * this immutable class provides common vector operations required for 2d physics simulation. shit has arithmetic, projections, rotations, reflection. all operations return a new Vector2D instance to maintain immutability.
+ * this immutable class provides common vector operations required for 2d physics simulation. this has arithmetic, projections, rotations, reflection. all operations return a new Vector2D instance to maintain immutability.
  * </p>
  * <h2>example usage:</h2>
  * <pre>
@@ -12,15 +12,15 @@ package com.example.physiplay.math;
  * Vector2D acceleration = new Vector2D(0, -9.8);
  * Vector2D newVelocity = velocity.add(acceleration.multiply(deltaTime));
  * </pre>
- * <h2>why use this shit? we can just have a mutable vector2d</h2>
+ * <h2>why use this thing? we can just have a mutable vector2d</h2>
  * <p>
- * 1. thread safety - can't fuck shit up, immutable objects are inherently thread-safe. kinda important for multithreaded stuff (javafx!!). also it allows us to make the physics engine multithreaded as well
+ * 1. thread safety - can't screw this up, immutable objects are inherently thread-safe. kinda important for multithreaded stuff (javafx!!). also it allows us to make the physics engine multithreaded as well
  * </p>
  * <p>
- * 2. no side effects - super predictable (never changes) and you can't change shit accidentally when you're passing one vector in a method or something
+ * 2. no side effects - super predictable (never changes) and you can't change it accidentally when you're passing one vector in a method or something
  * </p>
  * <p>
- * 3. fluent chaining - you can do cool shit like this:
+ * 3. fluent chaining - you can do cool stuff like this:
  * </p>
  * <pre>
  * Vector2D result = position
@@ -187,34 +187,77 @@ public class Vector2D {
 	}
 	
 	/**
-     * Returns perpendicular vector (90° rotation)
-     * @return New vector: (-y, x)
+     * returns perpendicular vector (90° rotation)
+     * @return new vector: (-y, x)
      */
 	public Vector2D perpendicular() {
 		return new Vector2D(-this.y, this.x);
 	}
 	
+	/**
+     * calculates angle between this vector and another
+     * @param other vector to measure angle to
+     * @return angle in radians between [0, pi]
+     */
 	public double angleToOtherVector(Vector2D other) {
 		return Math.acos(this.dot(other) / (this.magnitude() * other.magnitude()));
 	}
 	
 	// utilities
 	
+	/**
+	 * checks if this vector is approximately equal to another vector using a default epsilon value.
+	 * @param other the vector to compare with
+	 * @return {@code true} if the distance between the vectors is less than the default epsilon,
+	 *         {@code false} otherwise
+	 * @see #fuzzyEquals(Vector2D, double)
+	 */
 	public boolean fuzzyEquals(Vector2D other) {
 		return fuzzyEquals(other, 1e-5);
 	}
 	
+	/**
+	 * checks if this vector is approximately equal to another vector using a custom epsilon value.
+	 * @param other   The vector to compare with
+	 * @param epsilon The maximum allowed distance between the vectors for them to be considered equal
+	 * @return {@code true} if the distance between the vectors is less than epsilon,
+	 *         {@code false} otherwise
+	 * @throws IllegalArgumentException if epsilon is negative
+	 */
 	public boolean fuzzyEquals(Vector2D other, double epsilon) {
+		if (epsilon < 0) {
+	        throw new IllegalArgumentException("Epsilon must be non-negative.");
+	    }
 		return this.distance(other) < epsilon;
 	}
 	
 	//private functions
 	
+	/**
+	 * checks if two scalar values are approximately equal using a default epsilon value.
+	 * @param a the first scalar value
+	 * @param b the second scalar value
+	 * @return {@code true} if the absolute difference between the values is less than the default epsilon,
+	 *         {@code false} otherwise
+	 * @see #scalarFuzzyEquals(double, double, double)
+	 */
 	private boolean scalarFuzzyEquals(double a, double b) {
 		return scalarFuzzyEquals(a, b, 1e-5);
 	}
 	
+	/**
+	 * Checks if two scalar values are approximately equal using a custom epsilon value.
+	 * @param a the first scalar value
+	 * @param b the second scalar value
+	 * @param epsilon the maximum allowed difference between the values for them to be considered equal
+	 * @return {@code true} if the absolute difference between the values is less than epsilon,
+	 *         {@code false} otherwise
+	 * @throws IllegalArgumentException if epsilon is negative
+	 */
 	private boolean scalarFuzzyEquals(double a, double b, double epsilon) {
+		if (epsilon < 0) {
+	        throw new IllegalArgumentException("Epsilon must be non-negative.");
+	    }
 		return Math.abs(a-b) < epsilon;
 	}
 }
