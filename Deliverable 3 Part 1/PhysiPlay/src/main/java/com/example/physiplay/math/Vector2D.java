@@ -125,9 +125,16 @@ public class Vector2D {
 	 * @return a new vector representing the normalized version of this vector
 	 * */
 	public Vector2D unit() {
-		return this.multiply(1/this.magnitude());
+		double magnitude = this.magnitude();
+		if (magnitude == 0)
+			throw new ArithmeticException("cannot normalize a zero vector");
+		return this.multiply(1/magnitude);
 	}
 	
+	/**
+	 * @param normal: the normal vector 
+	 * @return a new vector representing the normalized version of this vector
+	 * */
 	public Vector2D reflect(Vector2D normal) {
 		return this.subtract(normal.multiply(2 * this.dot(normal)));
 	}
