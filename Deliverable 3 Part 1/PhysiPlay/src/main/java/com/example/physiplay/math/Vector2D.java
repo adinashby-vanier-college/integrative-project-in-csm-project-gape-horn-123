@@ -78,6 +78,11 @@ public class Vector2D {
 		return new Vector2D(this.x + other.x, this.y + other.y);
 	}
 	
+	/**
+	 * vector subtraction
+	 * @param other: vector to subtract
+	 * @return new vector whose components are the difference of the corresponding components of this vector and the other vector
+	 * */
 	public Vector2D subtract(Vector2D other) {
 		return new Vector2D(this.x - other.x, this.y - other.y);
 	}
