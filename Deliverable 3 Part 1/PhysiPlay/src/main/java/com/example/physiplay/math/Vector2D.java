@@ -53,4 +53,8 @@ public class Vector2D {
 		return end.subtract(start).magnitude();
 	}
 	
+	public Vector2D perpendicular() {
+		return new Vector2D(-this.y, this.x);
+	}
+	
 }
