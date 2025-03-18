@@ -48,17 +48,32 @@ public class Vector2D {
 	/**zero vector (0,0)*/
 	public static final Vector2D ZERO = new Vector2D(0, 0);
 	
+	/**unit vector (1,1)*/
 	public static final Vector2D ONE = new Vector2D(1, 1);
 	
+	/**x-axis basis vector (1,0)*/
 	public static final Vector2D X_AXIS = new Vector2D(1, 0);
 	
+	/**y-axis basis vector (0,1)*/
 	public static final Vector2D Y_AXIS = new Vector2D(0, 1);
 	
+	/**
+	 * creates a new 2d vector
+	 * @param x : x-component
+	 * @param y : y-component
+	 * */
 	public Vector2D(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}	
 	
+	// basic arithmetic operations
+	
+	/**
+	 * vector addition
+	 * @param other: vector to add
+	 * @return new vector whose components are the sum of the corresponding components of this vector and the other vector
+	 * */
 	public Vector2D add(Vector2D other) {
 		return new Vector2D(this.x + other.x, this.y + other.y);
 	}
