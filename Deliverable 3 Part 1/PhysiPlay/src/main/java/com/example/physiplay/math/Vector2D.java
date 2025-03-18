@@ -25,4 +25,8 @@ public class Vector2D {
 		return this.x * other.x + this.y * other.y;
 	}
 	
+	public double cross(Vector2D other) {
+		return this.x * other.y - this.y * other.x;
+	}
+	
 }
