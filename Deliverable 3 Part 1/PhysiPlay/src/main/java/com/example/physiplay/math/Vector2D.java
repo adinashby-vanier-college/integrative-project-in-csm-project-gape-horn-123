@@ -49,4 +49,8 @@ public class Vector2D {
 		return other.multiply(this.dot(other)/other.dot(other));
 	}
 	
+	public double distance(Vector2D start, Vector2D end) {
+		return end.subtract(start).magnitude();
+	}
+	
 }
