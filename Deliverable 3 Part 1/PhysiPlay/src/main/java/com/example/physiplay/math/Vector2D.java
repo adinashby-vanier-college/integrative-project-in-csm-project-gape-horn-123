@@ -1,5 +1,34 @@
 package com.example.physiplay.math;
 
+/**
+ * a 2d vector class for physics and math shit
+ * 
+ * <p>
+ * this immutable class provides common vector operations required for 2d physics simulation. shit has arithmetic, projections, rotations, reflection. all operations return a new Vector2D instance to maintain immutability.
+ * </p>
+ * <h2>example usage:</h2>
+ * <pre>
+ * Vector2D velocity = new Vector2D(3, 4);
+ * Vector2D acceleration = new Vector2D(0, -9.8);
+ * Vector2D newVelocity = velocity.add(acceleration.multiply(deltaTime));
+ * </pre>
+ * <h2>why use this shit? we can just have a mutable vector2d</h2>
+ * <p>
+ * 1. thread safety - can't fuck shit up, immutable objects are inherently thread-safe. kinda important for multithreaded stuff (javafx!!). also it allows us to make the physics engine multithreaded as well
+ * </p>
+ * <p>
+ * 2. no side effects - super predictable (never changes) and you can't change shit accidentally when you're passing one vector in a method or something
+ * </p>
+ * <p>
+ * 3. fluent chaining - you can do cool shit like this:
+ * </p>
+ * <pre>
+ * Vector2D result = position
+ *   .add(velocity.multiply(dt))
+ *   .reflect(surfaceNormal)
+ *   .rotate(angle);
+ * </pre>
+ */
 public class Vector2D {
 	
 	private final double x, y;
