@@ -114,11 +114,17 @@ public class Vector2D {
 		return this.x * other.y - this.y * other.x;
 	}
 	
+	/**
+	 * @return this vector's magnitude
+	 * */
 	public double magnitude() {
 		return Math.sqrt(this.x * this.x + this.y * this.y);
 	}
 	
-	public Vector2D normal() {
+	/**
+	 * @return a new vector representing the normalized version of this vector
+	 * */
+	public Vector2D unit() {
 		return this.multiply(1/this.magnitude());
 	}
 	
