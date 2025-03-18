@@ -44,4 +44,9 @@ public class Vector2D {
 	public Vector2D rotate(double radians) {
 		return new Vector2D(this.x * Math.cos(radians) - this.y * Math.sin(radians), this.x * Math.sin(radians) + this.y * Math.cos(radians));
 	}
+	
+	public Vector2D project(Vector2D other) {
+		return other.multiply(this.dot(other)/other.dot(other));
+	}
+	
 }
