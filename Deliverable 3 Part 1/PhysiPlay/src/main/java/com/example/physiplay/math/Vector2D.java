@@ -133,7 +133,7 @@ public class Vector2D {
 	
 	/**
 	 * @param normal: the normal vector 
-	 * @return a new vector representing the normalized version of this vector
+	 * @return the reflection vector
 	 * */
 	public Vector2D reflect(Vector2D normal) {
 		return this.subtract(normal.multiply(2 * this.dot(normal)));
