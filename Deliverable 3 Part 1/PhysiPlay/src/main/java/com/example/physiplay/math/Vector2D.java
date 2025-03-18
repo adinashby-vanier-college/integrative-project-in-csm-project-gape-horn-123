@@ -33,6 +33,19 @@ public class Vector2D {
 	
 	private final double x, y;
 	
+	/**get the x component of this vector
+	 * @return the x component*/
+	public double getX() {
+		return x;
+	}
+	
+	/**get the y component of this vector
+	 * @return the y component*/
+	public double getY() {
+		return y;
+	}
+
+	/**zero vector (0,0)*/
 	public static final Vector2D ZERO = new Vector2D(0, 0);
 	
 	public static final Vector2D ONE = new Vector2D(1, 1);
