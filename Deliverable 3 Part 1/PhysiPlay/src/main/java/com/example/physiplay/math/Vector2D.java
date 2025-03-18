@@ -4,6 +4,14 @@ public class Vector2D {
 	
 	private final double x, y;
 	
+	public static final Vector2D ZERO = new Vector2D(0, 0);
+	
+	public static final Vector2D ONE = new Vector2D(1, 1);
+	
+	public static final Vector2D X_AXIS = new Vector2D(1, 0);
+	
+	public static final Vector2D Y_AXIS = new Vector2D(0, 1);
+	
 	public Vector2D(double x, double y) {
 		this.x = x;
 		this.y = y;
