@@ -139,10 +139,18 @@ public class Vector2D {
 		return this.subtract(normal.multiply(2 * this.dot(normal)));
 	}
 	
+	/**
+	 * @param normal: the normal vector 
+	 * @return the reflection vector
+	 * */
 	public Vector2D rotate(double radians) {
 		return new Vector2D(this.x * Math.cos(radians) - this.y * Math.sin(radians), this.x * Math.sin(radians) + this.y * Math.cos(radians));
 	}
 	
+	/**
+	 * @param other: the direction vector to use to project this vector on 
+	 * @return the projected vector
+	 * */
 	public Vector2D project(Vector2D other) {
 		return other.multiply(this.dot(other) / other.dot(other));
 	}
