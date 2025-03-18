@@ -87,14 +87,29 @@ public class Vector2D {
 		return new Vector2D(this.x - other.x, this.y - other.y);
 	}
 	
+	/**
+	 * vector multiplication
+	 * @param scalar: scalar to multiply the components of the vector with
+	 * @return new vector whose components are multiplied by the scalar
+	 * */
 	public Vector2D multiply(double scalar) {
 		return new Vector2D(this.x * scalar, this.y * scalar);
 	}
 	
+	/**
+	 * vector dot multiplication
+	 * @param other: vector to do dot multiplication with
+	 * @return the dot product of the two vectors
+	 * */
 	public double dot(Vector2D other) {
 		return this.x * other.x + this.y * other.y;
 	}
 	
+	/**
+	 * vector cross multiplication
+	 * @param other: vector to do cross multiplication with
+	 * @return the cross product of the two vectors
+	 * */
 	public double cross(Vector2D other) {
 		return this.x * other.y - this.y * other.x;
 	}
