@@ -179,14 +179,17 @@ public class Vector2D {
 	
 	/**
      * calculates distance between two points (static operation)
-     * @param start starting point vector
-     * @param end ending point vector
-     * @return euclidean distance: ||end - start||
+     * @param other ending point vector
+     * @return euclidean distance: ||other - this||
      */
 	public double distance(Vector2D other) {
 		return other.subtract(this).magnitude();
 	}
 	
+	/**
+     * Returns perpendicular vector (90° rotation)
+     * @return New vector: (-y, x)
+     */
 	public Vector2D perpendicular() {
 		return new Vector2D(-this.y, this.x);
 	}
