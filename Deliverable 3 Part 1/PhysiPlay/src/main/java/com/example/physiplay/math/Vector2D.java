@@ -246,7 +246,7 @@ public class Vector2D {
 	}
 	
 	/**
-	 * Checks if two scalar values are approximately equal using a custom epsilon value.
+	 * checks if two scalar values are approximately equal using a custom epsilon value.
 	 * @param a the first scalar value
 	 * @param b the second scalar value
 	 * @param epsilon the maximum allowed difference between the values for them to be considered equal
