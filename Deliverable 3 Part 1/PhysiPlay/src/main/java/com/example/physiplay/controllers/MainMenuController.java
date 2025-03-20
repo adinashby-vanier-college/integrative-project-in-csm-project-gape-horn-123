@@ -16,6 +16,8 @@ public class MainMenuController {
     Button instructionsButton;
     @FXML
     Button exitButton;
+    @FXML
+    Button settingsButton;
 
     Stage stage;
     Scene scene;
@@ -29,6 +31,7 @@ public class MainMenuController {
         stage.setAlwaysOnTop(true);
         playButton.setOnAction(event -> switchScene("play", scene));
         instructionsButton.setOnAction(event -> switchScene("instructions", scene));
+        settingsButton.setOnAction(event -> switchScene("settings", scene));
         exitButton.setOnAction(event -> Platform.exit());
     }
 

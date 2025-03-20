@@ -4,6 +4,10 @@
     -fx-font: 50px "Madimi One";
 }
 
+.button{
+    -fx-background-color: #6A5D7B;
+}
+
 #instructionsTitle{
     -fx-font: 100px "Madimi One";
 }

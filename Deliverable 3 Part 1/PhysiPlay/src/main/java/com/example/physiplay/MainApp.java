@@ -1,9 +1,6 @@
 package com.example.physiplay;
 
-import com.example.physiplay.controllers.InstructionsController;
-import com.example.physiplay.controllers.MainMenuController;
-import com.example.physiplay.controllers.PhysiplayController;
-import com.example.physiplay.controllers.ScreenController;
+import com.example.physiplay.controllers.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -22,6 +19,7 @@ public final class MainApp extends Application {
         ScreenController.getInstance()
                 .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene)))
                 .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene)))
+                .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(scene)))
                 .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage)));
     }
 
