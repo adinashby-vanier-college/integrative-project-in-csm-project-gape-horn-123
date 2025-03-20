@@ -2,14 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
 
 .button{
+    -fx-background-color: #6A5D7B;
+    -fx-text-fill: white;
     -fx-font: 50px "Madimi One";
-    -fx-transition: transform 0.2s ease-in-out;
 }
 
 .button:hover {
+    -fx-background-color: white;
     -fx-cursor: hand;
-    -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+    -fx-text-fill: #6A5D7B;
 }
 
 .label{
@@ -56,3 +59,9 @@
 .tree-view, .tree-cell {
     -fx-font: 20px "Madimi One";
 }
+
+/*
+.outline.label .text{
+    -fx-stoke: black;
+    -fx-stroke-width: 2px;
+}*/
