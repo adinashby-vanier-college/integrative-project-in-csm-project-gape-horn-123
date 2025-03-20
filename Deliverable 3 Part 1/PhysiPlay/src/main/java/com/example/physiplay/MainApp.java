@@ -1,5 +1,6 @@
 package com.example.physiplay;
 
+import com.example.physiplay.controllers.InstructionsController;
 import com.example.physiplay.controllers.MainMenuController;
 import com.example.physiplay.controllers.PhysiplayController;
 import com.example.physiplay.controllers.ScreenController;
@@ -17,10 +18,10 @@ public final class MainApp extends Application {
     }
 
     // These methods load all scenes
-    private void loadScenes(Stage stage) {
+    private void loadScenes(Stage stage, Scene scene) {
         ScreenController.getInstance()
-                .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage)))
-                .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml")))
+                .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene)))
+                .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene)))
                 .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage)));
     }
 
@@ -33,7 +34,7 @@ public final class MainApp extends Application {
         // CSS File
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
 
-        loadScenes(stage);
+        loadScenes(stage, scene);
 
         ScreenController.getInstance()
                 .setMainScene(scene)
