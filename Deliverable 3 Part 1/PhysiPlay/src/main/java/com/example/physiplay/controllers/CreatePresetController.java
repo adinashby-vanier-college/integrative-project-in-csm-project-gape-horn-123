@@ -84,6 +84,7 @@ public class CreatePresetController {
             presetNameField.setStyle("-fx-prompt-text-fill: red;");
         }
         else {
+            SimulationObject simulationObject = new SimulationObject(presetNameField.getText(), new HashSet<>());
             VBox vBox = new VBox();
             Rectangle rectangle = new Rectangle(100,100);
             Label presetName = new Label(presetNameField.getText());
@@ -95,11 +96,11 @@ public class CreatePresetController {
             gc.fillRect(10,10,10,10);
         });*/
 
-            DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields());
+            DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject);
             //rectangle.setOnMousePressed(handler);
             rectangle.setOnMouseDragged(handler);
 
-            rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields()));
+            rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject));
 
             presetFlowPane.getChildren().add(vBox);
 

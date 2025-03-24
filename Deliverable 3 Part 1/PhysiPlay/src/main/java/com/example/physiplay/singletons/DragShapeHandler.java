@@ -1,5 +1,6 @@
 package com.example.physiplay.singletons;
 
+import com.example.physiplay.SimulationObject;
 import com.example.physiplay.controllers.TabController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +24,9 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
     public TextField rotationField;
     public TextField scaleXField;
     public TextField scaleYField;
+    SimulationObject simulationObject;
 
-    public DragShapeHandler(Node node, GraphicsContext gc, TabPane tabPane, TreeView<String> hierarchyView, ArrayList<TextField> listTextFields) {
+    public DragShapeHandler(Node node, GraphicsContext gc, TabPane tabPane, TreeView<String> hierarchyView, ArrayList<TextField> listTextFields, SimulationObject simulationObject) {
         this.node = node;
         this.gc = gc;
         this.tabPane = tabPane;
@@ -35,6 +37,7 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
         this.rotationField = listTextFields.get(3);
         this.scaleXField = listTextFields.get(4);
         this.scaleYField = listTextFields.get(5);
+        this.simulationObject = simulationObject;
     }
 
     @Override
@@ -60,10 +63,10 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
 
     public ScrollPane makeTabContent() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
-        loader.setController(new TabController());
+        loader.setController(new TabController(getTextFields()));
         ScrollPane root = loader.load();
         root.getStylesheets().add(String.valueOf(getClass().getResource("/fonts/tabStylesheet.css")));
-        hierarchyView.getRoot().getChildren().add(new TreeItem<>(presetNameField.getText()));
+        hierarchyView.getRoot().getChildren().add(new TreeItem<>(simulationObject.name));
         /*VBox vBox = new VBox();
         HBox hBox = new HBox();
         Rectangle rectangle = new Rectangle(10,10);
@@ -78,5 +81,16 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
         accordion.getPanes().addAll(transformPane, rigidBody, audio);*/
 
         return root;
+    }
+
+    public ArrayList<TextField> getTextFields(){
+        ArrayList<TextField> arrayList = new ArrayList<>();
+        arrayList.add(presetNameField);
+        arrayList.add(positionXField);
+        arrayList.add(positionYField);
+        arrayList.add(rotationField);
+        arrayList.add(scaleXField);
+        arrayList.add(scaleYField);
+        return arrayList;
     }
 }
