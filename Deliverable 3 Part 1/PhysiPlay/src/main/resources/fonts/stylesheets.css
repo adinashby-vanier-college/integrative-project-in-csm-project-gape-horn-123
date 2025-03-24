@@ -60,6 +60,14 @@
     -fx-font: 20px "Madimi One";
 }
 
+.titled-pane > .title{
+    -fx-font: 20px "Madimi One";
+}
+
+.tab-label{
+    -fx-font: 12px "Madimi One";
+}
+
 /*
 .outline.label .text{
     -fx-stoke: black;

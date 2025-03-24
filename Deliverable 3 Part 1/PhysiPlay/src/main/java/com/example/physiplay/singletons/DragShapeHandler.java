@@ -1,5 +1,6 @@
 package com.example.physiplay.singletons;
 
+import com.example.physiplay.controllers.TabController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -59,6 +60,7 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
 
     public ScrollPane makeTabContent() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
+        loader.setController(new TabController());
         ScrollPane root = loader.load();
         root.getStylesheets().add(String.valueOf(getClass().getResource("/fonts/tabStylesheet.css")));
         hierarchyView.getRoot().getChildren().add(new TreeItem<>(presetNameField.getText()));
