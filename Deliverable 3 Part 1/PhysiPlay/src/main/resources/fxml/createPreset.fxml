@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="900.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
          <children>
@@ -52,7 +52,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #D5C9DF;">
                            <children>
-                              <ScrollPane prefHeight="310.0" prefWidth="502.0">
+                              <ScrollPane hbarPolicy="NEVER" prefHeight="310.0" prefWidth="502.0" vbarPolicy="NEVER">
                                  <content>
                                     <VBox style="-fx-background-color: #D5C9DF;">
                                        <children>
@@ -149,7 +149,7 @@
                 </TitledPane>
                 <TitledPane animated="false" text="Rigid Body">
                   <content>
-                        <ScrollPane>
+                        <ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER">
                            <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="504.0" style="-fx-background-color: #D5C9DF;">
                                  <children>
@@ -162,7 +162,10 @@
                 </TitledPane>
                 <TitledPane animated="false" text="Collider">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D5C9DF;" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D5C9DF;">
+                           <children>
+                              <ScrollPane hbarPolicy="NEVER" prefHeight="186.0" prefWidth="502.0" vbarPolicy="NEVER" />
+                           </children></AnchorPane>
                   </content>
                 </TitledPane>
               </panes>

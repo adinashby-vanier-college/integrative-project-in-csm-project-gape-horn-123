@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #749C75;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #749C75;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <Button fx:id="backButton" mnemonicParsing="false" style="-fx-border-color: black; -fx-background-radius: 100; -fx-border-radius: 100;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
