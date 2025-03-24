@@ -28,6 +28,8 @@ public class RegisterPageController {
 
     }
 
+    public RegisterPageController(){}
+
     public RegisterPageController(Stage stage, Scene scene) {
         this.stage = stage;
         this.scene = scene;
