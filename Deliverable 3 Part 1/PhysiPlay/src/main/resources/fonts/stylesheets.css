@@ -74,13 +74,20 @@
     -fx-stroke-width: 2px;
 }*/
 
+/*Login Page*/
 #loginLabel{
     -fx-font: 100px "Madimi One";
 }
 
-#usernameLabel, #passwordLabel{
+#usernameLabel, #passwordLabel, #confirmPasswordLabel{
     -fx-font: 22px "Madimi One";
 }
 #loginButton, #registerButton{
     -fx-font: 22px "Madimi One";
 }
+
+#registerLabel{
+    -fx-font: 100px "Madimi One";
+}
+
+
