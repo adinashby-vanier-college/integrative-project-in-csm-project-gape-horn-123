@@ -57,10 +57,16 @@ public class CreatePresetController {
         numberOnly(rotationField);
         numberOnly(scaleXField);
         numberOnly(scaleYField);
-
     }
 
-
+    /**
+     *
+     * @param textField targeted textField that needs to be number only
+     * ChangeListener for when typing
+     * If the new value contains something else than numbers then it replaces it with nothing
+     * Add listener to the targeted textField, when text is changed
+     *
+     */
     public void numberOnly(TextField textField){
         ChangeListener<String> numbersOnly = (observableValue, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) textField.setText(newValue.replaceAll("[^\\d]", ""));
