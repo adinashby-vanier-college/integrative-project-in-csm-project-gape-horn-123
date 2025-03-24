@@ -1,7 +1,7 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
-import com.example.physiplay.components.DragShapeHandler;
+import com.example.physiplay.singletons.DragShapeHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.GraphicsContext;

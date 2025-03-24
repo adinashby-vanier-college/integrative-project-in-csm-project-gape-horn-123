@@ -1,23 +1,14 @@
-package com.example.physiplay.components;
+package com.example.physiplay.singletons;
 
-import com.example.physiplay.Component;
-import com.example.physiplay.SimulationObject;
-import com.example.physiplay.Vector2;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class DragShapeHandler implements EventHandler<MouseEvent> {
 

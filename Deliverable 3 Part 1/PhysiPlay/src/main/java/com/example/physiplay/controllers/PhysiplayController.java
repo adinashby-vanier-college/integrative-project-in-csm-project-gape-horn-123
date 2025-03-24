@@ -26,6 +26,7 @@ import java.util.Optional;
 
 public class PhysiplayController {
 
+    private final Scene scene;
     Stage mainWindow;
     ArrayList<SimulationObject> presetList = new ArrayList<>();
     ArrayList<SimulationObject> objectsList = new ArrayList<>();
@@ -39,6 +40,8 @@ public class PhysiplayController {
     @FXML
     private MenuItem closeMenuItem;
     @FXML
+    MenuItem homeScreen;
+    @FXML
     private TreeView<String> hierarchyView;
     @FXML
     FlowPane presetFlowPane;
@@ -49,8 +52,9 @@ public class PhysiplayController {
     @FXML
     TabPane tabPane;
 
-    public PhysiplayController(Stage stage){
+    public PhysiplayController(Stage stage, Scene scene){
         this.mainWindow = stage;
+        this.scene = scene;
     }
 
     public void initialize() {
@@ -62,9 +66,9 @@ public class PhysiplayController {
 
         createPresetButton.setOnAction(event -> createPresetWindow());
 
-        closeMenuItem.setOnAction(event ->
-            displayClosingAlertBox()
-        );
+        closeMenuItem.setOnAction(event -> displayClosingAlertBox());
+
+        homeScreen.setOnAction(event -> returnToMainMenu());
 
         TreeItem<String> rootItem = new TreeItem<>("SampleScene");
         rootItem.setExpanded(true);
@@ -111,5 +115,11 @@ public class PhysiplayController {
         presetWindow.initModality(Modality.WINDOW_MODAL);
         presetWindow.initOwner(mainWindow);
         presetWindow.show();
+    }
+
+    private void returnToMainMenu() {
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
+        ScreenController.getInstance().activate("mainMenu");
     }
 }
