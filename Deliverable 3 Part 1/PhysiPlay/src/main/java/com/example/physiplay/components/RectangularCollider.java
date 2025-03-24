@@ -21,7 +21,7 @@ public class RectangularCollider extends Collider {
     @Override
     public void onScreenEdgeCollision() {
         // I will change with width/height customization, set it to 600 for now
-        float x = position.x, y = position.y;
+        double x = position.x, y = position.y;
         if (x + colliderSize.x > 600 || x < 0) {
             parent.getComponent(Rigidbody.class).velocity.x *= -1;
         }

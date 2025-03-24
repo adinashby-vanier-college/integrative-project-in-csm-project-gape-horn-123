@@ -21,12 +21,12 @@ public class CreatePresetController {
     private Accordion componentAccordion;
     @FXML
     public TextField presetNameField;
-    public Button createPresetButton;
     public TextField positionXField;
     public TextField positionYField;
     public TextField rotationField;
     public TextField scaleXField;
     public TextField scaleYField;
+    public Button createPresetButton;
 
     ArrayList<SimulationObject> presetList;
     ArrayList<SimulationObject> objectsList;
@@ -84,11 +84,11 @@ public class CreatePresetController {
             gc.fillRect(10,10,10,10);
         });*/
 
-        DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView);
+        DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields());
         //rectangle.setOnMousePressed(handler);
         rectangle.setOnMouseDragged(handler);
 
-        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView));
+        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields()));
 
         presetFlowPane.getChildren().add(vBox);
 
@@ -96,5 +96,16 @@ public class CreatePresetController {
         hierarchyView.getRoot().getChildren().add(preset);
 
         presetWindow.hide();
+    }
+
+    public ArrayList<TextField> getTextFields(){
+        ArrayList<TextField> arrayList = new ArrayList<TextField>();
+        arrayList.add(presetNameField);
+        arrayList.add(positionXField);
+        arrayList.add(positionYField);
+        arrayList.add(rotationField);
+        arrayList.add(scaleXField);
+        arrayList.add(scaleYField);
+        return arrayList;
     }
 }

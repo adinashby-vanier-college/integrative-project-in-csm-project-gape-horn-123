@@ -1,11 +1,11 @@
 package com.example.physiplay;
 
 public class Vector2 {
-    public float x;
-    public float y;
+    public double x;
+    public double y;
 
     public static Vector2 ZERO = new Vector2(0, 0);
-    public Vector2(float x, float y) {
+    public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
     }

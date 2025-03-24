@@ -14,7 +14,8 @@ public class SimulationObject {
     private Set<Component> components = new HashSet<>();
     private List<SimulationObject> children = new ArrayList<>();
 
-    public SimulationObject(Set<Component> createdComponents) {
+    public SimulationObject(String name, Set<Component> createdComponents) {
+        this.name = name;
         components.addAll(createdComponents);
         activateComponentRecursive(children);
     }
