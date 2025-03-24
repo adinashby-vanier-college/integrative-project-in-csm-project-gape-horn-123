@@ -17,23 +17,34 @@ public class TabController {
     public TextField scaleXField;
     public TextField scaleYField;
 
+    ArrayList<TextField> textFields;
+
+    String xValue;
+    String yValue;
+    String rotationValue;
+    String scaleXValue;
+    String scaleYValue;
+
     public TabController(ArrayList<TextField> textFields) {
+
+        this.textFields = textFields;
+
         presetNameField = textFields.getFirst();
-        positionXField = textFields.get(1);
-        positionYField = textFields.get(2);
-        rotationField = textFields.get(3);
-        scaleXField = textFields.get(4);
-        scaleYField = textFields.get(5);
+        xValue = textFields.get(1).getText();
+        yValue = textFields.get(2).getText();
+        rotationValue = textFields.get(3).getText();
+        scaleXValue = textFields.get(4).getText();
+        scaleYValue = textFields.get(5).getText();
 
     }
 
     public void initialize(){
         gameObjectName.setText(presetNameField.getText());
-        positionXField.setText(positionXField.getText());
-        positionYField.setText(positionXField.getText());
-        rotationField.setText(rotationField.getText());
-        scaleXField.setText(scaleXField.getText());
-        scaleYField.setText(scaleYField.getText());
+        positionXField.setText(textFields.get(1).getText());
+        positionYField.setText(textFields.get(2).getText());
+        rotationField.setText(textFields.get(3).getText());
+        scaleXField.setText(textFields.get(4).getText());
+        scaleYField.setText(textFields.get(5).getText());
     }
 
 }
