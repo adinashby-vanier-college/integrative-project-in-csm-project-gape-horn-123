@@ -79,29 +79,35 @@ public class CreatePresetController {
     }
 
     public void createPreset(){
-        VBox vBox = new VBox();
-        Rectangle rectangle = new Rectangle(100,100);
-        Label presetName = new Label(presetNameField.getText());
-        presetName.setStyle("-fx-font-size: 12px");
-        vBox.getChildren().addAll(rectangle, presetName);
+        if (presetNameField.getText().trim().isEmpty()){
+            presetNameField.setPromptText("Please enter a name:");
+            presetNameField.setStyle("-fx-prompt-text-fill: red;");
+        }
+        else {
+            VBox vBox = new VBox();
+            Rectangle rectangle = new Rectangle(100,100);
+            Label presetName = new Label(presetNameField.getText());
+            presetName.setStyle("-fx-font-size: 12px");
+            vBox.getChildren().addAll(rectangle, presetName);
         /*vBox.setOnMouseDragged(mouseEvent -> {
             rectangle.setX(mouseEvent.getX());
             System.out.println(mouseEvent.getScreenX());
             gc.fillRect(10,10,10,10);
         });*/
 
-        DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields());
-        //rectangle.setOnMousePressed(handler);
-        rectangle.setOnMouseDragged(handler);
+            DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields());
+            //rectangle.setOnMousePressed(handler);
+            rectangle.setOnMouseDragged(handler);
 
-        rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields()));
+            rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields()));
 
-        presetFlowPane.getChildren().add(vBox);
+            presetFlowPane.getChildren().add(vBox);
 
-        TreeItem<String> preset = new TreeItem<>(presetName.getText());
-        hierarchyView.getRoot().getChildren().add(preset);
+            TreeItem<String> preset = new TreeItem<>(presetName.getText());
+            hierarchyView.getRoot().getChildren().add(preset);
 
-        presetWindow.hide();
+            presetWindow.hide();
+        }
     }
 
     public ArrayList<TextField> getTextFields(){
