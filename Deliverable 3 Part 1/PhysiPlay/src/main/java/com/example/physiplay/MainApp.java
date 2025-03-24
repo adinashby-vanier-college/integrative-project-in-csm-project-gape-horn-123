@@ -20,6 +20,7 @@ public final class MainApp extends Application {
                 .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene)))
                 .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene)))
                 .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(scene)))
+                .addScreen("loginPage", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml") ))
                 .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene)));
     }
 
@@ -36,7 +37,7 @@ public final class MainApp extends Application {
 
         ScreenController.getInstance()
                 .setMainScene(scene)
-                .activate("mainMenu")
+                .activate("loginPage")
                 .printCurrentSceneName();
 
         scene.setOnKeyPressed(event -> {
