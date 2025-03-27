@@ -37,13 +37,13 @@ javafx {
 
 jar {
     manifest {
-        attributes "Main-Class": "com.example.physiplay.RaivenLauncher"
+        attributes "Main-Class": "com.example.physiplay.Launcher"
     }
 }
 
 shadowJar {
     manifest {
-        attributes "Main-Class": "com.example.physiplay.RaivenLauncher"
+        attributes "Main-Class": "com.example.physiplay.Launcher"
     }
 }
 
