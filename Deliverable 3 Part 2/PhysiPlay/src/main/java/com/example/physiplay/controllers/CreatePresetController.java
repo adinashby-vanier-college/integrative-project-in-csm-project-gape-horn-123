@@ -1,5 +1,6 @@
 package com.example.physiplay.controllers;
 
+import com.example.physiplay.NumberOnlyTextField;
 import com.example.physiplay.SimulationObject;
 import com.example.physiplay.components.ComponentPropertyBuilder;
 import com.example.physiplay.components.Rigidbody;
@@ -111,31 +112,16 @@ public class CreatePresetController {
             addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide components");
         });
         createPresetButton.setOnAction(event -> createPreset());
+
         attachComponentButton.setOnAction(event -> {
             observableAttachedComponents.add(componentsTreeView.getSelectionModel().getSelectedItem()
                     .getValue());
         });
-        numberOnly(positionXField);
-        numberOnly(positionYField);
-        numberOnly(rotationField);
-        numberOnly(scaleXField);
-        numberOnly(scaleYField);
-    }
 
-    /**
-     *
-     * @param textField targeted textField that needs to be number only
-     * ChangeListener for when typing
-     * If the new value contains something else than numbers then it replaces it with nothing
-     * Add listener to the targeted textField, when text is changed
-     *
-     */
-    public void numberOnly(TextField textField){
-        ChangeListener<String> numbersOnly = (observableValue, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) textField.setText(newValue.replaceAll("[^\\d]", ""));
-        };
-        textField.textProperty().addListener(numbersOnly);
+
+
     }
+    
 
     public void setPresetList(ArrayList<SimulationObject> list){
         this.presetList = list;
