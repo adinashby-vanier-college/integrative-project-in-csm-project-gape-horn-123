@@ -1,6 +1,7 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.singletons.SimulationManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;

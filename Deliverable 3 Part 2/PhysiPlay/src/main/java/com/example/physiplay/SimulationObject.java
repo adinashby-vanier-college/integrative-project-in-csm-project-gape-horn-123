@@ -56,7 +56,6 @@ public class SimulationObject {
             activateComponentRecursive(obj.getChildren());
         }
     }
-
     public void addChild(SimulationObject childObject) {
         childObject.parent = this;
         children.add(childObject);

@@ -25,11 +25,11 @@ public class Vector2Field extends VBox {
     }
 
     public double getX() {
-        return Double.parseDouble(x.getText());
+        return Double.parseDouble(x.getText().isBlank() ? "0" : x.getText());
     }
 
     public double getY() {
-        return Double.parseDouble(y.getText());
+        return Double.parseDouble(y.getText().isBlank() ? "0" : y.getText());
     }
     private void numberOnly(TextField textField){
         ChangeListener<String> numbersOnly = (observableValue, oldValue, newValue) -> {

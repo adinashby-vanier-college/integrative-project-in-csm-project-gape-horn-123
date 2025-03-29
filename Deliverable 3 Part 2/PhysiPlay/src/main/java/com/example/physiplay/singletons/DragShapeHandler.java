@@ -45,7 +45,8 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
         if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
 
         }
-        else if (event.getEventType() == MouseEvent.MOUSE_RELEASED){
+        else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
+            SimulationManager.getInstance().simulationObjectList.add(this.simulationObject);
             gc.fillRect(event.getSceneX() - 360, event.getSceneY() - 35, 10, 10);
             Tab tab = new Tab(presetNameField.getText());
             tabPane.getTabs().add(tab);

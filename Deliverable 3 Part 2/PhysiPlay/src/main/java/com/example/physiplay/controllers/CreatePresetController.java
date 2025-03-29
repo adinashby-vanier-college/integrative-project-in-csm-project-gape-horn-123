@@ -1,5 +1,6 @@
 package com.example.physiplay.controllers;
 
+import com.example.physiplay.Component;
 import com.example.physiplay.NumberOnlyTextField;
 import com.example.physiplay.SimulationObject;
 import com.example.physiplay.components.ComponentPropertyBuilder;
@@ -66,7 +67,8 @@ public class CreatePresetController {
             .addCheckboxProperty("useAutoMass", "Use auto mass", new CheckBox())
             .addVector2Property("initialVelocity", "Velocity", new Vector2Field());
 
-
+    private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
+            .addVector2Property("size", "Size", new Vector2Field());
     public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
@@ -79,17 +81,23 @@ public class CreatePresetController {
     }
 
     private void generateComponentSelectors() {
-        TreeItem<ComponentSelector> root = new TreeItem<>(new ComponentSelector("Components", null));
+        TreeItem<ComponentSelector> root = new TreeItem<>(new ComponentSelector("Components", "Components",
+                null, false));
         TreeItem<ComponentSelector> rigidbodyItem = new TreeItem<>(new ComponentSelector("Rigidbody",
-                rigidBodyComponentPropertyBuilder, false));
+                "Rigidbody", rigidBodyComponentPropertyBuilder, false));
+        TreeItem<ComponentSelector> shapeRoot = new TreeItem<>(new ComponentSelector("shapes", "Shapes", null, false));
+        shapeRoot.getChildren().add(new TreeItem<>(new ComponentSelector("shape", "Rectangle",
+                rectanglePropertyBuilder, false)));
         root.getChildren().add(rigidbodyItem);
+        root.getChildren().add(shapeRoot);
         componentsTreeView.setRoot(root);
     }
 
     private void updateAttachedComponentVBox(VBox vbox, ObservableSet<ComponentSelector> attachedComponentsSet) {
         vbox.getChildren().clear();
         for (ComponentSelector selector : attachedComponentsSet) {
-            vbox.getChildren().add(selector.generateTitledPane());
+            if (selector.isInteractable())
+                vbox.getChildren().add(selector.generateTitledPane());
         }
     }
 
@@ -114,26 +122,40 @@ public class CreatePresetController {
         createPresetButton.setOnAction(event -> createPreset());
 
         attachComponentButton.setOnAction(event -> {
-            observableAttachedComponents.add(componentsTreeView.getSelectionModel().getSelectedItem()
-                    .getValue());
+            if (componentsTreeView.getSelectionModel().getSelectedItem().getValue().isInteractable())
+                observableAttachedComponents.add(componentsTreeView.getSelectionModel().getSelectedItem()
+                        .getValue());
         });
 
-
-
+        NumberOnlyTextField numberOnlyTextField = new NumberOnlyTextField();
+        numberOnlyTextField.numberOnly(positionYField);
+        numberOnlyTextField.numberOnly(rotationField);
+        numberOnlyTextField.numberOnly(scaleXField);
+        numberOnlyTextField.numberOnly(scaleYField);
     }
-    
 
     public void setPresetList(ArrayList<SimulationObject> list){
         this.presetList = list;
     }
 
+    private void addComponentInSet(Set<Component> componentSet) {
+        for (ComponentSelector selector : observableAttachedComponents) {
+            switch (selector.getComponentName()) {
+                case "Rigidbody":
+                    componentSet.add(selector.convertToRigidbodyComponent());
+                    break;
+            }
+        }
+    }
     public void createPreset(){
         if (presetNameField.getText().trim().isEmpty()){
             presetNameField.setPromptText("Please enter a name:");
             presetNameField.setStyle("-fx-prompt-text-fill: red;");
         }
         else {
-            SimulationObject simulationObject = new SimulationObject(presetNameField.getText(), new HashSet<>());
+            Set<Component> componentSet = new HashSet<>();
+            addComponentInSet(componentSet);
+            SimulationObject simulationObject = new SimulationObject(presetNameField.getText(), componentSet);
             VBox vBox = new VBox();
             Rectangle rectangle = new Rectangle(100,100);
             Label presetName = new Label(presetNameField.getText());
@@ -141,7 +163,6 @@ public class CreatePresetController {
             vBox.getChildren().addAll(rectangle, presetName);
 
             DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject);
-            //rectangle.setOnMousePressed(handler);
             rectangle.setOnMouseDragged(handler);
 
             rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject));

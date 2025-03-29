@@ -14,7 +14,6 @@ public class ComponentPropertyBuilder {
         System.out.println("Component builder initiated!");
     }
 
-
     public ComponentPropertyBuilder addCheckboxProperty(String propertyName, String text, CheckBox checkbox) {
         checkbox.setText(text);
         propertyMap.put(propertyName, checkbox);

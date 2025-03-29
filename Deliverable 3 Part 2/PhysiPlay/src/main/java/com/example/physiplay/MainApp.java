@@ -1,6 +1,7 @@
 package com.example.physiplay;
 
 import com.example.physiplay.controllers.*;
+import com.example.physiplay.singletons.SimulationManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -39,6 +40,8 @@ public final class MainApp extends Application {
                 .setMainScene(scene)
                 .activate("loginPage")
                 .printCurrentSceneName();
+
+        SimulationManager.getInstance().simulate();
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F && !stage.isFullScreen()) stage.setFullScreen(true);
