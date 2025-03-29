@@ -2,6 +2,9 @@ package com.example.physiplay;
 
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 public class NumberOnlyTextField {
 
@@ -21,6 +24,19 @@ public class NumberOnlyTextField {
             if (!newValue.matches("\\d*(\\.\\d*)?")) textField.setText(oldValue);
         };
         textField.textProperty().addListener(numbersOnly);
+    }
+
+    public void numberOnly(ArrayList<TextField> textField){
+
+        for (int i = 0; i < textField.size(); i++) {
+            TextField txtfld = textField.get(i);
+            ChangeListener<String> numbersOnly = (observableValue, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*(\\.\\d*)?")) txtfld.setText(oldValue);
+            };
+            txtfld.textProperty().addListener(numbersOnly);
+        }
+
+
     }
 
 }
