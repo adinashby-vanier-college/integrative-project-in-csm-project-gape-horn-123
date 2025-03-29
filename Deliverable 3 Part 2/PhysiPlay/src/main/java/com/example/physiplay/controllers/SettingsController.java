@@ -18,7 +18,7 @@ public class SettingsController {
     Button backButton;
 
     @FXML
-    CheckBox debugCheckbox;
+    CheckBox advancedModeCheckbox;
 
     public SettingsController(Stage stage, Scene scene) {
         this.stage = stage;
@@ -27,10 +27,10 @@ public class SettingsController {
 
     public void initialize() {
         backButton.setOnAction(event -> returnToMainMenu());
-        debugCheckbox.selectedProperty().bindBidirectional(SettingsSingleton.getInstance().debugModeProperty);
+        advancedModeCheckbox.selectedProperty().bindBidirectional(SettingsSingleton.getInstance().advancedModeProperty);
 
-        debugCheckbox.selectedProperty().addListener(observable -> {
-            stage.setAlwaysOnTop(!SettingsSingleton.getInstance().debugModeProperty.getValue());
+        advancedModeCheckbox.selectedProperty().addListener(observable -> {
+            stage.setAlwaysOnTop(!SettingsSingleton.getInstance().advancedModeProperty.getValue());
         });
     }
 

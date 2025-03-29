@@ -3,11 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -147,35 +147,24 @@
                         </AnchorPane>
                   </content>
                 </TitledPane>
-                <TitledPane animated="false" text="Rigid Body">
-                  <content>
-                        <ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER">
-                           <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="504.0" style="-fx-background-color: #D5C9DF;">
-                                 <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="97.0" text="Gravity" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" text="Collider">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D5C9DF;">
-                           <children>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="186.0" prefWidth="502.0" vbarPolicy="NEVER" />
-                           </children></AnchorPane>
-                  </content>
-                </TitledPane>
               </panes>
             </Accordion>
+            <VBox fx:id="attachedComponents" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addComponentButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="216.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE" />
+                  <Button fx:id="addComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE" />
                </children>
             </HBox>
-            <VBox />
+            <VBox fx:id="componentsVBox">
+               <children>
+                  <TreeView fx:id="componentsTreeView" prefHeight="200.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="attachComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Attach component" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
             <HBox alignment="CENTER" prefHeight="309.0" prefWidth="500.0">
                <children>
                   <Button fx:id="createPresetButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Create Preset" textFill="WHITE">

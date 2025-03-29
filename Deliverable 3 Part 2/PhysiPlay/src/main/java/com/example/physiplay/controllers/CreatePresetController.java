@@ -1,12 +1,20 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.components.ComponentPropertyBuilder;
+import com.example.physiplay.components.Rigidbody;
 import com.example.physiplay.singletons.DragShapeHandler;
+import com.example.physiplay.widgets.ComponentSelector;
+import com.example.physiplay.widgets.Vector2Field;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -37,9 +45,26 @@ public class CreatePresetController {
     TreeView<String> hierarchyView;
     GraphicsContext gc;
     TabPane tabPane;
-
-    private final List<TitledPane> openPanes = new ArrayList<>();
+    @FXML
+    VBox attachedComponents;
+    @FXML
+    VBox componentsVBox;
+    @FXML
+    TreeView<ComponentSelector> componentsTreeView;
+    @FXML
+    Button attachComponentButton;
     Stage presetWindow;
+
+    private boolean componentChoiceActive = false;
+
+    // All components
+    // Rigid body component property builder
+    private ObservableSet<ComponentSelector> observableAttachedComponents = FXCollections.observableSet(new HashSet<>());
+    private ComponentPropertyBuilder rigidBodyComponentPropertyBuilder = new ComponentPropertyBuilder()
+            .addCheckboxProperty("useGravity", "Use Gravity", new CheckBox())
+            .addCheckboxProperty("useAutoMass", "Use auto mass", new CheckBox())
+            .addVector2Property("initialVelocity", "Velocity", new Vector2Field());
+
 
     public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane){
         this.presetWindow = stage;
@@ -52,11 +77,44 @@ public class CreatePresetController {
         this.tabPane = tabPane;
     }
 
+    private void generateComponentSelectors() {
+        TreeItem<ComponentSelector> root = new TreeItem<>(new ComponentSelector("Components", null));
+        TreeItem<ComponentSelector> rigidbodyItem = new TreeItem<>(new ComponentSelector("Rigidbody",
+                rigidBodyComponentPropertyBuilder, false));
+        root.getChildren().add(rigidbodyItem);
+        componentsTreeView.setRoot(root);
+    }
+
+    private void updateAttachedComponentVBox(VBox vbox, ObservableSet<ComponentSelector> attachedComponentsSet) {
+        vbox.getChildren().clear();
+        for (ComponentSelector selector : attachedComponentsSet) {
+            vbox.getChildren().add(selector.generateTitledPane());
+        }
+    }
+
     public void initialize() {
+        componentsVBox.setVisible(componentChoiceActive);
+        componentsVBox.setManaged(componentChoiceActive);
+        generateComponentSelectors();
+
+        componentsTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        observableAttachedComponents.addListener((SetChangeListener<? super ComponentSelector>) change -> {
+            System.out.println("Change!");
+            updateAttachedComponentVBox(attachedComponents, observableAttachedComponents);
+        });
+
+        addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide components");
         addComponentButton.setOnAction(event -> {
-            System.out.println("Hello world!");
+            componentChoiceActive = !componentChoiceActive;
+            componentsVBox.setVisible(componentChoiceActive);
+            componentsVBox.setManaged(componentChoiceActive);
+            addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide components");
         });
         createPresetButton.setOnAction(event -> createPreset());
+        attachComponentButton.setOnAction(event -> {
+            observableAttachedComponents.add(componentsTreeView.getSelectionModel().getSelectedItem()
+                    .getValue());
+        });
         numberOnly(positionXField);
         numberOnly(positionYField);
         numberOnly(rotationField);

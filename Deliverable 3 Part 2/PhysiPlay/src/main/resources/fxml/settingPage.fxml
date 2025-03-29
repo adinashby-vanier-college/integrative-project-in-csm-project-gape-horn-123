@@ -37,7 +37,7 @@
                   <Font size="38.0" />
                </font>
             </Label>
-            <CheckBox fx:id="debugCheckbox" mnemonicParsing="false" text="Debug Mode">
+            <CheckBox fx:id="advancedModeCheckbox" mnemonicParsing="false" text="Advanced Mode">
                <font>
                   <Font size="17.0" />
                </font>

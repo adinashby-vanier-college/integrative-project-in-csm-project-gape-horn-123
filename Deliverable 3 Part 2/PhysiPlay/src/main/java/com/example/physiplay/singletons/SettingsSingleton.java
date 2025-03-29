@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class SettingsSingleton {
     private static SettingsSingleton instance;
-    public BooleanProperty debugModeProperty = new SimpleBooleanProperty(false);
+    public BooleanProperty advancedModeProperty = new SimpleBooleanProperty(false);
 
     public static SettingsSingleton getInstance() {
         if (instance == null) {
