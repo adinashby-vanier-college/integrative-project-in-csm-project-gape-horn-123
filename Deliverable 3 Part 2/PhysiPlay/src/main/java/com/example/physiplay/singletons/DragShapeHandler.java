@@ -1,16 +1,24 @@
 package com.example.physiplay.singletons;
 
+import com.example.physiplay.Component;
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.Vector2;
+import com.example.physiplay.components.Renderer;
+import com.example.physiplay.controllers.CreatePresetController;
 import com.example.physiplay.controllers.TabController;
+import com.example.physiplay.widgets.ComponentSelector;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DragShapeHandler implements EventHandler<MouseEvent> {
 
@@ -26,7 +34,10 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
     public TextField scaleYField;
     SimulationObject simulationObject;
 
-    public DragShapeHandler(Node node, GraphicsContext gc, TabPane tabPane, TreeView<String> hierarchyView, ArrayList<TextField> listTextFields, SimulationObject simulationObject) {
+    private CreatePresetController createPresetController;
+
+    public DragShapeHandler(Node node, GraphicsContext gc, TabPane tabPane, TreeView<String> hierarchyView, ArrayList<TextField> listTextFields,
+                            SimulationObject simulationObject, CreatePresetController createPresetController) {
         this.node = node;
         this.gc = gc;
         this.tabPane = tabPane;
@@ -38,6 +49,7 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
         this.scaleXField = listTextFields.get(4);
         this.scaleYField = listTextFields.get(5);
         this.simulationObject = simulationObject;
+        this.createPresetController = createPresetController;
     }
 
     @Override
@@ -46,8 +58,11 @@ public class DragShapeHandler implements EventHandler<MouseEvent> {
 
         }
         else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
-            SimulationManager.getInstance().simulationObjectList.add(this.simulationObject);
-            gc.fillRect(event.getSceneX() - 360, event.getSceneY() - 35, 10, 10);
+            Set<Component> set = new HashSet<>(this.simulationObject.getComponents());
+            SimulationObject copy = new SimulationObject(this.simulationObject.name, set);
+            copy.position = new Vector2(event.getSceneX() - 360, event.getSceneY() - 35);
+            SimulationManager.getInstance().simulationObjectList.add(copy);
+            System.out.println(SimulationManager.getInstance().simulationObjectList.size());
             Tab tab = new Tab(presetNameField.getText());
             tabPane.getTabs().add(tab);
             try {

@@ -59,6 +59,8 @@ public class PhysiplayController {
     }
 
     public void initialize() {
+        SimulationManager.getInstance().canvas = canvas;
+        SimulationManager.getInstance().gc = SimulationManager.getInstance().canvas.getGraphicsContext2D();
         presetScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         presetScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -75,7 +77,7 @@ public class PhysiplayController {
         rootItem.setExpanded(true);
         hierarchyView.setRoot(rootItem);
 
-        //setUpTimer();
+        SimulationManager.getInstance().simulate();
     }
 
     private void setUpTimer() {
@@ -102,7 +104,8 @@ public class PhysiplayController {
     public void createPresetWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
         Stage presetWindow = new Stage();
-        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView, canvas.getGraphicsContext2D(), objectsList, tabPane);
+        CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView,
+                SimulationManager.getInstance().gc, objectsList, tabPane);
         loader.setController(createPresetController);
         Parent root = null;
         try {

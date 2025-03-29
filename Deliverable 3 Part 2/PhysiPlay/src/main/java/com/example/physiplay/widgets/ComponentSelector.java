@@ -2,6 +2,7 @@ package com.example.physiplay.widgets;
 
 import com.example.physiplay.Vector2;
 import com.example.physiplay.components.ComponentPropertyBuilder;
+import com.example.physiplay.components.Renderer;
 import com.example.physiplay.components.Rigidbody;
 import javafx.scene.control.TitledPane;
 
@@ -40,7 +41,16 @@ public class ComponentSelector {
         Rigidbody rb = new Rigidbody();
         rb.velocity = new Vector2(builder.getVector2Field("initialVelocity").getX(),
                 builder.getVector2Field("initialVelocity").getY());
+        rb.isStatic = builder.getCheckBox("isStatic").isSelected();
         return rb;
+    }
+
+    public Renderer convertToRendererComponent() {
+        if (builder == null) return null;
+        Renderer renderer = new Renderer();
+        renderer.size = new Vector2(builder.getVector2Field("size").getX(),
+                builder.getVector2Field("size").getY());
+        return renderer;
     }
 
     @Override

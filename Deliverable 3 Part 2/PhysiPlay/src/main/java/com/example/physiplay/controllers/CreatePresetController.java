@@ -3,15 +3,18 @@ package com.example.physiplay.controllers;
 import com.example.physiplay.Component;
 import com.example.physiplay.NumberOnlyTextField;
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.Vector2;
 import com.example.physiplay.components.ComponentPropertyBuilder;
 import com.example.physiplay.components.Rigidbody;
 import com.example.physiplay.singletons.DragShapeHandler;
+import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.ComponentSelector;
 import com.example.physiplay.widgets.Vector2Field;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -63,6 +66,7 @@ public class CreatePresetController {
     // Rigid body component property builder
     private ObservableSet<ComponentSelector> observableAttachedComponents = FXCollections.observableSet(new HashSet<>());
     private ComponentPropertyBuilder rigidBodyComponentPropertyBuilder = new ComponentPropertyBuilder()
+            .addCheckboxProperty("isStatic", "Is Static", new CheckBox())
             .addCheckboxProperty("useGravity", "Use Gravity", new CheckBox())
             .addCheckboxProperty("useAutoMass", "Use auto mass", new CheckBox())
             .addVector2Property("initialVelocity", "Velocity", new Vector2Field());
@@ -144,6 +148,9 @@ public class CreatePresetController {
                 case "Rigidbody":
                     componentSet.add(selector.convertToRigidbodyComponent());
                     break;
+                case "shape":
+                    componentSet.add(selector.convertToRendererComponent());
+                    break;
             }
         }
     }
@@ -162,10 +169,28 @@ public class CreatePresetController {
             presetName.setStyle("-fx-font-size: 12px");
             vBox.getChildren().addAll(rectangle, presetName);
 
-            DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject);
-            rectangle.setOnMouseDragged(handler);
+            DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject,
+                this);
 
-            rectangle.addEventHandler(MouseEvent.ANY, new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject));
+            EventHandler<MouseEvent> event = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
+                        Set<Component> componentSet = new HashSet<>();
+                        addComponentInSet(componentSet);
+                        SimulationObject copy = new SimulationObject(simulationObject.name, componentSet,
+                                new Vector2(mouseEvent.getSceneX() - 360, mouseEvent.getSceneY() - 35), 45);
+                        SimulationManager.getInstance().simulationObjectList.add(copy);
+
+                        Tab tab = new Tab(presetNameField.getText());
+                        tabPane.getTabs().add(tab);
+
+                        hierarchyView.getRoot().getChildren().add(new TreeItem<>(simulationObject.name));
+                    }
+                }
+            };
+            rectangle.setOnMouseDragged(event);
+            rectangle.addEventHandler(MouseEvent.ANY, event);
 
             presetFlowPane.getChildren().add(vBox);
 

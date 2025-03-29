@@ -41,7 +41,6 @@ public final class MainApp extends Application {
                 .activate("loginPage")
                 .printCurrentSceneName();
 
-        SimulationManager.getInstance().simulate();
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F && !stage.isFullScreen()) stage.setFullScreen(true);
