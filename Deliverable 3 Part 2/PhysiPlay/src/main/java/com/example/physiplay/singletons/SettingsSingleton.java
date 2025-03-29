@@ -1,0 +1,18 @@
+package com.example.physiplay.singletons;
+
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
+public class SettingsSingleton {
+    private static SettingsSingleton instance;
+    public BooleanProperty debugModeProperty = new SimpleBooleanProperty(false);
+
+    public static SettingsSingleton getInstance() {
+        if (instance == null) {
+            instance = new SettingsSingleton();
+        }
+        return instance;
+    }
+    private SettingsSingleton() {}
+
+}

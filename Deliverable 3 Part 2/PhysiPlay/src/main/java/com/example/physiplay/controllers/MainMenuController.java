@@ -1,5 +1,6 @@
 package com.example.physiplay.controllers;
 
+import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;

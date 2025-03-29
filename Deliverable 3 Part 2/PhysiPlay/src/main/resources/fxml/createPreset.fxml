@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="900.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
          <children>
@@ -175,6 +175,7 @@
                   <Button fx:id="addComponentButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="216.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE" />
                </children>
             </HBox>
+            <VBox />
             <HBox alignment="CENTER" prefHeight="309.0" prefWidth="500.0">
                <children>
                   <Button fx:id="createPresetButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Create Preset" textFill="WHITE">

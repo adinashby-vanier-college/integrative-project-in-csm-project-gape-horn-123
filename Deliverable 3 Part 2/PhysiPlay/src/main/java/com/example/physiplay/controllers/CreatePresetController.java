@@ -28,6 +28,8 @@ public class CreatePresetController {
     public TextField scaleYField;
     public Button createPresetButton;
 
+    public Button addComponentButton;
+
     ArrayList<SimulationObject> presetList;
     ArrayList<SimulationObject> objectsList;
     HBox presetHBox;
@@ -50,7 +52,10 @@ public class CreatePresetController {
         this.tabPane = tabPane;
     }
 
-    public void initialize(){
+    public void initialize() {
+        addComponentButton.setOnAction(event -> {
+            System.out.println("Hello world!");
+        });
         createPresetButton.setOnAction(event -> createPreset());
         numberOnly(positionXField);
         numberOnly(positionYField);
@@ -90,11 +95,6 @@ public class CreatePresetController {
             Label presetName = new Label(presetNameField.getText());
             presetName.setStyle("-fx-font-size: 12px");
             vBox.getChildren().addAll(rectangle, presetName);
-        /*vBox.setOnMouseDragged(mouseEvent -> {
-            rectangle.setX(mouseEvent.getX());
-            System.out.println(mouseEvent.getScreenX());
-            gc.fillRect(10,10,10,10);
-        });*/
 
             DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject);
             //rectangle.setOnMousePressed(handler);
