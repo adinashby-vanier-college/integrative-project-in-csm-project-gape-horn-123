@@ -38,13 +38,17 @@ public class ComponentSelector {
         return allowMultipleInstances == that.allowMultipleInstances && Objects.equals(componentName, that.componentName);
     }
 
+
+    private float parseFloat(String s) {
+        return Float.parseFloat(s.isBlank() ? "0" : s);
+    }
     public Rigidbody convertToRigidbodyComponent() {
         if (builder == null) return null;
         Rigidbody rb = new Rigidbody();
         rb.velocity = new Vector2(builder.getVector2Field("initialVelocity").getX(),
                 builder.getVector2Field("initialVelocity").getY());
         rb.useGravity = builder.getCheckBox("useGravity").isSelected();
-        rb.torque = Float.parseFloat(builder.getTextField("torque").getText());
+        rb.torque = parseFloat(builder.getTextField("torque").getText());
         rb.isStatic = builder.getCheckBox("isStatic").isSelected();
         rb.mass = Float.parseFloat(builder.getTextField("mass").getText());
         rb.restitution = Float.parseFloat(builder.getTextField("restitution").getText());

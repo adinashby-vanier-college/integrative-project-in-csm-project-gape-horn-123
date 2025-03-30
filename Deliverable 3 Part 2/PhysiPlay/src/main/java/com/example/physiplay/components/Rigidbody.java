@@ -22,8 +22,8 @@ public class Rigidbody extends Component {
     public void Start() {
         parent.simulationObjectBodyDef.type = isStatic ? BodyType.STATIC : BodyType.DYNAMIC;
         parent.simulationObjectBodyDef.gravityScale = useGravity ? 1 : 0;
-
         parent.fixtureDef.density = mass;
+
         parent.fixtureDef.restitution = restitution;
         parent.fixtureDef.friction = friction;
         System.out.println("Rigidbody component activated!");
@@ -32,10 +32,12 @@ public class Rigidbody extends Component {
     @Override
     public void Use() {
         if (!firstFrame) {
+            parent.simulationObjectBody.setAwake(true);
+            parent.simulationObjectBody.setSleepingAllowed(false);
             parent.simulationObjectBody.applyAngularImpulse(torque * parent.simulationObjectBody.getInertia());
             firstFrame = true;
         }
-
+        parent.simulationObjectBody.setLinearDamping(0);
         parent.position = new Vector2(parent.simulationObjectBody.getPosition().x, parent.simulationObjectBody.getPosition().y);
         parent.simulationObjectBody.setAngularDamping(0f);
         parent.angle = parent.simulationObjectBody.getAngle();

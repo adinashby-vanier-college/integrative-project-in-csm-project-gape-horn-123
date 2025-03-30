@@ -170,12 +170,10 @@ public class CreatePresetController {
             SimulationObject simulationObject = new SimulationObject(presetNameField.getText(), componentSet);
             VBox vBox = new VBox();
             Rectangle rectangle = new Rectangle(100,100);
+            rectangle.setRotate(Math.toDegrees(simulationObject.angle));
             Label presetName = new Label(presetNameField.getText());
             presetName.setStyle("-fx-font-size: 12px");
             vBox.getChildren().addAll(rectangle, presetName);
-
-            DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject,
-                this);
 
             EventHandler<MouseEvent> event = mouseEvent -> {
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {

@@ -16,7 +16,7 @@ public class Renderer extends Component {
     @Override
     public void Start() {
         PolygonShape box = new PolygonShape();
-        box.setAsBox((float) size.x / 2, (float) size.y / 2);
+        box.setAsBox((float) size.x / SimulationManager.SCALE / 2, (float) size.y / SimulationManager.SCALE / 2);
         parent.fixtureDef.shape = box;
     }
 
@@ -24,9 +24,10 @@ public class Renderer extends Component {
     public void Use() {
         gc.save();
         gc.setFill(color);
-        gc.translate(parent.getWorldPosition().x, parent.getWorldPosition().y);
+        gc.translate(parent.getWorldPosition().x * SimulationManager.SCALE, parent.getWorldPosition().y * SimulationManager.SCALE);
         gc.rotate(Math.toDegrees(parent.angle));
-        gc.fillRect(-size.x / 2, - size.y / 2, size.x, size.y);
+        gc.fillRect(-size.x / 2, - size.y / 2,
+                size.x, size.y);
         gc.restore();
     }
 

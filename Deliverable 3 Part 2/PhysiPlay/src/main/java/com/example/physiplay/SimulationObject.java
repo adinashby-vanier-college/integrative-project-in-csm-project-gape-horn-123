@@ -43,7 +43,8 @@ public class SimulationObject {
     }
     public void setPosition(Vector2 pos) {
         position = new Vector2(pos.x, pos.y);
-        this.simulationObjectBodyDef.position.set(new Vec2((float) position.x, (float) position.y));
+        this.simulationObjectBodyDef.position.set(new Vec2((float) position.x / SimulationManager.SCALE,
+                (float) position.y / SimulationManager.SCALE));
     }
 
     public Set<Component> getComponents() {

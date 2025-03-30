@@ -16,12 +16,13 @@ import java.util.List;
 public final class SimulationManager {
     private static final int WIDTH = 600, HEIGHT = 600;
     private static final SimulationManager instance = new SimulationManager();
+
     public Canvas canvas = new Canvas(WIDTH, HEIGHT);
 
     public SimpleBooleanProperty simulationPaused = new SimpleBooleanProperty(false);
     public GraphicsContext gc = canvas.getGraphicsContext2D();
-
-    public final World world = new World(new Vec2(0, 20.8f));
+    public static final float SCALE = 50f;
+    public final World world = new World(new Vec2(0, 9.8f));
 
     public List<SimulationObject> simulationObjectList = new ArrayList<>();
     private SimulationManager() {}
