@@ -78,6 +78,8 @@ public class PhysiplayController {
         hierarchyView.setRoot(rootItem);
 
         SimulationManager.getInstance().simulate();
+
+        SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
     }
 
     private void setUpTimer() {

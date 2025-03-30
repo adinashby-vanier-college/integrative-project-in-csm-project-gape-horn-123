@@ -69,7 +69,12 @@ public class CreatePresetController {
             .addCheckboxProperty("isStatic", "Is Static", new CheckBox())
             .addCheckboxProperty("useGravity", "Use Gravity", new CheckBox())
             .addCheckboxProperty("useAutoMass", "Use auto mass", new CheckBox())
-            .addVector2Property("initialVelocity", "Velocity", new Vector2Field());
+            .addVector2Property("initialVelocity", "Velocity", new Vector2Field())
+            .addNumberInputFieldProperty("restitution", "Restitution", new TextField())
+            .addNumberInputFieldProperty("mass", "Mass", new TextField())
+            .addNumberInputFieldProperty("friction", "Friction", new TextField())
+            .addNumberInputFieldProperty("torque", "Torque", new TextField());
+
 
     private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
             .addVector2Property("size", "Size", new Vector2Field());
@@ -172,21 +177,19 @@ public class CreatePresetController {
             DragShapeHandler handler = new DragShapeHandler(rectangle, gc, tabPane, hierarchyView, getTextFields(), simulationObject,
                 this);
 
-            EventHandler<MouseEvent> event = new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
-                        Set<Component> componentSet = new HashSet<>();
-                        addComponentInSet(componentSet);
-                        SimulationObject copy = new SimulationObject(simulationObject.name, componentSet,
-                                new Vector2(mouseEvent.getSceneX() - 360, mouseEvent.getSceneY() - 35), 45);
-                        SimulationManager.getInstance().simulationObjectList.add(copy);
+            EventHandler<MouseEvent> event = mouseEvent -> {
+                if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
+                    Set<Component> componentSet1 = new HashSet<>();
+                    addComponentInSet(componentSet1);
+                    SimulationObject copy = new SimulationObject(simulationObject.name, componentSet1,
+                            new Vector2(mouseEvent.getSceneX() - 360, mouseEvent.getSceneY() - 35),
+                            Integer.parseInt(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
+                    SimulationManager.getInstance().simulationObjectList.add(copy);
 
-                        Tab tab = new Tab(presetNameField.getText());
-                        tabPane.getTabs().add(tab);
+                    Tab tab = new Tab(presetNameField.getText());
+                    tabPane.getTabs().add(tab);
 
-                        hierarchyView.getRoot().getChildren().add(new TreeItem<>(simulationObject.name));
-                    }
+                    hierarchyView.getRoot().getChildren().add(new TreeItem<>(simulationObject.name));
                 }
             };
             rectangle.setOnMouseDragged(event);

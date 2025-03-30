@@ -4,7 +4,9 @@ import com.example.physiplay.Vector2;
 import com.example.physiplay.components.ComponentPropertyBuilder;
 import com.example.physiplay.components.Renderer;
 import com.example.physiplay.components.Rigidbody;
+import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.VBox;
 
 import java.util.Objects;
 
@@ -41,7 +43,12 @@ public class ComponentSelector {
         Rigidbody rb = new Rigidbody();
         rb.velocity = new Vector2(builder.getVector2Field("initialVelocity").getX(),
                 builder.getVector2Field("initialVelocity").getY());
+        rb.useGravity = builder.getCheckBox("useGravity").isSelected();
+        rb.torque = Float.parseFloat(builder.getTextField("torque").getText());
         rb.isStatic = builder.getCheckBox("isStatic").isSelected();
+        rb.mass = Float.parseFloat(builder.getTextField("mass").getText());
+        rb.restitution = Float.parseFloat(builder.getTextField("restitution").getText());
+        rb.friction = Float.parseFloat(builder.getTextField("friction").getText());
         return rb;
     }
 
@@ -62,7 +69,8 @@ public class ComponentSelector {
         return interactable;
     }
     public TitledPane generateTitledPane() {
-        return new TitledPane(this.title, builder.getAllProperties());
+        VBox properties = builder.getAllProperties();
+        return new TitledPane(this.title, properties);
     }
 
     @Override

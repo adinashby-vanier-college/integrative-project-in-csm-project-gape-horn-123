@@ -18,9 +18,6 @@ public class Renderer extends Component {
         PolygonShape box = new PolygonShape();
         box.setAsBox((float) size.x / 2, (float) size.y / 2);
         parent.fixtureDef.shape = box;
-        parent.fixtureDef.density = 1f;
-        parent.fixtureDef.restitution = 0.4f;
-        parent.fixtureDef.friction = 0.3f;
     }
 
     @Override
