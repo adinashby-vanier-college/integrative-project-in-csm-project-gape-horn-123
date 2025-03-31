@@ -17,6 +17,7 @@ import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -183,21 +184,26 @@ public class CreatePresetController {
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_DRAGGED) {
                     if (simulationObject.getComponent(Renderer.class) != null) {
 
-                        simulationObject.getComponent(Renderer.class).mouseX = mouseEvent.getSceneX() - 360;
-                        simulationObject.getComponent(Renderer.class).mouseY = mouseEvent.getSceneY() - 35;
+                        Point2D localPoint = SimulationManager.getInstance().canvas.sceneToLocal(mouseEvent.getSceneX(),
+                                mouseEvent.getSceneY());
+                        simulationObject.getComponent(Renderer.class).mouseX = localPoint.getX();
+                        simulationObject.getComponent(Renderer.class).mouseY = localPoint.getY();
                     }
                     SimulationManager.getInstance().hologramSimulationObject = simulationObject;
                 }
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
+                    Point2D localPoint = SimulationManager.getInstance().canvas.sceneToLocal(mouseEvent.getSceneX(),
+                            mouseEvent.getSceneY());
                     SimulationManager.getInstance().hologramSimulationObject = null;
                     if (!SimulationManager.getInstance().isCoordinateInCanvas(new Vector2(
-                            mouseEvent.getSceneX() - 360, mouseEvent.getSceneY() - 35))) {
+                            localPoint.getX(), localPoint.getY()))) {
                         return;
                     }
                     Set<Component> componentSet1 = new HashSet<>();
                     addComponentInSet(componentSet1);
                     SimulationObject copy = new SimulationObject(simulationObject.name, componentSet1,
-                            new Vector2(mouseEvent.getSceneX() - 360, mouseEvent.getSceneY() - 35),
+                            new Vector2(
+                                    localPoint.getX(), localPoint.getY()),
                             Float.parseFloat(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
                     SimulationManager.getInstance().simulationObjectList.add(copy);
 

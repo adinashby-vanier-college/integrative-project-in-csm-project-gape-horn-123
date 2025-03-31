@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,6 +44,10 @@ public class PhysiplayController {
     @FXML
     MenuItem homeScreen;
     @FXML
+    BorderPane borderPane;
+    @FXML
+    CheckMenuItem canvasViewMenuItem;
+    @FXML
     private TreeView<String> hierarchyView;
     @FXML
     FlowPane presetFlowPane;
@@ -58,6 +63,15 @@ public class PhysiplayController {
         this.scene = scene;
     }
 
+    private void handleMenuItems() {
+        canvasViewMenuItem.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
+            borderPane.getLeft().setManaged(!newValue);
+            borderPane.getLeft().setVisible(!newValue);
+            borderPane.getRight().setManaged(!newValue);
+            borderPane.getRight().setVisible(!newValue);
+            System.out.println(SimulationManager.getInstance().canvas.localToScene(0, 0).getX());
+        });
+    }
     public void initialize() {
         SimulationManager.getInstance().canvas = canvas;
         SimulationManager.getInstance().gc = SimulationManager.getInstance().canvas.getGraphicsContext2D();
@@ -80,6 +94,7 @@ public class PhysiplayController {
         SimulationManager.getInstance().simulate();
 
         SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
+        handleMenuItems();
     }
 
     private void setUpTimer() {
