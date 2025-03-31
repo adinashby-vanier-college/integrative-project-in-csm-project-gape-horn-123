@@ -34,9 +34,6 @@ public final class SimulationManager {
     public SimulationObject hologramSimulationObject = null;
     private SimulationManager() {}
 
-    public void scaleCanvas() {
-
-    }
     public void simulate() {
         AnimationTimer timer = new AnimationTimer() {
             @Override

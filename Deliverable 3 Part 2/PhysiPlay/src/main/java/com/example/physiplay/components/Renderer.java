@@ -30,7 +30,12 @@ public class Renderer extends Component {
         gc.save();
         gc.setFill(color);
         gc.setGlobalAlpha(1);
-        gc.translate(parent.getWorldPosition().x * SimulationManager.SCALE, parent.getWorldPosition().y * SimulationManager.SCALE);
+        if (parent.getComponent(Rigidbody.class) == null) {
+            gc.translate(parent.getWorldPosition().x, parent.getWorldPosition().y);
+        }
+        else {
+            gc.translate(parent.getWorldPosition().x * SimulationManager.SCALE, parent.getWorldPosition().y * SimulationManager.SCALE);
+        }
         gc.rotate(Math.toDegrees(parent.angle));
         gc.fillRect(-size.x / 2, - size.y / 2,
                 size.x, size.y);

@@ -6,6 +6,7 @@ import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 public class Rigidbody extends Component {
@@ -35,6 +36,7 @@ public class Rigidbody extends Component {
             parent.simulationObjectBody.setAwake(true);
             parent.simulationObjectBody.setSleepingAllowed(false);
             parent.simulationObjectBody.applyAngularImpulse(torque * parent.simulationObjectBody.getInertia());
+            parent.simulationObjectBody.setLinearVelocity(new Vec2((float) velocity.x, (float) velocity.y));
             firstFrame = true;
         }
         parent.simulationObjectBody.setLinearDamping(0);
