@@ -1,6 +1,8 @@
 package com.example.physiplay.singletons;
 
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.Vector2;
+import com.example.physiplay.components.Renderer;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.canvas.Canvas;
@@ -24,7 +26,12 @@ public final class SimulationManager {
     public static final float SCALE = 50f;
     public final World world = new World(new Vec2(0, 9.8f));
 
+    public boolean isCoordinateInCanvas(Vector2 coords) {
+        return coords.x > canvas.getLayoutX() && coords.x < canvas.getLayoutX() + canvas.getWidth() &&
+                coords.y > canvas.getLayoutY() && coords.y < canvas.getLayoutY() + canvas.getHeight();
+    }
     public List<SimulationObject> simulationObjectList = new ArrayList<>();
+    public SimulationObject hologramSimulationObject = null;
     private SimulationManager() {}
 
     public void simulate() {
@@ -33,6 +40,9 @@ public final class SimulationManager {
             public void handle(long l) {
                 gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 world.step(1.0f / 60.0f, 8, 3);
+                if (hologramSimulationObject != null && hologramSimulationObject.getComponent(Renderer.class) != null) {
+                    hologramSimulationObject.getComponent(Renderer.class).drawHologram();
+                }
                 for (SimulationObject object : simulationObjectList) {
                     object.simulateObject();
                 }

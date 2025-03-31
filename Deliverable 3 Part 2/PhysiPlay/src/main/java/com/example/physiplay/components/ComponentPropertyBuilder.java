@@ -14,7 +14,6 @@ import java.util.*;
 public class ComponentPropertyBuilder {
     public Map<String, Node> propertyMap = new HashMap<>();
     public ComponentPropertyBuilder() {
-        System.out.println("Component builder initiated!");
     }
 
     public ComponentPropertyBuilder addCheckboxProperty(String propertyName, String text, CheckBox checkbox) {

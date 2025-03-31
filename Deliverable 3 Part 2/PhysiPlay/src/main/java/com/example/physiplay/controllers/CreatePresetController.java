@@ -5,6 +5,7 @@ import com.example.physiplay.NumberOnlyTextField;
 import com.example.physiplay.SimulationObject;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.components.ComponentPropertyBuilder;
+import com.example.physiplay.components.Renderer;
 import com.example.physiplay.components.Rigidbody;
 import com.example.physiplay.singletons.DragShapeHandler;
 import com.example.physiplay.singletons.SimulationManager;
@@ -61,6 +62,7 @@ public class CreatePresetController {
     Stage presetWindow;
 
     private boolean componentChoiceActive = false;
+    private boolean hologramShowing = false;
 
     // All components
     // Rigid body component property builder
@@ -165,9 +167,11 @@ public class CreatePresetController {
             presetNameField.setStyle("-fx-prompt-text-fill: red;");
         }
         else {
+
             Set<Component> componentSet = new HashSet<>();
             addComponentInSet(componentSet);
-            SimulationObject simulationObject = new SimulationObject(presetNameField.getText(), componentSet);
+            SimulationObject simulationObject = new SimulationObject(presetNameField.getText(), componentSet, Vector2.ZERO,
+                    Float.parseFloat(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
             VBox vBox = new VBox();
             Rectangle rectangle = new Rectangle(100,100);
             rectangle.setRotate(Math.toDegrees(simulationObject.angle));
@@ -176,12 +180,25 @@ public class CreatePresetController {
             vBox.getChildren().addAll(rectangle, presetName);
 
             EventHandler<MouseEvent> event = mouseEvent -> {
+                if (mouseEvent.getEventType() == MouseEvent.MOUSE_DRAGGED) {
+                    if (simulationObject.getComponent(Renderer.class) != null) {
+
+                        simulationObject.getComponent(Renderer.class).mouseX = mouseEvent.getSceneX() - 360;
+                        simulationObject.getComponent(Renderer.class).mouseY = mouseEvent.getSceneY() - 35;
+                    }
+                    SimulationManager.getInstance().hologramSimulationObject = simulationObject;
+                }
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
+                    SimulationManager.getInstance().hologramSimulationObject = null;
+                    if (!SimulationManager.getInstance().isCoordinateInCanvas(new Vector2(
+                            mouseEvent.getSceneX() - 360, mouseEvent.getSceneY() - 35))) {
+                        return;
+                    }
                     Set<Component> componentSet1 = new HashSet<>();
                     addComponentInSet(componentSet1);
                     SimulationObject copy = new SimulationObject(simulationObject.name, componentSet1,
                             new Vector2(mouseEvent.getSceneX() - 360, mouseEvent.getSceneY() - 35),
-                            Integer.parseInt(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
+                            Float.parseFloat(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
                     SimulationManager.getInstance().simulationObjectList.add(copy);
 
                     Tab tab = new Tab(presetNameField.getText());
@@ -189,27 +206,21 @@ public class CreatePresetController {
 
                     hierarchyView.getRoot().getChildren().add(new TreeItem<>(simulationObject.name));
                 }
+
             };
+
+
+
             rectangle.setOnMouseDragged(event);
             rectangle.addEventHandler(MouseEvent.ANY, event);
 
-            presetFlowPane.getChildren().add(vBox);
+
+            presetFlowPane.getChildren().addAll(vBox);
 
             TreeItem<String> preset = new TreeItem<>(presetName.getText());
             hierarchyView.getRoot().getChildren().add(preset);
 
             presetWindow.hide();
         }
-    }
-
-    public ArrayList<TextField> getTextFields(){
-        ArrayList<TextField> arrayList = new ArrayList<TextField>();
-        arrayList.add(presetNameField);
-        arrayList.add(positionXField);
-        arrayList.add(positionYField);
-        arrayList.add(rotationField);
-        arrayList.add(scaleXField);
-        arrayList.add(scaleYField);
-        return arrayList;
     }
 }
