@@ -7,7 +7,6 @@ import com.example.physiplay.Vector2;
 import com.example.physiplay.components.ComponentPropertyBuilder;
 import com.example.physiplay.components.Renderer;
 import com.example.physiplay.components.Rigidbody;
-import com.example.physiplay.singletons.DragShapeHandler;
 import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.ComponentSelector;
 import com.example.physiplay.widgets.Vector2Field;
@@ -140,6 +139,7 @@ public class CreatePresetController {
         });
 
         NumberOnlyTextField numberOnlyTextField = new NumberOnlyTextField();
+        numberOnlyTextField.numberOnly(positionXField);
         numberOnlyTextField.numberOnly(positionYField);
         numberOnlyTextField.numberOnly(rotationField);
         numberOnlyTextField.numberOnly(scaleXField);
