@@ -30,17 +30,15 @@ public class MainMenuController {
 
     public void initialize() {
         stage.setAlwaysOnTop(true);
-        playButton.setOnAction(event -> switchScene("play", scene));
-        instructionsButton.setOnAction(event -> switchScene("instructions", scene));
-        settingsButton.setOnAction(event -> switchScene("settings", scene));
+        playButton.setOnAction(event -> switchScene("play", "/fonts/stylesheets.css"));
+        instructionsButton.setOnAction(event -> switchScene("instructions", "/fonts/instructionsStylesheet.css"));
+        settingsButton.setOnAction(event -> switchScene("settings","/fonts/settingsStylesheet.css"));
         exitButton.setOnAction(event -> Platform.exit());
     }
 
-    public void switchScene(String sceneType, Scene Scene) {
+    public void switchScene(String sceneType, String cssUrl) {
         try {
-            if (sceneType.equals("instructions")) scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/instructionsStylesheet.css")).toExternalForm());
-            else scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
-            ScreenController.getInstance().activate(sceneType);
+            ScreenController.getInstance().activate(sceneType, cssUrl);
         } catch (Exception e){
             System.out.println("Error while switching to " + sceneType + " scene");
         }

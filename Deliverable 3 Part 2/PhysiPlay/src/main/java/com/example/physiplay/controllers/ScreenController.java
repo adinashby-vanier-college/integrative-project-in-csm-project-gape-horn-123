@@ -82,6 +82,16 @@ public class ScreenController {
         currentSceneName = name;
         // applyTransition(parent);
         mainScene.setRoot(parent);
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
+        return this;
+    }
+
+    public ScreenController activate(String name, String cssLink) {
+        Parent parent = screenMap.get(name);
+        currentSceneName = name;
+        // applyTransition(parent);
+        mainScene.setRoot(parent);
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(cssLink)).toExternalForm());
         return this;
     }
 }
