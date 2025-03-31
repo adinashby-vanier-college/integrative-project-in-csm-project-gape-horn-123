@@ -215,12 +215,9 @@ public class CreatePresetController {
 
             };
 
-
-
             rectangle.setOnMouseDragged(event);
             rectangle.addEventHandler(MouseEvent.ANY, event);
-
-
+            
             presetFlowPane.getChildren().addAll(vBox);
 
             TreeItem<String> preset = new TreeItem<>(presetName.getText());

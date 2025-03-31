@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="900.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
          <children>
@@ -152,7 +152,7 @@
             <VBox fx:id="attachedComponents" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE" />
+                  <Button fx:id="addComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="356.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE" />
                </children>
             </HBox>
             <VBox fx:id="componentsVBox">
@@ -160,14 +160,14 @@
                   <TreeView fx:id="componentsTreeView" prefHeight="200.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="attachComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="216.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Attach component" textFill="WHITE" />
+                        <Button fx:id="attachComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="347.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Attach component" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="309.0" prefWidth="500.0">
                <children>
-                  <Button fx:id="createPresetButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Create Preset" textFill="WHITE">
+                  <Button fx:id="createPresetButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Create Preset" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>

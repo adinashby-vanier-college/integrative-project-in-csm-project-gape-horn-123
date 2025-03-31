@@ -6,17 +6,27 @@
 }
 
 .button{
-    -fx-font: 25px "Madimi One"
+    -fx-font: 25px "Madimi One";
 }
 
 .titled-pane > .title
 {
--fx-background-color: #D5C9DF;
+    -fx-background-color: #D5C9DF;
 }
 
 .titled-pane > .title
 {
-    -fx-font: 25px "Madimi One"
+    -fx-font: 25px "Madimi One";
+}
+
+.tree-cell{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  25px "Madimi One";
+}
+
+.vbox{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  25px "Madimi One";
 }
 
 
