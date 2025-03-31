@@ -5,14 +5,25 @@
     -fx-background-color: #6A5D7B;
     -fx-text-fill: white;
     -fx-font: 50px "Madimi One";
+    -fx-border-color: black;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
 }
 
 .button:hover {
     -fx-background-color: white;
     -fx-cursor: hand;
-    -fx-scale-x: 1.01;
-    -fx-scale-y: 1.01;
     -fx-text-fill: #6A5D7B;
+    -fx-border-color: white;
+}
+
+.button:pressed {
+    -fx-background-color: rgb(225, 225, 225);
+    -fx-cursor: pointer;
+    -fx-text-fill: #6A5D7B;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+    transition: 0.1s;
 }
 
 .label{
