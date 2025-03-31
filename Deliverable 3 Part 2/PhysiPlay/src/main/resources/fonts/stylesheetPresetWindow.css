@@ -24,9 +24,19 @@
     -fx-font:  25px "Madimi One";
 }
 
-.vbox{
+#attachedComponents{
     -fx-background-color: #D5C9DF;
-    -fx-font:  25px "Madimi One";
+    -fx-font:  16px "Madimi One";
+}
+
+#componentsTreeView{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
+}
+
+#attachedComponents > .tree-cell{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
 }
 
 
