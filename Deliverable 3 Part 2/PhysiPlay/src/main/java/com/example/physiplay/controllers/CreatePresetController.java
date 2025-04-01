@@ -6,11 +6,9 @@ import com.example.physiplay.SimulationObject;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.components.ComponentPropertyBuilder;
 import com.example.physiplay.components.Renderer;
-import com.example.physiplay.components.Rigidbody;
 import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.ComponentSelector;
 import com.example.physiplay.widgets.Vector2Field;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
@@ -21,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -53,9 +50,9 @@ public class CreatePresetController {
     GraphicsContext gc;
     TabPane tabPane;
     @FXML
-    VBox attachedComponents;
+    VBox rigidBodyVBox;
     @FXML
-    VBox componentsVBox;
+    VBox shapeVBox;
     @FXML
     TreeView<ComponentSelector> componentsTreeView;
     @FXML
@@ -81,6 +78,7 @@ public class CreatePresetController {
 
     private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
             .addVector2Property("size", "Size", new Vector2Field());
+
     public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane, Scene scene){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
@@ -114,42 +112,41 @@ public class CreatePresetController {
     }
 
     public void initialize() {
-        componentsVBox.setVisible(componentChoiceActive);
-        componentsVBox.setManaged(componentChoiceActive);
+        rigidBodyVBox.setVisible(componentChoiceActive);
+        rigidBodyVBox.setManaged(componentChoiceActive);
         generateComponentSelectors();
 
         componentsTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         observableAttachedComponents.addListener((SetChangeListener<? super ComponentSelector>) change -> {
             System.out.println("Change!");
-            updateAttachedComponentVBox(attachedComponents, observableAttachedComponents);
+            updateAttachedComponentVBox(rigidBodyVBox, observableAttachedComponents);
         });
 
         addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide Components");
         addComponentButton.setOnAction(event -> {
             componentChoiceActive = !componentChoiceActive;
-            componentsVBox.setVisible(componentChoiceActive);
-            componentsVBox.setManaged(componentChoiceActive);
+            rigidBodyVBox.setVisible(componentChoiceActive);
+            rigidBodyVBox.setManaged(componentChoiceActive);
             addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide Components");
         });
         createPresetButton.setOnAction(event -> createPreset());
 
         attachComponentButton.setOnAction(event -> {
             if (componentsTreeView.getSelectionModel().getSelectedItem().getValue().isInteractable())
-                observableAttachedComponents.add(componentsTreeView.getSelectionModel().getSelectedItem()
-                        .getValue());
+                observableAttachedComponents.add(componentsTreeView.getSelectionModel().getSelectedItem().getValue());
         });
 
+        setNumberOnly();
+
+    }
+
+    public void setNumberOnly(){
         NumberOnlyTextField numberOnlyTextField = new NumberOnlyTextField();
         numberOnlyTextField.numberOnly(positionXField);
         numberOnlyTextField.numberOnly(positionYField);
         numberOnlyTextField.numberOnly(rotationField);
         numberOnlyTextField.numberOnly(scaleXField);
         numberOnlyTextField.numberOnly(scaleYField);
-
-    }
-
-    public void setPresetList(ArrayList<SimulationObject> list){
-        this.presetList = list;
     }
 
     private void addComponentInSet(Set<Component> componentSet) {
@@ -164,6 +161,7 @@ public class CreatePresetController {
             }
         }
     }
+
     public void createPreset(){
         if (presetNameField.getText().trim().isEmpty()){
             presetNameField.setPromptText("Please enter a name:");
