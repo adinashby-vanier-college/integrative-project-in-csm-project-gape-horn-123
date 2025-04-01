@@ -53,7 +53,7 @@ public class SettingsController {
 
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
         ScreenController.getInstance().activate("mainMenu");
     }
 }

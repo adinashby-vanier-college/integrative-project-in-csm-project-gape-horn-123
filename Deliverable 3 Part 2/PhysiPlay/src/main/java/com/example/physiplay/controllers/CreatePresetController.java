@@ -17,6 +17,7 @@ import javafx.collections.SetChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -60,6 +61,7 @@ public class CreatePresetController {
     @FXML
     Button attachComponentButton;
     Stage presetWindow;
+    Scene scene;
 
     private boolean componentChoiceActive = false;
     private boolean hologramShowing = false;
@@ -77,10 +79,9 @@ public class CreatePresetController {
             .addNumberInputFieldProperty("friction", "Friction", new TextField())
             .addNumberInputFieldProperty("torque", "Torque", new TextField());
 
-
     private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
             .addVector2Property("size", "Size", new Vector2Field());
-    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane){
+    public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane, Scene scene){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
         this.presetList = list;
@@ -144,6 +145,7 @@ public class CreatePresetController {
         numberOnlyTextField.numberOnly(rotationField);
         numberOnlyTextField.numberOnly(scaleXField);
         numberOnlyTextField.numberOnly(scaleYField);
+
     }
 
     public void setPresetList(ArrayList<SimulationObject> list){

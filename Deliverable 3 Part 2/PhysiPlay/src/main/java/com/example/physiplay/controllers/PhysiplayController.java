@@ -11,18 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -122,7 +119,7 @@ public class PhysiplayController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
         Stage presetWindow = new Stage();
         CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView,
-                SimulationManager.getInstance().gc, objectsList, tabPane);
+                SimulationManager.getInstance().gc, objectsList, tabPane, scene);
         loader.setController(createPresetController);
         Parent root = null;
         try {
@@ -131,7 +128,7 @@ public class PhysiplayController {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root, 500, 900);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheetPresetWindow.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheetPresetWindow.css")).toExternalForm());
         presetWindow.setScene(scene);
         presetWindow.initModality(Modality.WINDOW_MODAL);
         presetWindow.initOwner(mainWindow);
@@ -140,7 +137,7 @@ public class PhysiplayController {
 
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
         ScreenController.getInstance().activate("mainMenu");
     }
 }

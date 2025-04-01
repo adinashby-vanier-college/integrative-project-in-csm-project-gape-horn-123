@@ -82,7 +82,7 @@ public class ScreenController {
         currentSceneName = name;
         // applyTransition(parent);
         mainScene.setRoot(parent);
-        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
+        mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
         return this;
     }
 

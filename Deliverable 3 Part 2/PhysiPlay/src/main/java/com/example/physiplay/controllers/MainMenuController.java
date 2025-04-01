@@ -1,13 +1,10 @@
 package com.example.physiplay.controllers;
 
-import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import java.util.Objects;
 
 
 public class MainMenuController {
@@ -30,9 +27,9 @@ public class MainMenuController {
 
     public void initialize() {
         stage.setAlwaysOnTop(true);
-        playButton.setOnAction(event -> switchScene("play", "/fonts/stylesheets.css"));
-        instructionsButton.setOnAction(event -> switchScene("instructions", "/fonts/instructionsStylesheet.css"));
-        settingsButton.setOnAction(event -> switchScene("settings","/fonts/settingsStylesheet.css"));
+        playButton.setOnAction(event -> switchScene("play", "/css/stylesheets.css"));
+        instructionsButton.setOnAction(event -> switchScene("instructions", "/css/instructionsStylesheet.css"));
+        settingsButton.setOnAction(event -> switchScene("settings", "/css/settingsStylesheet.css"));
         exitButton.setOnAction(event -> Platform.exit());
     }
 

@@ -1,7 +1,6 @@
 package com.example.physiplay;
 
 import com.example.physiplay.controllers.*;
-import com.example.physiplay.singletons.SimulationManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -32,7 +31,7 @@ public final class MainApp extends Application {
 
         Scene scene = new Scene(new Pane(), 1920, 1080);
         // CSS File
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/fonts/stylesheets.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
 
         loadScenes(stage, scene);
 

@@ -39,6 +39,31 @@
     -fx-font:  16px "Madimi One";
 }
 
+.root {
+    -fx-background-color: #D5C9DF;
+}
 
+.root, .anchor-pane, .vbox, .hbox, .border-pane, .grid-pane, .stack-pane, .flow-pane {
+    -fx-background-color: #D5C9DF !important;
+}
 
+.tree-cell, #attachedComponents, #componentsTreeView, .titled-pane > .title {
+    -fx-background-color: #D5C9DF !important;
+}
+
+#attachedComponents, #componentsVBox {
+    -fx-background-color: #D5C9DF !important;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #D5C9DF !important;
+}
+
+.scroll-pane {
+    -fx-background-color: #D5C9DF;
+}
+.scroll-pane .viewport {
+    -fx-background-color: #D5C9DF;
+}
+ 
 
