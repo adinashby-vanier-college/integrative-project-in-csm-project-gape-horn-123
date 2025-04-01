@@ -59,3 +59,15 @@
     -fx-background-color: #D5C9DF !important;
 }
 
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color: #D5C9DF;
+}
+
+.tab {
+    -fx-background-color: #BCA9CC;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5px;
+}
+

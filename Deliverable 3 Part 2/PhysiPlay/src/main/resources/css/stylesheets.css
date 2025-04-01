@@ -79,6 +79,10 @@
     -fx-font: 12px "Madimi One";
 }
 
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color: #D5C9DF;
+}
+
 /*
 .outline.label .text{
     -fx-stoke: black;

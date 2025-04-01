@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="980.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="980.0" style="-fx-background-color: #D5C9DF;" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="980.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
          <children>
@@ -28,7 +28,7 @@
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #D5C9DF;">
                <children>
                   <Polygon fill="DODGERBLUE" points="47.0, -31.0, 54.0, -60.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE">
                      <HBox.margin>
