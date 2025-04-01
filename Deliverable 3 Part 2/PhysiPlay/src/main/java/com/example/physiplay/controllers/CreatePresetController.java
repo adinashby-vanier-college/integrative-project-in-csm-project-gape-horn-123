@@ -124,12 +124,12 @@ public class CreatePresetController {
             updateAttachedComponentVBox(attachedComponents, observableAttachedComponents);
         });
 
-        addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide components");
+        addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide Components");
         addComponentButton.setOnAction(event -> {
             componentChoiceActive = !componentChoiceActive;
             componentsVBox.setVisible(componentChoiceActive);
             componentsVBox.setManaged(componentChoiceActive);
-            addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide components");
+            addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide Components");
         });
         createPresetButton.setOnAction(event -> createPreset());
 

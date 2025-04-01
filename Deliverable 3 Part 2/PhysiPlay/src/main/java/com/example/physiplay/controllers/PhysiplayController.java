@@ -127,7 +127,7 @@ public class PhysiplayController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Scene scene = new Scene(root, 500, 900);
+        Scene scene = new Scene(root, 500, 980);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheetPresetWindow.css")).toExternalForm());
         presetWindow.setScene(scene);
         presetWindow.initModality(Modality.WINDOW_MODAL);

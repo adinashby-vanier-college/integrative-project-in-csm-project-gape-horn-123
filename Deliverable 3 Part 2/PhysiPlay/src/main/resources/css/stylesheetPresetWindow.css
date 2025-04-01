@@ -59,11 +59,3 @@
     -fx-background-color: #D5C9DF !important;
 }
 
-.scroll-pane {
-    -fx-background-color: #D5C9DF;
-}
-.scroll-pane .viewport {
-    -fx-background-color: #D5C9DF;
-}
- 
-
