@@ -85,11 +85,6 @@ public class ComponentSelector {
         return builder.getAllProperties();
     }
 
-    public Tab getTab() {
-        if (builder == null) return new Tab();
-        return new Tab(this.title, this.builder.getAllProperties());
-    }
-
     @Override
     public String toString() {
         return this.title;

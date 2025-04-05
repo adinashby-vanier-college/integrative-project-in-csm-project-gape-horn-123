@@ -29,9 +29,6 @@ import javafx.stage.Stage;
 import java.util.*;
 
 public class CreatePresetController {
-
-    @FXML
-    private Accordion componentAccordion;
     @FXML
     public TextField presetNameField;
     public TextField positionXField;
@@ -62,7 +59,6 @@ public class CreatePresetController {
     Stage presetWindow;
     Scene scene;
 
-    private boolean hologramShowing = false;
     private SimpleBooleanProperty componentChoiceActiveProperty = new SimpleBooleanProperty(false);
 
     // All components
@@ -92,6 +88,13 @@ public class CreatePresetController {
         this.tabPane = tabPane;
     }
 
+    private ComponentSelector getComponentSelectorByName(String componentName) {
+        for (ComponentSelector cs : observableAttachedComponents) {
+            if (cs.getComponentName().equals(componentName)) return cs;
+        }
+        return null;
+    }
+
     private void generateComponentSelectors() {
         TreeItem<ComponentSelector> root = new TreeItem<>(new ComponentSelector("Components", "Components",
                 null, false));
@@ -105,14 +108,6 @@ public class CreatePresetController {
         componentsTreeView.setRoot(root);
     }
 
-    private void updateAttachedComponentVBox(VBox vbox, ObservableSet<ComponentSelector> attachedComponentsSet) {
-        vbox.getChildren().clear();
-        for (ComponentSelector selector : attachedComponentsSet) {
-            if (selector.isInteractable())
-                vbox.getChildren().add(selector.generateTitledPane());
-        }
-    }
-
 
     public void initialize() {
         generateComponentSelectors();
@@ -121,13 +116,17 @@ public class CreatePresetController {
         attachComponentButton.disableProperty().bind(componentChoiceActiveProperty.not());
         componentsTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         observableAttachedComponents.addListener((SetChangeListener<ComponentSelector>) change -> {
-            System.out.println("Change!");
             if (change.wasAdded()) {
                 ComponentSelector selector = change.getElementAdded();
                 Tab tab = new Tab(selector.getTitle());
-
-                tab.setId(selector.getTitle());
+                tab.setId(selector.getComponentName());
                 tab.setContent(selector.getComponentProperties());
+
+                tab.setOnClosed(event -> {
+                    if (getComponentSelectorByName(tab.getId()) != null) {
+                        observableAttachedComponents.remove(getComponentSelectorByName(tab.getId()));
+                    }
+                });
                 componentTabPane.getTabs().add(tab);
             }
 
