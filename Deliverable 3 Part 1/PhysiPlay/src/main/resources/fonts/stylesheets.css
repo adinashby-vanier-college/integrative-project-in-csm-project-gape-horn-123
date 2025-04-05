@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
+
+.button{
+    -fx-background-color: #6A5D7B;
+    -fx-text-fill: white;
+    -fx-font: 50px "Madimi One";
+}
+
+.button:hover {
+    -fx-background-color: white;
+    -fx-cursor: hand;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+    -fx-text-fill: #6A5D7B;
+}
+
+.label{
+    -fx-font: 200px "Madimi One";
+}
+
+.menu .label {
+    -fx-text-fill: white;
+    -fx-font: 20px "Madimi One";
+}
+
+.tree-cell {
+    -fx-background-color: #D5C9DF;
+}
+
+.menu-item{
+    -fx-background-color: #D5C9DF;
+}
+
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: black ;
+    -fx-opacity: 0.5;
+    -fx-text-fill: white;
+}
+
+.context-menu {
+    -fx-background-color: #5D4A66 ;
+    -fx-border-width: 0.1px;
+    -fx-border-color: black;
+    -fx-background-insets: 0.0, 1.0, 2.0;
+    -fx-background-radius: 0.0 6.0 6.0 6.0, 0.0 5.0 5.0 5.0, 0.0 4.0 4.0 4.0;
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em;
+    -fx-opacity: 0.9;
+}
+
+#startButton, #pauseButton, #stopButton{
+    -fx-font: 12px "Madimi One";
+}
+
+#presetsLabel{
+    -fx-font-size: 50px;
+}
+
+.tree-view, .tree-cell {
+    -fx-font: 20px "Madimi One";
+}
+
+.titled-pane > .title{
+    -fx-font: 20px "Madimi One";
+}
+
+.tab-label{
+    -fx-font: 12px "Madimi One";
+}
+
+/*
+.outline.label .text{
+    -fx-stoke: black;
+    -fx-stroke-width: 2px;
+}*/
+
+/*Login Page*/
+#loginLabel{
+    -fx-font: 100px "Madimi One";
+}
+
+#usernameLabel, #passwordLabel, #confirmPasswordLabel{
+    -fx-font: 22px "Madimi One";
+}
+#loginButton, #registerButton{
+    -fx-font: 22px "Madimi One";
+}
+
+#registerLabel{
+    -fx-font: 100px "Madimi One";
+}
+
+
