@@ -9,6 +9,7 @@ import com.example.physiplay.components.Renderer;
 import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.ComponentSelector;
 import com.example.physiplay.widgets.Vector2Field;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
@@ -49,8 +50,9 @@ public class CreatePresetController {
     TreeView<String> hierarchyView;
     GraphicsContext gc;
     TabPane tabPane;
+
     @FXML
-    VBox rigidBodyVBox;
+    TabPane componentTabPane;
     @FXML
     VBox shapeVBox;
     @FXML
@@ -60,8 +62,8 @@ public class CreatePresetController {
     Stage presetWindow;
     Scene scene;
 
-    private boolean componentChoiceActive = false;
     private boolean hologramShowing = false;
+    private SimpleBooleanProperty componentChoiceActiveProperty = new SimpleBooleanProperty(false);
 
     // All components
     // Rigid body component property builder
@@ -111,29 +113,37 @@ public class CreatePresetController {
         }
     }
 
-    public void initialize() {
-        rigidBodyVBox.setVisible(componentChoiceActive);
-        rigidBodyVBox.setManaged(componentChoiceActive);
-        generateComponentSelectors();
 
+    public void initialize() {
+        generateComponentSelectors();
+        componentsTreeView.visibleProperty().bind(componentChoiceActiveProperty);
+        componentsTreeView.managedProperty().bind(componentChoiceActiveProperty);
+        attachComponentButton.disableProperty().bind(componentChoiceActiveProperty.not());
         componentsTreeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        observableAttachedComponents.addListener((SetChangeListener<? super ComponentSelector>) change -> {
+        observableAttachedComponents.addListener((SetChangeListener<ComponentSelector>) change -> {
             System.out.println("Change!");
-            updateAttachedComponentVBox(rigidBodyVBox, observableAttachedComponents);
+            if (change.wasAdded()) {
+                ComponentSelector selector = change.getElementAdded();
+                Tab tab = new Tab(selector.getTitle());
+
+                tab.setId(selector.getTitle());
+                tab.setContent(selector.getComponentProperties());
+                componentTabPane.getTabs().add(tab);
+            }
+
         });
 
-        addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide Components");
+        addComponentButton.setText(!componentChoiceActiveProperty.getValue() ? "Add Components" : "Hide Components");
         addComponentButton.setOnAction(event -> {
-            componentChoiceActive = !componentChoiceActive;
-            rigidBodyVBox.setVisible(componentChoiceActive);
-            rigidBodyVBox.setManaged(componentChoiceActive);
-            addComponentButton.setText(!componentChoiceActive ? "Add Components" : "Hide Components");
+            componentChoiceActiveProperty.setValue(!componentChoiceActiveProperty.getValue());
+            addComponentButton.setText(!componentChoiceActiveProperty.getValue() ? "Add Components" : "Hide Components");
         });
         createPresetButton.setOnAction(event -> createPreset());
 
         attachComponentButton.setOnAction(event -> {
-            if (componentsTreeView.getSelectionModel().getSelectedItem().getValue().isInteractable())
+            if (componentsTreeView.getSelectionModel().getSelectedItem().getValue().isInteractable()) {
                 observableAttachedComponents.add(componentsTreeView.getSelectionModel().getSelectedItem().getValue());
+            }
         });
 
         setNumberOnly();

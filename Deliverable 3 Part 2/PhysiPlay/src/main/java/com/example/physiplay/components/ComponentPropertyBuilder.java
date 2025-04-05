@@ -2,20 +2,25 @@ package com.example.physiplay.components;
 
 import com.example.physiplay.NumberOnlyTextField;
 import com.example.physiplay.widgets.Vector2Field;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public class ComponentPropertyBuilder {
     public Map<String, Node> propertyMap = new HashMap<>();
     public ComponentPropertyBuilder() {
     }
 
+    private VBox vbox = new VBox();
     public ComponentPropertyBuilder addCheckboxProperty(String propertyName, String text, CheckBox checkbox) {
         checkbox.setText(text);
         propertyMap.put(propertyName, checkbox);
@@ -62,7 +67,7 @@ public class ComponentPropertyBuilder {
         }
     }
     public VBox getAllProperties() {
-        VBox vbox = new VBox();
+        vbox.getChildren().clear();
         vbox.getChildren().addAll(propertyMap.values());
         return vbox;
     }

@@ -4,8 +4,9 @@ import com.example.physiplay.Vector2;
 import com.example.physiplay.components.ComponentPropertyBuilder;
 import com.example.physiplay.components.Renderer;
 import com.example.physiplay.components.Rigidbody;
-import javafx.scene.control.Button;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.util.Objects;
@@ -38,6 +39,9 @@ public class ComponentSelector {
         return allowMultipleInstances == that.allowMultipleInstances && Objects.equals(componentName, that.componentName);
     }
 
+    public String getTitle() {
+        return this.title;
+    }
 
     private float parseFloat(String s) {
         return Float.parseFloat(s.isBlank() ? "0" : s);
@@ -75,6 +79,15 @@ public class ComponentSelector {
     public TitledPane generateTitledPane() {
         VBox properties = builder.getAllProperties();
         return new TitledPane(this.title, properties);
+    }
+
+    public VBox getComponentProperties() {
+        return builder.getAllProperties();
+    }
+
+    public Tab getTab() {
+        if (builder == null) return new Tab();
+        return new Tab(this.title, this.builder.getAllProperties());
     }
 
     @Override
