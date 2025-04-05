@@ -5,6 +5,10 @@
     -fx-font-size: 30px;
 }
 
+.tab-pane {
+    -fx-font-family: "Madimi One";
+}
+
 .button{
     -fx-font: 25px "Madimi One";
 }

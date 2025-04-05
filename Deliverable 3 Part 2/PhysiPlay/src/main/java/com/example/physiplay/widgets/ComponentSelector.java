@@ -1,12 +1,11 @@
 package com.example.physiplay.widgets;
 
 import com.example.physiplay.Vector2;
+import com.example.physiplay.components.CircleRenderer;
 import com.example.physiplay.components.ComponentPropertyBuilder;
-import com.example.physiplay.components.Renderer;
+import com.example.physiplay.components.RectangularRenderer;
 import com.example.physiplay.components.Rigidbody;
 import javafx.scene.control.*;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.util.Objects;
@@ -60,11 +59,18 @@ public class ComponentSelector {
         return rb;
     }
 
-    public Renderer convertToRendererComponent() {
+    public RectangularRenderer convertToRectangularRendererComponent() {
         if (builder == null) return null;
-        Renderer renderer = new Renderer();
+        RectangularRenderer renderer = new RectangularRenderer();
         renderer.size = new Vector2(builder.getVector2Field("size").getX(),
                 builder.getVector2Field("size").getY());
+        return renderer;
+    }
+
+    public CircleRenderer convertToCircleRendererComponent() {
+        if (builder == null) return null;
+        CircleRenderer renderer = new CircleRenderer();
+        renderer.radius = parseFloat(builder.getTextField("radius").getText());
         return renderer;
     }
 

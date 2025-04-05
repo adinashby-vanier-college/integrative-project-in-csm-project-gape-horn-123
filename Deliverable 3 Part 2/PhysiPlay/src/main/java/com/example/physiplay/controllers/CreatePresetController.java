@@ -19,10 +19,12 @@ import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -77,6 +79,9 @@ public class CreatePresetController {
     private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
             .addVector2Property("size", "Size", new Vector2Field());
 
+    private ComponentPropertyBuilder circlePropertyBuilder = new ComponentPropertyBuilder()
+            .addNumberInputFieldProperty("radius", "Radius", new TextField());
+
     public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane, Scene scene){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
@@ -103,6 +108,8 @@ public class CreatePresetController {
         TreeItem<ComponentSelector> shapeRoot = new TreeItem<>(new ComponentSelector("shapes", "Shapes", null, false));
         shapeRoot.getChildren().add(new TreeItem<>(new ComponentSelector("shape", "Rectangle",
                 rectanglePropertyBuilder, false)));
+        shapeRoot.getChildren().add(new TreeItem<>(new ComponentSelector("shape", "Circle",
+                circlePropertyBuilder, false)));
         root.getChildren().add(rigidbodyItem);
         root.getChildren().add(shapeRoot);
         componentsTreeView.setRoot(root);
@@ -110,6 +117,7 @@ public class CreatePresetController {
 
 
     public void initialize() {
+        this.presetWindow.titleProperty().bind(presetNameField.textProperty());
         generateComponentSelectors();
         componentsTreeView.visibleProperty().bind(componentChoiceActiveProperty);
         componentsTreeView.managedProperty().bind(componentChoiceActiveProperty);
@@ -120,7 +128,9 @@ public class CreatePresetController {
                 ComponentSelector selector = change.getElementAdded();
                 Tab tab = new Tab(selector.getTitle());
                 tab.setId(selector.getComponentName());
-                tab.setContent(selector.getComponentProperties());
+                ScrollPane pane = new ScrollPane(selector.getComponentProperties());
+                pane.setEffect(new InnerShadow(5, Color.BLACK));
+                tab.setContent(pane);
 
                 tab.setOnClosed(event -> {
                     if (getComponentSelectorByName(tab.getId()) != null) {
@@ -165,7 +175,11 @@ public class CreatePresetController {
                     componentSet.add(selector.convertToRigidbodyComponent());
                     break;
                 case "shape":
-                    componentSet.add(selector.convertToRendererComponent());
+                    if (selector.getTitle().equals("Rectangle"))
+                        componentSet.add(selector.convertToRectangularRendererComponent());
+                    else if (selector.getTitle().equals("Circle")) {
+                        componentSet.add(selector.convertToCircleRendererComponent());
+                    }
                     break;
             }
         }
