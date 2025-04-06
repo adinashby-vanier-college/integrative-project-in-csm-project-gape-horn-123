@@ -31,8 +31,8 @@ public class TabController {
     }
 
     public void initialize(){
-        /*allNumberOnly();
-        getOldText();*/
+        allNumberOnly();
+        getOldText();
     }
 
     private void getOldText() {

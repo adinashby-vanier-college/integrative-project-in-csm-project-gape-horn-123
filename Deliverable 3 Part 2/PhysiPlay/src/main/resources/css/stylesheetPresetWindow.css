@@ -16,12 +16,31 @@
 .titled-pane > .title
 {
     -fx-background-color: #D5C9DF;
-        -fx-font: 25px "Madimi One";
+}
+
+.titled-pane > .title
+{
+    -fx-font: 25px "Madimi One";
 }
 
 .tree-cell{
     -fx-background-color: #D5C9DF;
     -fx-font:  25px "Madimi One";
+}
+
+#attachedComponents{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
+}
+
+#componentsTreeView{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
+}
+
+#attachedComponents > .tree-cell{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
 }
 
 .root {
