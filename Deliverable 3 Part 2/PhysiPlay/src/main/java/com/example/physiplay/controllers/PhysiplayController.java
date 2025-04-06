@@ -11,7 +11,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -118,6 +121,10 @@ public class PhysiplayController {
 
         SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
         handleMenuItems();
+        
+        canvas.setOnScroll(this::handleScrollEvent);
+        canvas.setOnMouseDragged(this::handleMouseDragEvent);
+        canvas.setOnMouseMoved(this::handleMouseMovingInsideCanvasEvent);
     }
 
     private void setUpTimer() {
@@ -184,4 +191,45 @@ public class PhysiplayController {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
         ScreenController.getInstance().activate("mainMenu");
     }
+
+	private void handleScrollEvent(ScrollEvent scrollevent) {
+		GraphicsContext gc = SimulationManager.getInstance().gc;
+
+		double px = scrollevent.getX();
+		double py = scrollevent.getY();
+		double scaleX = 1 + scrollevent.getDeltaY()*0.001;
+		double scaleY = 1 + scrollevent.getDeltaY()*0.001;
+
+		gc.translate(px, py);
+		gc.scale(scaleX, scaleY);
+		gc.translate(-px, -py);
+	}
+	
+	//helper vars just for this method
+	private Double last_x; //wrapper classes for unassigned checks
+	private Double last_y;
+
+	private void handleMouseDragEvent(MouseEvent mouseevent) {
+		GraphicsContext gc = SimulationManager.getInstance().gc;
+		
+		if (last_x == null) {
+			last_x = Double.valueOf(mouseevent.getX());
+		}
+		if (last_y == null) {
+			last_y = Double.valueOf(mouseevent.getY());
+		}
+		
+		double delta_x = mouseevent.getX() - last_x;
+		double delta_y = mouseevent.getY() - last_y;
+		
+		gc.translate(delta_x, delta_y);
+		
+		last_x = Double.valueOf(mouseevent.getX());
+		last_y = Double.valueOf(mouseevent.getY());
+	}
+
+	private void handleMouseMovingInsideCanvasEvent(MouseEvent mouseevent) {
+		last_x = Double.valueOf(mouseevent.getX());
+		last_y = Double.valueOf(mouseevent.getY());
+	}
 }
