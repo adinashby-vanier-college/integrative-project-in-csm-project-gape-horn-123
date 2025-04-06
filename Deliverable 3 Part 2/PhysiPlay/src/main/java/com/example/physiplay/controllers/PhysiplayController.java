@@ -41,6 +41,8 @@ public class PhysiplayController {
     @FXML
     MenuItem homeScreen;
     @FXML
+    MenuItem polygonVisualizerMenuItem;
+    @FXML
     BorderPane borderPane;
     @FXML
     CheckMenuItem canvasViewMenuItem;
@@ -79,6 +81,7 @@ public class PhysiplayController {
         presetFlowPane.setVgap(20);
 
         createPresetButton.setOnAction(event -> createPresetWindow());
+        polygonVisualizerMenuItem.setOnAction(event -> createPolygonVisualizerWindow());
 
         closeMenuItem.setOnAction(event -> displayClosingAlertBox());
 
@@ -133,6 +136,24 @@ public class PhysiplayController {
         presetWindow.initModality(Modality.WINDOW_MODAL);
         presetWindow.initOwner(mainWindow);
         presetWindow.show();
+    }
+
+    public void createPolygonVisualizerWindow() {
+        // TODO: Repetitive code in createPresetWindow, move save code into a method
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/polygonVisualizerPage.fxml"));
+        Stage window = new Stage();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        window.setTitle("Polygon visualizer");
+        window.setScene(scene);
+        window.initModality(Modality.WINDOW_MODAL);
+        window.initOwner(mainWindow);
+        window.show();
     }
 
     private void returnToMainMenu() {

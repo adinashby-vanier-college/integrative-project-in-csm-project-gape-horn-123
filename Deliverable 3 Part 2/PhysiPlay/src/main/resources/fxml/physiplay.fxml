@@ -93,6 +93,7 @@
                      <items>
                         <MenuItem mnemonicParsing="false" text="Fullscreen" />
                         <MenuItem fx:id="homeScreen" mnemonicParsing="false" text="Home Screen" />
+                        <MenuItem fx:id="polygonVisualizerMenuItem" mnemonicParsing="false" text="Polygon Visualizer" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
