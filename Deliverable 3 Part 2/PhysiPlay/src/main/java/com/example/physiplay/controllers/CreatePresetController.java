@@ -15,7 +15,10 @@ import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -30,6 +33,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.*;
 
 public class CreatePresetController {
@@ -97,6 +101,7 @@ public class CreatePresetController {
         this.gc = gc;
         this.objectsList = objectsList;
         this.tabPane = tabPane;
+        this.scene = scene;
     }
 
     private ComponentSelector getComponentSelectorByName(String componentName) {
@@ -248,6 +253,13 @@ public class CreatePresetController {
                     SimulationManager.getInstance().simulationObjectList.add(copy);
 
                     Tab tab = new Tab(presetNameField.getText());
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
+                    loader.setController(new TabController(getAllTextFields()));
+                    try {
+                        tab.setContent(loader.load());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     tabPane.getTabs().add(tab);
 
                     hierarchyView.getRoot().getChildren().add(new TreeItem<>(simulationObject.name));
@@ -261,8 +273,20 @@ public class CreatePresetController {
 
             TreeItem<String> preset = new TreeItem<>(presetName.getText());
             hierarchyView.getRoot().getChildren().add(preset);
-
+            
             presetWindow.hide();
         }
     }
+
+    public ArrayList<TextField> getAllTextFields() {
+        ArrayList<TextField> textFields = new ArrayList<>();
+        textFields.add(presetNameField);
+        textFields.add(positionXField);
+        textFields.add(positionYField);
+        textFields.add(rotationField);
+        textFields.add(scaleXField);
+        textFields.add(scaleYField);
+        return textFields;
+    }
+
 }
