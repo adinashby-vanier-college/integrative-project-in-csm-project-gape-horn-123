@@ -37,7 +37,7 @@
             </HBox>
             <VBox>
                <children>
-                  <TabPane prefHeight="366.0" prefWidth="305.0">
+                  <TabPane prefHeight="366.0" prefWidth="305.0" tabClosingPolicy="UNAVAILABLE">
                      <tabs>
                         <Tab text="Transform">
                            <content>

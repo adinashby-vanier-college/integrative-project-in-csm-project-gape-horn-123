@@ -145,6 +145,7 @@ public class CreatePresetController {
             if (change.wasAdded()) {
                 ComponentSelector selector = change.getElementAdded();
                 Tab tab = new Tab(selector.getTitle());
+                tab.setClosable(false);
                 tab.setId(selector.getComponentName());
                 ScrollPane pane = new ScrollPane(selector.getComponentProperties());
                 pane.setEffect(new InnerShadow(5, Color.BLACK));
