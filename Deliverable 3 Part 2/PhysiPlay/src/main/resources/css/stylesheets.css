@@ -39,9 +39,6 @@
     -fx-background-color: #D5C9DF;
 }
 
-.menu-item{
-    -fx-background-color: #D5C9DF;
-}
 
 .menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
     -fx-background: black ;
@@ -51,12 +48,17 @@
 
 .context-menu {
     -fx-background-color: #5D4A66 ;
+    -fx-font-size: 14px;
     -fx-border-width: 0.1px;
     -fx-border-color: black;
     -fx-background-insets: 0.0, 1.0, 2.0;
     -fx-background-radius: 0.0 6.0 6.0 6.0, 0.0 5.0 5.0 5.0, 0.0 4.0 4.0 4.0;
     -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em;
     -fx-opacity: 0.9;
+}
+
+.context-menu .label {
+    -fx-font-size: 14px;
 }
 
 #startButton, #pauseButton, #stopButton{

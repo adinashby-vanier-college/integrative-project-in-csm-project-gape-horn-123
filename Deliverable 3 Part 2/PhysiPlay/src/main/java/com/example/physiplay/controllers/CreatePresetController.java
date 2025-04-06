@@ -20,9 +20,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -60,9 +62,9 @@ public class CreatePresetController {
     Button attachComponentButton;
     Stage presetWindow;
     Scene scene;
-
     private SimpleBooleanProperty componentChoiceActiveProperty = new SimpleBooleanProperty(false);
 
+    private ContextMenu contextMenu = new ContextMenu();
     // All components
     // Rigid body component property builder
     private ObservableSet<ComponentSelector> observableAttachedComponents = FXCollections.observableSet(new HashSet<>());
@@ -121,9 +123,14 @@ public class CreatePresetController {
         componentsTreeView.setRoot(root);
     }
 
+    private void handleContextMenu() {
+        contextMenu.getItems().add(new MenuItem("Rename"));
+        contextMenu.getItems().add(new MenuItem("Delete"));
+    }
 
     public void initialize() {
         this.presetWindow.titleProperty().bind(presetNameField.textProperty());
+        handleContextMenu();
         generateComponentSelectors();
         componentsTreeView.visibleProperty().bind(componentChoiceActiveProperty);
         componentsTreeView.managedProperty().bind(componentChoiceActiveProperty);
@@ -221,6 +228,10 @@ public class CreatePresetController {
                     SimulationManager.getInstance().hologramSimulationObject = simulationObject;
                 }
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
+                    if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                        contextMenu.show(rectangle, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+                    }
+                    else contextMenu.hide();
                     Point2D localPoint = SimulationManager.getInstance().canvas.sceneToLocal(mouseEvent.getSceneX(),
                             mouseEvent.getSceneY());
                     SimulationManager.getInstance().hologramSimulationObject = null;
@@ -243,7 +254,6 @@ public class CreatePresetController {
                 }
 
             };
-
             rectangle.setOnMouseDragged(event);
             rectangle.addEventHandler(MouseEvent.ANY, event);
 
