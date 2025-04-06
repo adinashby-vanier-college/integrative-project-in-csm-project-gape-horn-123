@@ -82,6 +82,10 @@ public class CreatePresetController {
     private ComponentPropertyBuilder circlePropertyBuilder = new ComponentPropertyBuilder()
             .addNumberInputFieldProperty("radius", "Radius", new TextField());
 
+    private ComponentPropertyBuilder regularPolygonPropertyBuilder = new ComponentPropertyBuilder()
+            .addNumberInputFieldProperty("sides", "Sides", new TextField())
+            .addNumberInputFieldProperty("size", "Size", new TextField());
+
     public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane, Scene scene){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
@@ -110,6 +114,8 @@ public class CreatePresetController {
                 rectanglePropertyBuilder, false)));
         shapeRoot.getChildren().add(new TreeItem<>(new ComponentSelector("shape", "Circle",
                 circlePropertyBuilder, false)));
+        shapeRoot.getChildren().add(new TreeItem<>(new ComponentSelector("shape", "Regular Polygon",
+                regularPolygonPropertyBuilder, false)));
         root.getChildren().add(rigidbodyItem);
         root.getChildren().add(shapeRoot);
         componentsTreeView.setRoot(root);
@@ -175,10 +181,10 @@ public class CreatePresetController {
                     componentSet.add(selector.convertToRigidbodyComponent());
                     break;
                 case "shape":
-                    if (selector.getTitle().equals("Rectangle"))
-                        componentSet.add(selector.convertToRectangularRendererComponent());
-                    else if (selector.getTitle().equals("Circle")) {
-                        componentSet.add(selector.convertToCircleRendererComponent());
+                    switch (selector.getTitle()) {
+                        case "Rectangle" -> componentSet.add(selector.convertToRectangularRendererComponent());
+                        case "Circle" -> componentSet.add(selector.convertToCircleRendererComponent());
+                        case "Regular Polygon" -> componentSet.add(selector.convertToRegularPolygonRendererComponent());
                     }
                     break;
             }

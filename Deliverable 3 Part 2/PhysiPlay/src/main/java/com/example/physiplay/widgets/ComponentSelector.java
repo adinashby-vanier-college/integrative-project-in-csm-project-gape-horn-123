@@ -1,12 +1,10 @@
 package com.example.physiplay.widgets;
 
 import com.example.physiplay.Vector2;
-import com.example.physiplay.components.CircleRenderer;
-import com.example.physiplay.components.ComponentPropertyBuilder;
-import com.example.physiplay.components.RectangularRenderer;
-import com.example.physiplay.components.Rigidbody;
+import com.example.physiplay.components.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Polygon;
 
 import java.util.Objects;
 
@@ -71,6 +69,14 @@ public class ComponentSelector {
         if (builder == null) return null;
         CircleRenderer renderer = new CircleRenderer();
         renderer.radius = parseFloat(builder.getTextField("radius").getText());
+        return renderer;
+    }
+
+    public RegularPolygonRenderer convertToRegularPolygonRendererComponent() {
+        if (builder == null) return null;
+        RegularPolygonRenderer renderer = new RegularPolygonRenderer();
+        renderer.sides = (int) parseFloat(builder.getTextField("sides").getText());
+        renderer.size = parseFloat(builder.getTextField("size").getText());
         return renderer;
     }
 
