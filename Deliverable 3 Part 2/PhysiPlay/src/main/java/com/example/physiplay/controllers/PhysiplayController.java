@@ -17,6 +17,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.jbox2d.dynamics.Body;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +53,9 @@ public class PhysiplayController {
     FlowPane presetFlowPane;
     @FXML
     ScrollPane presetScrollPane;
+
+    @FXML
+    private MenuItem clearAllMenuItem;
     @FXML
     Canvas canvas;
     @FXML
@@ -69,6 +73,25 @@ public class PhysiplayController {
             borderPane.getRight().setManaged(!newValue);
             borderPane.getRight().setVisible(!newValue);
             System.out.println(SimulationManager.getInstance().canvas.localToScene(0, 0).getX());
+        });
+
+        clearAllMenuItem.setOnAction(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+            stage.toFront();
+            alert.setTitle("Clear All?");
+            alert.setHeaderText("Are you sure you want to delete every object in the scene?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get().equals(ButtonType.OK)) {
+                Body body = SimulationManager.getInstance().world.getBodyList();
+                while (body != null) {
+                    Body next = body.getNext();
+                    SimulationManager.getInstance().world.destroyBody(body);
+                    body = next;
+                }
+                SimulationManager.getInstance().simulationObjectList.clear();
+            }
         });
     }
     public void initialize() {

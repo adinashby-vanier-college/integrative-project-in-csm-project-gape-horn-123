@@ -79,7 +79,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Edit">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem fx:id="clearAllMenuItem" mnemonicParsing="false" text="Clear All" />
                         <MenuItem fx:id="projectSettingsMenuItem" mnemonicParsing="false" text="Project Settings" />
                      </items>
                   </Menu>
