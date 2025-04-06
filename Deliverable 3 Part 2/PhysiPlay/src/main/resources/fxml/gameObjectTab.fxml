@@ -12,8 +12,6 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.TitledPane?>
 <ScrollPane hbarPolicy="NEVER" maxWidth="308.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox prefHeight="900.0" prefWidth="305.0" style="-fx-background-color: #D5C9DF;">
@@ -41,22 +39,6 @@
                      <tabs>
                         <Tab text="Transform">
                            <content>
-                              <Accordion fx:id="componentAccordion" style="-fx-background-color: #D5C9DF;">
-                                <panes>
-                                  <TitledPane animated="false" text="Rigid Body">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D5C9DF;" />
-                                    </content>
-                                  </TitledPane>
-                                  <TitledPane animated="false" text="Shape">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D5C9DF;" />
-                                    </content>
-                                  </TitledPane>
-                                </panes>
-                              </Accordion>
-                           </content>
-                           <content>
                               <ScrollPane hbarPolicy="NEVER" prefWidth="305.0" vbarPolicy="NEVER">
                                  <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="305.0">
@@ -65,7 +47,7 @@
                                              <children>
                                                 <VBox prefHeight="351.0" prefWidth="309.0" style="-fx-background-color: #D5C9DF;">
                                                    <children>
-                                                      <Label text="Position:">
+                                                      <Label fx:id="positionLabel" text="Position:">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -78,7 +60,7 @@
                                                       </Label>
                                                       <HBox prefHeight="47.0" prefWidth="480.0">
                                                          <children>
-                                                            <Label text="x:" />
+                                                            <Label text="x:" fx:id="xLabel" />
                                                             <TextField fx:id="positionXField" prefHeight="25.0" prefWidth="237.0">
                                                                <HBox.margin>
                                                                   <Insets left="20.0" />
@@ -91,7 +73,7 @@
                                                       </HBox>
                                                       <HBox prefHeight="56.0" prefWidth="480.0">
                                                          <children>
-                                                            <Label text="y:" />
+                                                            <Label fx:id="yLabel" text="y:" />
                                                             <TextField fx:id="positionYField" prefHeight="25.0" prefWidth="238.0">
                                                                <HBox.margin>
                                                                   <Insets left="20.0" />
@@ -102,7 +84,7 @@
                                                             <Insets left="20.0" />
                                                          </VBox.margin>
                                                       </HBox>
-                                                      <Label text="Rotation:">
+                                                      <Label fx:id="rotationLabel" text="Rotation:">
                                                          <padding>
                                                             <Insets bottom="10.0" left="10.0" />
                                                          </padding>
@@ -123,7 +105,7 @@
                                                             </HBox>
                                                          </children>
                                                       </VBox>
-                                                      <Label text="Scale:">
+                                                      <Label fx:id="scaleLabel" text="Scale:">
                                                          <font>
                                                             <Font size="19.0" />
                                                          </font>
@@ -133,7 +115,7 @@
                                                       </Label>
                                                       <HBox prefHeight="47.0" prefWidth="480.0">
                                                          <children>
-                                                            <Label text="x:" />
+                                                            <Label text="x:" fx:id="xScaleLabel" />
                                                             <TextField fx:id="scaleXField" prefHeight="25.0" prefWidth="241.0">
                                                                <HBox.margin>
                                                                   <Insets left="20.0" />
@@ -146,7 +128,7 @@
                                                       </HBox>
                                                       <HBox prefHeight="56.0" prefWidth="480.0">
                                                          <children>
-                                                            <Label text="y:" />
+                                                            <Label fx:id="yScaleLabel" text="y:" />
                                                             <TextField fx:id="scaleYField" prefHeight="25.0" prefWidth="240.0">
                                                                <HBox.margin>
                                                                   <Insets left="20.0" />

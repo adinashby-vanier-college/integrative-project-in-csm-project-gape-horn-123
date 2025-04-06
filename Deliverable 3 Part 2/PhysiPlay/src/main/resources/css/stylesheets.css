@@ -107,6 +107,19 @@
     -fx-font: 100px "Madimi One";
 }
 
+/*GameObjectTab*/
+#gameObjectName{
+    -fx-font: 22px "Madimi One";
+}
+
+#positionLabel, #rotationLabel, #scaleLabel, #xLabel, #yLabel, #xScaleLabel, #yScaleLabel{
+    -fx-font: 22px "Madimi One";
+}
+
+
+
+
+
 
 
 
