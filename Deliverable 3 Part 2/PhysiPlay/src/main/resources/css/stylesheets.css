@@ -117,7 +117,7 @@
 }
 
 /*GameObjectTab*/
-#gameObjectName, #velocityLabel{
+#gameObjectName, #velocityLabel, #massLabel, #restitutionLabel, #torqueLabel, #frictionLabel {
     -fx-font: 25px "Madimi One";
 }
 

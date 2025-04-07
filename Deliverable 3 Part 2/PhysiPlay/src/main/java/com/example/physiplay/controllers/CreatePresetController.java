@@ -41,11 +41,7 @@ import java.util.regex.Pattern;
 public class CreatePresetController {
     @FXML
     public TextField presetNameField;
-    public TextField positionXField;
-    public TextField positionYField;
     public TextField rotationField;
-    public TextField scaleXField;
-    public TextField scaleYField;
     public Button createPresetButton;
 
     public Button addComponentButton;
@@ -188,11 +184,7 @@ public class CreatePresetController {
     }
     public void setNumberOnly(){
         NumberOnlyTextField numberOnlyTextField = new NumberOnlyTextField();
-        numberOnlyTextField.numberOnly(positionXField);
-        numberOnlyTextField.numberOnly(positionYField);
         numberOnlyTextField.numberOnly(rotationField);
-        numberOnlyTextField.numberOnly(scaleXField);
-        numberOnlyTextField.numberOnly(scaleYField);
     }
 
     private void addComponentInSet(Set<Component> componentSet) {
@@ -295,11 +287,7 @@ public class CreatePresetController {
     public ArrayList<TextField> getAllTextFields() {
         ArrayList<TextField> textFields = new ArrayList<>();
         textFields.add(presetNameField);
-        textFields.add(positionXField);
-        textFields.add(positionYField);
         textFields.add(rotationField);
-        textFields.add(scaleXField);
-        textFields.add(scaleYField);
         return textFields;
     }
 
