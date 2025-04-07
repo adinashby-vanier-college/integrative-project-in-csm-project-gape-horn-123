@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class SettingsSingleton {
     private static SettingsSingleton instance;
     public BooleanProperty advancedModeProperty = new SimpleBooleanProperty(false);
-    public String language = "English";
+    public String language = "en";
 
     public static SettingsSingleton getInstance() {
         if (instance == null) {
@@ -15,5 +15,9 @@ public class SettingsSingleton {
         return instance;
     }
     private SettingsSingleton() {}
+
+    public void setLanguage(String language){
+        this.language = language;
+    }
 
 }

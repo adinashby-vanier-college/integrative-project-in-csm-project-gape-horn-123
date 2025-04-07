@@ -17,7 +17,7 @@
                   <Font size="200.0" />
                </font>
             </Label>
-            <Button fx:id="playButton" minHeight="110.0" minWidth="690.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="690.0" style="-fx-background-radius: 100; -fx-border-width: 1; -fx-border-radius: 100;" text="Start" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="playButton" minHeight="110.0" minWidth="690.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="690.0" style="-fx-background-radius: 100; -fx-border-width: 1; -fx-border-radius: 100;" text="%label.start" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="50.0" />
                </font>

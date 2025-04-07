@@ -27,9 +27,11 @@ public class ScreenController {
     private Map<String, Pane> screenMap = new HashMap<>();
     private Scene mainScene;
 
-    public Pane getRootPane(URL url, Object controller)  {
+    public Pane getRootPane(URL url, Object controller, String langCode)  {
         try {
-            FXMLLoader loader = new FXMLLoader(url);
+            Locale locale = new Locale(langCode);
+            ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+            FXMLLoader loader = new FXMLLoader(url, bundle);
             if (controller != null) {
                 loader.setController(controller);
             }

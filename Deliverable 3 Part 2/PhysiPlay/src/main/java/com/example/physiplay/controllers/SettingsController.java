@@ -47,13 +47,14 @@ public class SettingsController {
         englishRadioButton.setToggleGroup(languageGroup);
         frenchRadioButton.setToggleGroup(languageGroup);
 
-        if (frenchRadioButton.isSelected()) SettingsSingleton.getInstance().language = "French";
-        else SettingsSingleton.getInstance().language = "English";
+        if (frenchRadioButton.isSelected()) SettingsSingleton.getInstance().setLanguage("fr");
+        else SettingsSingleton.getInstance().setLanguage("en");
     }
 
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
+
         ScreenController.getInstance().activate("mainMenu");
     }
 }
