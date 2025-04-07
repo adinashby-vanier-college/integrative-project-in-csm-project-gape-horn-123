@@ -4,7 +4,9 @@ import com.example.physiplay.SimulationObject;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -39,6 +41,8 @@ public class PhysiplayController {
     Button createPresetButton;
     @FXML
     Button startButton;
+    @FXML
+    Button pauseButton;
     @FXML
     HBox presetHBox;
     @FXML
@@ -135,16 +139,14 @@ public class PhysiplayController {
 
         SimulationManager.getInstance().simulate();
 
-        SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
+//        SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
         handleMenuItems();
 
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, this::handleMousePressEvent);
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::handleMouseDragEvent);
         canvas.addEventHandler(ScrollEvent.SCROLL, this::handleScrollEvent);
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, this::handleMouseReleaseEvent);
-        /*canvas.setOnScroll(this::handleScrollEvent);
-        canvas.setOnMouseDragged(this::handleMouseDragEvent);
-        canvas.setOnMouseMoved(this::handleMouseMovingInsideCanvasEvent);*/
+
     }
 
     private void setUpTimer() {
