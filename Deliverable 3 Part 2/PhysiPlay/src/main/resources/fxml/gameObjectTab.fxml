@@ -162,20 +162,33 @@
                            <content>
                               <VBox prefHeight="564.0" prefWidth="305.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" text="Gravity">
+                                    <CheckBox fx:id="gravityCheckBox" mnemonicParsing="false" text="Gravity">
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Auto Mass">
+                                    <CheckBox fx:id="autoMassCheckBox" mnemonicParsing="false" text="Auto Mass">
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Static" />
-                                    <TextField />
-                                    <TextField />
-                                    <Label prefHeight="17.0" prefWidth="120.0" text="Velocity:" />
+                                    <CheckBox fx:id="staticCheckBox" mnemonicParsing="false" text="Static" />
+                                    <VBox spacing="20.0">
+                                       <children>
+                                          <Label fx:id="massLabel" text="Mass: " />
+                                          <TextField prefHeight="25.0" prefWidth="220.0" />
+                                          <Label fx:id="restitutionLabel" text="Restitution: " />
+                                          <TextField prefHeight="25.0" prefWidth="188.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <Label fx:id="velocityLabel" prefHeight="17.0" prefWidth="120.0" text="Velocity:">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
                                     <HBox prefHeight="56.0" prefWidth="285.0">
                                        <children>
                                           <Label text="x:" fx:id="xVelocityLabel" />
@@ -188,7 +201,9 @@
                                           <TextField />
                                        </children>
                                     </HBox>
+                                    <Label fx:id="torqueLabel" text="Torque" />
                                     <TextField />
+                                    <Label fx:id="frictionLabel" text="Friction" />
                                     <TextField />
                                  </children>
                                  <padding>

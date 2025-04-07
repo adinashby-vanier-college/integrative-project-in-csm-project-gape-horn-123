@@ -108,4 +108,8 @@ public class SimulationObject {
         }
         return null;
     }
+
+    public double getAngle(){
+        return angle;
+    }
 }

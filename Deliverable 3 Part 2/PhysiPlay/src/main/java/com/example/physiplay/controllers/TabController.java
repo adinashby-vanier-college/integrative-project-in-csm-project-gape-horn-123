@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TabController {
     @FXML
@@ -34,22 +35,32 @@ public class TabController {
     public void initialize(){
         allNumberOnly();
         getOldText();
-        System.out.println(SimulationManager.getInstance().simulationObjectList.getFirst());
+        System.out.println(SimulationManager.getInstance().simulationObjectList.getFirst().position.x);
     }
 
     private void getOldText() {
-        presetNameField = textFields.getFirst();
-        xValue = textFields.get(1).getText();
-        yValue = textFields.get(2).getText();
-        rotationValue = textFields.get(3).getText();
-        scaleXValue = textFields.get(4).getText();
-        scaleYValue = textFields.get(5).getText();
-        gameObjectName.setText(presetNameField.getText());
-        positionXField.setText(textFields.get(1).getText());
-        positionYField.setText(textFields.get(2).getText());
-        rotationField.setText(textFields.get(3).getText());
-        scaleXField.setText(textFields.get(4).getText());
-        scaleYField.setText(textFields.get(5).getText());
+        int index;
+        if (!SimulationManager.getInstance().simulationObjectList.isEmpty()) {
+            index = 0;
+            for (int i = 0; i < SimulationManager.getInstance().simulationObjectList.size(); i++) {
+                if (Objects.equals(SimulationManager.getInstance().simulationObjectList.get(i).name, textFields.getFirst().getText())){
+                    index = i;
+                }
+            }
+            presetNameField = textFields.getFirst();
+            xValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).position.x);
+            yValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).position.y);
+            rotationValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).angle);
+            scaleXValue = textFields.get(4).getText();
+            scaleYValue = textFields.get(5).getText();
+
+            gameObjectName.setText(presetNameField.getText());
+            positionXField.setText(textFields.get(1).getText());
+            positionYField.setText(textFields.get(2).getText());
+            rotationField.setText(textFields.get(3).getText());
+            scaleXField.setText(textFields.get(4).getText());
+            scaleYField.setText(textFields.get(5).getText());
+        }
     }
 
     public void allNumberOnly(){

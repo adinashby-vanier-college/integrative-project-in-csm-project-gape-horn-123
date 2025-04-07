@@ -117,8 +117,8 @@
 }
 
 /*GameObjectTab*/
-#gameObjectName{
-    -fx-font: 22px "Madimi One";
+#gameObjectName, #velocityLabel{
+    -fx-font: 25px "Madimi One";
 }
 
 #positionLabel, #rotationLabel, #scaleLabel, #xLabel, #yLabel, #xScaleLabel, #yScaleLabel, #xVelocityLabel, #yVelocityLabel{
