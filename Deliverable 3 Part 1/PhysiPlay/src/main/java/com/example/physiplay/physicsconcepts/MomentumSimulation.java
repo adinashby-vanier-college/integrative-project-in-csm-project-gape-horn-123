@@ -47,15 +47,15 @@ public class MomentumSimulation {
 
     public VBox getControlPane() {
         // Sliders for speed
-        Label speedLabel1 = new Label("Ball 1 Speed (red):");
+        Label speedLabel1 = new Label("Red Ball Speed (M/s):");
         Slider speedSlider1 = createSlider(1, 10, dx1);
-        Label speedLabel2 = new Label("Ball 2 Speed (blue):");
+        Label speedLabel2 = new Label("Blue Ball Speed (M/s):");
         Slider speedSlider2 = createSlider(1, 10, dx2);
 
         // Sliders for mass
-        Label massLabel1 = new Label("Ball 1 Mass (red):");
+        Label massLabel1 = new Label("Red Ball Mass (Kg):");
         Slider massSlider1 = createSlider(0.5, 5, mass1);
-        Label massLabel2 = new Label("Ball 2 Mass (blue):");
+        Label massLabel2 = new Label("Blue Ball Mass (Kg):");
         Slider massSlider2 = createSlider(0.5, 5, mass2);
 
         // Buttons

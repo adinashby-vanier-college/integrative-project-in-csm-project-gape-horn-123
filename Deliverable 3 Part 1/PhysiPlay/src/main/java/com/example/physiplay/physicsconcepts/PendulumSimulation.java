@@ -54,7 +54,7 @@ public class PendulumSimulation extends Pane {
         angleSlider.setMinorTickCount(4);
         angleSlider.setBlockIncrement(5);
 
-        Label lengthLabel = new Label("Length (cm)");
+        Label lengthLabel = new Label("Length (Cm)");
         lengthSlider = new Slider(50, 300, LENGTH);
         lengthSlider.setShowTickMarks(true);
         lengthSlider.setShowTickLabels(true);
@@ -62,7 +62,7 @@ public class PendulumSimulation extends Pane {
         lengthSlider.setMinorTickCount(5);
         lengthSlider.setBlockIncrement(10);
 
-        Label gravityLabel = new Label("Gravity (m/s²)");
+        Label gravityLabel = new Label("Gravity (M/s²)");
         gravitySlider = new Slider(0, 40, GRAVITY);
         gravitySlider.setShowTickMarks(true);
         gravitySlider.setShowTickLabels(true);

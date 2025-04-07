@@ -64,7 +64,7 @@ public class SpringSimulation extends Pane {
         springConstantSlider.setShowTickLabels(true);
         springConstantSlider.setMajorTickUnit(20);
 
-        Label massLabel = new Label("Mass (kg)");
+        Label massLabel = new Label("Mass (Kg)");
         massSlider = new Slider(0.5, 10, massValue);
         massSlider.setShowTickMarks(true);
         massSlider.setShowTickLabels(true);

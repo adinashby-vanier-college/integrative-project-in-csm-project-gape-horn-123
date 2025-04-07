@@ -1,4 +1,4 @@
-package com.example.physiplay;
+package main.java.com.example.physiplay;
 
 import java.util.Objects;
 

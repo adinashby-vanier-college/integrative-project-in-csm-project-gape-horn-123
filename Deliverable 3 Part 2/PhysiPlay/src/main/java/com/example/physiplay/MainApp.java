@@ -1,6 +1,7 @@
-package com.example.physiplay;
+package main.java.com.example.physiplay;
 
 import com.example.physiplay.controllers.*;
+import com.example.physiplay.controllers.ScreenController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;

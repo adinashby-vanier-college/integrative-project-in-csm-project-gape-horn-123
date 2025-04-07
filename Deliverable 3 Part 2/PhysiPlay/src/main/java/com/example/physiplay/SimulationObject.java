@@ -1,5 +1,6 @@
-package com.example.physiplay;
+package main.java.com.example.physiplay;
 
+import com.example.physiplay.Component;
 import com.example.physiplay.singletons.SimulationManager;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
