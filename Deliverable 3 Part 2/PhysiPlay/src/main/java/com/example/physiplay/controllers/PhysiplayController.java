@@ -4,7 +4,9 @@ import com.example.physiplay.SimulationObject;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -38,6 +40,8 @@ public class PhysiplayController {
     Button createPresetButton;
     @FXML
     Button startButton;
+    @FXML
+    Button pauseButton;
     @FXML
     HBox presetHBox;
     @FXML
@@ -119,12 +123,14 @@ public class PhysiplayController {
 
         SimulationManager.getInstance().simulate();
 
-        SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
+//        SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
         handleMenuItems();
         
         canvas.setOnScroll(this::handleScrollEvent);
         canvas.setOnMouseDragged(this::handleMouseDragEvent);
         canvas.setOnMouseMoved(this::handleMouseMovingInsideCanvasEvent);
+        
+        pauseButton.setOnAction(this::handlePauseButtonEvent);
     }
 
     private void setUpTimer() {
@@ -197,12 +203,14 @@ public class PhysiplayController {
 
 		double px = scrollevent.getX();
 		double py = scrollevent.getY();
-		double scaleX = 1 + scrollevent.getDeltaY()*0.001;
-		double scaleY = 1 + scrollevent.getDeltaY()*0.001;
+		double scale = 1 + scrollevent.getDeltaY()*0.001;
 
 		gc.translate(px, py);
-		gc.scale(scaleX, scaleY);
+		gc.scale(scale, scale);
 		gc.translate(-px, -py);
+		
+		SimulationManager.getInstance().zoomFactor *= scale;
+		System.out.println(SimulationManager.getInstance().zoomFactor);
 	}
 	
 	//helper vars just for this method
@@ -211,6 +219,7 @@ public class PhysiplayController {
 
 	private void handleMouseDragEvent(MouseEvent mouseevent) {
 		GraphicsContext gc = SimulationManager.getInstance().gc;
+		double zoomFactor = SimulationManager.getInstance().zoomFactor;
 		
 		if (last_x == null) {
 			last_x = Double.valueOf(mouseevent.getX());
@@ -219,8 +228,8 @@ public class PhysiplayController {
 			last_y = Double.valueOf(mouseevent.getY());
 		}
 		
-		double delta_x = mouseevent.getX() - last_x;
-		double delta_y = mouseevent.getY() - last_y;
+		double delta_x = (mouseevent.getX() - last_x) / zoomFactor;
+		double delta_y = (mouseevent.getY() - last_y) / zoomFactor;
 		
 		gc.translate(delta_x, delta_y);
 		
@@ -231,5 +240,10 @@ public class PhysiplayController {
 	private void handleMouseMovingInsideCanvasEvent(MouseEvent mouseevent) {
 		last_x = Double.valueOf(mouseevent.getX());
 		last_y = Double.valueOf(mouseevent.getY());
+	}
+
+	private void handlePauseButtonEvent(ActionEvent actionevent) {
+		SimpleBooleanProperty simulationPaused = SimulationManager.getInstance().simulationPaused;
+		simulationPaused.setValue(!simulationPaused.getValue());
 	}
 }

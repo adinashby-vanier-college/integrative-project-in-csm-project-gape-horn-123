@@ -25,6 +25,8 @@ public final class SimulationManager {
     public GraphicsContext gc = canvas.getGraphicsContext2D();
     public static final float SCALE = 50f;
     public final World world = new World(new Vec2(0, 9.8f));
+    
+    public double zoomFactor = 1; //default
 
     public boolean isCoordinateInCanvas(Vector2 coords) {
         return coords.x > canvas.getLayoutX() && coords.x < canvas.getLayoutX() + canvas.getWidth() &&
@@ -54,6 +56,7 @@ public final class SimulationManager {
             else timer.start();
         }));
     }
+    
     public static SimulationManager getInstance() {
         return instance;
     }
