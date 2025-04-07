@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<ScrollPane prefHeight="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.physiplay.controllers.PolygonVisualizerController">
+<ScrollPane prefHeight="850.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.physiplay.controllers.PolygonVisualizerController">
    <content>
       <VBox>
          <children>
@@ -23,7 +22,7 @@
                </padding>
                <children>
                   <Button fx:id="generatePolygonButton" mnemonicParsing="false" text="Generate polygon" />
-                  <Button mnemonicParsing="false" onAction="#getPositions" text="Get positions data" />
+                  <Button fx:id="getPositionsData" mnemonicParsing="false" onAction="#getPositions" text="Get positions data" />
                   <Button fx:id="clearAllButton" mnemonicParsing="false" text="Clear All" />
                </children>
             </HBox>

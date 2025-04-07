@@ -203,6 +203,7 @@ public class PhysiplayController {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("/css/polygonVisualizer.css")));
         window.setTitle("Polygon visualizer");
         window.setScene(scene);
         window.initModality(Modality.WINDOW_MODAL);
