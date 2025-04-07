@@ -228,8 +228,10 @@ public class CreatePresetController {
 
                         Point2D localPoint = SimulationManager.getInstance().canvas.sceneToLocal(mouseEvent.getSceneX(),
                                 mouseEvent.getSceneY());
-                        simulationObject.getComponent(Renderer.class).mouseX = localPoint.getX();
-                        simulationObject.getComponent(Renderer.class).mouseY = localPoint.getY();
+                        simulationObject.getComponent(Renderer.class).mouseX =
+                                (localPoint.getX() - SimulationManager.getInstance().camX) / SimulationManager.getInstance().scaleX;
+                        simulationObject.getComponent(Renderer.class).mouseY =
+                                (localPoint.getY() - SimulationManager.getInstance().camY) / SimulationManager.getInstance().scaleY;
                     }
                     SimulationManager.getInstance().hologramSimulationObject = simulationObject;
                 }
@@ -242,14 +244,16 @@ public class CreatePresetController {
                             mouseEvent.getSceneY());
                     SimulationManager.getInstance().hologramSimulationObject = null;
                     if (!SimulationManager.getInstance().isCoordinateInCanvas(new Vector2(
-                            localPoint.getX(), localPoint.getY()))) {
+                            (localPoint.getX() - SimulationManager.getInstance().camX) / SimulationManager.getInstance().scaleX,
+                            (localPoint.getY() - SimulationManager.getInstance().camY) / SimulationManager.getInstance().scaleY))) {
                         return;
                     }
                     Set<Component> componentSet1 = new HashSet<>();
                     addComponentInSet(componentSet1);
                     SimulationObject copy = new SimulationObject(simulationObject.name, componentSet1,
-                            new Vector2(
-                                    localPoint.getX(), localPoint.getY()),
+                            new Vector2((localPoint.getX() - SimulationManager.getInstance().camX)
+                                            / SimulationManager.getInstance().scaleX,
+                                    (localPoint.getY() - SimulationManager.getInstance().camY) / SimulationManager.getInstance().scaleY),
                             Float.parseFloat(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
                     SimulationManager.getInstance().simulationObjectList.add(copy);
 

@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
@@ -58,7 +59,12 @@ public class PhysiplayController {
     ScrollPane presetScrollPane;
 
     @FXML
-    private MenuItem clearAllMenuItem;
+    MenuItem clearAllMenuItem;
+
+    @FXML
+    MenuItem positionCamResetMenuItem;
+    @FXML
+    MenuItem scaleCamResetMenuItem;
     @FXML
     Canvas canvas;
     @FXML
@@ -96,6 +102,16 @@ public class PhysiplayController {
                 SimulationManager.getInstance().simulationObjectList.clear();
             }
         });
+
+        positionCamResetMenuItem.setOnAction(event -> {
+            SimulationManager.getInstance().camX = 0;
+            SimulationManager.getInstance().camY = 0;
+        });
+
+        scaleCamResetMenuItem.setOnAction(event -> {
+            SimulationManager.getInstance().scaleX = 1;
+            SimulationManager.getInstance().scaleY = 1;
+        });
     }
     public void initialize() {
         SimulationManager.getInstance().canvas = canvas;
@@ -121,10 +137,14 @@ public class PhysiplayController {
 
         SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
         handleMenuItems();
-        
-        canvas.setOnScroll(this::handleScrollEvent);
+
+        canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, this::handleMousePressEvent);
+        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::handleMouseDragEvent);
+        canvas.addEventHandler(ScrollEvent.SCROLL, this::handleScrollEvent);
+        canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, this::handleMouseReleaseEvent);
+        /*canvas.setOnScroll(this::handleScrollEvent);
         canvas.setOnMouseDragged(this::handleMouseDragEvent);
-        canvas.setOnMouseMoved(this::handleMouseMovingInsideCanvasEvent);
+        canvas.setOnMouseMoved(this::handleMouseMovingInsideCanvasEvent);*/
     }
 
     private void setUpTimer() {
@@ -193,43 +213,46 @@ public class PhysiplayController {
     }
 
 	private void handleScrollEvent(ScrollEvent scrollevent) {
-		GraphicsContext gc = SimulationManager.getInstance().gc;
-
-		double px = scrollevent.getX();
-		double py = scrollevent.getY();
-		double scaleX = 1 + scrollevent.getDeltaY()*0.001;
-		double scaleY = 1 + scrollevent.getDeltaY()*0.001;
-
-		gc.translate(px, py);
-		gc.scale(scaleX, scaleY);
-		gc.translate(-px, -py);
+        final double increment = .1;
+        double deltaY = scrollevent.getDeltaY();
+        if (deltaY > 0) {
+            SimulationManager.getInstance().scaleX += increment;
+            SimulationManager.getInstance().scaleY += increment;
+        }
+        else if (deltaY < 0) {
+            SimulationManager.getInstance().scaleX -= increment;
+            SimulationManager.getInstance().scaleY -= increment;
+        }
+        SimulationManager.getInstance().scaleX = Math.max(0.1, Math.min(SimulationManager.getInstance().scaleX, 2.0));
+        SimulationManager.getInstance().scaleY = Math.max(0.1, Math.min(SimulationManager.getInstance().scaleY, 2.0));
+        scrollevent.consume();
 	}
-	
 	//helper vars just for this method
 	private Double last_x; //wrapper classes for unassigned checks
 	private Double last_y;
+    private boolean isDragging = true;
 
+    private void handleMousePressEvent(MouseEvent mouseEvent) {
+        if (mouseEvent.getButton() == MouseButton.MIDDLE) {
+            last_x = mouseEvent.getX();
+            last_y = mouseEvent.getY();
+            isDragging = true;
+        }
+    }
 	private void handleMouseDragEvent(MouseEvent mouseevent) {
-		GraphicsContext gc = SimulationManager.getInstance().gc;
-		
-		if (last_x == null) {
-			last_x = Double.valueOf(mouseevent.getX());
-		}
-		if (last_y == null) {
-			last_y = Double.valueOf(mouseevent.getY());
-		}
-		
-		double delta_x = mouseevent.getX() - last_x;
-		double delta_y = mouseevent.getY() - last_y;
-		
-		gc.translate(delta_x, delta_y);
-		
-		last_x = Double.valueOf(mouseevent.getX());
-		last_y = Double.valueOf(mouseevent.getY());
+		if (isDragging) {
+            double deltaX = mouseevent.getX() - last_x;
+            double deltaY = mouseevent.getY() - last_y;
+            SimulationManager.getInstance().camX += deltaX;
+            SimulationManager.getInstance().camY += deltaY;
+            last_x = mouseevent.getX();
+            last_y = mouseevent.getY();
+        }
 	}
 
-	private void handleMouseMovingInsideCanvasEvent(MouseEvent mouseevent) {
-		last_x = Double.valueOf(mouseevent.getX());
-		last_y = Double.valueOf(mouseevent.getY());
-	}
+    private void handleMouseReleaseEvent(MouseEvent mouseEvent) {
+        if (mouseEvent.getButton() == MouseButton.MIDDLE) {
+            isDragging = false;
+        }
+    }
 }
