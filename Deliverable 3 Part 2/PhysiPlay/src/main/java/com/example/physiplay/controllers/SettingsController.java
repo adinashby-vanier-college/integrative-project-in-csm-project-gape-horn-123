@@ -46,6 +46,7 @@ public class SettingsController {
         ToggleGroup languageGroup = new ToggleGroup();
         englishRadioButton.setToggleGroup(languageGroup);
         frenchRadioButton.setToggleGroup(languageGroup);
+        
 
         frenchRadioButton.setOnAction(event -> {
             SettingsSingleton.getInstance().setLanguage("fr");
@@ -55,6 +56,10 @@ public class SettingsController {
                     .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), SettingsSingleton.getInstance().language))
                     .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene), SettingsSingleton.getInstance().language))
                     .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene), SettingsSingleton.getInstance().language));
+            ScreenController.getInstance()
+                    .setMainScene(scene)
+                    .activate("settings")
+                    .printCurrentSceneName();
         });
 
         englishRadioButton.setOnAction(event -> {

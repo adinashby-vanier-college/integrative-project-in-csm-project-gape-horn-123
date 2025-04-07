@@ -27,7 +27,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="settingsTitle" contentDisplay="CENTER" text="Settings" textFill="WHITE">
+            <Label fx:id="settingsTitle" contentDisplay="CENTER" text="%label.settings" textFill="WHITE">
                <font>
                   <Font size="96.0" />
                </font>
