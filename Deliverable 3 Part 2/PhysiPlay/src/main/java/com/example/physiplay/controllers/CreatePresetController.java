@@ -73,9 +73,9 @@ public class CreatePresetController {
     // Rigid body component property builder
     private ObservableSet<ComponentSelector> observableAttachedComponents = FXCollections.observableSet(new HashSet<>());
     private ComponentPropertyBuilder rigidBodyComponentPropertyBuilder = new ComponentPropertyBuilder()
-            .addCheckboxProperty("isStatic", "Is Static", new CheckBox())
-            .addCheckboxProperty("useGravity", "Use Gravity", new CheckBox())
-            .addCheckboxProperty("useAutoMass", "Use auto mass", new CheckBox())
+            .addCheckboxProperty("isStatic", "Static", new CheckBox())
+            .addCheckboxProperty("useGravity", "Gravity", new CheckBox())
+            .addCheckboxProperty("useAutoMass", "Auto Mass", new CheckBox())
             .addVector2Property("initialVelocity", "Velocity", new Vector2Field())
             .addNumberInputFieldProperty("restitution", "Restitution", new TextField())
             .addNumberInputFieldProperty("mass", "Mass", new TextField())

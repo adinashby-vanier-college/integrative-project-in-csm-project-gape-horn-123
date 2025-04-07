@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -35,7 +36,7 @@
             </HBox>
             <VBox>
                <children>
-                  <TabPane prefHeight="366.0" prefWidth="305.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane prefHeight="799.0" prefWidth="305.0" tabClosingPolicy="UNAVAILABLE">
                      <tabs>
                         <Tab text="Transform">
                            <content>
@@ -155,7 +156,44 @@
                               </ScrollPane>
                            </content>
                         </Tab>
-                        <Tab text="Rigid Body" />
+                        <Tab text="Rigid Body">
+                           <content>
+                              <VBox prefHeight="564.0" prefWidth="305.0">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="Gravity">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Auto Mass">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Static" />
+                                    <TextField />
+                                    <TextField />
+                                    <Label prefHeight="17.0" prefWidth="120.0" text="Velocity:" />
+                                    <HBox prefHeight="56.0" prefWidth="285.0">
+                                       <children>
+                                          <Label text="x:" />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="54.0" prefWidth="285.0">
+                                       <children>
+                                          <Label text="y:" />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <TextField />
+                                    <TextField />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" top="30.0" />
+                                 </padding>
+                              </VBox>
+                           </content></Tab>
                         <Tab text="Shape">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
