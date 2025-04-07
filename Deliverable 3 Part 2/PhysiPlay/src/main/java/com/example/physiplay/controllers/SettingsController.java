@@ -47,8 +47,26 @@ public class SettingsController {
         englishRadioButton.setToggleGroup(languageGroup);
         frenchRadioButton.setToggleGroup(languageGroup);
 
-        if (frenchRadioButton.isSelected()) SettingsSingleton.getInstance().setLanguage("fr");
-        else SettingsSingleton.getInstance().setLanguage("en");
+        frenchRadioButton.setOnAction(event -> {
+            SettingsSingleton.getInstance().setLanguage("fr");
+            ScreenController.getInstance().clearMap();
+            ScreenController.getInstance()
+                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), SettingsSingleton.getInstance().language))
+                    .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene), SettingsSingleton.getInstance().language));
+        });
+
+        englishRadioButton.setOnAction(event -> {
+            SettingsSingleton.getInstance().setLanguage("en");
+            ScreenController.getInstance().clearMap();
+            ScreenController.getInstance()
+                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), SettingsSingleton.getInstance().language))
+                    .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene), SettingsSingleton.getInstance().language));
+        });
+
     }
 
     private void returnToMainMenu() {

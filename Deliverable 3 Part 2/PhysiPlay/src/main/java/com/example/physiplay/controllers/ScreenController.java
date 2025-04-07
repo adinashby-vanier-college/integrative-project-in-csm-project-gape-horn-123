@@ -96,4 +96,8 @@ public class ScreenController {
         mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(cssLink)).toExternalForm());
         return this;
     }
+
+    public void clearMap(){
+        screenMap.clear();
+    }
 }
