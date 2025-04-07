@@ -1,6 +1,7 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.NumberOnlyTextField;
+import com.example.physiplay.widgets.ComponentSelector;
 import com.example.physiplay.widgets.Vector2Field;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
@@ -24,6 +25,19 @@ public class ComponentPropertyBuilder {
     public ComponentPropertyBuilder addCheckboxProperty(String propertyName, String text, CheckBox checkbox) {
         checkbox.setText(text);
         propertyMap.put(propertyName, checkbox);
+        return this;
+    }
+
+    public ComponentPropertyBuilder addLabelProperty(String propertyName, String text, Label label) {
+        label.setStyle("-fx-font-size: 14px");
+        label.setText(text);
+        propertyMap.put(propertyName, label);
+        return this;
+    }
+
+    public ComponentPropertyBuilder addTextFieldProperty(String propertyName, String title, TextField textField) {
+        textField.setPromptText(title);
+        propertyMap.put(propertyName, textField);
         return this;
     }
 

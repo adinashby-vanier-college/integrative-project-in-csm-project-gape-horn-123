@@ -31,8 +31,13 @@ public class PolygonVisualizerModel {
 
     public String getPositionsText() {
         StringBuilder sb = new StringBuilder();
+        if (points.isEmpty()) return sb.toString();
+        Vector2 minPoint = new Vector2(points.get(0).x, points.get(0).y);
         for (Vector2 point: points) {
-            sb.append("(").append(point.x).append(" ").append(point.y).append(") ");
+            minPoint = new Vector2(Math.min(point.x, minPoint.x), Math.min(point.y, minPoint.y));
+        }
+        for (Vector2 point: points) {
+            sb.append("(").append(point.x - minPoint.x).append(" ").append(point.y - minPoint.y).append(") ");
         }
         return sb.toString();
     }

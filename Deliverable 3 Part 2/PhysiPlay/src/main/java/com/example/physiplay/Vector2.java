@@ -21,6 +21,14 @@ public class Vector2 {
     }
 
     @Override
+    public String toString() {
+        return "Vector2{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(x, y);
     }

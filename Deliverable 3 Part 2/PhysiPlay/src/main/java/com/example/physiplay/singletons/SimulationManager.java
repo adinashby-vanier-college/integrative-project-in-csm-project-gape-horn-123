@@ -25,8 +25,6 @@ public final class SimulationManager {
     public GraphicsContext gc = canvas.getGraphicsContext2D();
     public static final float SCALE = 50f;
     public final World world = new World(new Vec2(0, 9.8f));
-    
-    public double zoomFactor = 1; //default
 
     public double camX = 0, camY = 0;
     public double scaleX = 1, scaleY = 1;

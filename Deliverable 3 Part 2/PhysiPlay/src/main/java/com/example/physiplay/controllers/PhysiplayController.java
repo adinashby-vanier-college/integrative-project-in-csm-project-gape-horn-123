@@ -138,7 +138,9 @@ public class PhysiplayController {
         hierarchyView.setRoot(rootItem);
 
         SimulationManager.getInstance().simulate();
-
+        pauseButton.setOnAction(event -> {
+            SimulationManager.getInstance().simulationPaused.setValue(!SimulationManager.getInstance().simulationPaused.getValue());
+        });
 //        SimulationManager.getInstance().simulationPaused.bind(mainWindow.focusedProperty().not());
         handleMenuItems();
 
@@ -230,8 +232,8 @@ public class PhysiplayController {
         scrollevent.consume();
 	}
 	//helper vars just for this method
-	private Double last_x; //wrapper classes for unassigned checks
-	private Double last_y;
+	private Double last_x = 0.0; //wrapper classes for unassigned checks
+	private Double last_y = 0.0;
     private boolean isDragging = true;
 
     private void handleMousePressEvent(MouseEvent mouseEvent) {

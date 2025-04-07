@@ -6,7 +6,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Polygon;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ComponentSelector {
     private ComponentPropertyBuilder builder;
@@ -43,6 +48,25 @@ public class ComponentSelector {
     private float parseFloat(String s) {
         return Float.parseFloat(s.isBlank() ? "0" : s);
     }
+
+    private static List<Vector2> parseVector2List(String input)  {
+        List<Vector2> vectors = new ArrayList<>();
+        Pattern pattern = Pattern.compile("\\((\\d+(?:\\.\\d+)?)\\s+(\\d+(?:\\.\\d+)?)\\)");
+        Matcher matcher = pattern.matcher(input);
+
+        matcher.reset();
+        while (matcher.find()) {
+            try {
+                double x = Double.parseDouble(matcher.group(1));
+                double y = Double.parseDouble(matcher.group(2));
+                vectors.add(new Vector2(x, y));
+            } catch (NumberFormatException e) {
+                return new ArrayList<>();
+            }
+        }
+        System.out.println(Arrays.toString(vectors.toArray()));
+        return vectors;
+    }
     public Rigidbody convertToRigidbodyComponent() {
         if (builder == null) return null;
         Rigidbody rb = new Rigidbody();
@@ -77,6 +101,13 @@ public class ComponentSelector {
         RegularPolygonRenderer renderer = new RegularPolygonRenderer();
         renderer.sides = (int) parseFloat(builder.getTextField("sides").getText());
         renderer.size = parseFloat(builder.getTextField("size").getText());
+        return renderer;
+    }
+
+    public PolygonRenderer convertToPolygonRendererComponent() {
+        if (builder == null) return null;
+        PolygonRenderer renderer = new PolygonRenderer();
+        renderer.positions = new ArrayList<>(parseVector2List(builder.getTextField("positions").getText()));
         return renderer;
     }
 

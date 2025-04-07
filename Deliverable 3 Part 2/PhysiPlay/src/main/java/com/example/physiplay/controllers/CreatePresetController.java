@@ -35,6 +35,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CreatePresetController {
     @FXML
@@ -92,6 +94,10 @@ public class CreatePresetController {
             .addNumberInputFieldProperty("sides", "Sides", new TextField())
             .addNumberInputFieldProperty("size", "Size", new TextField());
 
+    private ComponentPropertyBuilder polygonPropertyBuilder = new ComponentPropertyBuilder()
+            .addTextFieldProperty("positions", "Enter positions:", new TextField())
+            .addLabelProperty("notsure", "Not sure? Go to Window -> Polygon Visualizer", new Label());
+
     public CreatePresetController(Stage stage, HBox presetHBox, ArrayList<SimulationObject> list, FlowPane presetFlowPane, TreeView<String> treeView, GraphicsContext gc, ArrayList<SimulationObject> objectsList, TabPane tabPane, Scene scene){
         this.presetWindow = stage;
         this.presetHBox = presetHBox;
@@ -123,6 +129,8 @@ public class CreatePresetController {
                 circlePropertyBuilder, false)));
         shapeRoot.getChildren().add(new TreeItem<>(new ComponentSelector("shape", "Regular Polygon",
                 regularPolygonPropertyBuilder, false)));
+        shapeRoot.getChildren().add(new TreeItem<>(new ComponentSelector("shape", "Polygon",
+                polygonPropertyBuilder, false)));
         root.getChildren().add(rigidbodyItem);
         root.getChildren().add(shapeRoot);
         componentsTreeView.setRoot(root);
@@ -145,7 +153,7 @@ public class CreatePresetController {
             if (change.wasAdded()) {
                 ComponentSelector selector = change.getElementAdded();
                 Tab tab = new Tab(selector.getTitle());
-                tab.setClosable(false);
+                tab.setClosable(true);
                 tab.setId(selector.getComponentName());
                 ScrollPane pane = new ScrollPane(selector.getComponentProperties());
                 pane.setEffect(new InnerShadow(5, Color.BLACK));
@@ -177,7 +185,6 @@ public class CreatePresetController {
         setNumberOnly();
 
     }
-
     public void setNumberOnly(){
         NumberOnlyTextField numberOnlyTextField = new NumberOnlyTextField();
         numberOnlyTextField.numberOnly(positionXField);
@@ -198,6 +205,7 @@ public class CreatePresetController {
                         case "Rectangle" -> componentSet.add(selector.convertToRectangularRendererComponent());
                         case "Circle" -> componentSet.add(selector.convertToCircleRendererComponent());
                         case "Regular Polygon" -> componentSet.add(selector.convertToRegularPolygonRendererComponent());
+                        case "Polygon" -> componentSet.add(selector.convertToPolygonRendererComponent());
                     }
                     break;
             }
