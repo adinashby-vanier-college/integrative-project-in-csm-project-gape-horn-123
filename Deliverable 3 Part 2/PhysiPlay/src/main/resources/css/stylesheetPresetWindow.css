@@ -75,3 +75,15 @@
     -fx-border-radius: 5px;
 }
 
+.vbox{
+    -fx-background-color: #BCA9CC;
+}
+
+.hbox{
+    -fx-background-color: #BCA9CC;
+}
+
+.tab-content {
+    -fx-background: #D5C9DF;         
+    -fx-background-color: #D5C9DF;
+}

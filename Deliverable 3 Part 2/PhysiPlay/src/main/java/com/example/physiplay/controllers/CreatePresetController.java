@@ -66,6 +66,7 @@ public class CreatePresetController {
     Button attachComponentButton;
     Stage presetWindow;
     Scene scene;
+
     private SimpleBooleanProperty componentChoiceActiveProperty = new SimpleBooleanProperty(false);
 
     private ContextMenu contextMenu = new ContextMenu();
@@ -149,6 +150,7 @@ public class CreatePresetController {
                 tab.setId(selector.getComponentName());
                 ScrollPane pane = new ScrollPane(selector.getComponentProperties());
                 pane.setEffect(new InnerShadow(5, Color.BLACK));
+                pane.getStyleClass().add("tab-content");
                 tab.setContent(pane);
 
                 tab.setOnClosed(event -> {
@@ -158,7 +160,6 @@ public class CreatePresetController {
                 });
                 componentTabPane.getTabs().add(tab);
             }
-
         });
 
         addComponentButton.setText(!componentChoiceActiveProperty.getValue() ? "Add Components" : "Hide Components");
