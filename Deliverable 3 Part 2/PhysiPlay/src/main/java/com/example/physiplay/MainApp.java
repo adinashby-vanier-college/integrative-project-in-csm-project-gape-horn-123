@@ -1,4 +1,4 @@
-package main.java.com.example.physiplay;
+package com.example.physiplay;
 
 import com.example.physiplay.controllers.*;
 import com.example.physiplay.controllers.ScreenController;

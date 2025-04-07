@@ -1,6 +1,6 @@
-package main.java.com.example.physiplay;
+package com.example.physiplay;
 
-import main.java.com.example.physiplay.MainApp;
+import com.example.physiplay.MainApp;
 
 public class Launcher {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package main.java.com.example.physiplay;
+package com.example.physiplay;
 
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.TextField;

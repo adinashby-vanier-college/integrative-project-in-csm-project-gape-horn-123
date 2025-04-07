@@ -1,4 +1,4 @@
-package main.java.com.example.physiplay;
+package com.example.physiplay;
 
 import com.example.physiplay.Component;
 import com.example.physiplay.singletons.SimulationManager;

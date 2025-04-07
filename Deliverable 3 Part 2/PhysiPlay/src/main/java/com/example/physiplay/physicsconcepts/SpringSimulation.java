@@ -1,4 +1,4 @@
-package main.java.com.example.physiplay.physicsconcepts;
+package com.example.physiplay.physicsconcepts;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
