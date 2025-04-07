@@ -121,7 +121,7 @@
     -fx-font: 22px "Madimi One";
 }
 
-#positionLabel, #rotationLabel, #scaleLabel, #xLabel, #yLabel, #xScaleLabel, #yScaleLabel{
+#positionLabel, #rotationLabel, #scaleLabel, #xLabel, #yLabel, #xScaleLabel, #yScaleLabel, #xVelocityLabel, #yVelocityLabel{
     -fx-font: 22px "Madimi One";
 }
 

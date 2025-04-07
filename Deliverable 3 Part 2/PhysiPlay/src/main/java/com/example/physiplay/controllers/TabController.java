@@ -1,6 +1,7 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.NumberOnlyTextField;
+import com.example.physiplay.singletons.SimulationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -33,6 +34,7 @@ public class TabController {
     public void initialize(){
         allNumberOnly();
         getOldText();
+        System.out.println(SimulationManager.getInstance().simulationObjectList.getFirst());
     }
 
     private void getOldText() {
