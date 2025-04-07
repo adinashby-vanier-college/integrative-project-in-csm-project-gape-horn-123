@@ -51,15 +51,11 @@ public class TabController {
             xValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).position.x);
             yValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).position.y);
             rotationValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).angle);
-            scaleXValue = textFields.get(4).getText();
-            scaleYValue = textFields.get(5).getText();
 
             gameObjectName.setText(presetNameField.getText());
-            positionXField.setText(textFields.get(1).getText());
-            positionYField.setText(textFields.get(2).getText());
-            rotationField.setText(textFields.get(3).getText());
-            scaleXField.setText(textFields.get(4).getText());
-            scaleYField.setText(textFields.get(5).getText());
+            positionXField.setText(xValue);
+            positionYField.setText(yValue);
+            rotationField.setText(rotationValue);
         }
     }
 

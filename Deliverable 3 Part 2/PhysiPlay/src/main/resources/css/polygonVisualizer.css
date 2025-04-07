@@ -25,11 +25,14 @@
 }
 
 /* Base style for TextArea */
-.text-area .content{
-    -fx-background-color: #f9f9f9;
+
+.text-area{
     -fx-font: 16px "Madimi One";
     -fx-text-fill: #333333;
-    -fx-font-size: 14px;
+}
+
+.text-area .content{
+    -fx-background-color: #f9f9f9;
     -fx-padding: 10;
     -fx-border-color: #6A5D7B;
     -fx-border-width: 2px;

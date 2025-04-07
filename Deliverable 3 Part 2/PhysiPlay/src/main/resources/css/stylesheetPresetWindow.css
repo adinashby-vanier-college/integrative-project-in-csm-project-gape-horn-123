@@ -16,16 +16,17 @@
 .titled-pane > .title
 {
     -fx-background-color: #D5C9DF;
-}
-
-.titled-pane > .title
-{
     -fx-font: 25px "Madimi One";
+    -fx-cursor: hand;
 }
 
 .tree-cell{
     -fx-background-color: #D5C9DF;
     -fx-font:  25px "Madimi One";
+}
+
+.button{
+    -fx-cursor: hand;
 }
 
 #attachedComponents{
@@ -73,6 +74,7 @@
     -fx-font-size: 16px;
     -fx-padding: 5px 10px;
     -fx-border-radius: 5px;
+    -fx-cursor: hand;
 }
 
 .vbox{
