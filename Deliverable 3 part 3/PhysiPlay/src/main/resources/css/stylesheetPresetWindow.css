@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+.label{
+    -fx-font-family: "Madimi One";
+    -fx-font-size: 30px;
+}
+
+.tab-pane {
+    -fx-font-family: "Madimi One";
+}
+
+.button{
+    -fx-font: 25px "Madimi One";
+}
+
+.titled-pane > .title
+{
+    -fx-background-color: #D5C9DF;
+    -fx-font: 25px "Madimi One";
+    -fx-cursor: hand;
+}
+
+.tree-cell{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  25px "Madimi One";
+}
+
+.button{
+    -fx-cursor: hand;
+}
+
+#attachedComponents{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
+}
+
+#componentsTreeView{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
+}
+
+#attachedComponents > .tree-cell{
+    -fx-background-color: #D5C9DF;
+    -fx-font:  16px "Madimi One";
+}
+
+.root {
+    -fx-background-color: #D5C9DF;
+}
+
+.root, .anchor-pane, .vbox, .hbox, .border-pane, .grid-pane, .stack-pane, .flow-pane {
+    -fx-background-color: #D5C9DF !important;
+}
+
+.tree-cell, #attachedComponents, #componentsTreeView, .titled-pane > .title {
+    -fx-background-color: #D5C9DF !important;
+}
+
+#attachedComponents, #componentsVBox {
+    -fx-background-color: #D5C9DF !important;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #D5C9DF !important;
+}
+
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color: #D5C9DF;
+}
+
+.tab {
+    -fx-background-color: #BCA9CC;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.vbox{
+    -fx-background-color: #BCA9CC;
+}
+
+.hbox{
+    -fx-background-color: #BCA9CC;
+}
+
+.tab-content {
+    -fx-background: #D5C9DF;
+    -fx-background-color: #D5C9DF;
+}
