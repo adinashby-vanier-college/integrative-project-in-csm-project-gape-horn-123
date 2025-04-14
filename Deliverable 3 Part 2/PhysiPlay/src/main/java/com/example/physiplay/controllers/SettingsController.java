@@ -46,7 +46,7 @@ public class SettingsController {
         ToggleGroup languageGroup = new ToggleGroup();
         englishRadioButton.setToggleGroup(languageGroup);
         frenchRadioButton.setToggleGroup(languageGroup);
-        
+
 
         frenchRadioButton.setOnAction(event -> {
             SettingsSingleton.getInstance().setLanguage("fr");
@@ -57,9 +57,7 @@ public class SettingsController {
                     .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene), SettingsSingleton.getInstance().language))
                     .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene), SettingsSingleton.getInstance().language));
             ScreenController.getInstance()
-                    .setMainScene(scene)
-                    .activate("settings")
-                    .printCurrentSceneName();
+                    .activate("settings");
         });
 
         englishRadioButton.setOnAction(event -> {
@@ -70,7 +68,12 @@ public class SettingsController {
                     .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), SettingsSingleton.getInstance().language))
                     .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene), SettingsSingleton.getInstance().language))
                     .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene), SettingsSingleton.getInstance().language));
+            ScreenController.getInstance()
+                    .activate("settings");
         });
+
+        if (Objects.equals(SettingsSingleton.getInstance().language, "fr")) frenchRadioButton.setSelected(true);
+        else englishRadioButton.setSelected(true);
 
     }
 
