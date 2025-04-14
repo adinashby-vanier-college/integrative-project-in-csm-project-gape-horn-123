@@ -15,6 +15,8 @@ public class LoginController {
     Button loginButton;
     @FXML
     Button registerButton;
+    @FXML
+    Button languageButton;
 
     public LoginController(Stage stage, Scene scene){
         this.stage = stage;
@@ -29,13 +31,7 @@ public class LoginController {
 
     public void initialize(){
         loadScenes(stage, scene);
-
-        loginButton.setOnAction(event -> {
-            loadMainMenu();
-        });
-        registerButton.setOnAction(event -> {
-            loadRegisterPage();
-        });
+        setUpButtons();
     }
 
     public void loadMainMenu(){
@@ -50,6 +46,25 @@ public class LoginController {
                 .setMainScene(scene)
                 .activate("register")
                 .printCurrentSceneName();
+    }
+
+    public void setUpButtons(){
+        loginButton.setOnAction(event -> {
+            loadMainMenu();
+        });
+        registerButton.setOnAction(event -> {
+            loadRegisterPage();
+        });
+        languageButton.setOnAction(event -> {
+            SettingsSingleton.getInstance().switchLanguage();
+            ScreenController.getInstance().clearMap();
+            ScreenController.getInstance()
+                    .addScreen("loginPage", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml"), new LoginController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
+            ScreenController.getInstance().activate("loginPage");
+        });
+
     }
 
 }

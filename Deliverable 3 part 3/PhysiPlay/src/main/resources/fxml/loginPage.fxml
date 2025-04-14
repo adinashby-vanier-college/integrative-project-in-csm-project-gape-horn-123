@@ -9,30 +9,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane style="-fx-background-color: #749C75;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="loginLabel" text="Login Page" textFill="WHITE">
+            <Label fx:id="loginLabel" text="%label.loginPage" textFill="WHITE">
                <font>
                   <Font size="100.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="usernameLabel" text="Username:" textFill="WHITE" />
+                  <Label fx:id="usernameLabel" text="%label.username" textFill="WHITE" />
                   <TextField />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="passwordLabel" text="Password:" textFill="WHITE" />
+                  <Label fx:id="passwordLabel" text="%label.password" textFill="WHITE" />
                   <TextField />
                </children>
             </HBox>
-            <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />
-            <Button fx:id="registerButton" mnemonicParsing="false" text="Register">
+            <Button fx:id="loginButton" mnemonicParsing="false" text="%button.login" />
+            <Button fx:id="registerButton" mnemonicParsing="false" text="%button.register">
                <VBox.margin>
                   <Insets top="300.0" />
                </VBox.margin>
@@ -40,4 +39,11 @@
          </children>
       </VBox>
    </center>
+   <bottom>
+      <Button fx:id="languageButton" mnemonicParsing="false" text="%button.language" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
 </BorderPane>

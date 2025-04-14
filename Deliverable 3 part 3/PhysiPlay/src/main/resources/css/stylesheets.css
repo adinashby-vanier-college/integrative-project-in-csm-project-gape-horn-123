@@ -108,7 +108,7 @@
 #usernameLabel, #passwordLabel, #confirmPasswordLabel{
     -fx-font: 22px "Madimi One";
 }
-#loginButton, #registerButton{
+#loginButton, #registerButton, #backButton{
     -fx-font: 22px "Madimi One";
 }
 

@@ -16,7 +16,7 @@
             <Insets bottom="100.0" />
          </BorderPane.margin>
          <children>
-            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="250.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: black;" text="Back">
+            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="250.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: black;" text="%button.back">
                <font>
                   <Font size="36.0" />
                </font>
