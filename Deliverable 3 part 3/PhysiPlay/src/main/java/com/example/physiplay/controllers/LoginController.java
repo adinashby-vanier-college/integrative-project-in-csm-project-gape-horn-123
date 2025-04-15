@@ -23,8 +23,6 @@ public class LoginController {
     @FXML
     Button languageButton;
     @FXML
-    BorderPane rootPane;
-    @FXML
     Label loginLabel;
     @FXML
     Label usernameLabel;
@@ -88,11 +86,6 @@ public class LoginController {
                     .addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
             ScreenController.getInstance().activate("loginPage");*/
         });
-
-    }
-
-    public void loadPages(){
-        rootPane.getChildren().setAll(ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml"), new LoginController(stage, scene), SettingsSingleton.getInstance().language));
 
     }
 
