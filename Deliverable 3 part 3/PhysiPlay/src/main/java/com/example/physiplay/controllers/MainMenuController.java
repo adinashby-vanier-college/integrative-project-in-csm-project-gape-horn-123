@@ -31,6 +31,8 @@ public class MainMenuController {
         instructionsButton.setOnAction(event -> switchScene("instructions", "/css/instructionsStylesheet.css"));
         settingsButton.setOnAction(event -> switchScene("settings", "/css/settingsStylesheet.css"));
         exitButton.setOnAction(event -> Platform.exit());
+
+
     }
 
     public void switchScene(String sceneType, String cssUrl) {

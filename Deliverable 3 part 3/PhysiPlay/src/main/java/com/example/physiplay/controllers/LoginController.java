@@ -47,17 +47,15 @@ public class LoginController {
     }
 
     public void loadMainMenu(){
+        ScreenController.getInstance().addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language));
         ScreenController.getInstance()
-                .setMainScene(scene)
-                .activate("mainMenu")
-                .printCurrentSceneName();
+                .activate("mainMenu");
     }
 
     public void loadRegisterPage(){
+        ScreenController.getInstance().addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
         ScreenController.getInstance()
-                .setMainScene(scene)
-                .activate("register")
-                .printCurrentSceneName();
+                .activate("register");
     }
 
     public void setUpButtons(){
