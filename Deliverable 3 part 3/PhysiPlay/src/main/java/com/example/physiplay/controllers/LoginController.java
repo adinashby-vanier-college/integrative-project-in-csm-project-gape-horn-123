@@ -53,7 +53,6 @@ public class LoginController {
     }
 
     public void loadRegisterPage(){
-        ScreenController.getInstance().addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
         ScreenController.getInstance()
                 .activate("register");
     }

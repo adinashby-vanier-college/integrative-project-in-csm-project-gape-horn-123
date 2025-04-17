@@ -45,7 +45,7 @@ public class RegisterPageController {
             SettingsSingleton.getInstance().switchLanguage();
             Locale locale = new Locale(SettingsSingleton.getInstance().language);
             ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
-            registerPageLabel.setText(bundle.getString("label.loginPage"));
+            registerPageLabel.setText(bundle.getString("label.registerPage"));
             usernameLabel.setText(bundle.getString("label.username"));
             passwordLabel.setText(bundle.getString("label.password"));
             confirmPasswordLabel.setText(bundle.getString("button.confirmPassword"));
