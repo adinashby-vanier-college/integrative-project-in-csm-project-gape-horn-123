@@ -4,7 +4,11 @@ import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class RegisterPageController {
 
@@ -15,6 +19,17 @@ public class RegisterPageController {
     Button registerButton;
     @FXML
     Button loginButton;
+    @FXML
+    Button languageButton;
+    @FXML
+    Label registerPageLabel;
+    @FXML
+    Label usernameLabel;
+    @FXML
+    Label passwordLabel;
+    @FXML
+    Label confirmPasswordLabel;
+
 
     private void loadScenes(Stage stage, Scene scene) {
         ScreenController.getInstance()
@@ -26,7 +41,25 @@ public class RegisterPageController {
         loadScenes(stage, scene);
         loginButton.setOnAction(event -> loadLoginPage());
         registerButton.setOnAction(event -> loadMainMenu());
+        languageButton.setOnAction(event -> {
+            SettingsSingleton.getInstance().switchLanguage();
+            Locale locale = new Locale(SettingsSingleton.getInstance().language);
+            ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+            registerPageLabel.setText(bundle.getString("label.loginPage"));
+            usernameLabel.setText(bundle.getString("label.username"));
+            passwordLabel.setText(bundle.getString("label.password"));
+            confirmPasswordLabel.setText(bundle.getString("button.confirmPassword"));
+            loginButton.setText(bundle.getString("button.login"));
+            registerButton.setText(bundle.getString("button.register"));
 
+            /*SettingsSingleton.getInstance().switchLanguage();
+            ScreenController.getInstance().clearMap();
+            ScreenController.getInstance()
+                    .addScreen("loginPage", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml"), new LoginController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
+            ScreenController.getInstance().activate("loginPage");*/
+        });
     }
 
     public RegisterPageController(){}
