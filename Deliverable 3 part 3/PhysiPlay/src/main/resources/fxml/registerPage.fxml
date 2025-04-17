@@ -38,7 +38,7 @@
                </children>
             </HBox>
             <Button fx:id="registerButton" mnemonicParsing="false" text="Register" />
-            <Button fx:id="loginButton" mnemonicParsing="false" text="Return to Login">
+            <Button fx:id="returnLoginButton" mnemonicParsing="false" text="Return to Login">
                <VBox.margin>
                   <Insets top="100.0" />
                </VBox.margin>
@@ -47,9 +47,9 @@
       </VBox>
    </center>
    <bottom>
-      <Button fx:id="languageButton" mnemonicParsing="false" text="Francais" BorderPane.alignment="CENTER">
+      <Button fx:id="languageButton" mnemonicParsing="false" text="Français" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="30.0" />
+            <Insets bottom="50.0" />
          </BorderPane.margin>
       </Button>
    </bottom>

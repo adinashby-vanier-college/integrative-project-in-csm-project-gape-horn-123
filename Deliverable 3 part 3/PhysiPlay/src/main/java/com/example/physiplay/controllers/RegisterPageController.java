@@ -18,7 +18,7 @@ public class RegisterPageController {
     @FXML
     Button registerButton;
     @FXML
-    Button loginButton;
+    Button returnLoginButton;
     @FXML
     Button languageButton;
     @FXML
@@ -39,7 +39,7 @@ public class RegisterPageController {
 
     public void initialize(){
         loadScenes(stage, scene);
-        loginButton.setOnAction(event -> loadLoginPage());
+        returnLoginButton.setOnAction(event -> loadLoginPage());
         registerButton.setOnAction(event -> loadMainMenu());
         languageButton.setOnAction(event -> {
             SettingsSingleton.getInstance().switchLanguage();
@@ -49,8 +49,9 @@ public class RegisterPageController {
             usernameLabel.setText(bundle.getString("label.username"));
             passwordLabel.setText(bundle.getString("label.password"));
             confirmPasswordLabel.setText(bundle.getString("button.confirmPassword"));
-            loginButton.setText(bundle.getString("button.login"));
+            returnLoginButton.setText(bundle.getString("button.returnLogin"));
             registerButton.setText(bundle.getString("button.register"));
+            languageButton.setText(bundle.getString("button.language"));
 
             /*SettingsSingleton.getInstance().switchLanguage();
             ScreenController.getInstance().clearMap();

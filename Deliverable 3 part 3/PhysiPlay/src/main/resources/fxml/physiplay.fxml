@@ -70,20 +70,20 @@
          <children>
             <MenuBar maxHeight="100.0" minHeight="13.0" prefHeight="13.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;">
                <menus>
-                  <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
+                  <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="%menu.file">
                      <items>
                         <MenuItem mnemonicParsing="false" text="New File" />
                         <MenuItem mnemonicParsing="false" text="Open File" />
                         <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Close" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
+                  <Menu mnemonicParsing="false" text="%menu.edit">
                      <items>
                         <MenuItem fx:id="clearAllMenuItem" mnemonicParsing="false" text="Clear All" />
                         <MenuItem fx:id="projectSettingsMenuItem" mnemonicParsing="false" text="Project Settings" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="View">
+                  <Menu mnemonicParsing="false" text="%menu.view">
                      <items>
                         <Menu mnemonicParsing="false" text="Camera Reset...">
                           <items>
@@ -94,14 +94,14 @@
                         <CheckMenuItem fx:id="canvasViewMenuItem" mnemonicParsing="false" text="Canvas View" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Window">
+                  <Menu mnemonicParsing="false" text="%menu.window">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Fullscreen" />
                         <MenuItem fx:id="homeScreen" mnemonicParsing="false" text="Home Screen" />
                         <MenuItem fx:id="polygonVisualizerMenuItem" mnemonicParsing="false" text="Polygon Visualizer" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
+                  <Menu mnemonicParsing="false" text="%menu.help">
                      <items>
                         <MenuItem mnemonicParsing="false" text="About" />
                      </items>

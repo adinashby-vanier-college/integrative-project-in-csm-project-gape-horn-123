@@ -42,7 +42,7 @@
    <bottom>
       <Button fx:id="languageButton" mnemonicParsing="false" text="%button.language" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="30.0" />
+            <Insets bottom="50.0" />
          </BorderPane.margin>
       </Button>
    </bottom>
