@@ -84,6 +84,7 @@ public class ComponentSelector {
     public RectangularRenderer convertToRectangularRendererComponent() {
         if (builder == null) return null;
         RectangularRenderer renderer = new RectangularRenderer();
+        renderer.color = builder.getColorPicker("color").getValue();
         renderer.size = new Vector2(builder.getVector2Field("size").getX(),
                 builder.getVector2Field("size").getY());
         return renderer;
@@ -92,6 +93,7 @@ public class ComponentSelector {
     public CircleRenderer convertToCircleRendererComponent() {
         if (builder == null) return null;
         CircleRenderer renderer = new CircleRenderer();
+        renderer.color = builder.getColorPicker("color").getValue();
         renderer.radius = parseFloat(builder.getTextField("radius").getText());
         return renderer;
     }
@@ -99,6 +101,7 @@ public class ComponentSelector {
     public RegularPolygonRenderer convertToRegularPolygonRendererComponent() {
         if (builder == null) return null;
         RegularPolygonRenderer renderer = new RegularPolygonRenderer();
+        renderer.color = builder.getColorPicker("color").getValue();
         renderer.sides = (int) parseFloat(builder.getTextField("sides").getText());
         renderer.size = parseFloat(builder.getTextField("size").getText());
         return renderer;
@@ -107,6 +110,7 @@ public class ComponentSelector {
     public PolygonRenderer convertToPolygonRendererComponent() {
         if (builder == null) return null;
         PolygonRenderer renderer = new PolygonRenderer();
+        renderer.color = builder.getColorPicker("color").getValue();
         renderer.positions = new ArrayList<>(parseVector2List(builder.getTextField("positions").getText()));
         return renderer;
     }

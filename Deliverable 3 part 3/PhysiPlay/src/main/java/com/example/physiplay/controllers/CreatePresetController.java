@@ -82,16 +82,24 @@ public class CreatePresetController {
             .addNumberInputFieldProperty("torque", "Torque", new TextField());
 
     private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
+            .addLabelProperty("colorLabel", "Color", new Label())
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
             .addVector2Property("size", "Size", new Vector2Field());
 
     private ComponentPropertyBuilder circlePropertyBuilder = new ComponentPropertyBuilder()
+            .addLabelProperty("colorLabel", "Color", new Label())
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
             .addNumberInputFieldProperty("radius", "Radius", new TextField());
 
     private ComponentPropertyBuilder regularPolygonPropertyBuilder = new ComponentPropertyBuilder()
+            .addLabelProperty("colorLabel", "Color", new Label())
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
             .addNumberInputFieldProperty("sides", "Sides", new TextField())
             .addNumberInputFieldProperty("size", "Size", new TextField());
 
     private ComponentPropertyBuilder polygonPropertyBuilder = new ComponentPropertyBuilder()
+            .addLabelProperty("colorLabel", "Color", new Label())
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
             .addTextFieldProperty("positions", "Enter positions:", new TextField())
             .addLabelProperty("notsure", "Not sure? Go to Window -> Polygon Visualizer", new Label());
 

@@ -6,6 +6,7 @@ import com.example.physiplay.widgets.Vector2Field;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
@@ -17,7 +18,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class ComponentPropertyBuilder {
-    public Map<String, Node> propertyMap = new HashMap<>();
+    public Map<String, Node> propertyMap = new LinkedHashMap<>();
     public ComponentPropertyBuilder() {
     }
 
@@ -25,6 +26,12 @@ public class ComponentPropertyBuilder {
     public ComponentPropertyBuilder addCheckboxProperty(String propertyName, String text, CheckBox checkbox) {
         checkbox.setText(text);
         propertyMap.put(propertyName, checkbox);
+        return this;
+    }
+
+    public ComponentPropertyBuilder addColorPickerProperty(String propertyName, String text, ColorPicker picker) {
+        picker.setPromptText(text);
+        propertyMap.put(propertyName, picker);
         return this;
     }
 
@@ -72,6 +79,14 @@ public class ComponentPropertyBuilder {
         }
     }
 
+    public ColorPicker getColorPicker(String propertyName) {
+        try {
+            return (ColorPicker) propertyMap.getOrDefault(propertyName, new ColorPicker());
+        }
+        catch (ClassCastException ignored) {
+            return new ColorPicker();
+        }
+    }
     public CheckBox getCheckBox(String propertyName) {
         try {
             return (CheckBox) propertyMap.getOrDefault(propertyName, new CheckBox());
