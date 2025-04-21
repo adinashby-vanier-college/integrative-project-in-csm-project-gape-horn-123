@@ -14,31 +14,31 @@
    <center>
       <VBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="registerPageLabel" text="Register Page" textFill="WHITE">
+            <Label fx:id="registerPageLabel" text="%label.registerPage" textFill="WHITE">
                <font>
                   <Font size="100.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="usernameLabel" text="Username:" textFill="WHITE" />
+                  <Label fx:id="usernameLabel" text="%label.username" textFill="WHITE" />
                   <TextField />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="passwordLabel" text="Password:" textFill="WHITE" />
+                  <Label fx:id="passwordLabel" text="%label.password" textFill="WHITE" />
                   <PasswordField />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="confirmPasswordLabel" text="Confirm Password:" textFill="WHITE" />
+                  <Label fx:id="confirmPasswordLabel" text="%label.confirmPassword" textFill="WHITE" />
                   <PasswordField />
                </children>
             </HBox>
-            <Button fx:id="registerButton" mnemonicParsing="false" text="Register" />
-            <Button fx:id="returnLoginButton" mnemonicParsing="false" text="Return to Login">
+            <Button fx:id="registerButton" mnemonicParsing="false" text="%button.register" />
+            <Button fx:id="returnLoginButton" mnemonicParsing="false" text="%button.returnLogin">
                <VBox.margin>
                   <Insets top="100.0" />
                </VBox.margin>
@@ -47,7 +47,7 @@
       </VBox>
    </center>
    <bottom>
-      <Button fx:id="languageButton" mnemonicParsing="false" text="Français" BorderPane.alignment="CENTER">
+      <Button fx:id="languageButton" mnemonicParsing="false" text="%button.language" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="50.0" />
          </BorderPane.margin>

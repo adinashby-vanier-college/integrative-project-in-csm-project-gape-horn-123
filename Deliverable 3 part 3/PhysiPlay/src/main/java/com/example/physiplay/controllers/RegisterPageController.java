@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class RegisterPageController {
@@ -41,26 +42,7 @@ public class RegisterPageController {
         loadScenes(stage, scene);
         returnLoginButton.setOnAction(event -> loadLoginPage());
         registerButton.setOnAction(event -> loadMainMenu());
-        languageButton.setOnAction(event -> {
-            SettingsSingleton.getInstance().switchLanguage();
-            Locale locale = new Locale(SettingsSingleton.getInstance().language);
-            ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
-            registerPageLabel.setText(bundle.getString("label.registerPage"));
-            usernameLabel.setText(bundle.getString("label.username"));
-            passwordLabel.setText(bundle.getString("label.password"));
-            confirmPasswordLabel.setText(bundle.getString("button.confirmPassword"));
-            returnLoginButton.setText(bundle.getString("button.returnLogin"));
-            registerButton.setText(bundle.getString("button.register"));
-            languageButton.setText(bundle.getString("button.language"));
-
-            /*SettingsSingleton.getInstance().switchLanguage();
-            ScreenController.getInstance().clearMap();
-            ScreenController.getInstance()
-                    .addScreen("loginPage", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml"), new LoginController(stage, scene), SettingsSingleton.getInstance().language))
-                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
-                    .addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
-            ScreenController.getInstance().activate("loginPage");*/
-        });
+        languageButton.setOnAction(event -> setUpLanguageButton());
     }
 
     public RegisterPageController(){}
@@ -82,5 +64,38 @@ public class RegisterPageController {
                 .setMainScene(scene)
                 .activate("login")
                 .printCurrentSceneName();
+    }
+
+    public void setUpLanguageButton(){
+        SettingsSingleton.getInstance().switchLanguage();
+        Locale locale = new Locale(SettingsSingleton.getInstance().language);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+        registerPageLabel.setText(bundle.getString("label.registerPage"));
+        usernameLabel.setText(bundle.getString("label.username"));
+        passwordLabel.setText(bundle.getString("label.password"));
+        confirmPasswordLabel.setText(bundle.getString("label.confirmPassword"));
+        returnLoginButton.setText(bundle.getString("button.returnLogin"));
+        registerButton.setText(bundle.getString("button.register"));
+        languageButton.setText(bundle.getString("button.language"));
+
+            /*SettingsSingleton.getInstance().switchLanguage();
+            ScreenController.getInstance().clearMap();
+            ScreenController.getInstance()
+                    .addScreen("loginPage", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml"), new LoginController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
+                    .addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
+            ScreenController.getInstance().activate("loginPage");*/
+    }
+
+    public void changeToFrench(){
+        Locale locale = new Locale(SettingsSingleton.getInstance().language);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+        registerPageLabel.setText(bundle.getString("label.registerPage"));
+        usernameLabel.setText(bundle.getString("label.username"));
+        passwordLabel.setText(bundle.getString("label.password"));
+        confirmPasswordLabel.setText(bundle.getString("label.confirmPassword"));
+        returnLoginButton.setText(bundle.getString("button.returnLogin"));
+        registerButton.setText(bundle.getString("button.register"));
+        languageButton.setText(bundle.getString("button.language"));
     }
 }

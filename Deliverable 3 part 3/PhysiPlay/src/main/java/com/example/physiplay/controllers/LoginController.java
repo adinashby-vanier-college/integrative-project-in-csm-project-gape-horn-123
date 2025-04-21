@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController {
@@ -42,7 +43,7 @@ public class LoginController {
     }
 
     public void initialize(){
-        loadScenes(stage, scene);
+        //loadScenes(stage, scene);
         setUpButtons();
     }
 
@@ -53,8 +54,10 @@ public class LoginController {
     }
 
     public void loadRegisterPage(){
-        ScreenController.getInstance()
-                .activate("register");
+        if (Objects.equals(SettingsSingleton.getInstance().language, "fr")) {
+            ScreenController.getInstance().activate("registerFR");
+        }
+        else ScreenController.getInstance().activate("register");
     }
 
     public void setUpButtons(){
@@ -79,6 +82,9 @@ public class LoginController {
         passwordLabel.setText(bundle.getString("label.password"));
         loginButton.setText(bundle.getString("button.login"));
         registerButton.setText(bundle.getString("button.register"));
+        languageButton.setText(bundle.getString("button.language"));
+
+        System.out.println(SettingsSingleton.getInstance().language);
     }
 
 }
