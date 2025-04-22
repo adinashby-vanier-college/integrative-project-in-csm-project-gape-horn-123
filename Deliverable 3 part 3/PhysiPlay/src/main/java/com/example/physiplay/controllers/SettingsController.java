@@ -49,27 +49,11 @@ public class SettingsController {
 
 
         frenchRadioButton.setOnAction(event -> {
-            SettingsSingleton.getInstance().setLanguage("fr");
-            ScreenController.getInstance().clearMap();
-            ScreenController.getInstance()
-                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
-                    .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), SettingsSingleton.getInstance().language))
-                    .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene), SettingsSingleton.getInstance().language))
-                    .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene), SettingsSingleton.getInstance().language));
-            ScreenController.getInstance()
-                    .activate("settings");
+            switchLanguage();
         });
 
         englishRadioButton.setOnAction(event -> {
-            SettingsSingleton.getInstance().setLanguage("en");
-            ScreenController.getInstance().clearMap();
-            ScreenController.getInstance()
-                    .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
-                    .addScreen("instructions", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), SettingsSingleton.getInstance().language))
-                    .addScreen("settings", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene), SettingsSingleton.getInstance().language))
-                    .addScreen("play", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene), SettingsSingleton.getInstance().language));
-            ScreenController.getInstance()
-                    .activate("settings");
+            switchLanguage();
         });
 
         if (Objects.equals(SettingsSingleton.getInstance().language, "fr")) frenchRadioButton.setSelected(true);
@@ -80,7 +64,13 @@ public class SettingsController {
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
+        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("mainMenuFR");
+        else ScreenController.getInstance().activate("mainMenu");
+    }
 
-        ScreenController.getInstance().activate("mainMenu");
+    public void switchLanguage(){
+        SettingsSingleton.getInstance().switchLanguage();
+        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("settings");
+        else ScreenController.getInstance().activate("settingFR");
     }
 }

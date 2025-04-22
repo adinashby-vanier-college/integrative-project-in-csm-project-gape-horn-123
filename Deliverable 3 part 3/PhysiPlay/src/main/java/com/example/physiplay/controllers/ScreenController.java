@@ -88,8 +88,9 @@ public class ScreenController {
         return this;
     }
 
-    public ScreenController activate(String name, String cssLink) {
-        Parent parent = screenMap.get(name);
+    public ScreenController activate(String name, String cssLink, String language) {
+        language = language.toUpperCase();
+        Parent parent = screenMap.get(name+language);
         currentSceneName = name;
         // applyTransition(parent);
         mainScene.setRoot(parent);
@@ -100,4 +101,5 @@ public class ScreenController {
     public void clearMap(){
         screenMap.clear();
     }
+
 }

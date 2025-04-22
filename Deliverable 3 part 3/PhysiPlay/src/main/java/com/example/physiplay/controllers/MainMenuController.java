@@ -1,5 +1,6 @@
 package com.example.physiplay.controllers;
 
+import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -31,13 +32,11 @@ public class MainMenuController {
         instructionsButton.setOnAction(event -> switchScene("instructions", "/css/instructionsStylesheet.css"));
         settingsButton.setOnAction(event -> switchScene("settings", "/css/settingsStylesheet.css"));
         exitButton.setOnAction(event -> Platform.exit());
-
-
     }
 
     public void switchScene(String sceneType, String cssUrl) {
         try {
-            ScreenController.getInstance().activate(sceneType, cssUrl);
+            ScreenController.getInstance().activate(sceneType, cssUrl, SettingsSingleton.getInstance().language);
         } catch (Exception e){
             System.out.println("Error while switching to " + sceneType + " scene");
         }

@@ -36,14 +36,7 @@ public class LoginController {
         this.scene = scene;
     }
 
-    private void loadScenes(Stage stage, Scene scene) {
-        ScreenController.getInstance()
-                .addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
-                .addScreen("register", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language));
-    }
-
     public void initialize(){
-        //loadScenes(stage, scene);
         setUpButtons();
     }
 
