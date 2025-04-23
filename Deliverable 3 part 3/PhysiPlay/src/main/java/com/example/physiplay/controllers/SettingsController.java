@@ -9,7 +9,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class SettingsController {
 
@@ -27,26 +30,27 @@ public class SettingsController {
     @FXML
     RadioButton frenchRadioButton;
 
-    public SettingsController(Stage stage, Scene scene) {
+    String lang = "en";
+
+    public SettingsController(Stage stage, Scene scene, String lang) {
         this.stage = stage;
         this.scene = scene;
+        this.lang = lang;
     }
 
     public void initialize() {
         backButton.setOnAction(event -> returnToMainMenu());
         advancedModeCheckbox.selectedProperty().bindBidirectional(SettingsSingleton.getInstance().advancedModeProperty);
-        setUpRadioButtons();
-
         advancedModeCheckbox.selectedProperty().addListener(observable -> {
             stage.setAlwaysOnTop(!SettingsSingleton.getInstance().advancedModeProperty.getValue());
         });
+        setUpRadioButtons();
     }
 
     private void setUpRadioButtons(){
         ToggleGroup languageGroup = new ToggleGroup();
         englishRadioButton.setToggleGroup(languageGroup);
         frenchRadioButton.setToggleGroup(languageGroup);
-
 
         frenchRadioButton.setOnAction(event -> {
             switchLanguage();
@@ -56,7 +60,10 @@ public class SettingsController {
             switchLanguage();
         });
 
-        if (Objects.equals(SettingsSingleton.getInstance().language, "fr")) frenchRadioButton.setSelected(true);
+        if (lang == "fr") {
+            frenchRadioButton.setSelected(true);
+            System.out.println(lang);
+        }
         else englishRadioButton.setSelected(true);
 
     }
@@ -70,7 +77,7 @@ public class SettingsController {
 
     public void switchLanguage(){
         SettingsSingleton.getInstance().switchLanguage();
-        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("settings");
-        else ScreenController.getInstance().activate("settingFR");
+        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("settingsFR");
+        else ScreenController.getInstance().activate("settings");
     }
 }

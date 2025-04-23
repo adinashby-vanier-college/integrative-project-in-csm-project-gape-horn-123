@@ -2,6 +2,7 @@ package com.example.physiplay.singletons;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.Objects;
 
