@@ -1,8 +1,11 @@
 package com.example.physiplay.singletons;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import java.util.Objects;
 
@@ -10,6 +13,7 @@ public class SettingsSingleton {
     private static SettingsSingleton instance;
     public BooleanProperty advancedModeProperty = new SimpleBooleanProperty(false);
     public String language = "en";
+    private int languageRadioInitialized = 0;
 
     public static SettingsSingleton getInstance() {
         if (instance == null) {
@@ -24,8 +28,19 @@ public class SettingsSingleton {
     }
 
     public void switchLanguage(){
-        if (Objects.equals(this.language, "fr")) this.language = "en";
-        else this.language = "fr";
+        if (Objects.equals(this.language, "fr")) {
+            this.language = "en";
+        }
+        else {
+            this.language = "fr";
+        }
     }
 
+    public void addLanguageRadioInitialized() {
+        this.languageRadioInitialized = languageRadioInitialized+1;
+    }
+
+    public int getLanguageRadioInitialized(){
+        return languageRadioInitialized;
+    }
 }

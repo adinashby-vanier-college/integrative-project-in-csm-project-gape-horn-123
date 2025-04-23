@@ -1,6 +1,7 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.singletons.SettingsSingleton;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,7 +31,7 @@ public class SettingsController {
     @FXML
     RadioButton frenchRadioButton;
 
-    String lang = "en";
+    String lang;
 
     public SettingsController(Stage stage, Scene scene, String lang) {
         this.stage = stage;
@@ -39,12 +40,21 @@ public class SettingsController {
     }
 
     public void initialize() {
+        setUpRadioButtons();
+
+        if (!englishRadioButton.isSelected() && !frenchRadioButton.isSelected() && SettingsSingleton.getInstance().getLanguageRadioInitialized() < 2) {
+            if (lang == "fr") frenchRadioButton.setSelected(true);
+            else englishRadioButton.setSelected(true);
+            SettingsSingleton.getInstance().addLanguageRadioInitialized();
+            System.out.println(SettingsSingleton.getInstance().getLanguageRadioInitialized());
+        }
+        if (lang == "en" && SettingsSingleton.getInstance().language == "en") englishRadioButton.setSelected(true);
+        else if (lang == "fr" && SettingsSingleton.getInstance().language == "fr") frenchRadioButton.setSelected(true);
         backButton.setOnAction(event -> returnToMainMenu());
         advancedModeCheckbox.selectedProperty().bindBidirectional(SettingsSingleton.getInstance().advancedModeProperty);
         advancedModeCheckbox.selectedProperty().addListener(observable -> {
             stage.setAlwaysOnTop(!SettingsSingleton.getInstance().advancedModeProperty.getValue());
         });
-        setUpRadioButtons();
     }
 
     private void setUpRadioButtons(){
@@ -53,15 +63,12 @@ public class SettingsController {
         frenchRadioButton.setToggleGroup(languageGroup);
 
         frenchRadioButton.setOnAction(event -> {
-            switchLanguage();
+            switchFrench();
         });
 
         englishRadioButton.setOnAction(event -> {
-            switchLanguage();
+            switchEnglish();
         });
-
-        if (lang == "fr") frenchRadioButton.setSelected(true);
-        else englishRadioButton.setSelected(true);
 
     }
 
@@ -71,8 +78,15 @@ public class SettingsController {
         ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
     }
 
-    public void switchLanguage(){
-        SettingsSingleton.getInstance().switchLanguage();
-        ScreenController.getInstance().activate("settings", SettingsSingleton.getInstance().language);
+    public void switchEnglish(){
+        SettingsSingleton.getInstance().setLanguage("en");
+        ScreenController.getInstance().activate("settings", "en");
+        System.out.println(SettingsSingleton.getInstance().language);
+    }
+
+    public void switchFrench(){
+        SettingsSingleton.getInstance().setLanguage("fr");
+        ScreenController.getInstance().activate("settings", "fr");
+        System.out.println(SettingsSingleton.getInstance().language);
     }
 }

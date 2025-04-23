@@ -71,8 +71,6 @@ public class LoginController {
         loginButton.setText(bundle.getString("button.login"));
         registerButton.setText(bundle.getString("button.register"));
         languageButton.setText(bundle.getString("button.language"));
-
-        System.out.println(SettingsSingleton.getInstance().language);
     }
 
 }
