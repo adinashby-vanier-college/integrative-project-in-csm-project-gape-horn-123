@@ -1,6 +1,7 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.singletons.SettingsSingleton;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -214,7 +215,7 @@ public class PhysiplayController {
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
-        ScreenController.getInstance().activate("mainMenu");
+        ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
     }
 
 	private void handleScrollEvent(ScrollEvent scrollevent) {
