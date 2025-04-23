@@ -36,7 +36,7 @@
                <children>
                   <VBox prefHeight="197.0" prefWidth="1761.0">
                      <children>
-                        <Label fx:id="presetsLabel" text="Presets" />
+                        <Label fx:id="presetsLabel" text="%label.presets" />
                         <ScrollPane fx:id="presetScrollPane" prefHeight="292.0" prefWidth="1755.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
                            <content>
                               <FlowPane fx:id="presetFlowPane" prefHeight="203.0" prefWidth="1734.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">

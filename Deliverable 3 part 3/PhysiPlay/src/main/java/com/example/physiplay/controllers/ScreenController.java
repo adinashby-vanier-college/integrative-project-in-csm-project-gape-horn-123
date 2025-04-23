@@ -102,4 +102,12 @@ public class ScreenController {
         screenMap.clear();
     }
 
+    public ScreenController activate(String name, String language) {
+        language = language.toUpperCase();
+        Parent parent = screenMap.get(name+language);
+        currentSceneName = name;
+        mainScene.setRoot(parent);
+        //mainScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
+        return this;
+    }
 }

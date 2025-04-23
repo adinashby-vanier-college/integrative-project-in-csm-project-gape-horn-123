@@ -41,16 +41,11 @@ public class LoginController {
     }
 
     public void loadMainMenu(){
-        ScreenController.getInstance().addScreen("mainMenu", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language));
-        ScreenController.getInstance()
-                .activate("mainMenu");
+        ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
     }
 
     public void loadRegisterPage(){
-        if (Objects.equals(SettingsSingleton.getInstance().language, "fr")) {
-            ScreenController.getInstance().activate("registerFR");
-        }
-        else ScreenController.getInstance().activate("register");
+        ScreenController.getInstance().activate("register", SettingsSingleton.getInstance().language);
     }
 
     public void setUpButtons(){

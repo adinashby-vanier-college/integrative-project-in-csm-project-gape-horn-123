@@ -60,10 +60,7 @@ public class SettingsController {
             switchLanguage();
         });
 
-        if (lang == "fr") {
-            frenchRadioButton.setSelected(true);
-            System.out.println(lang);
-        }
+        if (lang == "fr") frenchRadioButton.setSelected(true);
         else englishRadioButton.setSelected(true);
 
     }
@@ -71,13 +68,11 @@ public class SettingsController {
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
-        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("mainMenuFR");
-        else ScreenController.getInstance().activate("mainMenu");
+        ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
     }
 
     public void switchLanguage(){
         SettingsSingleton.getInstance().switchLanguage();
-        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("settingsFR");
-        else ScreenController.getInstance().activate("settings");
+        ScreenController.getInstance().activate("settings", SettingsSingleton.getInstance().language);
     }
 }

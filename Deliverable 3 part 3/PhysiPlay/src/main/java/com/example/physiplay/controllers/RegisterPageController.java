@@ -45,21 +45,17 @@ public class RegisterPageController {
     }
 
     public void loadMainMenu(){
-        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("mainMenuFR");
-        else ScreenController.getInstance().activate("mainMenu");
+        ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
 
     }
 
     public void loadLoginPage(){
-        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("loginFR");
-        else ScreenController.getInstance().activate("login");
-
+        ScreenController.getInstance().activate("login", SettingsSingleton.getInstance().language);
     }
 
     public void setUpLanguageButton(){
         SettingsSingleton.getInstance().switchLanguage();
-        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("registerFR");
-        else ScreenController.getInstance().activate("register");
+        ScreenController.getInstance().activate("register", SettingsSingleton.getInstance().language);
     }
 
 }

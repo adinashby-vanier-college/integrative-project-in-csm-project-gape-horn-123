@@ -24,8 +24,8 @@ public class SettingsSingleton {
     }
 
     public void switchLanguage(){
-        if (Objects.equals(this.language, "en")) this.language = "fr";
-        else this.language = "en";
+        if (Objects.equals(this.language, "fr")) this.language = "en";
+        else this.language = "fr";
     }
 
 }
