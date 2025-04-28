@@ -31,10 +31,11 @@ public class ScreenController {
         try {
             Locale locale = new Locale(langCode);
             ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
-            FXMLLoader loader = new FXMLLoader(url, bundle);
-            if (controller != null) {
+            FXMLLoader loader = new FXMLLoader(url);
+            if (controller != null && loader.getController() == null) {
                 loader.setController(controller);
             }
+            loader.setResources(bundle);
             return loader.load();
         }
         catch (IllegalStateException | IOException e) {
@@ -90,7 +91,7 @@ public class ScreenController {
 
     public ScreenController activate(String name, String cssLink, String language) {
         language = language.toUpperCase();
-        Parent parent = screenMap.get(name+language);
+        Parent parent = screenMap.get(!Objects.equals(name, "play") ? name+language : name + "EN");
         currentSceneName = name;
         // applyTransition(parent);
         mainScene.setRoot(parent);

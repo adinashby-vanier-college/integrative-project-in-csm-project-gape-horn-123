@@ -26,7 +26,6 @@ public class InstructionsController {
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
-        if (SettingsSingleton.getInstance().language == "fr") ScreenController.getInstance().activate("mainMenuFR");
-            else ScreenController.getInstance().activate("mainMenu");
+        ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
     }
 }

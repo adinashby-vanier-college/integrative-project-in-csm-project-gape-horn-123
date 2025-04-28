@@ -7,13 +7,11 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SimulationObject {
     public String name;
+    public String uuid;
     public boolean isActive = true;
     public Body simulationObjectBody;
     public BodyDef simulationObjectBodyDef = new BodyDef();
@@ -31,6 +29,7 @@ public class SimulationObject {
     }
 
     public SimulationObject(String name, Set<Component> createdComponents, Vector2 initialPosition, float angle) {
+
         setPosition(initialPosition);
         setRotation(angle);
         this.name = name;
@@ -108,9 +107,5 @@ public class SimulationObject {
             }
         }
         return null;
-    }
-
-    public double getAngle(){
-        return angle;
     }
 }

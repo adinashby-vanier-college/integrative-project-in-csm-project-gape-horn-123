@@ -75,7 +75,7 @@ public class PhysiplayController {
     @FXML
     TabPane tabPane;
 
-    public PhysiplayController(Stage stage, Scene scene){
+    public PhysiplayController(Stage stage, Scene scene) {
         this.mainWindow = stage;
         this.scene = scene;
     }
@@ -120,7 +120,7 @@ public class PhysiplayController {
     }
     public void initialize() {
         SimulationManager.getInstance().canvas = canvas;
-        SimulationManager.getInstance().gc = SimulationManager.getInstance().canvas.getGraphicsContext2D();
+        SimulationManager.getInstance().gc = canvas.getGraphicsContext2D();
         presetScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         presetScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
