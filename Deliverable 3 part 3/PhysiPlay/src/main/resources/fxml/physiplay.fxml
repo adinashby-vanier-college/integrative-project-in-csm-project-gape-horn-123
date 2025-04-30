@@ -24,7 +24,7 @@
                <children>
                   <VBox prefHeight="197.0" prefWidth="1761.0">
                      <children>
-                        <Label fx:id="presetsLabel" text="%label.presets" />
+                        <Label fx:id="labelPresets" text="%label.presets" />
                         <ScrollPane fx:id="presetScrollPane" prefHeight="292.0" prefWidth="1755.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
                            <content>
                               <FlowPane fx:id="presetFlowPane" prefHeight="203.0" prefWidth="1734.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
@@ -60,15 +60,15 @@
                <menus>
                   <Menu fx:id="menuFile" mnemonicParsing="false" style="-fx-text-fill: white;" text="%menu.file">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="New File" />
-                        <MenuItem mnemonicParsing="false" text="Open File" />
-                        <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="menuItemNew" mnemonicParsing="false" text="New File" />
+                        <MenuItem fx:id="menuItemOpen" mnemonicParsing="false" text="Open File" />
+                        <MenuItem fx:id="menuItemClose" mnemonicParsing="false" text="Close" />
                      </items>
                   </Menu>
                   <Menu fx:id="menuEdit" mnemonicParsing="false" text="%menu.edit">
                      <items>
-                        <MenuItem fx:id="clearAllMenuItem" mnemonicParsing="false" text="Clear All" />
-                        <MenuItem fx:id="projectSettingsMenuItem" mnemonicParsing="false" text="Project Settings" />
+                        <MenuItem fx:id="menuItemClear" mnemonicParsing="false" text="Clear All" />
+                        <MenuItem fx:id="menuItemSettings" mnemonicParsing="false" text="Project Settings" />
                      </items>
                   </Menu>
                   <Menu fx:id="menuView" mnemonicParsing="false" text="%menu.view">
@@ -85,7 +85,7 @@
                   <Menu fx:id="menuWindow" mnemonicParsing="false" text="%menu.window">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Fullscreen" />
-                        <MenuItem fx:id="homeScreen" mnemonicParsing="false" text="Home Screen" />
+                        <MenuItem fx:id="menuItemHome" mnemonicParsing="false" text="Home Screen" />
                         <MenuItem fx:id="polygonVisualizerMenuItem" mnemonicParsing="false" text="Polygon Visualizer" />
                      </items>
                   </Menu>

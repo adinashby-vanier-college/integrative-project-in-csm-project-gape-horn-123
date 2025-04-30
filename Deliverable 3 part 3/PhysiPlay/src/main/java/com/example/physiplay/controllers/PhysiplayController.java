@@ -48,9 +48,9 @@ public class PhysiplayController {
     @FXML
     HBox presetHBox;
     @FXML
-    private MenuItem closeMenuItem;
+    private MenuItem menuItemClose;
     @FXML
-    MenuItem homeScreen;
+    MenuItem menuItemHome;
     @FXML
     MenuItem polygonVisualizerMenuItem;
     @FXML
@@ -65,19 +65,19 @@ public class PhysiplayController {
     ScrollPane presetScrollPane;
 
     @FXML
-    MenuItem clearAllMenuItem;
+    MenuItem menuItemClear;
 
     @FXML
-    MenuItem positionCamResetMenuItem;
+    MenuItem menuItemPositionCamReset;
     @FXML
-    MenuItem scaleCamResetMenuItem;
+    MenuItem menuItemScaleCamReset;
     @FXML
     Canvas canvas;
     @FXML
     TabPane tabPane;
 
     @FXML
-    Label presetsLabel;
+    Label labelPresets;
     @FXML
     Menu menuFile;
     @FXML
@@ -88,6 +88,14 @@ public class PhysiplayController {
     Menu menuWindow;
     @FXML
     Menu menuHelp;
+    @FXML
+    MenuItem menuItemNew;
+    @FXML
+    MenuItem menuItemOpen;
+    @FXML
+    MenuItem menuItemSettings;
+    @FXML
+    MenuItem menuItemCameraReset;
 
     public PhysiplayController(Stage stage, Scene scene) {
         this.mainWindow = stage;
@@ -103,7 +111,7 @@ public class PhysiplayController {
             System.out.println(SimulationManager.getInstance().canvas.localToScene(0, 0).getX());
         });
 
-        clearAllMenuItem.setOnAction(event -> {
+        menuItemClear.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.setAlwaysOnTop(true);
@@ -122,12 +130,12 @@ public class PhysiplayController {
             }
         });
 
-        positionCamResetMenuItem.setOnAction(event -> {
+        menuItemPositionCamReset.setOnAction(event -> {
             SimulationManager.getInstance().camX = 0;
             SimulationManager.getInstance().camY = 0;
         });
 
-        scaleCamResetMenuItem.setOnAction(event -> {
+        menuItemScaleCamReset.setOnAction(event -> {
             SimulationManager.getInstance().scaleX = 1;
             SimulationManager.getInstance().scaleY = 1;
         });
@@ -144,9 +152,9 @@ public class PhysiplayController {
         createPresetButton.setOnAction(event -> createPresetWindow());
         polygonVisualizerMenuItem.setOnAction(event -> createPolygonVisualizerWindow());
 
-        closeMenuItem.setOnAction(event -> displayClosingAlertBox());
+        menuItemClose.setOnAction(event -> displayClosingAlertBox());
 
-        homeScreen.setOnAction(event -> returnToMainMenu());
+        menuItemHome.setOnAction(event -> returnToMainMenu());
 
         TreeItem<String> rootItem = new TreeItem<>("SampleScene");
         rootItem.setExpanded(true);
@@ -280,12 +288,19 @@ public class PhysiplayController {
     public void translation(){
         ArrayList<Label> labelArrayList = new ArrayList<>();
         ArrayList<Menu> menuArrayList = new ArrayList<>();
-        labelArrayList.add(presetsLabel);
+        ArrayList<MenuItem> menuItemArrayList = new ArrayList<>();
+        labelArrayList.add(labelPresets);
         menuArrayList.add(menuFile);
         menuArrayList.add(menuEdit);
         menuArrayList.add(menuView);
         menuArrayList.add(menuWindow);
         menuArrayList.add(menuHelp);
+        menuItemArrayList.add(menuItemNew);
+        menuItemArrayList.add(menuItemOpen);
+        menuItemArrayList.add(menuItemClose);
+        menuItemArrayList.add(menuItemClear);
+        menuItemArrayList.add(menuItemSettings);
+        
         Translation translation = new Translation(SettingsSingleton.getInstance().language);
         translation.translate(labelArrayList, menuArrayList);
     }
