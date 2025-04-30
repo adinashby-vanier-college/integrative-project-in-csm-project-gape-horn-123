@@ -1,4 +1,4 @@
-package com.example.physiplay.physicsconcepts;
+package main.java.com.example.physiplay.physics.SpringSimulation;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
 
-public class SpringSimulation extends Pane {
+public class Spring extends Pane {
     private static final double WIDTH = 600;
     private static final double HEIGHT = 500;
     private static final double ANCHOR_X = WIDTH / 2;
@@ -18,18 +18,20 @@ public class SpringSimulation extends Pane {
     private static final double MASS_RADIUS = 20;
 
     public static double MAX_DISPLACEMENT = 100; // Amplitude
+    public static final double PIXELS_PER_METER = 100.0;
     private static double springConstant = 20;
     private static double massValue = 2;
-    public static double OMEGA = Math.sqrt(springConstant / massValue); // Angular frequency
+    public static double OMEGA = Math.sqrt(springConstant / massValue);
 
     private double time = 0;
     private Circle mass;
     private Polyline spring;
     private AnimationTimer timer;
-
+    private boolean running = true;
     private Slider amplitudeSlider, springConstantSlider, massSlider;
+    private long lastTime = 0;
 
-    public SpringSimulation() {
+    public Spring() {
         this.setPrefSize(WIDTH, HEIGHT);
         initializeSpring();
         initializeSliders();
@@ -49,6 +51,14 @@ public class SpringSimulation extends Pane {
         updateSpringShape(startY);
 
         this.getChildren().addAll(spring, mass);
+    }
+
+    public double getCurrentDisplacement() {
+        return MAX_DISPLACEMENT * Math.cos(OMEGA * time);
+    }
+
+    public double getTime() {
+        return time;
     }
 
     private void initializeSliders() {
@@ -103,10 +113,23 @@ public class SpringSimulation extends Pane {
         spring.getPoints().addAll(ANCHOR_X, endY);
     }
 
+    public void pause() {
+        timer.stop();
+        running = false;
+    }
+
+    public void play() {
+        lastTime = 0;
+        timer.start();
+        running = true;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
     private void startAnimation() {
         timer = new AnimationTimer() {
-            private long lastTime = 0;
-
             @Override
             public void handle(long now) {
                 if (lastTime == 0) {

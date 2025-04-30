@@ -1,4 +1,4 @@
-package com.example.physiplay.physicsconcepts;
+package main.java.com.example.physiplay.physics.MomentumSimulation;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
