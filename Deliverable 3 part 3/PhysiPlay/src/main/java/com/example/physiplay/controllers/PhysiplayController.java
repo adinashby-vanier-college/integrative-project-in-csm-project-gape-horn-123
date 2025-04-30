@@ -286,7 +286,7 @@ public class PhysiplayController {
         menuArrayList.add(menuView);
         menuArrayList.add(menuWindow);
         menuArrayList.add(menuHelp);
-        Translation translation = new Translation();
+        Translation translation = new Translation(SettingsSingleton.getInstance().language);
         translation.translate(labelArrayList, menuArrayList);
     }
 

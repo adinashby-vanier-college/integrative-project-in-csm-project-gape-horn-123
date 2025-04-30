@@ -10,15 +10,19 @@ import java.util.ResourceBundle;
 
 public class Translation {
 
-    public Translation(){
+    String langCode = "en";
 
+    public Translation(String langCode){
+        this.langCode = langCode;
     }
 
     public void translate(ArrayList<Label> labelArraylist, ArrayList<Menu> menuArrayList){
-        Locale locale = new Locale(SettingsSingleton.getInstance().language);
+        Locale locale = new Locale(langCode);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
-        for (int i = 0; i < labelArraylist.size(); i++) {
-            labelArraylist.get(i).setText("");
+        labelArraylist.getFirst().setText(bundle.getString("label.presets"));
+        for (int i = 0; i < menuArrayList.size(); i++) {
+            System.out.println(menuArrayList.get(i).getId());
+            menuArrayList.get(i).setText(bundle.getString("menu." + menuArrayList.get(i).getId().substring(4).toLowerCase()));
         }
     }
 
