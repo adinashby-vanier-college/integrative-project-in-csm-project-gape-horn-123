@@ -18,9 +18,10 @@ public final class MainApp extends Application {
 
     // These methods load all scenes
     private void loadScenes(Stage stage, Scene scene) {
+        PhysiplayController physiplayController = new PhysiplayController(stage, scene);
         ScreenController.getInstance()
-                .addScreen("mainMenuEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), SettingsSingleton.getInstance().language))
-                .addScreen("mainMenuFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene), "fr"))
+                .addScreen("mainMenuEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene, physiplayController), SettingsSingleton.getInstance().language))
+                .addScreen("mainMenuFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/mainMenu.fxml"), new MainMenuController(stage, scene, physiplayController), "fr"))
                 .addScreen("instructionsEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), SettingsSingleton.getInstance().language))
                 .addScreen("instructionsFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/instructionsPage.fxml"), new InstructionsController(scene), "fr"))
                 .addScreen("settingsEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/settingPage.fxml"), new SettingsController(stage, scene, "en"), SettingsSingleton.getInstance().language))
@@ -29,8 +30,7 @@ public final class MainApp extends Application {
                 .addScreen("loginFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml"), new LoginController(stage, scene), "fr"))
                 .addScreen("registerEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language))
                 .addScreen("registerFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), "fr"))
-                .addScreen("playEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), new PhysiplayController(stage, scene),
-                        "en"));
+                .addScreen("playEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), physiplayController, "en"));
     }
 
     @Override

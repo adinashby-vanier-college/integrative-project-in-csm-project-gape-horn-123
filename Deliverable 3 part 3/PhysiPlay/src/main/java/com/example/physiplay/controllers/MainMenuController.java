@@ -20,10 +20,12 @@ public class MainMenuController {
 
     Stage stage;
     Scene scene;
+    PhysiplayController physiplayController;
 
-    public MainMenuController(Stage stage, Scene scene){
+    public MainMenuController(Stage stage, Scene scene, PhysiplayController physiplayController){
         this.stage = stage;
         this.scene = scene;
+        this.physiplayController = physiplayController;
     }
 
     public void initialize() {
@@ -36,6 +38,7 @@ public class MainMenuController {
 
     public void switchScene(String sceneType, String cssUrl) {
         try {
+            if (sceneType == "play") physiplayController.translation();
             ScreenController.getInstance().activate(sceneType, cssUrl, SettingsSingleton.getInstance().language);
         } catch (Exception e){
             System.out.println("Error while switching to " + sceneType + " scene");

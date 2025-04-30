@@ -277,7 +277,7 @@ public class PhysiplayController {
         }
     }
 
-    private void translation(){
+    public void translation(){
         ArrayList<Label> labelArrayList = new ArrayList<>();
         ArrayList<Menu> menuArrayList = new ArrayList<>();
         labelArrayList.add(presetsLabel);
