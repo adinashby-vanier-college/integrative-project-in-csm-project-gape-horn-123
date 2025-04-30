@@ -1,6 +1,7 @@
 package com.example.physiplay.controllers;
 
 import com.example.physiplay.SimulationObject;
+import com.example.physiplay.Translation;
 import com.example.physiplay.singletons.SettingsSingleton;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.animation.AnimationTimer;
@@ -74,6 +75,19 @@ public class PhysiplayController {
     Canvas canvas;
     @FXML
     TabPane tabPane;
+
+    @FXML
+    Label presetsLabel;
+    @FXML
+    Menu menuFile;
+    @FXML
+    Menu menuEdit;
+    @FXML
+    Menu menuView;
+    @FXML
+    Menu menuWindow;
+    @FXML
+    Menu menuHelp;
 
     public PhysiplayController(Stage stage, Scene scene) {
         this.mainWindow = stage;
@@ -150,6 +164,7 @@ public class PhysiplayController {
         canvas.addEventHandler(ScrollEvent.SCROLL, this::handleScrollEvent);
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, this::handleMouseReleaseEvent);
 
+        translation();
     }
 
     private void setUpTimer() {
@@ -261,4 +276,20 @@ public class PhysiplayController {
             isDragging = false;
         }
     }
+
+    private void translation(){
+        ArrayList<Label> labelArrayList = new ArrayList<>();
+        ArrayList<Menu> menuArrayList = new ArrayList<>();
+        labelArrayList.add(presetsLabel);
+        menuArrayList.add(menuFile);
+        menuArrayList.add(menuEdit);
+        menuArrayList.add(menuView);
+        menuArrayList.add(menuWindow);
+        menuArrayList.add(menuHelp);
+        Translation translation = new Translation();
+        translation.translate(labelArrayList, menuArrayList);
+    }
+
 }
+
+
