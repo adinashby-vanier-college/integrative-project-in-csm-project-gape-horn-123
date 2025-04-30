@@ -3,6 +3,7 @@ package com.example.physiplay;
 import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -16,7 +17,7 @@ public class Translation {
         this.langCode = langCode;
     }
 
-    public void translate(ArrayList<Label> labelArraylist, ArrayList<Menu> menuArrayList){
+    public void translate(ArrayList<Label> labelArraylist, ArrayList<Menu> menuArrayList, ArrayList<MenuItem> menuItemArrayList){
         Locale locale = new Locale(langCode);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
         for (int i = 0; i < labelArraylist.size(); i++) {
@@ -26,6 +27,7 @@ public class Translation {
             System.out.println(menuArrayList.get(i).getId());
             menuArrayList.get(i).setText(bundle.getString("menu." + menuArrayList.get(i).getId().substring(4).toLowerCase()));
         }
+
     }
 
 }

@@ -73,13 +73,13 @@
                   </Menu>
                   <Menu fx:id="menuView" mnemonicParsing="false" text="%menu.view">
                      <items>
-                        <Menu mnemonicParsing="false" text="Camera Reset...">
+                        <Menu fx:id="menuCameraReset" mnemonicParsing="false" text="menuCameraReset">
                           <items>
-                            <MenuItem fx:id="positionCamResetMenuItem" mnemonicParsing="false" text="Position" />
-                              <MenuItem fx:id="scaleCamResetMenuItem" mnemonicParsing="false" text="Scale" />
+                            <MenuItem fx:id="menuItemPositionCamReset" mnemonicParsing="false" text="Position" />
+                              <MenuItem fx:id="menuItemScaleCamReset" mnemonicParsing="false" text="Scale" />
                           </items>
                         </Menu>
-                        <CheckMenuItem fx:id="canvasViewMenuItem" mnemonicParsing="false" text="Canvas View" />
+                        <CheckMenuItem fx:id="checkMenuItemCanvasView" mnemonicParsing="false" text="Canvas View" />
                      </items>
                   </Menu>
                   <Menu fx:id="menuWindow" mnemonicParsing="false" text="%menu.window">

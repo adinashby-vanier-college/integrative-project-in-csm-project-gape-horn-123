@@ -48,15 +48,7 @@ public class PhysiplayController {
     @FXML
     HBox presetHBox;
     @FXML
-    private MenuItem menuItemClose;
-    @FXML
-    MenuItem menuItemHome;
-    @FXML
-    MenuItem polygonVisualizerMenuItem;
-    @FXML
     BorderPane borderPane;
-    @FXML
-    CheckMenuItem canvasViewMenuItem;
     @FXML
     private TreeView<String> hierarchyView;
     @FXML
@@ -64,13 +56,6 @@ public class PhysiplayController {
     @FXML
     ScrollPane presetScrollPane;
 
-    @FXML
-    MenuItem menuItemClear;
-
-    @FXML
-    MenuItem menuItemPositionCamReset;
-    @FXML
-    MenuItem menuItemScaleCamReset;
     @FXML
     Canvas canvas;
     @FXML
@@ -88,14 +73,29 @@ public class PhysiplayController {
     Menu menuWindow;
     @FXML
     Menu menuHelp;
+
+    @FXML
+    MenuItem menuItemPositionCamReset;
+    @FXML
+    MenuItem menuItemScaleCamReset;
     @FXML
     MenuItem menuItemNew;
     @FXML
     MenuItem menuItemOpen;
     @FXML
+    MenuItem menuItemClear;
+    @FXML
     MenuItem menuItemSettings;
     @FXML
-    MenuItem menuItemCameraReset;
+    Menu menuCameraReset;
+    @FXML
+    CheckMenuItem checkMenuItemCanvasView;
+    @FXML
+    MenuItem menuItemClose;
+    @FXML
+    MenuItem menuItemHome;
+    @FXML
+    MenuItem polygonVisualizerMenuItem;
 
     public PhysiplayController(Stage stage, Scene scene) {
         this.mainWindow = stage;
@@ -103,7 +103,7 @@ public class PhysiplayController {
     }
 
     private void handleMenuItems() {
-        canvasViewMenuItem.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
+        checkMenuItemCanvasView.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
             borderPane.getLeft().setManaged(!newValue);
             borderPane.getLeft().setVisible(!newValue);
             borderPane.getRight().setManaged(!newValue);
@@ -295,14 +295,15 @@ public class PhysiplayController {
         menuArrayList.add(menuView);
         menuArrayList.add(menuWindow);
         menuArrayList.add(menuHelp);
+        menuArrayList.add(menuCameraReset);
         menuItemArrayList.add(menuItemNew);
         menuItemArrayList.add(menuItemOpen);
         menuItemArrayList.add(menuItemClose);
         menuItemArrayList.add(menuItemClear);
         menuItemArrayList.add(menuItemSettings);
-        
+
         Translation translation = new Translation(SettingsSingleton.getInstance().language);
-        translation.translate(labelArrayList, menuArrayList);
+        translation.translate(labelArrayList, menuArrayList, menuItemArrayList);
     }
 
 }
