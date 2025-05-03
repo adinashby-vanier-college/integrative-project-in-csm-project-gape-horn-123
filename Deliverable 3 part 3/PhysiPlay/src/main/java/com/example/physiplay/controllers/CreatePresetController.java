@@ -8,6 +8,7 @@ import com.example.physiplay.components.ComponentPropertyBuilder;
 import com.example.physiplay.components.Renderer;
 import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.ComponentSelector;
+import com.example.physiplay.widgets.MyTreeCell;
 import com.example.physiplay.widgets.Vector2Field;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -188,7 +189,7 @@ public class CreatePresetController {
         });
 
         setNumberOnly();
-
+        treeItemOnClick();
     }
     public void setNumberOnly(){
         NumberOnlyTextField numberOnlyTextField = new NumberOnlyTextField();
@@ -266,7 +267,7 @@ public class CreatePresetController {
                             Float.parseFloat(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
                     SimulationManager.getInstance().simulationObjectList.add(copy);
 
-                    Tab tab = new Tab(presetNameField.getText());
+                   /* Tab tab = new Tab(presetNameField.getText());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
                     loader.setController(new TabController(getAllTextFields()));
                     try {
@@ -274,9 +275,11 @@ public class CreatePresetController {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    tabPane.getTabs().add(tab);
-
-                    hierarchyView.getRoot().getChildren().add(new TreeItem<>(simulationObject.name));
+                    tabPane.getTabs().add(tab);*/
+                    final String id = copy.name + " (" + copy.uuid + ")";
+                    hierarchyView.getRoot().getChildren().add(new TreeItem<>(id));
+                    SimulationManager.getInstance().dataMap.put(id, copy);
+                    hierarchyView.setCellFactory(tv -> new MyTreeCell(SimulationManager.getInstance().dataMap, tabPane));
                 }
 
             };
@@ -285,10 +288,31 @@ public class CreatePresetController {
 
             presetFlowPane.getChildren().addAll(vBox);
 
-            TreeItem<String> preset = new TreeItem<>(presetName.getText());
-            hierarchyView.getRoot().getChildren().add(preset);
+            /*TreeItem<String> preset = new TreeItem<>(presetName.getText());
+            hierarchyView.getRoot().getChildren().add(preset);*/
             
             presetWindow.hide();
+        }
+    }
+
+    private void treeItemOnClick() {
+        TreeItem<String> selectedItem = hierarchyView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null && selectedItem.getGraphic() instanceof Label) {
+            Object data = selectedItem.getGraphic().getUserData();
+            if (data instanceof SimulationObject) {
+                SimulationObject simulationObject = (SimulationObject) data;
+                /*Tab tab = new Tab(simulationObject.name);
+                tab.setId(simulationObject.uuid);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
+                loader.setController(new TabController(getAllTextFields()));
+                try {
+                    tab.setContent(loader.load());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                tabPane.getTabs().add(tab);*/
+                System.out.println(simulationObject.name);
+            }
         }
     }
 

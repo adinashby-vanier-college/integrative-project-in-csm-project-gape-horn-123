@@ -2,6 +2,8 @@ package com.example.physiplay.components;
 
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TitledPane;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 
@@ -47,5 +49,12 @@ public class PolygonRenderer extends Renderer {
         gc.fillPolygon(getVerticesIndividualCoordinates(0), getVerticesIndividualCoordinates(1),
                 positions.size());
         gc.restore();
+    }
+
+    @Override
+    public Tab displayComponent() {
+        Tab tab = new Tab("Polygon Renderer");
+        tab.setClosable(true);
+        return tab;
     }
 }

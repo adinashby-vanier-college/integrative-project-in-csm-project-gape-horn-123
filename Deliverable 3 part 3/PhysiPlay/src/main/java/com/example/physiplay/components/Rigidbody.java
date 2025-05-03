@@ -4,6 +4,8 @@ import com.example.physiplay.Component;
 import com.example.physiplay.SimulationObject;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TitledPane;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -43,6 +45,13 @@ public class Rigidbody extends Component {
         parent.position = new Vector2(parent.simulationObjectBody.getPosition().x, parent.simulationObjectBody.getPosition().y);
         parent.simulationObjectBody.setAngularDamping(0f);
         parent.angle = parent.simulationObjectBody.getAngle();
+    }
+
+    @Override
+    public Tab displayComponent() {
+        Tab tab = new Tab("Rigidbody");
+        tab.setClosable(true);
+        return tab;
     }
 
     @Override

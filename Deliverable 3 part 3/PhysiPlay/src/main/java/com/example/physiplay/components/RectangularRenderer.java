@@ -2,6 +2,8 @@ package com.example.physiplay.components;
 
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TitledPane;
 import org.jbox2d.collision.shapes.PolygonShape;
 
 public class RectangularRenderer extends Renderer {
@@ -27,5 +29,12 @@ public class RectangularRenderer extends Renderer {
         gc.fillRect(-size.x / 2, - size.y / 2,
                 size.x, size.y);
         gc.restore();
+    }
+
+    @Override
+    public Tab displayComponent() {
+        Tab tab = new Tab("Rectangular Renderer");
+        tab.setClosable(true);
+        return tab;
     }
 }

@@ -28,9 +28,7 @@ import javafx.stage.Stage;
 import org.jbox2d.dynamics.Body;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class PhysiplayController {
 
@@ -38,7 +36,6 @@ public class PhysiplayController {
     Stage mainWindow;
     ArrayList<SimulationObject> presetList = new ArrayList<>();
     ArrayList<SimulationObject> objectsList = new ArrayList<>();
-
     @FXML
     Button createPresetButton;
     @FXML

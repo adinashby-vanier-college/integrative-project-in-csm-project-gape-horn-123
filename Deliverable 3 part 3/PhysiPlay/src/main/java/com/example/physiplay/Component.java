@@ -1,5 +1,9 @@
 package com.example.physiplay;
 
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TitledPane;
+
 public abstract class Component
 {
     public boolean allowMultipleInstances = false;
@@ -9,5 +13,6 @@ public abstract class Component
     public abstract void Start();
     public abstract void Use();
 
+    public abstract Tab displayComponent();
     public abstract void Remove();
 }

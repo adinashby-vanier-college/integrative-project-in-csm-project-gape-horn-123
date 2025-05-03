@@ -11,9 +11,7 @@ import javafx.scene.paint.Color;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import java.util.ArrayList;
-
-import java.util.List;
+import java.util.*;
 
 public final class SimulationManager {
     private static final int WIDTH = 600, HEIGHT = 600;
@@ -21,6 +19,7 @@ public final class SimulationManager {
 
     public Canvas canvas = new Canvas(WIDTH, HEIGHT);
 
+    public Map<String, SimulationObject> dataMap = new HashMap<>();
     public SimpleBooleanProperty simulationPaused = new SimpleBooleanProperty(false);
     public GraphicsContext gc = canvas.getGraphicsContext2D();
     public static final float SCALE = 50f;

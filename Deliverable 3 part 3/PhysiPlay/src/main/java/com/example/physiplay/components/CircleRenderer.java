@@ -1,6 +1,9 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.singletons.SimulationManager;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TitledPane;
 import org.jbox2d.collision.shapes.CircleShape;
 
 public class CircleRenderer extends Renderer {
@@ -23,5 +26,12 @@ public class CircleRenderer extends Renderer {
         applyTransformationsForHologram();
         gc.fillOval(-radius / 2, -radius / 2, radius, radius);
         gc.restore();
+    }
+
+    @Override
+    public Tab displayComponent() {
+        Tab tab = new Tab("Circle Renderer");
+        tab.setClosable(true);
+        return tab;
     }
 }

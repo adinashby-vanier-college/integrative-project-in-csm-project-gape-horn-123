@@ -29,12 +29,16 @@ public class SimulationObject {
     }
 
     public SimulationObject(String name, Set<Component> createdComponents, Vector2 initialPosition, float angle) {
-
+        updateUUID();
         setPosition(initialPosition);
         setRotation(angle);
         this.name = name;
         components.addAll(createdComponents);
         activateComponentRecursive(children);
+    }
+
+    public void updateUUID() {
+        uuid = UUID.randomUUID().toString();
     }
 
     public void setRotation(float angle) {

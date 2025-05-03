@@ -1,9 +1,12 @@
 package com.example.physiplay.controllers;
 
+import com.example.physiplay.Component;
 import com.example.physiplay.NumberOnlyTextField;
+import com.example.physiplay.SimulationObject;
 import com.example.physiplay.singletons.SimulationManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
@@ -14,6 +17,8 @@ public class TabController {
     Label gameObjectName;
     @FXML
     public TextField presetNameField;
+    @FXML
+    TabPane tabPane;
     public TextField positionXField;
     public TextField positionYField;
     public TextField rotationField;
@@ -27,36 +32,30 @@ public class TabController {
     String rotationValue;
     String scaleXValue;
     String scaleYValue;
+    private SimulationObject target;
 
-    public TabController(ArrayList<TextField> textFields) {
-        this.textFields = textFields;
+    public TabController(SimulationObject target) {
+        this.target = target;
     }
 
     public void initialize(){
         allNumberOnly();
         getOldText();
-        System.out.println(SimulationManager.getInstance().simulationObjectList.getFirst().position.x);
+        for (Component component : target.getComponents()) {
+            tabPane.getTabs().add(component.displayComponent());
+        }
     }
 
     private void getOldText() {
-        int index;
-        if (!SimulationManager.getInstance().simulationObjectList.isEmpty()) {
-            index = 0;
-            for (int i = 0; i < SimulationManager.getInstance().simulationObjectList.size(); i++) {
-                if (Objects.equals(SimulationManager.getInstance().simulationObjectList.get(i).name, textFields.getFirst().getText())){
-                    index = i;
-                }
-            }
-            presetNameField = textFields.getFirst();
-            xValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).position.x);
-            yValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).position.y);
-            rotationValue = String.valueOf(SimulationManager.getInstance().simulationObjectList.get(index).angle);
+        if (target == null) return;
+        xValue = String.valueOf(target.position.x);
+        yValue = String.valueOf(target.position.y);
+        rotationValue = String.valueOf(target.angle);
 
-            gameObjectName.setText(presetNameField.getText());
-            positionXField.setText(xValue);
-            positionYField.setText(yValue);
-            rotationField.setText(rotationValue);
-        }
+        gameObjectName.setText(target.name);
+        positionXField.setText(xValue);
+        positionYField.setText(yValue);
+        rotationField.setText(rotationValue);
     }
 
     public void allNumberOnly(){
