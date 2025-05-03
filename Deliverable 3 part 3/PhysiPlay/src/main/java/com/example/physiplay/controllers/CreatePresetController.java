@@ -65,6 +65,7 @@ public class CreatePresetController {
     Button attachComponentButton;
     Stage presetWindow;
     Scene scene;
+    MenuItem deleteMenuItem = new MenuItem("Delete");
 
     private SimpleBooleanProperty componentChoiceActiveProperty = new SimpleBooleanProperty(false);
 
@@ -142,14 +143,9 @@ public class CreatePresetController {
         componentsTreeView.setRoot(root);
     }
 
-    private void handleContextMenu() {
-        contextMenu.getItems().add(new MenuItem("Rename"));
-        contextMenu.getItems().add(new MenuItem("Delete"));
-    }
-
     public void initialize() {
         this.presetWindow.titleProperty().bind(presetNameField.textProperty());
-        handleContextMenu();
+        contextMenu.getItems().add(deleteMenuItem);
         generateComponentSelectors();
         componentsTreeView.visibleProperty().bind(componentChoiceActiveProperty);
         componentsTreeView.managedProperty().bind(componentChoiceActiveProperty);
@@ -248,6 +244,11 @@ public class CreatePresetController {
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
                     if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                         contextMenu.show(rectangle, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+
+
+                        deleteMenuItem.setOnAction(e -> {
+                            presetFlowPane.getChildren().remove(vBox);
+                        });
                     }
                     else contextMenu.hide();
                     Point2D localPoint = SimulationManager.getInstance().canvas.sceneToLocal(mouseEvent.getSceneX(),
@@ -267,15 +268,6 @@ public class CreatePresetController {
                             Float.parseFloat(rotationField.getText().isBlank() ? "0" : rotationField.getText()));
                     SimulationManager.getInstance().simulationObjectList.add(copy);
 
-                   /* Tab tab = new Tab(presetNameField.getText());
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
-                    loader.setController(new TabController(getAllTextFields()));
-                    try {
-                        tab.setContent(loader.load());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    tabPane.getTabs().add(tab);*/
                     final String id = copy.name + " (" + copy.uuid + ")";
                     hierarchyView.getRoot().getChildren().add(new TreeItem<>(id));
                     SimulationManager.getInstance().dataMap.put(id, copy);
@@ -301,26 +293,9 @@ public class CreatePresetController {
             Object data = selectedItem.getGraphic().getUserData();
             if (data instanceof SimulationObject) {
                 SimulationObject simulationObject = (SimulationObject) data;
-                /*Tab tab = new Tab(simulationObject.name);
-                tab.setId(simulationObject.uuid);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameObjectTab.fxml"));
-                loader.setController(new TabController(getAllTextFields()));
-                try {
-                    tab.setContent(loader.load());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                tabPane.getTabs().add(tab);*/
                 System.out.println(simulationObject.name);
             }
         }
-    }
-
-    public ArrayList<TextField> getAllTextFields() {
-        ArrayList<TextField> textFields = new ArrayList<>();
-        textFields.add(presetNameField);
-        textFields.add(rotationField);
-        return textFields;
     }
 
 }

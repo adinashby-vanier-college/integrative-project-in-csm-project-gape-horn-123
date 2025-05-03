@@ -4,13 +4,14 @@ import com.example.physiplay.Component;
 import com.example.physiplay.SimulationObject;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TitledPane;
+import com.example.physiplay.widgets.Vector2Field;
+import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
+
+import java.util.Objects;
 
 public class Rigidbody extends Component {
     public Vector2 velocity = Vector2.ZERO;
@@ -21,6 +22,17 @@ public class Rigidbody extends Component {
     public float restitution;
     public float friction;
     private boolean firstFrame = false;
+
+    private ComponentPropertyBuilder rigidbodyComponentPropertyBuilder = new ComponentPropertyBuilder()
+            .addCheckboxProperty("isStatic", "Static", new CheckBox())
+            .addCheckboxProperty("useGravity", "Gravity", new CheckBox())
+            .addCheckboxProperty("useAutoMass", "Auto Mass", new CheckBox())
+            .addVector2Property("initialVelocity", "Velocity", new Vector2Field())
+            .addLabelProperty("velocity", "Velocity", new Label())
+            .addNumberInputFieldProperty("restitution", "Restitution", new TextField())
+            .addNumberInputFieldProperty("mass", "Mass", new TextField())
+            .addNumberInputFieldProperty("friction", "Friction", new TextField())
+            .addNumberInputFieldProperty("torque", "Torque", new TextField());
 
     @Override
     public void Start() {
@@ -50,10 +62,10 @@ public class Rigidbody extends Component {
 
     @Override
     public void displayComponent() {
+        componentTab.getStyleClass().add(Objects.requireNonNull(getClass().getResource("/css/tabStylesheet.css")).toExternalForm());
+        System.out.println(componentTab.getStyleClass().size());
         componentTab.setText("Rigid Body");
-        Label label = new Label("In Progress");
-        label.setStyle("-fx-font-size: 20px");
-        componentTab.setContent(label);
+        componentTab.setContent(rigidbodyComponentPropertyBuilder.getAllProperties());
     }
 
     @Override

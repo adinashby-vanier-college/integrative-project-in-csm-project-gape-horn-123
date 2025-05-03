@@ -34,7 +34,7 @@ public class RectangularRenderer extends Renderer {
 
     @Override
     public void displayComponent() {
-        componentTab.setText("Circle Renderer");
+        componentTab.setText("Rectangular Renderer");
         Label label = new Label("In Progress");
         label.setStyle("-fx-font-size: 20px");
         componentTab.setContent(label);
