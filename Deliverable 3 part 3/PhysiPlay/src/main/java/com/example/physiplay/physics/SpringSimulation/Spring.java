@@ -17,8 +17,8 @@ public class Spring extends Pane {
     private static final double SPRING_LENGTH = 200;
     private static final double MASS_RADIUS = 20;
 
-    public static double MAX_DISPLACEMENT = 100; // Amplitude
     public static final double PIXELS_PER_METER = 100.0;
+    public static double MAX_DISPLACEMENT = 1.0 * PIXELS_PER_METER; // Start with 1 meter in pixels
     private static double springConstant = 20;
     private static double massValue = 2;
     public static double OMEGA = Math.sqrt(springConstant / massValue);
@@ -62,11 +62,11 @@ public class Spring extends Pane {
     }
 
     private void initializeSliders() {
-        Label amplitudeLabel = new Label("Amplitude (px)");
-        amplitudeSlider = new Slider(10, 200, MAX_DISPLACEMENT);
+        Label amplitudeLabel = new Label("Amplitude (m)");
+        amplitudeSlider = new Slider(0.1, 2.0, MAX_DISPLACEMENT / PIXELS_PER_METER);
         amplitudeSlider.setShowTickMarks(true);
         amplitudeSlider.setShowTickLabels(true);
-        amplitudeSlider.setMajorTickUnit(50);
+        amplitudeSlider.setMajorTickUnit(0.5);
 
         Label springLabel = new Label("Spring Constant (N/m)");
         springConstantSlider = new Slider(5, 100, springConstant);
@@ -80,9 +80,15 @@ public class Spring extends Pane {
         massSlider.setShowTickLabels(true);
         massSlider.setMajorTickUnit(2);
 
-        amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> MAX_DISPLACEMENT = newVal.doubleValue());
-        springConstantSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateOmega(newVal.doubleValue(), massValue));
-        massSlider.valueProperty().addListener((obs, oldVal, newVal) -> updateOmega(springConstant, newVal.doubleValue()));
+        amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            MAX_DISPLACEMENT = newVal.doubleValue() * PIXELS_PER_METER;
+        });
+        springConstantSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            updateOmega(newVal.doubleValue(), massValue);
+        });
+        massSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            updateOmega(springConstant, newVal.doubleValue());
+        });
 
         VBox sliderBox = new VBox(10, amplitudeLabel, amplitudeSlider, springLabel, springConstantSlider, massLabel, massSlider);
         sliderBox.setLayoutX(10);
