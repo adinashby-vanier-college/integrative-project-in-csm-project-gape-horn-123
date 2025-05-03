@@ -1,6 +1,7 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.singletons.SimulationManager;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TitledPane;
@@ -29,9 +30,10 @@ public class CircleRenderer extends Renderer {
     }
 
     @Override
-    public Tab displayComponent() {
-        Tab tab = new Tab("Circle Renderer");
-        tab.setClosable(true);
-        return tab;
+    public void displayComponent() {
+        componentTab.setText("Circle Renderer");
+        Label label = new Label("In Progress");
+        label.setStyle("-fx-font-size: 20px");
+        componentTab.setContent(label);
     }
 }

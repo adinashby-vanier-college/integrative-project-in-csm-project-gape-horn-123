@@ -42,7 +42,8 @@ public class TabController {
         allNumberOnly();
         getOldText();
         for (Component component : target.getComponents()) {
-            tabPane.getTabs().add(component.displayComponent());
+            component.displayComponent();
+            tabPane.getTabs().add(component.componentTab);
         }
     }
 

@@ -124,6 +124,9 @@ public class PhysiplayController {
                     body = next;
                 }
                 SimulationManager.getInstance().simulationObjectList.clear();
+                SimulationManager.getInstance().dataMap.clear();
+                hierarchyView.getRoot().getChildren().clear();
+                tabPane.getTabs().clear();
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.physiplay.components;
 
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TitledPane;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -32,9 +33,10 @@ public class RectangularRenderer extends Renderer {
     }
 
     @Override
-    public Tab displayComponent() {
-        Tab tab = new Tab("Rectangular Renderer");
-        tab.setClosable(true);
-        return tab;
+    public void displayComponent() {
+        componentTab.setText("Circle Renderer");
+        Label label = new Label("In Progress");
+        label.setStyle("-fx-font-size: 20px");
+        componentTab.setContent(label);
     }
 }
