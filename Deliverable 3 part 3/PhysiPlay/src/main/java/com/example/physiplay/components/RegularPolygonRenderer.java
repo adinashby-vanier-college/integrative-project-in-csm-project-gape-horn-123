@@ -1,22 +1,64 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.singletons.SimulationManager;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
+
+import java.util.Objects;
 
 public class RegularPolygonRenderer extends Renderer {
     public int sides = 6;
     public float size = 80;
+
+    private ComponentPropertyBuilder regularPolygonPropertyBuilder = new ComponentPropertyBuilder()
+            .addLabelProperty("colorLabel", "Color", new Label())
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
+            .addNumberInputFieldProperty("sides", "Sides", new TextField())
+            .addNumberInputFieldProperty("size", "Size", new TextField());
     @Override
     public void initializeShapeCollider() {
         PolygonShape polygon = new PolygonShape();
         polygon.set(getVerticesOfRegularPolygon(), sides);
         parent.fixtureDef.shape = polygon;
+        updateValues();
     }
 
+    private void resetRegularPolygonData() {
+        PolygonShape newRegularPolygon = new PolygonShape();
+        newRegularPolygon.set(getVerticesOfRegularPolygon(), sides);
+        parent.simulationObjectBody.getFixtureList().m_shape = newRegularPolygon;
+    }
+
+    private void updateValues() {
+        ColorPicker picker = regularPolygonPropertyBuilder.getColorPicker("color");
+        TextField sizeTextField = regularPolygonPropertyBuilder.getTextField("size"),
+            sidesTextField = regularPolygonPropertyBuilder.getTextField("sides");
+
+        picker.valueProperty().setValue(color);
+        sizeTextField.setText(size + "");
+        sidesTextField.setText(sides + "");
+
+        sizeTextField.setOnAction(event -> {
+            if (!sizeTextField.getText().isBlank()) {
+                size = Integer.parseInt(sizeTextField.getText());
+                resetRegularPolygonData();
+            }
+        });
+        sidesTextField.setOnAction(event -> {
+            if (!sidesTextField.getText().isBlank()) {
+                int a = Integer.parseInt(sidesTextField.getText());
+                if (a >= 3 && a <= 100) {
+                    sides = Integer.parseInt(sidesTextField.getText());
+                    resetRegularPolygonData();
+                }
+            }
+        });
+
+        picker.valueProperty().addListener((obs, oldVal, newVal) -> {
+            color = newVal;
+        });
+    }
     private Vec2[] getVerticesOfRegularPolygon() {
         Vec2[] points = new Vec2[sides];
         for (int i = 0; i < sides; i++) {
@@ -52,9 +94,8 @@ public class RegularPolygonRenderer extends Renderer {
 
     @Override
     public void displayComponent() {
+        componentTab.getStyleClass().add(Objects.requireNonNull(getClass().getResource("/css/tabStylesheet.css")).toExternalForm());
         componentTab.setText("Regular Polygon Renderer");
-        Label label = new Label("In Progress");
-        label.setStyle("-fx-font-size: 20px");
-        componentTab.setContent(label);
+        componentTab.setContent(regularPolygonPropertyBuilder.getAllProperties());
     }
 }
