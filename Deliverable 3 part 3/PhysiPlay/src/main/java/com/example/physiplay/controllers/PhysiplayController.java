@@ -28,6 +28,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jbox2d.dynamics.Body;
@@ -148,24 +149,26 @@ public class PhysiplayController {
             alert.showAndWait();
         }
     }
-
-    private void destroyWorld() {
-        Joint joint = SimulationManager.getInstance().world.getJointList();
-        while (joint != null) {
-            Joint next = joint.getNext();
-            SimulationManager.getInstance().world.destroyJoint(joint);
-            joint = next;
-        }
-        Body body = SimulationManager.getInstance().world.getBodyList();
-        while (body != null) {
-            Body next = body.getNext();
-            SimulationManager.getInstance().world.destroyBody(next);
-            body = next;
-        }
-    }
     private void loadFile() {
         Type listType = new TypeToken<List<SimulationObject>>(){}.getType();
-        try (FileReader reader = new FileReader("myObj.data")) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Simulation File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("DATA files", "*.data")
+        );
+        File selectedFile = fileChooser.showOpenDialog(mainWindow);
+        if (selectedFile == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+            stage.toFront();
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a valid file.");
+            alert.showAndWait();
+            return;
+        }
+        try (FileReader reader = new FileReader(selectedFile.getAbsolutePath())) {
             List<SimulationObject> loadedObjects = gson.fromJson(reader, listType);
             // Clearing hierarchy inspector
             Body body = SimulationManager.getInstance().world.getBodyList();
