@@ -132,7 +132,24 @@ public class PhysiplayController {
     }
 
     private void saveFile() {
-        try (FileWriter writer = new FileWriter("myObj.data")) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Simulation File");
+        fileChooser.setInitialFileName("myObj.data");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("DATA files", "*.data")
+        );
+        File selectedFile = fileChooser.showSaveDialog(mainWindow);
+        if (selectedFile == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+            stage.toFront();
+            alert.setTitle("Error");
+            alert.setHeaderText("Something went wrong, please try again");
+            alert.showAndWait();
+            return;
+        }
+        try (FileWriter writer = new FileWriter(selectedFile.getAbsolutePath())) {
             System.out.println(gson.toJson(SimulationManager.getInstance().simulationObjectList));
             gson.toJson(SimulationManager.getInstance().simulationObjectList, writer);
 
