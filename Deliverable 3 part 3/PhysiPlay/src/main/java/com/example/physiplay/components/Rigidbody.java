@@ -69,6 +69,8 @@ public class Rigidbody extends Component {
         useGravityCheckbox.selectedProperty().addListener((obs, oldValue, newValue) -> {
             useGravity = newValue;
             parent.simulationObjectBody.setGravityScale(useGravity ? 1 : 0);
+            if (Math.abs(velocity.y) < 1e-6) velocity.y = 0;
+            if (Math.abs(velocity.x) < 1e-6) velocity.x = 0;
             resetParameters();
         });
         restitutionField.setOnAction(event -> {
@@ -127,7 +129,6 @@ public class Rigidbody extends Component {
         parent.fixtureDef.friction = friction;
         System.out.println("Rigidbody component activated!");
     }
-
     @Override
     public void Use() {
         if (!firstFrame) {
