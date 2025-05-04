@@ -1,22 +1,16 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.NumberOnlyTextField;
-import com.example.physiplay.widgets.ComponentSelector;
 import com.example.physiplay.widgets.Vector2Field;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 public class ComponentPropertyBuilder {
     public Map<String, Node> propertyMap = new LinkedHashMap<>();
@@ -29,7 +23,6 @@ public class ComponentPropertyBuilder {
         propertyMap.put(propertyName, checkbox);
         return this;
     }
-
     public ComponentPropertyBuilder addColorPickerProperty(String propertyName, String text, ColorPicker picker) {
         picker.setPromptText(text);
         picker.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -72,6 +65,15 @@ public class ComponentPropertyBuilder {
         }
         catch (ClassCastException ignored) {
             return new Vector2Field("Error");
+        }
+    }
+
+    public Label getLabelField(String propertyName) {
+        try {
+            return (Label) propertyMap.getOrDefault(propertyName, new Label("Not found"));
+        }
+        catch (ClassCastException ignored) {
+            return new Label("Error");
         }
     }
 

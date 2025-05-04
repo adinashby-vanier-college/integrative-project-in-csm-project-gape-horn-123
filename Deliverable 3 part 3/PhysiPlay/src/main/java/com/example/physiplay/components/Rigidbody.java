@@ -34,19 +34,33 @@ public class Rigidbody extends Component {
             .addNumberInputFieldProperty("friction", "Friction", new TextField())
             .addNumberInputFieldProperty("torque", "Torque", new TextField());
 
+    private Label velocityLabel = rigidbodyComponentPropertyBuilder.getLabelField("velocity");
     private void resetParameters() {
         parent.simulationObjectBody.setAwake(true);
         parent.simulationObjectBody.setSleepingAllowed(false);
         parent.simulationObjectBody.applyAngularImpulse(torque * parent.simulationObjectBody.getInertia());
         parent.simulationObjectBody.setLinearVelocity(new Vec2((float) velocity.x, (float) velocity.y));
     }
+
     private void updateValues() {
         CheckBox isStaticCheckbox = rigidbodyComponentPropertyBuilder.getCheckBox("isStatic"),
         useGravityCheckbox = rigidbodyComponentPropertyBuilder.getCheckBox("useGravity");
         Vector2Field initialVelocityField = rigidbodyComponentPropertyBuilder.getVector2Field("initialVelocity");
 
+        TextField restitutionField = rigidbodyComponentPropertyBuilder.getTextField("restitution"),
+        massField = rigidbodyComponentPropertyBuilder.getTextField("mass"),
+                frictionField = rigidbodyComponentPropertyBuilder.getTextField("friction"),
+        torqueField = rigidbodyComponentPropertyBuilder.getTextField("torque");
+
+        // Initialize values
         isStaticCheckbox.setSelected(parent.simulationObjectBody.getType() == BodyType.STATIC);
+        initialVelocityField.x.setText(velocity.x + "");
+        initialVelocityField.y.setText(velocity.y + "");
         useGravityCheckbox.setSelected(useGravity);
+        restitutionField.setText(restitution + "");
+        massField.setText(mass + "");
+        frictionField.setText(friction + "");
+        torqueField.setText(torque + "");
 
         isStaticCheckbox.selectedProperty().addListener((obs, oldValue, newValue) -> {
             parent.simulationObjectBody.setType(newValue ? BodyType.STATIC : BodyType.DYNAMIC);
@@ -57,9 +71,49 @@ public class Rigidbody extends Component {
             parent.simulationObjectBody.setGravityScale(useGravity ? 1 : 0);
             resetParameters();
         });
+        restitutionField.setOnAction(event -> {
+            if (!restitutionField.getText().isBlank()) {
+                restitution = Float.parseFloat(restitutionField.getText());
+                parent.simulationObjectBody.getFixtureList().setRestitution(restitution);
+            }
+        });
+
+        massField.setOnAction(event -> {
+            if (!massField.getText().isBlank()) {
+                mass = Float.parseFloat(massField.getText());
+                parent.simulationObjectBody.getFixtureList().setDensity(mass);
+            }
+        });
+
+        frictionField.setOnAction(event -> {
+            if (!frictionField.getText().isBlank()) {
+                friction = Float.parseFloat(massField.getText());
+                if (friction >= 0 && friction <= 1) {
+                    parent.simulationObjectBody.getFixtureList().setFriction(friction);
+                }
+            }
+        });
+
+        torqueField.setOnAction(event -> {
+            if (!torqueField.getText().isBlank()) {
+                parent.simulationObjectBody.setAngularVelocity(0);
+                torque = Float.parseFloat(torqueField.getText());
+                parent.simulationObjectBody.applyAngularImpulse(torque
+                        * parent.simulationObjectBody.getInertia());
+            }
+        });
+        initialVelocityField.x.setOnAction(event -> {
+            if (!initialVelocityField.x.getText().isBlank()) {
+                velocity.x = Float.parseFloat(initialVelocityField.x.getText());
+                parent.simulationObjectBody.setLinearVelocity(new Vec2(
+                        (float) velocity.x, parent.simulationObjectBody.getLinearVelocity().y));
+            }
+        });
         initialVelocityField.y.setOnAction(event -> {
             if (!initialVelocityField.y.getText().isBlank()) {
-                parent.simulationObjectBodyDef.linearVelocity.y = Float.parseFloat(initialVelocityField.y.getText());
+                velocity.y = Float.parseFloat(initialVelocityField.y.getText());
+                parent.simulationObjectBody.setLinearVelocity(new Vec2(parent.simulationObjectBody.getLinearVelocity().x,
+                        (float) velocity.y));
             }
         });
     }
@@ -85,6 +139,7 @@ public class Rigidbody extends Component {
         parent.position = new Vector2(parent.simulationObjectBody.getPosition().x, parent.simulationObjectBody.getPosition().y);
         parent.simulationObjectBody.setAngularDamping(0f);
         parent.angle = parent.simulationObjectBody.getAngle();
+        velocityLabel.setText("Velocity: (" + parent.simulationObjectBody.getLinearVelocity().x + ", " + parent.simulationObjectBody.getLinearVelocity().y + ")");
     }
 
     @Override

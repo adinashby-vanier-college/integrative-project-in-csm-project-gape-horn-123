@@ -94,12 +94,10 @@ public class TabController {
         positionXField.setOnAction(event -> {
             if (!positionXField.getText().isBlank())  {
                 if (target.getComponent(Rigidbody.class) != null) {
-                    target.getComponent(Rigidbody.class).parent.simulationObjectBodyDef.position.set(
-                            new Vec2(Float.parseFloat(positionXField.getText()) / SimulationManager.SCALE,
-                                    target.getComponent(Rigidbody.class).parent.simulationObjectBodyDef.position.y)
-                    );
+                    target.getComponent(Rigidbody.class).parent.simulationObjectBody.setTransform(new Vec2(Float.parseFloat(positionXField.getText()) / SimulationManager.SCALE,
+                            target.getComponent(Rigidbody.class).parent.simulationObjectBody.getPosition().y),
+                            target.getComponent(Rigidbody.class).parent.simulationObjectBody.getAngle());
                     Vec2 pos = target.getComponent(Rigidbody.class).parent.simulationObjectBody.getPosition();
-                    pos.set(target.getComponent(Rigidbody.class).parent.simulationObjectBodyDef.position);
                     target.position = new Vector2(pos.x, pos.y);
                 }
                 else {
@@ -110,12 +108,11 @@ public class TabController {
         positionYField.setOnAction(event -> {
             if (!positionYField.getText().isBlank())  {
                 if (target.getComponent(Rigidbody.class) != null) {
-                    target.getComponent(Rigidbody.class).parent.simulationObjectBodyDef.position.set(
-                            new Vec2(target.getComponent(Rigidbody.class).parent.simulationObjectBodyDef.position.x,
-                                    Float.parseFloat(positionYField.getText()) / SimulationManager.SCALE)
-                    );
+                    target.getComponent(Rigidbody.class).parent.simulationObjectBody.setTransform(
+                            new Vec2(target.getComponent(Rigidbody.class).parent.simulationObjectBody.getPosition().x,
+                                    Float.parseFloat(positionYField.getText()) / SimulationManager.SCALE),
+                            target.getComponent(Rigidbody.class).parent.simulationObjectBody.getAngle());
                     Vec2 pos = target.getComponent(Rigidbody.class).parent.simulationObjectBody.getPosition();
-                    pos.set(target.getComponent(Rigidbody.class).parent.simulationObjectBodyDef.position);
                     target.position = new Vector2(pos.x, pos.y);
                 }
                 else {
