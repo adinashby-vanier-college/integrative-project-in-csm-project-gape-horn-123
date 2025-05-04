@@ -24,8 +24,10 @@ public class Translation {
             labelArraylist.get(i).setText(bundle.getString("label." + labelArraylist.get(i).getId().substring(5).toLowerCase()));
         }
         for (int i = 0; i < menuArrayList.size(); i++) {
-            System.out.println(menuArrayList.get(i).getId());
             menuArrayList.get(i).setText(bundle.getString("menu." + menuArrayList.get(i).getId().substring(4).toLowerCase()));
+        }
+        for (int i = 0; i < menuItemArrayList.size(); i++) {
+            menuItemArrayList.get(i).setText(bundle.getString("menuItem.") + menuItemArrayList.get(i).getId().substring(8).toLowerCase());
         }
 
     }
