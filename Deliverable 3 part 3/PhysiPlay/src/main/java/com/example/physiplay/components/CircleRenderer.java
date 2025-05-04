@@ -20,9 +20,25 @@ public class CircleRenderer extends Renderer {
         updateValues();
     }
 
+    private void resetCircleData() {
+        CircleShape circle = new CircleShape();
+        circle.setRadius((float) radius / SimulationManager.SCALE / 2);
+        parent.fixtureDef.shape = circle;
+    }
+
     private void updateValues() {
         ColorPicker picker = circlePropertyBuilder.getColorPicker("color");
+        TextField radiusTextField = circlePropertyBuilder.getTextField("radius");
+
         picker.valueProperty().setValue(color);
+        radiusTextField.setText(radius + "");
+
+        radiusTextField.setOnAction(event -> {
+            if (!radiusTextField.getText().isBlank()) {
+                radius = Float.parseFloat(radiusTextField.getText());
+                resetCircleData();
+            }
+        });
         picker.valueProperty().addListener((obs, oldVal, newVal) -> {
             color = newVal;
         });
