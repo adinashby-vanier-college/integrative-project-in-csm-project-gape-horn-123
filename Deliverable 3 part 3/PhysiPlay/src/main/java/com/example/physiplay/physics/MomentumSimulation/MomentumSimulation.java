@@ -1,4 +1,4 @@
-package main.java.com.example.physiplay.physics.MomentumSimulation;
+package com.example.physiplay.physics.MomentumSimulation;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,10 +13,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class MomentumSimulation {
-    private static final int BOX_X = 100;
-    private static final int BOX_Y = 50;
-    private static final int BOX_WIDTH = 300;
-    private static final int BOX_HEIGHT = 250;
+    private static final int BOX_X = 0;
+    private static final int BOX_Y = 0;
+    private static final int BOX_WIDTH = 400;
+    private static final int BOX_HEIGHT = 300;
     private static final int BALL_RADIUS = 15;
 
     private double dx1 = 3, dy1 = 3;

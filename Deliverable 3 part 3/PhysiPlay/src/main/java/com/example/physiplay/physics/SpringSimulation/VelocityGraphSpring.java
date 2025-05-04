@@ -1,4 +1,4 @@
-package main.java.com.example.physiplay.physics.SpringSimulation;
+package com.example.physiplay.physics.SpringSimulation;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;

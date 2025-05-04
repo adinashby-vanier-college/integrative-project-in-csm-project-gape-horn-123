@@ -2,6 +2,7 @@ module com.example.physiplay {
     requires javafx.controls;
     requires javafx.fxml;
     requires jbox2d.library;
+	requires javafx.graphics;
 
     opens com.example.physiplay to javafx.fxml;
     exports com.example.physiplay;

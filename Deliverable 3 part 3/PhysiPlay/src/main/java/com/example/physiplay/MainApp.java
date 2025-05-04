@@ -4,6 +4,7 @@ import com.example.physiplay.controllers.*;
 import com.example.physiplay.controllers.ScreenController;
 import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -30,7 +31,17 @@ public final class MainApp extends Application {
                 .addScreen("loginFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/loginPage.fxml"), new LoginController(stage, scene), "fr"))
                 .addScreen("registerEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language))
                 .addScreen("registerFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), "fr"))
-                .addScreen("playEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), physiplayController, "en"));
+                .addScreen("playEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), physiplayController, "en"))
+                .addScreen("physicsConceptsEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene), SettingsSingleton.getInstance().language));
+        
+        Parent root = ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene), SettingsSingleton.getInstance().language);
+        if (root == null) {
+            System.err.println("FXML failed to load!");
+        }
+        else {
+        	System.out.println("Root: "+root);
+        }
+
     }
 
     @Override

@@ -17,6 +17,8 @@ public class MainMenuController {
     Button exitButton;
     @FXML
     Button settingsButton;
+    @FXML
+    Button physicsConceptsButton;
 
     Stage stage;
     Scene scene;
@@ -33,6 +35,7 @@ public class MainMenuController {
         playButton.setOnAction(event -> switchScene("play", "/css/stylesheets.css"));
         instructionsButton.setOnAction(event -> switchScene("instructions", "/css/instructionsStylesheet.css"));
         settingsButton.setOnAction(event -> switchScene("settings", "/css/settingsStylesheet.css"));
+        physicsConceptsButton.setOnAction(event -> switchScene("physicsConcepts", "/css/stylesheets.css"));
         exitButton.setOnAction(event -> Platform.exit());
     }
 
