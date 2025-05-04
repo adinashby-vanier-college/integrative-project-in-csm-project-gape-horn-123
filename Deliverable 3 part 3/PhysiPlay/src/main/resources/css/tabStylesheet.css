@@ -4,6 +4,11 @@
     -fx-font-family: "Madimi One" !important;
     -fx-font-size: 20px !important;
 }
+
+.color-picker-label {
+    -fx-font-size: 15px !important;
+}
+
 .tab-pane {
     -fx-font-family: "Madimi One";
     -fx-font-size: 20px;

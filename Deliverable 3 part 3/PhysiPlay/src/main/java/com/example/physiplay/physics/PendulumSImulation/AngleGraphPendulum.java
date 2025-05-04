@@ -1,4 +1,4 @@
-package main.java.com.example.physiplay.physics.PendulumSImulation;
+package com.example.physiplay.physics.PendulumSImulation;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;

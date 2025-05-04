@@ -34,6 +34,14 @@ public class Rigidbody extends Component {
             .addNumberInputFieldProperty("friction", "Friction", new TextField())
             .addNumberInputFieldProperty("torque", "Torque", new TextField());
 
+    private void updateValues() {
+        Vector2Field initialVelocityField = rigidbodyComponentPropertyBuilder.getVector2Field("initialVelocity");
+        initialVelocityField.y.setOnAction(event -> {
+            if (!initialVelocityField.y.getText().isBlank()) {
+                parent.simulationObjectBodyDef.linearVelocity.y = Float.parseFloat(initialVelocityField.y.getText());
+            }
+        });
+    }
     @Override
     public void Start() {
         parent.simulationObjectBodyDef.type = isStatic ? BodyType.STATIC : BodyType.DYNAMIC;
@@ -42,6 +50,7 @@ public class Rigidbody extends Component {
 
         parent.fixtureDef.restitution = restitution;
         parent.fixtureDef.friction = friction;
+        updateValues();
         System.out.println("Rigidbody component activated!");
     }
 

@@ -2,14 +2,21 @@ package com.example.physiplay.components;
 
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
+import com.example.physiplay.widgets.Vector2Field;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TitledPane;
 import org.jbox2d.collision.shapes.PolygonShape;
 
+import java.util.Objects;
+
 public class RectangularRenderer extends Renderer {
     public Vector2 size = new Vector2(50, 50);
-
+    private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
+            .addLabelProperty("colorLabel", "Color", new Label())
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
+            .addVector2Property("size", "Size", new Vector2Field());
     @Override
     public void initializeShapeCollider() {
         PolygonShape box = new PolygonShape();
@@ -34,9 +41,8 @@ public class RectangularRenderer extends Renderer {
 
     @Override
     public void displayComponent() {
+        componentTab.getStyleClass().add(Objects.requireNonNull(getClass().getResource("/css/tabStylesheet.css")).toExternalForm());
         componentTab.setText("Rectangular Renderer");
-        Label label = new Label("In Progress");
-        label.setStyle("-fx-font-size: 20px");
-        componentTab.setContent(label);
+        componentTab.setContent(rectanglePropertyBuilder.getAllProperties());
     }
 }

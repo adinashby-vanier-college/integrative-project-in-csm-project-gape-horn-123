@@ -1,14 +1,17 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.singletons.SimulationManager;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.CircleShape;
+
+import java.util.Objects;
 
 public class CircleRenderer extends Renderer {
     public double radius = 10;
+    private ComponentPropertyBuilder circlePropertyBuilder = new ComponentPropertyBuilder()
+            .addLabelProperty("colorLabel", "Color", new Label())
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
+            .addNumberInputFieldProperty("radius", "Radius", new TextField());
     @Override
     public void initializeShapeCollider() {
         CircleShape circle = new CircleShape();
@@ -29,11 +32,12 @@ public class CircleRenderer extends Renderer {
         gc.restore();
     }
 
+
     @Override
     public void displayComponent() {
+        componentTab.getStyleClass().add(Objects.requireNonNull(getClass().getResource("/css/tabStylesheet.css")).toExternalForm());
         componentTab.setText("Circle Renderer");
-        Label label = new Label("In Progress");
-        label.setStyle("-fx-font-size: 20px");
-        componentTab.setContent(label);
+
+        componentTab.setContent(circlePropertyBuilder.getAllProperties());
     }
 }

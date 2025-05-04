@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -31,6 +32,10 @@ public class ComponentPropertyBuilder {
 
     public ComponentPropertyBuilder addColorPickerProperty(String propertyName, String text, ColorPicker picker) {
         picker.setPromptText(text);
+        picker.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        picker.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        picker.setMaxWidth(Region.USE_PREF_SIZE);
+        picker.setMaxHeight(Region.USE_PREF_SIZE);
         propertyMap.put(propertyName, picker);
         return this;
     }
