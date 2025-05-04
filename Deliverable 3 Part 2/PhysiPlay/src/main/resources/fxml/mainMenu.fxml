@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #749C75;" BorderPane.alignment="CENTER">
@@ -40,6 +39,11 @@
                <VBox.margin>
                   <Insets bottom="50.0" top="50.0" />
                </VBox.margin>
+            </Button>
+            <Button fx:id="physicsConceptsButton" minHeight="110.0" minWidth="690.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="690.0" style="-fx-background-radius: 100;  -fx-border-width: 1; -fx-border-radius: 100;" text="Physics Concepts" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="50.0" />
+               </font>
             </Button>
             <Button fx:id="exitButton" alignment="CENTER" minHeight="119.0" minWidth="345.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="345.0" style="-fx-background-radius: 100;  -fx-border-width: 1; -fx-border-radius: 100;" text="Exit" textAlignment="CENTER" textFill="WHITE">
                <font>

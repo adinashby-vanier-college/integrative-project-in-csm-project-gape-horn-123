@@ -13,7 +13,7 @@ public class SimpleHarmonicSineGraph extends Pane {
     private double time = 0;
     private AnimationTimer timer;
     private PendulumSimulation pendulumSimulation;
-    private com.example.physiplay.physicsconcepts.VelocityGraphSpring springSimulation;
+    private SpringSimulation springSimulation;
     private boolean isPendulum;
 
     public SimpleHarmonicSineGraph(PendulumSimulation pendulumSimulation) {
@@ -23,7 +23,7 @@ public class SimpleHarmonicSineGraph extends Pane {
         startAnimation();
     }
 
-    public SimpleHarmonicSineGraph(com.example.physiplay.physicsconcepts.VelocityGraphSpring springSimulation) {
+    public SimpleHarmonicSineGraph(SpringSimulation springSimulation) {
         this.springSimulation = springSimulation;
         this.isPendulum = false;
         initializeChart();
@@ -72,7 +72,7 @@ public class SimpleHarmonicSineGraph extends Pane {
                 if (isPendulum) {
                     value = Math.toDegrees(pendulumSimulation.getCurrentAngle()); // Pendulum angle in degrees
                 } else {
-                    value = com.example.physiplay.physicsconcepts.VelocityGraphSpring.MAX_DISPLACEMENT * Math.cos(com.example.physiplay.physicsconcepts.VelocityGraphSpring.OMEGA * time); // Spring displacement
+                    value = SpringSimulation.MAX_DISPLACEMENT * Math.cos(SpringSimulation.OMEGA * time); // Spring displacement
                 }
 
                 series.getData().add(new XYChart.Data<>(time, value));
