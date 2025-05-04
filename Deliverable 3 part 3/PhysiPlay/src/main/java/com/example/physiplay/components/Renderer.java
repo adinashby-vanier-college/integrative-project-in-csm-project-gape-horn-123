@@ -3,11 +3,13 @@ package com.example.physiplay.components;
 import com.example.physiplay.Component;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
+import com.google.gson.annotations.Expose;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import org.jbox2d.collision.shapes.PolygonShape;
 
 public abstract class Renderer extends Component {
+    @Expose
     public Color color = Color.rgb(255, 0, 0);
     public double mouseX = 0, mouseY = 0;
     protected GraphicsContext gc = SimulationManager.getInstance().gc;

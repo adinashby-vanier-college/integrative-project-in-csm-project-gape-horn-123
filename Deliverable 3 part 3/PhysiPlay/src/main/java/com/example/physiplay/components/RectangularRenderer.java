@@ -3,6 +3,7 @@ package com.example.physiplay.components;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.Vector2Field;
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -12,6 +13,7 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import java.util.Objects;
 
 public class RectangularRenderer extends Renderer {
+    @Expose
     public Vector2 size = new Vector2(50, 50);
     private ComponentPropertyBuilder rectanglePropertyBuilder = new ComponentPropertyBuilder()
             .addLabelProperty("colorLabel", "Color", new Label())

@@ -50,6 +50,7 @@ shadowJar {
 dependencies {
 
     implementation("org.jbox2d:jbox2d-library:2.2.1.1")
+    implementation("com.google.code.gson:gson:2.10.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

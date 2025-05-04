@@ -1,9 +1,14 @@
 package com.example.physiplay;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Objects;
 
-public class Vector2 {
+public class Vector2
+{
+    @Expose
     public double x;
+    @Expose
     public double y;
 
     public static Vector2 ZERO = new Vector2(0, 0);

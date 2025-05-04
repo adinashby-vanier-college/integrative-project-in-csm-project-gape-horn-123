@@ -1,26 +1,33 @@
 package com.example.physiplay;
 
 import com.example.physiplay.Component;
+import com.example.physiplay.components.Rigidbody;
 import com.example.physiplay.singletons.SimulationManager;
+import com.google.gson.annotations.Expose;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
-
 import java.util.*;
 
 public class SimulationObject {
+    @Expose
     public String name;
+    @Expose
     public String uuid;
+    @Expose
     public boolean isActive = true;
     public Body simulationObjectBody;
     public BodyDef simulationObjectBodyDef = new BodyDef();
     public FixtureDef fixtureDef = new FixtureDef();
-    private SimulationObject parent = null;
+    public SimulationObject parent = null;
+    @Expose
     public Vector2 position = new Vector2(0, 0);
+    @Expose
     public float angle = 0;
-    private Set<Component> components = new HashSet<>();
-    private List<SimulationObject> children = new ArrayList<>();
+    @Expose
+    public Set<Component> components = new HashSet<>();
+    public List<SimulationObject> children = new ArrayList<>();
 
     public SimulationObject(String name, Set<Component> createdComponents) {
         this.name = name;
@@ -37,7 +44,22 @@ public class SimulationObject {
         activateComponentRecursive(children);
     }
 
+    public void postDeserialize() {
+        if (this.fixtureDef == null) this.fixtureDef = new FixtureDef();
+        if (simulationObjectBodyDef == null) simulationObjectBodyDef = new BodyDef();
+        if (components == null) components = new HashSet<>();
+        if (children == null) children = new ArrayList<>();
+        Vector2 temp = position;
+        if (getComponent(Rigidbody.class) != null) {
+            position.x *= SimulationManager.SCALE;
+            position.y *= SimulationManager.SCALE;
+        }
+        setPosition(temp);
+        activateComponentRecursive(children);
+
+    }
     public void updateUUID() {
+        if (uuid != null) return;
         uuid = UUID.randomUUID().toString();
     }
 
@@ -49,6 +71,12 @@ public class SimulationObject {
         position = new Vector2(pos.x, pos.y);
         this.simulationObjectBodyDef.position.set(new Vec2((float) position.x / SimulationManager.SCALE,
                 (float) position.y / SimulationManager.SCALE));
+    }
+
+    public void setPositionBody(Vector2 pos) {
+        position = new Vector2(pos.x, pos.y);
+        this.simulationObjectBody.getPosition().set(new Vec2((float) position.x,
+                (float) position.y));
     }
 
     public Set<Component> getComponents() {

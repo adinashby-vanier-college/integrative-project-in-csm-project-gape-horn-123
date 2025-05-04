@@ -3,9 +3,12 @@ module com.example.physiplay {
     requires javafx.fxml;
     requires jbox2d.library;
 	requires javafx.graphics;
+    requires com.google.gson;
 
     opens com.example.physiplay to javafx.fxml;
     exports com.example.physiplay;
+    exports com.example.physiplay.components;
+    opens com.example.physiplay.components to com.google.gson;
     exports com.example.physiplay.controllers;
     opens com.example.physiplay.controllers to javafx.fxml;
 }

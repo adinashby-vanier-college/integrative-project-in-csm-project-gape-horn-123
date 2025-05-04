@@ -1,5 +1,6 @@
 package com.example.physiplay;
 
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;

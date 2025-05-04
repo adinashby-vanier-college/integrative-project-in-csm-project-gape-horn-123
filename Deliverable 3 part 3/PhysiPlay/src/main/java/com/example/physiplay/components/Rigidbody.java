@@ -5,6 +5,7 @@ import com.example.physiplay.SimulationObject;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.Vector2Field;
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -14,12 +15,19 @@ import org.jbox2d.dynamics.*;
 import java.util.Objects;
 
 public class Rigidbody extends Component {
+    @Expose
     public Vector2 velocity = Vector2.ZERO;
+    @Expose
     public boolean isStatic = false;
+    @Expose
     public boolean useGravity = false;
+    @Expose
     public float torque = 0f;
+    @Expose
     public float mass;
+    @Expose
     public float restitution;
+    @Expose
     public float friction;
     private boolean firstFrame = false;
 

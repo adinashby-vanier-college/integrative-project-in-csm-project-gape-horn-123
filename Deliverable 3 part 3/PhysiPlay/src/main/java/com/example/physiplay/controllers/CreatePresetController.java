@@ -280,8 +280,6 @@ public class CreatePresetController {
 
             presetFlowPane.getChildren().addAll(vBox);
 
-            /*TreeItem<String> preset = new TreeItem<>(presetName.getText());
-            hierarchyView.getRoot().getChildren().add(preset);*/
             
             presetWindow.hide();
         }

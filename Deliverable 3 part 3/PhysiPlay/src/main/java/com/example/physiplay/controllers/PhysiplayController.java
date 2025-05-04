@@ -1,9 +1,13 @@
 package com.example.physiplay.controllers;
 
-import com.example.physiplay.SimulationObject;
-import com.example.physiplay.Translation;
+import com.example.physiplay.*;
+import com.example.physiplay.components.*;
 import com.example.physiplay.singletons.SettingsSingleton;
 import com.example.physiplay.singletons.SimulationManager;
+import com.example.physiplay.widgets.MyTreeCell;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -23,11 +27,14 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.joints.Joint;
 
-import java.io.IOException;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.util.*;
 
 public class PhysiplayController {
@@ -95,15 +102,106 @@ public class PhysiplayController {
     MenuItem menuItemPolygonVisualizer;
     @FXML
     MenuItem menuItemFullScreen;
+
+    @FXML
+    MenuItem saveMenuItem;
+    @FXML
+    MenuItem loadMenuItem;
     @FXML
     MenuItem menuItemAbout;
 
+    RuntimeTypeAdapterFactory<Component> componentAdapter =
+            RuntimeTypeAdapterFactory.of(Component.class, "type")
+                    .registerSubtype(Rigidbody.class, "rigidbody")
+                    .registerSubtype(RectangularRenderer.class, "rectangularRenderer")
+                    .registerSubtype(CircleRenderer.class, "circleRenderer")
+                    .registerSubtype(RegularPolygonRenderer.class, "regularPolygonRenderer")
+                    .registerSubtype(PolygonRenderer.class, "polygonRenderer");
+
+    Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Color.class, new ColorAdapter())
+            .registerTypeAdapterFactory(componentAdapter)
+            .setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create();
 
     public PhysiplayController(Stage stage, Scene scene) {
         this.mainWindow = stage;
         this.scene = scene;
     }
 
+    private void saveFile() {
+        try (FileWriter writer = new FileWriter("myObj.data")) {
+            System.out.println(gson.toJson(SimulationManager.getInstance().simulationObjectList));
+            gson.toJson(SimulationManager.getInstance().simulationObjectList, writer);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+            stage.toFront();
+            alert.setTitle("Error");
+            alert.setHeaderText("Something went wrong, please try again");
+            alert.setContentText(e.toString());
+            alert.showAndWait();
+        }
+    }
+
+    private void destroyWorld() {
+        Joint joint = SimulationManager.getInstance().world.getJointList();
+        while (joint != null) {
+            Joint next = joint.getNext();
+            SimulationManager.getInstance().world.destroyJoint(joint);
+            joint = next;
+        }
+        Body body = SimulationManager.getInstance().world.getBodyList();
+        while (body != null) {
+            Body next = body.getNext();
+            SimulationManager.getInstance().world.destroyBody(next);
+            body = next;
+        }
+    }
+    private void loadFile() {
+        Type listType = new TypeToken<List<SimulationObject>>(){}.getType();
+        try (FileReader reader = new FileReader("myObj.data")) {
+            List<SimulationObject> loadedObjects = gson.fromJson(reader, listType);
+            // Clearing hierarchy inspector
+            Body body = SimulationManager.getInstance().world.getBodyList();
+            while (body != null) {
+                Body next = body.getNext();
+                SimulationManager.getInstance().world.destroyBody(body);
+                body = next;
+            }
+            SimulationManager.getInstance().simulationObjectList.clear();
+            SimulationManager.getInstance().dataMap.clear();
+            hierarchyView.getRoot().getChildren().clear();
+            tabPane.getTabs().clear();
+
+            for (SimulationObject object : loadedObjects) {
+                object.postDeserialize();
+                final String id = object.name + " (" + object.uuid + ")";
+                hierarchyView.getRoot().getChildren().add(new TreeItem<>(id));
+                SimulationManager.getInstance().dataMap.put(id, object);
+                hierarchyView.setCellFactory(tv -> new MyTreeCell(SimulationManager.getInstance().dataMap, tabPane));
+            }
+
+            SimulationManager.getInstance().simulationObjectList.clear();
+            SimulationManager.getInstance().simulationObjectList.addAll(loadedObjects);
+
+        }
+        catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+            stage.toFront();
+            alert.setTitle("Error");
+            alert.setHeaderText("Something went wrong, please try again");
+            alert.setContentText(e.toString());
+            alert.showAndWait();
+        }
+    }
     private void handleMenuItems() {
         checkMenuItemCanvasView.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
             borderPane.getLeft().setManaged(!newValue);
@@ -144,6 +242,10 @@ public class PhysiplayController {
             SimulationManager.getInstance().scaleX = 1;
             SimulationManager.getInstance().scaleY = 1;
         });
+
+        saveMenuItem.setOnAction(event -> saveFile());
+
+        loadMenuItem.setOnAction(event -> loadFile());
     }
     public void initialize() {
         SimulationManager.getInstance().canvas = canvas;

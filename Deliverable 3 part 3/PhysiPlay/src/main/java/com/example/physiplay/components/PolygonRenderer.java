@@ -3,6 +3,7 @@ package com.example.physiplay.components;
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
 import com.example.physiplay.widgets.ComponentSelector;
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -10,6 +11,7 @@ import org.jbox2d.common.Vec2;
 import java.util.*;
 
 public class PolygonRenderer extends Renderer {
+    @Expose
     public List<Vector2> positions = new ArrayList<>();
 
     private ComponentPropertyBuilder polygonPropertyBuilder = new ComponentPropertyBuilder()

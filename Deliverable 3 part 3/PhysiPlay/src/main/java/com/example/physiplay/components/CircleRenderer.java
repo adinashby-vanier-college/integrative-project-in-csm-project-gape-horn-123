@@ -1,12 +1,14 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.singletons.SimulationManager;
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.CircleShape;
 
 import java.util.Objects;
 
 public class CircleRenderer extends Renderer {
+    @Expose
     public double radius = 10;
     private ComponentPropertyBuilder circlePropertyBuilder = new ComponentPropertyBuilder()
             .addLabelProperty("colorLabel", "Color", new Label())

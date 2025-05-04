@@ -1,6 +1,7 @@
 package com.example.physiplay.components;
 
 import com.example.physiplay.singletons.SimulationManager;
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -8,7 +9,9 @@ import org.jbox2d.common.Vec2;
 import java.util.Objects;
 
 public class RegularPolygonRenderer extends Renderer {
+    @Expose
     public int sides = 6;
+    @Expose
     public float size = 80;
 
     private ComponentPropertyBuilder regularPolygonPropertyBuilder = new ComponentPropertyBuilder()
