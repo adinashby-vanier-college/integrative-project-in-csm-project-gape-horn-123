@@ -34,8 +34,29 @@ public class Rigidbody extends Component {
             .addNumberInputFieldProperty("friction", "Friction", new TextField())
             .addNumberInputFieldProperty("torque", "Torque", new TextField());
 
+    private void resetParameters() {
+        parent.simulationObjectBody.setAwake(true);
+        parent.simulationObjectBody.setSleepingAllowed(false);
+        parent.simulationObjectBody.applyAngularImpulse(torque * parent.simulationObjectBody.getInertia());
+        parent.simulationObjectBody.setLinearVelocity(new Vec2((float) velocity.x, (float) velocity.y));
+    }
     private void updateValues() {
+        CheckBox isStaticCheckbox = rigidbodyComponentPropertyBuilder.getCheckBox("isStatic"),
+        useGravityCheckbox = rigidbodyComponentPropertyBuilder.getCheckBox("useGravity");
         Vector2Field initialVelocityField = rigidbodyComponentPropertyBuilder.getVector2Field("initialVelocity");
+
+        isStaticCheckbox.setSelected(parent.simulationObjectBody.getType() == BodyType.STATIC);
+        useGravityCheckbox.setSelected(useGravity);
+
+        isStaticCheckbox.selectedProperty().addListener((obs, oldValue, newValue) -> {
+            parent.simulationObjectBody.setType(newValue ? BodyType.STATIC : BodyType.DYNAMIC);
+            resetParameters();
+        });
+        useGravityCheckbox.selectedProperty().addListener((obs, oldValue, newValue) -> {
+            useGravity = newValue;
+            parent.simulationObjectBody.setGravityScale(useGravity ? 1 : 0);
+            resetParameters();
+        });
         initialVelocityField.y.setOnAction(event -> {
             if (!initialVelocityField.y.getText().isBlank()) {
                 parent.simulationObjectBodyDef.linearVelocity.y = Float.parseFloat(initialVelocityField.y.getText());
@@ -50,17 +71,14 @@ public class Rigidbody extends Component {
 
         parent.fixtureDef.restitution = restitution;
         parent.fixtureDef.friction = friction;
-        updateValues();
         System.out.println("Rigidbody component activated!");
     }
 
     @Override
     public void Use() {
         if (!firstFrame) {
-            parent.simulationObjectBody.setAwake(true);
-            parent.simulationObjectBody.setSleepingAllowed(false);
-            parent.simulationObjectBody.applyAngularImpulse(torque * parent.simulationObjectBody.getInertia());
-            parent.simulationObjectBody.setLinearVelocity(new Vec2((float) velocity.x, (float) velocity.y));
+            resetParameters();
+            updateValues();
             firstFrame = true;
         }
         parent.simulationObjectBody.setLinearDamping(0);
