@@ -1,6 +1,6 @@
 package com.example.physiplay;
 
-import com.example.physiplay.singletons.SettingsSingleton;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -17,7 +17,7 @@ public class Translation {
         this.langCode = langCode;
     }
 
-    public void translate(ArrayList<Label> labelArraylist, ArrayList<Menu> menuArrayList, ArrayList<MenuItem> menuItemArrayList){
+    public void translate(ArrayList<Label> labelArraylist, ArrayList<Menu> menuArrayList, ArrayList<MenuItem> menuItemArrayList, ArrayList<CheckMenuItem> checkMenuItemArrayList){
         Locale locale = new Locale(langCode);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
         for (int i = 0; i < labelArraylist.size(); i++) {
@@ -27,8 +27,12 @@ public class Translation {
             menuArrayList.get(i).setText(bundle.getString("menu." + menuArrayList.get(i).getId().substring(4).toLowerCase()));
         }
         for (int i = 0; i < menuItemArrayList.size(); i++) {
-            menuItemArrayList.get(i).setText(bundle.getString("menuItem.") + menuItemArrayList.get(i).getId().substring(8).toLowerCase());
+            menuItemArrayList.get(i).setText(bundle.getString("menuItem." + menuItemArrayList.get(i).getId().substring(8).toLowerCase()));
         }
+        /*for (int i = 0; i < checkMenuItemArrayList.size(); i++) {
+            //checkMenuItemArrayList.getFirst().setText("FENCH");
+            //checkMenuItemArrayList.get(i).setText(bundle.getString("checkMenuItem.canvasview"));
+        }*/
 
     }
 

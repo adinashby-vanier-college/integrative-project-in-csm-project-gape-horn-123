@@ -88,7 +88,7 @@
                         <Menu fx:id="menuCameraReset" mnemonicParsing="false" text="menuCameraReset">
                           <items>
                             <MenuItem fx:id="menuItemPositionCamReset" mnemonicParsing="false" text="Position" />
-                              <MenuItem fx:id="menuItemScaleCamReset" mnemonicParsing="false" text="Scale" />
+                              <MenuItem fx:id="menuItemScale" mnemonicParsing="false" text="Scale" />
                           </items>
                         </Menu>
                         <CheckMenuItem fx:id="checkMenuItemCanvasView" mnemonicParsing="false" text="Canvas View" />

@@ -74,7 +74,7 @@ public class PhysiplayController {
     @FXML
     MenuItem menuItemPositionCamReset;
     @FXML
-    MenuItem menuItemScaleCamReset;
+    MenuItem menuItemScale;
     @FXML
     MenuItem menuItemNew;
     @FXML
@@ -135,7 +135,7 @@ public class PhysiplayController {
             SimulationManager.getInstance().camY = 0;
         });
 
-        menuItemScaleCamReset.setOnAction(event -> {
+        menuItemScale.setOnAction(event -> {
             SimulationManager.getInstance().scaleX = 1;
             SimulationManager.getInstance().scaleY = 1;
         });
@@ -289,6 +289,7 @@ public class PhysiplayController {
         ArrayList<Label> labelArrayList = new ArrayList<>();
         ArrayList<Menu> menuArrayList = new ArrayList<>();
         ArrayList<MenuItem> menuItemArrayList = new ArrayList<>();
+        ArrayList<CheckMenuItem> checkMenuItemArrayList = new ArrayList<>();
         labelArrayList.add(labelPresets);
         menuArrayList.add(menuFile);
         menuArrayList.add(menuEdit);
@@ -301,9 +302,11 @@ public class PhysiplayController {
         menuItemArrayList.add(menuItemClose);
         menuItemArrayList.add(menuItemClear);
         menuItemArrayList.add(menuItemSettings);
+        menuItemArrayList.add(menuItemScale);
+        //checkMenuItemArrayList.add(checkMenuItemCanvasView);
 
         Translation translation = new Translation(SettingsSingleton.getInstance().language);
-        translation.translate(labelArrayList, menuArrayList, menuItemArrayList);
+        translation.translate(labelArrayList, menuArrayList, menuItemArrayList, checkMenuItemArrayList);
     }
 
 }
