@@ -153,6 +153,6 @@ public class Rigidbody extends Component {
 
     @Override
     public void Remove() {
-
+        SimulationManager.getInstance().world.destroyBody(parent.simulationObjectBody);
     }
 }

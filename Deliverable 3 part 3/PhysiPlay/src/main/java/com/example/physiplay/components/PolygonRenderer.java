@@ -52,6 +52,9 @@ public class PolygonRenderer extends Renderer {
             List<Vector2> list = ComponentSelector.parseVector2List(positionsTextField.getText());
             if (!list.isEmpty()) {
                 positions = new ArrayList<>(list);
+                PolygonShape shape = new PolygonShape();
+                shape.set(getVerticesOfPolygon(), positions.size());
+                parent.simulationObjectBody.getFixtureList().m_shape = shape;
             }
         });
         picker.valueProperty().addListener((obs, oldVal, newVal) -> {
