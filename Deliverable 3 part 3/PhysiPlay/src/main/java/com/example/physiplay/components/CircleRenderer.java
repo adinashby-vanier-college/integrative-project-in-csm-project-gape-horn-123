@@ -36,7 +36,9 @@ public class CircleRenderer extends Renderer {
         radiusTextField.setOnAction(event -> {
             if (!radiusTextField.getText().isBlank()) {
                 radius = Float.parseFloat(radiusTextField.getText());
-                resetCircleData();
+                CircleShape circle = new CircleShape();
+                circle.setRadius((float) radius / SimulationManager.SCALE / 2);
+                parent.simulationObjectBody.getFixtureList().m_shape = circle;
             }
         });
         picker.valueProperty().addListener((obs, oldVal, newVal) -> {

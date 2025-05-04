@@ -39,14 +39,18 @@ public class RectangularRenderer extends Renderer {
         sizeField.x.setOnAction(event -> {
             if (!sizeField.x.getText().isBlank()) {
                 size.x = Float.parseFloat(sizeField.x.getText());
-                resizeRectangle();
+                PolygonShape box = new PolygonShape();
+                box.setAsBox((float) size.x / SimulationManager.SCALE / 2, (float) size.y / SimulationManager.SCALE / 2);
+                parent.simulationObjectBody.getFixtureList().m_shape = box;
             }
         });
 
         sizeField.y.setOnAction(event -> {
             if (!sizeField.y.getText().isBlank()) {
                 size.y = Float.parseFloat(sizeField.y.getText());
-                resizeRectangle();
+                PolygonShape box = new PolygonShape();
+                box.setAsBox((float) size.x / SimulationManager.SCALE / 2, (float) size.y / SimulationManager.SCALE / 2);
+                parent.simulationObjectBody.getFixtureList().m_shape = box;
             }
         });
 
