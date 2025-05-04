@@ -66,7 +66,7 @@ public class VinithDebController {
     }
 	
 	public void initialize() {
-		Platform.runLater(() -> {// 🥀🥀 ts pmo
+		Platform.runLater(() -> {
 			borderPane.setCenter(getMomentumSimulation());
         });
 		
