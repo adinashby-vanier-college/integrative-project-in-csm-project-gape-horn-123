@@ -306,9 +306,9 @@ public class PhysiplayController {
         menuItemArrayList.add(menuItemClear);
         menuItemArrayList.add(menuItemSettings);
         menuItemArrayList.add(menuItemScale);
-        //menuItemArrayList.add(menuItemPolygonVisualizer);
-        //menuItemArrayList.add(menuItemFullScreen);
-        //menuItemArrayList.add(menuItemHomeScreen);
+        menuItemArrayList.add(menuItemPolygonVisualizer);
+        menuItemArrayList.add(menuItemFullScreen);
+        menuItemArrayList.add(menuItemHomeScreen);
         checkMenuItemArrayList.add(checkMenuItemCanvasView);
 
         Translation translation = new Translation(SettingsSingleton.getInstance().language);
