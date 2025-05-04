@@ -8,7 +8,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
-public class VelocityGraphPendulum extends Pane {
+public class VelocityGraphPendulum extends Pane implements StartStopControllable{
     private static final int MAX_POINTS = 1000;
     private static final double WINDOW_SIZE = 10;
 

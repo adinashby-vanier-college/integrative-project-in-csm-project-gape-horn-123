@@ -12,7 +12,7 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 
 
-public class Pendulum extends Pane {
+public class Pendulum extends Pane implements StartStopControllable{
     private static final double WIDTH = 600;
     private static final double HEIGHT = 500;
 
@@ -162,12 +162,14 @@ public class Pendulum extends Pane {
         return time;
     }
 
-    public void pause() {
+    @Override
+	public void pause() {
         timer.stop();
         running = false;
     }
 
-    public void play() {
+    @Override
+	public void play() {
         lastTime = 0;
         timer.start();
         running = true;

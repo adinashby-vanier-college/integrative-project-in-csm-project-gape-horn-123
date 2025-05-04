@@ -6,6 +6,7 @@ import com.example.physiplay.physics.MomentumSimulation.MomentumSimulation;
 import com.example.physiplay.physics.PendulumSImulation.AccelerationGraphPendulum;
 import com.example.physiplay.physics.PendulumSImulation.AngleGraphPendulum;
 import com.example.physiplay.physics.PendulumSImulation.Pendulum;
+import com.example.physiplay.physics.PendulumSImulation.StartStopControllable;
 import com.example.physiplay.physics.PendulumSImulation.VelocityGraphPendulum;
 import com.example.physiplay.physics.SpringSimulation.AccelerationGraphSpring;
 import com.example.physiplay.physics.SpringSimulation.PositionGraphSpring;
@@ -22,13 +23,16 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class VinithDebController {
@@ -118,19 +122,52 @@ public class VinithDebController {
 		vBox.setAlignment(Pos.CENTER);
 		ObservableList<Node> vboxChildren = vBox.getChildren();
 		
-		Pane simulation = springSimulation;
+		Spring simulation = springSimulation;
 		standardize(simulation);
-		Pane accelerationGraphSpring = new AccelerationGraphSpring(springSimulation);
-		standardize(accelerationGraphSpring);
-		Pane positionGraphSpring = new PositionGraphSpring(springSimulation);
+		PositionGraphSpring positionGraphSpring = new PositionGraphSpring(springSimulation);
 		standardize(positionGraphSpring);
-		Pane velocityGraphSpring = new VelocityGraphSpring(springSimulation);
+		VelocityGraphSpring velocityGraphSpring = new VelocityGraphSpring(springSimulation);
 		standardize(velocityGraphSpring);
+		AccelerationGraphSpring accelerationGraphSpring = new AccelerationGraphSpring(springSimulation);
+		standardize(accelerationGraphSpring);
+		VBox startStopControls = makeStartStopController(simulation, positionGraphSpring, velocityGraphSpring, accelerationGraphSpring);
+		standardize(startStopControls);
 		
-		vboxChildren.addAll(positionGraphSpring, velocityGraphSpring, accelerationGraphSpring);
+		vboxChildren.addAll(positionGraphSpring, velocityGraphSpring, accelerationGraphSpring, startStopControls);
 		hBoxChildren.addAll(simulation, vBox);
 		
 		return hBox;
+	}
+
+	private VBox makeStartStopController(StartStopControllable... controllables) {
+		// TODO Auto-generated method stub
+		VBox controls = new VBox();
+		controls.setSpacing(10);
+		controls.setAlignment(Pos.CENTER);
+		ObservableList<Node> controlsChildren = controls.getChildren();
+		
+		Button playButton = new Button();
+		makeButton(playButton, event -> {
+			for (StartStopControllable controllable : controllables) {
+				controllable.play();
+			}
+		}, "Play Simulation");
+		
+		Button pauseButton = new Button();
+		makeButton(pauseButton, event -> {
+			for (StartStopControllable controllable : controllables) {
+				controllable.pause();
+			}
+		}, "Pause Simulation");
+		
+		controlsChildren.addAll(playButton, pauseButton);
+		return controls;
+	}
+
+	private void makeButton(Button button, EventHandler<ActionEvent> eventHandler, String text) {
+		button.setText(text);
+		standardize(button);
+		button.setOnAction(eventHandler);
 	}
 
 	private Node getPendulumSimulation() {
@@ -153,8 +190,10 @@ public class VinithDebController {
 		standardize(velocityGraphPendulum);
 		AccelerationGraphPendulum accelerationGraphPendulum = new AccelerationGraphPendulum(simulation);
 		standardize(accelerationGraphPendulum);
+		VBox startStopControls = makeStartStopController(simulation, angleGraphPendulum, velocityGraphPendulum, accelerationGraphPendulum);
+		standardize(startStopControls);
 		
-		vboxChildren.addAll(angleGraphPendulum, velocityGraphPendulum, accelerationGraphPendulum);
+		vboxChildren.addAll(angleGraphPendulum, velocityGraphPendulum, accelerationGraphPendulum, startStopControls);
 		hBoxChildren.addAll(simulation, vBox);
 		
 		return hBox;
@@ -180,19 +219,25 @@ public class VinithDebController {
 	}
 
 	private void standardize(Region region) {
-		applyStyleToHierarchy(region, "-fx-font-size: 20;");
+//		applyStyleToHierarchy(region, "-fx-font-size: 20;");
 		region.setMinSize(region.getPrefWidth(), region.getPrefHeight());
 		region.setMaxSize(region.getPrefWidth(), region.getPrefHeight());
 	}
 
 	private void applyStyleToHierarchy(Parent start, String style) {
-		// TODO Auto-generated method stub
-		for (Node node : start.getChildrenUnmodifiable()) {
-			node.setStyle(style);
-			if (node instanceof Parent) {
-				applyStyleToHierarchy((Parent) node, style);
-			}
-		}
+	    for (Node node : start.getChildrenUnmodifiable()) {
+	        // Skip nodes that are part of the chart's plot content (data points)
+	        if (node.getStyleClass().contains("chart-line-symbol") || node.getStyleClass().contains("chart-symbol")) {
+	            continue;
+	        }
+	        // Apply style to LineChart (for title, axes) and text-based nodes
+	        if (node instanceof LineChart || node instanceof Label || node instanceof Text || node instanceof Button) {
+	            node.setStyle(style);
+	        }
+	        if (node instanceof Parent) {
+	            applyStyleToHierarchy((Parent) node, style);
+	        }
+	    }
 	}
 
 }

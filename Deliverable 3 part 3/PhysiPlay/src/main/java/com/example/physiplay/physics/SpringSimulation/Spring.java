@@ -1,5 +1,7 @@
 package com.example.physiplay.physics.SpringSimulation;
 
+import com.example.physiplay.physics.PendulumSImulation.StartStopControllable;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -9,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
 
-public class Spring extends Pane {
+public class Spring extends Pane implements StartStopControllable{
     private static final double WIDTH = 600;
     private static final double HEIGHT = 500;
     private static final double ANCHOR_X = WIDTH / 2;
@@ -119,11 +121,13 @@ public class Spring extends Pane {
         spring.getPoints().addAll(ANCHOR_X, endY);
     }
 
+    @Override
     public void pause() {
         timer.stop();
         running = false;
     }
-
+    
+    @Override
     public void play() {
         lastTime = 0;
         timer.start();
