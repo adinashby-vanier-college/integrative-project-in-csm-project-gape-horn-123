@@ -95,6 +95,8 @@ public class PhysiplayController {
     MenuItem menuItemPolygonVisualizer;
     @FXML
     MenuItem menuItemFullScreen;
+    @FXML
+    MenuItem menuItemAbout;
 
 
     public PhysiplayController(Stage stage, Scene scene) {
@@ -309,6 +311,7 @@ public class PhysiplayController {
         menuItemArrayList.add(menuItemPolygonVisualizer);
         menuItemArrayList.add(menuItemFullScreen);
         menuItemArrayList.add(menuItemHomeScreen);
+        menuItemArrayList.add(menuItemAbout);
         checkMenuItemArrayList.add(checkMenuItemCanvasView);
 
         Translation translation = new Translation(SettingsSingleton.getInstance().language);
