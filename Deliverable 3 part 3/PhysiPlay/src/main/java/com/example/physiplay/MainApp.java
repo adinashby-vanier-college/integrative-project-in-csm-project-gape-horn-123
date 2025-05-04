@@ -32,11 +32,11 @@ public final class MainApp extends Application {
                 .addScreen("registerEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), SettingsSingleton.getInstance().language))
                 .addScreen("registerFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/registerPage.fxml"), new RegisterPageController(stage, scene), "fr"))
                 .addScreen("playEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physiplay.fxml"), physiplayController, "en"))
-                .addScreen("physicsConceptsEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene), SettingsSingleton.getInstance().language))
-                .addScreen("physicsConceptsFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene), "fr"));
+                .addScreen("physicsConceptsEN", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene, "en"), SettingsSingleton.getInstance().language))
+                .addScreen("physicsConceptsFR", ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene, "fr"), "fr"));
         ;
         
-        Parent root = ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene), SettingsSingleton.getInstance().language);
+        Parent root = ScreenController.getInstance().getRootPane(getClass().getResource("/fxml/physicsConcepts.fxml"), new VinithDebController(stage, scene, "en"), SettingsSingleton.getInstance().language);
         if (root == null) {
             System.err.println("FXML failed to load!");
         }

@@ -1,6 +1,8 @@
 package com.example.physiplay.controllers;
 
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import com.example.physiplay.physics.MomentumSimulation.MomentumSimulation;
 import com.example.physiplay.physics.PendulumSImulation.AccelerationGraphPendulum;
@@ -59,13 +61,22 @@ public class VinithDebController {
 
 	//tracker
 	String current_scene = "momentumSimulation";
+
+	//Language
+	String langCode;
+	Locale locale;
+	ResourceBundle bundle;
 	
-	public VinithDebController(Stage stage, Scene scene){
+	public VinithDebController(Stage stage, Scene scene, String langCode){
         this.mainWindow = stage;
         this.scene = scene;
+		this.langCode = langCode;
+		this.locale = new Locale(langCode);
+		this.bundle = ResourceBundle.getBundle("languages.messages", this.locale);
     }
 	
 	public void initialize() {
+		//VERY IMPORTANT
 		Platform.runLater(() -> {
 			borderPane.setCenter(getMomentumSimulation());
         });
@@ -151,8 +162,8 @@ public class VinithDebController {
 			for (StartStopControllable controllable : controllables) {
 				controllable.play();
 			}
-		}, "Play Simulation");
-		
+		}, "Start Simulation");
+
 		Button pauseButton = new Button();
 		makeButton(pauseButton, event -> {
 			for (StartStopControllable controllable : controllables) {
