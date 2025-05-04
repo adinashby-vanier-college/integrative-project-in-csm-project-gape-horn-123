@@ -1,5 +1,7 @@
 package com.example.physiplay.controllers;
 
+import java.util.Objects;
+
 import com.example.physiplay.physics.MomentumSimulation.MomentumSimulation;
 import com.example.physiplay.physics.PendulumSImulation.AccelerationGraphPendulum;
 import com.example.physiplay.physics.PendulumSImulation.AngleGraphPendulum;
@@ -9,6 +11,7 @@ import com.example.physiplay.physics.SpringSimulation.AccelerationGraphSpring;
 import com.example.physiplay.physics.SpringSimulation.PositionGraphSpring;
 import com.example.physiplay.physics.SpringSimulation.Spring;
 import com.example.physiplay.physics.SpringSimulation.VelocityGraphSpring;
+import com.example.physiplay.singletons.SettingsSingleton;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -63,10 +66,19 @@ public class VinithDebController {
 			borderPane.setCenter(getMomentumSimulation());
         });
 		
-		backButton.setOnAction(event -> ScreenController.getInstance().activate("mainMenu", "/css/stylesheets.css"));
+		backButton.setOnAction(goBackToMain());
 		momentumButton.setOnAction(goToSimulation("momentumSimulation"));
 		pendulumButton.setOnAction(goToSimulation("pendulumSimulation"));
 		springButton.setOnAction(goToSimulation("springSimulation"));
+	}
+
+	private EventHandler<ActionEvent> goBackToMain() {
+		// TODO Auto-generated method stub
+		return event -> {
+	        scene.getStylesheets().clear();
+	        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
+	        ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
+		};
 	}
 
 	private EventHandler<ActionEvent> goToSimulation(String simulationName) {
