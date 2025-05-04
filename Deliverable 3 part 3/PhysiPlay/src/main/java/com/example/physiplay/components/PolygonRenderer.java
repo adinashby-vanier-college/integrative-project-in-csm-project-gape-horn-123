@@ -2,6 +2,7 @@ package com.example.physiplay.components;
 
 import com.example.physiplay.Vector2;
 import com.example.physiplay.singletons.SimulationManager;
+import com.example.physiplay.widgets.ComponentSelector;
 import javafx.scene.control.*;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -13,9 +14,17 @@ public class PolygonRenderer extends Renderer {
 
     private ComponentPropertyBuilder polygonPropertyBuilder = new ComponentPropertyBuilder()
             .addLabelProperty("colorLabel", "Color", new Label())
-            .addColorPickerProperty("color", "Choose color:", new ColorPicker());
-            /*.addTextFieldProperty("positions", "Enter positions:", new TextField())
-            .addLabelProperty("notsure", "Not sure? Go to Window -> Polygon Visualizer", new Label());*/
+            .addColorPickerProperty("color", "Choose color:", new ColorPicker())
+            .addTextFieldProperty("positions", "Enter positions:", new TextField())
+            .addLabelProperty("notsure", "Not sure? Go to Window -> Polygon Visualizer", new Label());
+
+    private String getPositionString() {
+        StringBuilder sb = new StringBuilder();
+        for (Vector2 position: positions) {
+            sb.append("(").append(position.x).append(" ").append(position.y).append(") ");
+        }
+        return sb.toString();
+    }
     @Override
     public void initializeShapeCollider() {
         PolygonShape shape = new PolygonShape();
@@ -34,7 +43,17 @@ public class PolygonRenderer extends Renderer {
 
     private void updateValues() {
         ColorPicker picker = polygonPropertyBuilder.getColorPicker("color");
+        TextField positionsTextField = polygonPropertyBuilder.getTextField("positions");
+
+        positionsTextField.setText(getPositionString());
         picker.valueProperty().setValue(color);
+
+        positionsTextField.setOnAction(event -> {
+            List<Vector2> list = ComponentSelector.parseVector2List(positionsTextField.getText());
+            if (!list.isEmpty()) {
+                positions = new ArrayList<>(list);
+            }
+        });
         picker.valueProperty().addListener((obs, oldVal, newVal) -> {
             color = newVal;
         });

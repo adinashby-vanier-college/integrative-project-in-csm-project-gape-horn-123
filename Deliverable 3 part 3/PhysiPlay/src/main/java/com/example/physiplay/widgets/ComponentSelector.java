@@ -49,7 +49,7 @@ public class ComponentSelector {
         return Float.parseFloat(s.isBlank() ? "0" : s);
     }
 
-    private static List<Vector2> parseVector2List(String input)  {
+    public static List<Vector2> parseVector2List(String input)  {
         List<Vector2> vectors = new ArrayList<>();
         Pattern pattern = Pattern.compile("\\((\\d+(?:\\.\\d+)?)\\s+(\\d+(?:\\.\\d+)?)\\)");
         Matcher matcher = pattern.matcher(input);
