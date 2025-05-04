@@ -17,8 +17,16 @@ public class CircleRenderer extends Renderer {
         CircleShape circle = new CircleShape();
         circle.setRadius((float) radius / SimulationManager.SCALE / 2);
         parent.fixtureDef.shape = circle;
+        updateValues();
     }
 
+    private void updateValues() {
+        ColorPicker picker = circlePropertyBuilder.getColorPicker("color");
+        picker.valueProperty().setValue(color);
+        picker.valueProperty().addListener((obs, oldVal, newVal) -> {
+            color = newVal;
+        });
+    }
     @Override
     public void drawShape() {
         gc.fillOval(-radius / 2, -radius / 2, radius, radius);

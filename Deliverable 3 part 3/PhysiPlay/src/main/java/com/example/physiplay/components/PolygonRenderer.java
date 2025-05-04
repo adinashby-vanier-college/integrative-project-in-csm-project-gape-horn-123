@@ -18,7 +18,6 @@ public class PolygonRenderer extends Renderer {
         shape.set(getVerticesOfPolygon(), positions.size());
         parent.fixtureDef.shape = shape;
     }
-
     private Vec2[] getVerticesOfPolygon() {
         Vec2[] points = new Vec2[positions.size()];
         for (int i = 0 ; i < positions.size(); i++) {

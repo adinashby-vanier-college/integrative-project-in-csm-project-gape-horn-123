@@ -2,7 +2,9 @@ package com.example.physiplay.components;
 
 import com.example.physiplay.NumberOnlyTextField;
 import com.example.physiplay.widgets.Vector2Field;
+import javafx.application.Platform;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;

@@ -22,8 +22,16 @@ public class RectangularRenderer extends Renderer {
         PolygonShape box = new PolygonShape();
         box.setAsBox((float) size.x / SimulationManager.SCALE / 2, (float) size.y / SimulationManager.SCALE / 2);
         parent.fixtureDef.shape = box;
+        updateValues();
     }
 
+    private void updateValues() {
+        ColorPicker picker = rectanglePropertyBuilder.getColorPicker("color");
+        picker.valueProperty().setValue(color);
+        picker.valueProperty().addListener((obs, oldVal, newVal) -> {
+            color = newVal;
+        });
+    }
     @Override
     public void drawShape() {
         gc.fillRect(-size.x / 2, - size.y / 2,

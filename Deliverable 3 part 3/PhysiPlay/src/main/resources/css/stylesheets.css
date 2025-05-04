@@ -39,6 +39,9 @@
     -fx-background-color: #D5C9DF;
 }
 
+.color-picker .label {
+    -fx-font-size: 20px;
+}
 
 .menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
     -fx-background: black ;
