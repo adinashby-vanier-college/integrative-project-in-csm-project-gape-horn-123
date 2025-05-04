@@ -90,9 +90,12 @@ public class PhysiplayController {
     @FXML
     MenuItem menuItemClose;
     @FXML
-    MenuItem menuItemHome;
+    MenuItem menuItemHomeScreen;
     @FXML
-    MenuItem polygonVisualizerMenuItem;
+    MenuItem menuItemPolygonVisualizer;
+    @FXML
+    MenuItem menuItemFullScreen;
+
 
     public PhysiplayController(Stage stage, Scene scene) {
         this.mainWindow = stage;
@@ -150,11 +153,11 @@ public class PhysiplayController {
         presetFlowPane.setVgap(20);
 
         createPresetButton.setOnAction(event -> createPresetWindow());
-        polygonVisualizerMenuItem.setOnAction(event -> createPolygonVisualizerWindow());
+        menuItemPolygonVisualizer.setOnAction(event -> createPolygonVisualizerWindow());
 
         menuItemClose.setOnAction(event -> displayClosingAlertBox());
 
-        menuItemHome.setOnAction(event -> returnToMainMenu());
+        menuItemHomeScreen.setOnAction(event -> returnToMainMenu());
 
         TreeItem<String> rootItem = new TreeItem<>("SampleScene");
         rootItem.setExpanded(true);
@@ -303,7 +306,10 @@ public class PhysiplayController {
         menuItemArrayList.add(menuItemClear);
         menuItemArrayList.add(menuItemSettings);
         menuItemArrayList.add(menuItemScale);
-        //checkMenuItemArrayList.add(checkMenuItemCanvasView);
+        //menuItemArrayList.add(menuItemPolygonVisualizer);
+        //menuItemArrayList.add(menuItemFullScreen);
+        //menuItemArrayList.add(menuItemHomeScreen);
+        checkMenuItemArrayList.add(checkMenuItemCanvasView);
 
         Translation translation = new Translation(SettingsSingleton.getInstance().language);
         translation.translate(labelArrayList, menuArrayList, menuItemArrayList, checkMenuItemArrayList);

@@ -29,10 +29,9 @@ public class Translation {
         for (int i = 0; i < menuItemArrayList.size(); i++) {
             menuItemArrayList.get(i).setText(bundle.getString("menuItem." + menuItemArrayList.get(i).getId().substring(8).toLowerCase()));
         }
-        /*for (int i = 0; i < checkMenuItemArrayList.size(); i++) {
-            //checkMenuItemArrayList.getFirst().setText("FENCH");
-            //checkMenuItemArrayList.get(i).setText(bundle.getString("checkMenuItem.canvasview"));
-        }*/
+        for (int i = 0; i < checkMenuItemArrayList.size(); i++) {
+            checkMenuItemArrayList.get(i).setText(bundle.getString("checkMenuItem." + checkMenuItemArrayList.get(i).getId().substring(13).toLowerCase()));
+        }
 
     }
 
