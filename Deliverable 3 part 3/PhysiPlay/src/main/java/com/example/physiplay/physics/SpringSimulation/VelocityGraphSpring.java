@@ -46,7 +46,7 @@ public class VelocityGraphSpring extends Pane implements StartStopControllable{
         lineChart.setTitle(bundle.getString("title.springVelocityVsTime"));
         lineChart.setPrefSize(600, 200);
 
-        // ✅ Enable symbols for tooltip targets (we’ll hide them)
+        //  Enable symbols for tooltip targets (we’ll hide them)
         lineChart.setCreateSymbols(true);
         lineChart.setLegendVisible(false);
 
@@ -72,7 +72,7 @@ public class VelocityGraphSpring extends Pane implements StartStopControllable{
                 double omega = Spring.OMEGA;
                 double velocity = (-A * omega * Math.sin(omega * time)) / Spring.PIXELS_PER_METER;
 
-                // ✅ Create point for tooltip support
+                //  Create point for tooltip support
                 XYChart.Data<Number, Number> point = new XYChart.Data<>(time, velocity);
                 series.getData().add(point);
 
@@ -80,7 +80,7 @@ public class VelocityGraphSpring extends Pane implements StartStopControllable{
                     series.getData().remove(0);
                 }
 
-                // ✅ Tooltip & bigger hover area
+                //  Tooltip & bigger hover area
                 String tooltipText = String.format("t = %.2f s\nv = %.2f m/s", time, velocity);
                 Tooltip tooltip = new Tooltip(tooltipText);
                 tooltip.setStyle("-fx-font-size: 12px;");
@@ -96,7 +96,7 @@ public class VelocityGraphSpring extends Pane implements StartStopControllable{
                     }
                 });
 
-                // ✅ Dynamic Y-axis scaling
+                //  Dynamic Y-axis scaling
                 double safeMargin = 0.5;
                 double maxVel = Math.abs(A * omega) / Spring.PIXELS_PER_METER + safeMargin;
                 maxVel = Math.max(maxVel, 1);
@@ -104,7 +104,7 @@ public class VelocityGraphSpring extends Pane implements StartStopControllable{
                 yAxis.setLowerBound(-maxVel);
                 yAxis.setUpperBound(maxVel);
 
-                // ✅ X-axis scroll
+                //  X-axis scroll
                 NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
                 if (time > WINDOW_SIZE) {
                     xAxis.setLowerBound(time - WINDOW_SIZE);
