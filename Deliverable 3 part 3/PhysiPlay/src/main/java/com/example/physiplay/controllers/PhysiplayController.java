@@ -414,6 +414,9 @@ public class PhysiplayController {
         }
     }
 
+    /**
+     * Sends all labels, menus, menuItems to get translated
+     */
     public void translation(){
         ArrayList<Label> labelArrayList = new ArrayList<>();
         ArrayList<Menu> menuArrayList = new ArrayList<>();

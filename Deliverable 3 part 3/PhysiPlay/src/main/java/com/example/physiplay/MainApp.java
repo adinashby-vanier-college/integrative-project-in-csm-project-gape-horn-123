@@ -17,7 +17,13 @@ public final class MainApp extends Application {
         launch(args);
     }
 
-    // These methods load all scenes
+    /**
+     *
+     * @param stage
+     * @param scene
+     * Loading all the scenes in french and in english in advance
+     *
+     */
     private void loadScenes(Stage stage, Scene scene) {
         PhysiplayController physiplayController = new PhysiplayController(stage, scene);
         ScreenController.getInstance()
