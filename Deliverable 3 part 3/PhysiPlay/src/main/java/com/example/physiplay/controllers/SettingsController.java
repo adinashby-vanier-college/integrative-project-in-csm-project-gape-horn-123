@@ -4,10 +4,7 @@ import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -30,6 +27,8 @@ public class SettingsController {
     RadioButton englishRadioButton;
     @FXML
     RadioButton frenchRadioButton;
+    @FXML
+    ComboBox<String> comboBoxThemes;
 
     String lang;
 
@@ -55,6 +54,16 @@ public class SettingsController {
         advancedModeCheckbox.selectedProperty().addListener(observable -> {
             stage.setAlwaysOnTop(!SettingsSingleton.getInstance().advancedModeProperty.getValue());
         });
+
+        setUpComboBox();
+    }
+
+    private void setUpComboBox(){
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+        comboBoxThemes.getItems().add(bundle.getString("string.default"));
+        comboBoxThemes.getItems().add(bundle.getString("string.blackAndWhite"));
+        comboBoxThemes.setValue(bundle.getString("string.default"));
     }
 
     private void setUpRadioButtons(){
