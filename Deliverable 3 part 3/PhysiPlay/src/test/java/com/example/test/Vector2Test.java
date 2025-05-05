@@ -1,6 +1,5 @@
 package com.example.test;
 import com.example.physiplay.Vector2;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.CsvFileSource;
 

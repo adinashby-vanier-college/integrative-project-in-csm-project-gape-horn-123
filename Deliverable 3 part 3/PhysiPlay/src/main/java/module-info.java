@@ -9,6 +9,7 @@ module com.example.physiplay {
 
     opens com.example.physiplay to javafx.fxml, org.junit.platform.commons;
     exports com.example.physiplay;
+    exports com.example.physiplay.widgets;
     exports com.example.physiplay.components;
     opens com.example.physiplay.components to com.google.gson;
     exports com.example.physiplay.controllers;
