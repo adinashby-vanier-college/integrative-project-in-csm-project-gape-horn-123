@@ -8,6 +8,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class AngleGraphPendulum extends Pane implements StartStopControllable{
     private static final int MAX_POINTS = 1000;
     private static final double WINDOW_SIZE = 10;
@@ -16,23 +19,27 @@ public class AngleGraphPendulum extends Pane implements StartStopControllable{
     private XYChart.Series<Number, Number> series;
     private AnimationTimer timer;
     private Pendulum pendulum;
+    private String langCode;
 
-    public AngleGraphPendulum(Pendulum pendulumPane) {
+    public AngleGraphPendulum(Pendulum pendulumPane, String langCode) {
         this.pendulum = pendulumPane;
-        initializeChart();
+        this.langCode = langCode;
+        initializeChart(this.langCode);
         startAnimation();
     }
 
-    private void initializeChart() {
+    private void initializeChart(String langCode) {
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
         NumberAxis xAxis = new NumberAxis(0, WINDOW_SIZE, 1);
-        xAxis.setLabel("Time (s)");
+        xAxis.setLabel(bundle.getString("axis.time"));
         xAxis.setAutoRanging(false);
 
         NumberAxis yAxis = new NumberAxis(-90, 90, 15); // Degrees
-        yAxis.setLabel("Angle (°)");
+        yAxis.setLabel(bundle.getString("axis.angle"));
 
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Pendulum Angle vs Time");
+        lineChart.setTitle(bundle.getString("title.pendulumAngleVsTime"));
         lineChart.setPrefSize(600, 200); // wider chart
         lineChart.setCreateSymbols(true); // For hover tooltips
         lineChart.setLegendVisible(false);

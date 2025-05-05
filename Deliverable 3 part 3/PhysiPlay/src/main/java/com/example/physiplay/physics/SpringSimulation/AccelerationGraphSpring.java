@@ -1,8 +1,11 @@
+/**
+ * A JavaFX Pane that visualizes the acceleration of a spring over time using a live-updating line chart.
+ * Implements {@link StartStopControllable} to allow simulation controls for play and pause.
+ * The chart's X-axis represents time in seconds and the Y-axis represents acceleration in m/s^2.
+ */
 package com.example.physiplay.physics.SpringSimulation;
 
-
 import com.example.physiplay.physics.PendulumSImulation.StartStopControllable;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.chart.LineChart;
@@ -11,7 +14,10 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
-public class AccelerationGraphSpring extends Pane implements StartStopControllable{
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+public class AccelerationGraphSpring extends Pane implements StartStopControllable {
     private static final int MAX_POINTS = 1000;
     private static final double WINDOW_SIZE = 10;
 
@@ -22,25 +28,37 @@ public class AccelerationGraphSpring extends Pane implements StartStopControllab
     private Spring spring;
     private long lastTime = 0;
 
-    public AccelerationGraphSpring(Spring spring) {
+    /**
+     * Constructs a graph panel to display spring acceleration over time.
+     *
+     * @param spring   the spring object used to calculate acceleration
+     * @param langCode the ISO language code for localization (e.g., "en", "fr")
+     */
+    public AccelerationGraphSpring(Spring spring, String langCode) {
         this.spring = spring;
-        initializeChart();
+        initializeChart(langCode);
         startAnimation();
     }
 
-    private void initializeChart() {
+    /**
+     * Initializes the chart UI components and localizes axis labels and titles.
+     *
+     * @param langCode the language code for resource bundle localization
+     */
+    private void initializeChart(String langCode) {
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+
         NumberAxis xAxis = new NumberAxis(0, WINDOW_SIZE, 1);
-        xAxis.setLabel("Time (s)");
+        xAxis.setLabel(bundle.getString("axis.time"));
         xAxis.setAutoRanging(false);
 
         NumberAxis yAxis = new NumberAxis(-10, 10, 2);
-        yAxis.setLabel("Acceleration (m/s²)");
+        yAxis.setLabel(bundle.getString("axis.acceleration"));
 
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Spring Acceleration vs Time");
+        lineChart.setTitle(bundle.getString("title.springAccelerationVsTime"));
         lineChart.setPrefSize(600, 200);
-
-        // ✅ Enable symbols for tooltip hover
         lineChart.setCreateSymbols(true);
         lineChart.setLegendVisible(false);
 
@@ -49,6 +67,9 @@ public class AccelerationGraphSpring extends Pane implements StartStopControllab
         this.getChildren().add(lineChart);
     }
 
+    /**
+     * Starts the animation timer to continuously update the graph based on spring dynamics.
+     */
     private void startAnimation() {
         timer = new AnimationTimer() {
             @Override
@@ -73,7 +94,6 @@ public class AccelerationGraphSpring extends Pane implements StartStopControllab
                     series.getData().remove(0);
                 }
 
-                // ✅ Tooltip setup
                 String tooltipText = String.format("t = %.2f s\na = %.2f m/s²", time, acceleration);
                 Tooltip tooltip = new Tooltip(tooltipText);
                 tooltip.setStyle("-fx-font-size: 12px;");
@@ -83,13 +103,12 @@ public class AccelerationGraphSpring extends Pane implements StartStopControllab
                         point.getNode().setStyle("""
                             -fx-background-color: transparent;
                             -fx-padding: 10px;
-                            -fx-shape: "M0,0 h1 v1 h-1 z";
+                            -fx-shape: \"M0,0 h1 v1 h-1 z\";
                         """);
                         Tooltip.install(point.getNode(), tooltip);
                     }
                 });
 
-                // ✅ Y-axis scaling
                 double safeMargin = 1;
                 double maxAccel = Math.abs(A * omega * omega) / Spring.PIXELS_PER_METER + safeMargin;
                 maxAccel = Math.max(maxAccel, 2);
@@ -98,7 +117,6 @@ public class AccelerationGraphSpring extends Pane implements StartStopControllab
                 yAxis.setLowerBound(-maxAccel);
                 yAxis.setUpperBound(maxAccel);
 
-                // ✅ X-axis scroll
                 NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
                 if (time > WINDOW_SIZE) {
                     xAxis.setLowerBound(time - WINDOW_SIZE);
@@ -115,10 +133,16 @@ public class AccelerationGraphSpring extends Pane implements StartStopControllab
         timer.start();
     }
 
+    /**
+     * Pauses the simulation and chart updates.
+     */
     public void pause() {
         timer.stop();
     }
 
+    /**
+     * Resumes the simulation from pause.
+     */
     public void play() {
         lastTime = 0;
         timer.start();

@@ -10,6 +10,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class VelocityGraphSpring extends Pane implements StartStopControllable{
     private static final int MAX_POINTS = 1000;
     private static final double WINDOW_SIZE = 10;
@@ -22,22 +25,25 @@ public class VelocityGraphSpring extends Pane implements StartStopControllable{
     private boolean running = true;
     private long lastTime = 0;
 
-    public VelocityGraphSpring(Spring spring) {
+    public VelocityGraphSpring(Spring spring, String langCode) {
         this.spring = spring;
-        initializeChart();
+        initializeChart(langCode);
         startAnimation();
     }
 
-    private void initializeChart() {
+    private void initializeChart(String langCode) {
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+
         NumberAxis xAxis = new NumberAxis(0, WINDOW_SIZE, 1);
-        xAxis.setLabel("Time (s)");
+        xAxis.setLabel(bundle.getString("axis.time"));
         xAxis.setAutoRanging(false);
 
         NumberAxis yAxis = new NumberAxis(-5, 5, 1); // in m/s
-        yAxis.setLabel("Velocity (m/s)");
+        yAxis.setLabel(bundle.getString("axis.velocity"));
 
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Spring Velocity vs Time");
+        lineChart.setTitle(bundle.getString("title.springVelocityVsTime"));
         lineChart.setPrefSize(600, 200);
 
         // ✅ Enable symbols for tooltip targets (we’ll hide them)
