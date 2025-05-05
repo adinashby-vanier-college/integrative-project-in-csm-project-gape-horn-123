@@ -48,15 +48,21 @@ shadowJar {
 }
 
 dependencies {
-
     implementation("org.jbox2d:jbox2d-library:2.2.1.1")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 test {
     useJUnitPlatform()
+    jvmArgs += [
+            '--add-exports', 'org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED'
+    ]
 }
 
 jlink {

@@ -28,14 +28,6 @@ public class RegisterPageController {
     @FXML
     Button languageButton;
     @FXML
-    Label registerPageLabel;
-    @FXML
-    Label usernameLabel;
-    @FXML
-    Label passwordLabel;
-    @FXML
-    Label confirmPasswordLabel;
-    @FXML
     TextField usernameTextField;
     @FXML
     PasswordField passwordField;
