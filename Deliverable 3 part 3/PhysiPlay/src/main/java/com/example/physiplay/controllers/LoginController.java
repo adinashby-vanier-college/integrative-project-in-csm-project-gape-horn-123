@@ -1,12 +1,17 @@
 package com.example.physiplay.controllers;
 
+import com.example.physiplay.Account;
+import com.example.physiplay.singletons.LoginRegisterSingleton;
 import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -28,7 +33,10 @@ public class LoginController {
     Label usernameLabel;
     @FXML
     Label passwordLabel;
-
+    @FXML
+    TextField usernameField;
+    @FXML
+    PasswordField passwordField;
 
 
     public LoginController(Stage stage, Scene scene){
@@ -37,10 +45,15 @@ public class LoginController {
     }
 
     public void initialize(){
+        LoginRegisterSingleton.getInstance().updateAccountList();
         setUpButtons();
     }
 
     public void loadMainMenu(){
+        File file = new File("login.info");
+        if (!file.exists() || file.isDirectory()) {
+            return;
+        }
         ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
     }
 
@@ -50,7 +63,12 @@ public class LoginController {
 
     public void setUpButtons(){
         loginButton.setOnAction(event -> {
-            loadMainMenu();
+            LoginRegisterSingleton.getInstance().updateAccountList();
+            if (LoginRegisterSingleton.getInstance().accountList.contains(new Account(usernameField.getText(), passwordField.getText())))
+                loadMainMenu();
+            else {
+                SettingsSingleton.getInstance().displayAlertErrorMessage("Either username or password is incorrect. Please try again.");
+            }
         });
         registerButton.setOnAction(event -> {
             loadRegisterPage();

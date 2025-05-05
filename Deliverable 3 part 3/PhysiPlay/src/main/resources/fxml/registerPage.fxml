@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #749C75;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane style="-fx-background-color: #749C75;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,19 +22,19 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label fx:id="usernameLabel" text="%label.username" textFill="WHITE" />
-                  <TextField />
+                  <TextField fx:id="usernameTextField" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label fx:id="passwordLabel" text="%label.password" textFill="WHITE" />
-                  <PasswordField />
+                  <PasswordField fx:id="passwordField" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label fx:id="confirmPasswordLabel" text="%label.confirmPassword" textFill="WHITE" />
-                  <PasswordField />
+                  <PasswordField fx:id="confirmPasswordField" />
                </children>
             </HBox>
             <Button fx:id="registerButton" mnemonicParsing="false" text="%button.register" />

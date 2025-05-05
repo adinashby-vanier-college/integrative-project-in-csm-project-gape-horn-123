@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 import java.util.Objects;
 
@@ -27,6 +29,15 @@ public class SettingsSingleton {
         this.language = language;
     }
 
+    public void displayAlertErrorMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.setAlwaysOnTop(true);
+        stage.toFront();
+        alert.setTitle("Error");
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
     public void switchLanguage(){
         if (Objects.equals(this.language, "fr")) {
             this.language = "en";
