@@ -75,6 +75,7 @@ public class VinithDebController {
 		this.bundle = ResourceBundle.getBundle("languages.messages", this.locale);
 		momentumSimulation.setLanguage(langCode);
 		pendulumSimulation.switchLanguage(langCode);
+		springSimulation.switchLanguage(langCode);
     }
 	
 	public void initialize() {

@@ -11,6 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Spring extends Pane implements StartStopControllable{
     private static final double WIDTH = 600;
     private static final double HEIGHT = 500;
@@ -32,6 +35,11 @@ public class Spring extends Pane implements StartStopControllable{
     private boolean running = true;
     private Slider amplitudeSlider, springConstantSlider, massSlider;
     private long lastTime = 0;
+    private String langCode = "en";
+
+    private Label amplitudeLabel;
+    private Label springLabel;
+    private Label massLabel;
 
     public Spring() {
         this.setPrefSize(WIDTH, HEIGHT);
@@ -64,19 +72,19 @@ public class Spring extends Pane implements StartStopControllable{
     }
 
     private void initializeSliders() {
-        Label amplitudeLabel = new Label("Amplitude (m)");
+        amplitudeLabel = new Label("Amplitude (m)");
         amplitudeSlider = new Slider(0.1, 2.0, MAX_DISPLACEMENT / PIXELS_PER_METER);
         amplitudeSlider.setShowTickMarks(true);
         amplitudeSlider.setShowTickLabels(true);
         amplitudeSlider.setMajorTickUnit(0.5);
 
-        Label springLabel = new Label("Spring Constant (N/m)");
+        springLabel = new Label("Spring Constant (N/m)");
         springConstantSlider = new Slider(5, 100, springConstant);
         springConstantSlider.setShowTickMarks(true);
         springConstantSlider.setShowTickLabels(true);
         springConstantSlider.setMajorTickUnit(20);
 
-        Label massLabel = new Label("Mass (kg)");
+        massLabel = new Label("Mass (kg)");
         massSlider = new Slider(0.5, 10, massValue);
         massSlider.setShowTickMarks(true);
         massSlider.setShowTickLabels(true);
@@ -159,5 +167,13 @@ public class Spring extends Pane implements StartStopControllable{
         };
 
         timer.start();
+    }
+    public void switchLanguage(String langCode) {
+        this.langCode = langCode;
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+        amplitudeLabel.setText(bundle.getString("label.amplitude"));
+        springLabel.setText(bundle.getString("label.spring"));
+        massLabel.setText(bundle.getString("label.mass"));
     }
 }
