@@ -1,6 +1,5 @@
 package com.example.physiplay;
 
-import com.example.physiplay.Component;
 import com.example.physiplay.components.Rigidbody;
 import com.example.physiplay.singletons.SimulationManager;
 import com.google.gson.annotations.Expose;
