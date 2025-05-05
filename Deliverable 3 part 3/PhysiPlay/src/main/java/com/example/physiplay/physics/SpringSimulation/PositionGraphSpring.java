@@ -10,6 +10,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class PositionGraphSpring extends Pane implements StartStopControllable{
     private static final int MAX_POINTS = 1000;
     private static final double WINDOW_SIZE = 10;
@@ -22,20 +25,23 @@ public class PositionGraphSpring extends Pane implements StartStopControllable{
 
     public PositionGraphSpring(Spring spring, String langCode) {
         this.spring = spring;
-        initializeChart();
+        initializeChart(langCode);
         startAnimation();
     }
 
-    private void initializeChart() {
+    private void initializeChart(String langCode) {
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+
         NumberAxis xAxis = new NumberAxis(0, WINDOW_SIZE, 1);
-        xAxis.setLabel("Time (s)");
+        xAxis.setLabel(bundle.getString("axis.time"));
         xAxis.setAutoRanging(false);
 
         NumberAxis yAxis = new NumberAxis(-1, 1, 0.1);
-        yAxis.setLabel("Displacement (m)");
+        yAxis.setLabel(bundle.getString("axis.displacement"));
 
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Spring Displacement vs Time");
+        lineChart.setTitle(bundle.getString("title.springDisplacementVsTime"));
         lineChart.setPrefSize(600, 200);
 
         // Enable symbols so tooltips work, but we’ll hide them later
