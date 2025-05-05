@@ -105,9 +105,9 @@ public class PhysiplayController {
     MenuItem menuItemFullScreen;
 
     @FXML
-    MenuItem saveMenuItem;
+    MenuItem menuItemSave;
     @FXML
-    MenuItem loadMenuItem;
+    MenuItem menuItemLoad;
     @FXML
     MenuItem menuItemAbout;
 
@@ -263,9 +263,9 @@ public class PhysiplayController {
             SimulationManager.getInstance().scaleY = 1;
         });
 
-        saveMenuItem.setOnAction(event -> saveFile());
+        menuItemSave.setOnAction(event -> saveFile());
 
-        loadMenuItem.setOnAction(event -> loadFile());
+        menuItemLoad.setOnAction(event -> loadFile());
     }
     public void initialize() {
         SimulationManager.getInstance().canvas = canvas;
