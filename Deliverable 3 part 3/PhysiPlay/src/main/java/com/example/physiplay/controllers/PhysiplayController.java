@@ -324,7 +324,9 @@ public class PhysiplayController {
     }
 
     public void createPresetWindow(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"));
+        Locale locale = new Locale(SettingsSingleton.getInstance().language);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createPreset.fxml"), bundle);
         Stage presetWindow = new Stage();
         CreatePresetController createPresetController = new CreatePresetController(presetWindow, presetHBox, presetList, presetFlowPane, hierarchyView,
                 SimulationManager.getInstance().gc, objectsList, tabPane, scene);
