@@ -22,7 +22,7 @@ public class VelocityGraphSpring extends Pane implements StartStopControllable{
     private boolean running = true;
     private long lastTime = 0;
 
-    public VelocityGraphSpring(Spring spring) {
+    public VelocityGraphSpring(Spring spring, String langCode) {
         this.spring = spring;
         initializeChart();
         startAnimation();

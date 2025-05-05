@@ -138,11 +138,11 @@ public class VinithDebController {
 		
 		Spring simulation = springSimulation;
 		standardize(simulation);
-		PositionGraphSpring positionGraphSpring = new PositionGraphSpring(springSimulation);
+		PositionGraphSpring positionGraphSpring = new PositionGraphSpring(springSimulation, langCode);
 		standardize(positionGraphSpring);
-		VelocityGraphSpring velocityGraphSpring = new VelocityGraphSpring(springSimulation);
+		VelocityGraphSpring velocityGraphSpring = new VelocityGraphSpring(springSimulation, langCode);
 		standardize(velocityGraphSpring);
-		AccelerationGraphSpring accelerationGraphSpring = new AccelerationGraphSpring(springSimulation);
+		AccelerationGraphSpring accelerationGraphSpring = new AccelerationGraphSpring(springSimulation, langCode);
 		standardize(accelerationGraphSpring);
 		VBox startStopControls = makeStartStopController(simulation, positionGraphSpring, velocityGraphSpring, accelerationGraphSpring);
 		standardize(startStopControls);
@@ -198,11 +198,11 @@ public class VinithDebController {
 		
 		Pendulum simulation = pendulumSimulation;
 		standardize(simulation);
-		AngleGraphPendulum angleGraphPendulum = new AngleGraphPendulum(simulation);
+		AngleGraphPendulum angleGraphPendulum = new AngleGraphPendulum(simulation, langCode);
 		standardize(angleGraphPendulum);
-		VelocityGraphPendulum velocityGraphPendulum = new VelocityGraphPendulum(simulation);
+		VelocityGraphPendulum velocityGraphPendulum = new VelocityGraphPendulum(simulation, langCode);
 		standardize(velocityGraphPendulum);
-		AccelerationGraphPendulum accelerationGraphPendulum = new AccelerationGraphPendulum(simulation);
+		AccelerationGraphPendulum accelerationGraphPendulum = new AccelerationGraphPendulum(simulation, langCode);
 		standardize(accelerationGraphPendulum);
 		VBox startStopControls = makeStartStopController(simulation, angleGraphPendulum, velocityGraphPendulum, accelerationGraphPendulum);
 		standardize(startStopControls);

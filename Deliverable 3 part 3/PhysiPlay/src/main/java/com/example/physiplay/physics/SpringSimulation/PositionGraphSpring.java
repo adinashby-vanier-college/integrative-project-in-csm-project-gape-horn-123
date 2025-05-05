@@ -20,7 +20,7 @@ public class PositionGraphSpring extends Pane implements StartStopControllable{
     private Spring spring;
     private boolean running = true;
 
-    public PositionGraphSpring(Spring spring) {
+    public PositionGraphSpring(Spring spring, String langCode) {
         this.spring = spring;
         initializeChart();
         startAnimation();

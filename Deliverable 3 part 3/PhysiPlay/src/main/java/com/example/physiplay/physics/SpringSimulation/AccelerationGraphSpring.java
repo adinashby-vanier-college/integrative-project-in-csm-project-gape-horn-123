@@ -22,7 +22,7 @@ public class AccelerationGraphSpring extends Pane implements StartStopControllab
     private Spring spring;
     private long lastTime = 0;
 
-    public AccelerationGraphSpring(Spring spring) {
+    public AccelerationGraphSpring(Spring spring, String langCode) {
         this.spring = spring;
         initializeChart();
         startAnimation();

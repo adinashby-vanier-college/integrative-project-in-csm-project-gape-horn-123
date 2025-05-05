@@ -17,7 +17,7 @@ public class AccelerationGraphPendulum extends Pane implements StartStopControll
     private Pendulum pendulum;
     private boolean running = true;
 
-    public AccelerationGraphPendulum(Pendulum pendulum) {
+    public AccelerationGraphPendulum(Pendulum pendulum, String langCode) {
         this.pendulum = pendulum;
         initializeChart();
         startAnimation();
