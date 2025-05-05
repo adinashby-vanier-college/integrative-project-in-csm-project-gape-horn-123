@@ -80,9 +80,11 @@ public class SettingsController {
             if (bwLabel.equals(selected)) {
                 stylesheet = getClass().getResource("/css/stylesheetsBAW.css").toExternalForm();
                 scene.getStylesheets().add(stylesheet);
+                SettingsSingleton.getInstance().setTheme("baw");
             } else {
                 stylesheet = getClass().getResource("/css/stylesheets.css").toExternalForm();
                 scene.getStylesheets().add(stylesheet);
+                SettingsSingleton.getInstance().setTheme("default");
             }
         });
 

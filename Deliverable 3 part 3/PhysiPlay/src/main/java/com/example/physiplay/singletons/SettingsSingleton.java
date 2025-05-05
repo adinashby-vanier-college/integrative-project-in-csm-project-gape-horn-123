@@ -12,6 +12,7 @@ public class SettingsSingleton {
     public BooleanProperty advancedModeProperty = new SimpleBooleanProperty(false);
     public String language = "en";
     private int languageRadioInitialized = 0;
+    private String theme = "default";
 
     public static SettingsSingleton getInstance() {
         if (instance == null) {
@@ -49,5 +50,13 @@ public class SettingsSingleton {
 
     public int getLanguageRadioInitialized(){
         return languageRadioInitialized;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 }
