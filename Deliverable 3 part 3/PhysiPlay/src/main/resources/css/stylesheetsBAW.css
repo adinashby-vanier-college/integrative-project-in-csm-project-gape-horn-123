@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
+
+.button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font: 50px "Madimi One";
+    -fx-border-color: black;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+.button:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: black;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.label {
+    -fx-font: 200px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.menu .label {
+    -fx-text-fill: black;
+    -fx-font: 20px "Madimi One";
+}
+
+.tree-cell {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: black;
+}
+
+.color-picker .label {
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+}
+
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:focused,
+.menu-bar .menu-button:showing {
+    -fx-background: black;
+    -fx-opacity: 0.5;
+    -fx-text-fill: white;
+}
+
+.context-menu {
+    -fx-background-color: #eeeeee;
+    -fx-border-color: black;
+    -fx-opacity: 0.9;
+    -fx-border-width: 0.1px;
+}
+
+.context-menu .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}
+
+#startButton, #pauseButton, #stopButton {
+    -fx-font: 12px "Madimi One";
+}
+
+#labelPresets {
+    -fx-font-size: 50px;
+    -fx-text-fill: black;
+}
+
+.tree-view, .tree-cell {
+    -fx-font: 20px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.titled-pane > .title {
+    -fx-font: 20px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.tab {
+    -fx-background-color: #cccccc;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5px;
+}
+
+.tab-label {
+    -fx-font: 12px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #eeeeee;
+}
+
+/* Login/Register Page */
+#loginLabel, #registerLabel {
+    -fx-font: 100px "Madimi One";
+    -fx-text-fill: black;
+}
+
+#usernameLabel, #passwordLabel, #confirmPasswordLabel {
+    -fx-font: 22px "Madimi One";
+    -fx-text-fill: black;
+}
+
+#loginButton, #registerButton, #backButton, #languageButton, #returnLoginButton {
+    -fx-font: 20px "Madimi One";
+}
+
+#gameObjectName, #velocityLabel, #massLabel, #restitutionLabel, #torqueLabel, #frictionLabel {
+    -fx-font: 25px "Madimi One";
+    -fx-text-fill: black;
+}
+
+#positionLabel, #rotationLabel, #scaleLabel, #xLabel, #yLabel,
+#xScaleLabel, #yScaleLabel, #xVelocityLabel, #yVelocityLabel,
+#initialPositionLabel, #initialRotationLabel {
+    -fx-font: 22px "Madimi One";
+    -fx-text-fill: black;
+}

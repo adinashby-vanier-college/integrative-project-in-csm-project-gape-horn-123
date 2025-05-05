@@ -2,6 +2,7 @@ package com.example.physiplay.controllers;
 
 import com.example.physiplay.singletons.SettingsSingleton;
 import javafx.beans.property.StringProperty;
+import javafx.css.Stylesheet;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -31,6 +32,7 @@ public class SettingsController {
     ComboBox<String> comboBoxThemes;
 
     String lang;
+    String stylesheet;
 
     public SettingsController(Stage stage, Scene scene, String lang) {
         this.stage = stage;
@@ -64,6 +66,22 @@ public class SettingsController {
         comboBoxThemes.getItems().add(bundle.getString("string.default"));
         comboBoxThemes.getItems().add(bundle.getString("string.blackAndWhite"));
         comboBoxThemes.setValue(bundle.getString("string.default"));
+
+        comboBoxThemes.setOnAction(event -> {
+            String selected = comboBoxThemes.getValue();
+            Scene scene = comboBoxThemes.getScene();
+
+            scene.getStylesheets().clear();
+
+            if ("Black and White".equals(selected)) {
+                stylesheet = getClass().getResource("/css/stylesheetsBAW.css").toExternalForm();
+                scene.getStylesheets().add(stylesheet);
+            } else {
+                stylesheet = getClass().getResource("/css/stylesheets.css").toExternalForm();
+                scene.getStylesheets().add(stylesheet);
+            }
+        });
+
     }
 
     private void setUpRadioButtons(){
@@ -83,7 +101,7 @@ public class SettingsController {
 
     private void returnToMainMenu() {
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(stylesheet));
         ScreenController.getInstance().activate("mainMenu", SettingsSingleton.getInstance().language);
     }
 
