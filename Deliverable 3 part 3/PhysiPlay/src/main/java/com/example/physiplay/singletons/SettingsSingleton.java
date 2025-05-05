@@ -7,6 +7,11 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+/**
+ *
+ * Keeps the settings saved throughout the whole app
+ *
+ */
 public class SettingsSingleton {
     private static SettingsSingleton instance;
     public BooleanProperty advancedModeProperty = new SimpleBooleanProperty(false);

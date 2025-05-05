@@ -17,6 +17,17 @@ public class Translation {
         this.langCode = langCode;
     }
 
+    /**
+     *
+     * @param labelArraylist
+     * @param menuArrayList
+     * @param menuItemArrayList
+     * @param checkMenuItemArrayList
+     * It gets all of the ui controls from the other controller, it removes the first part of the ID to get the
+     * rest of the name that is used inside of the resourcebundle messages
+     * Iterates over all
+     *
+     */
     public void translate(ArrayList<Label> labelArraylist, ArrayList<Menu> menuArrayList, ArrayList<MenuItem> menuItemArrayList, ArrayList<CheckMenuItem> checkMenuItemArrayList){
         Locale locale = new Locale(langCode);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
