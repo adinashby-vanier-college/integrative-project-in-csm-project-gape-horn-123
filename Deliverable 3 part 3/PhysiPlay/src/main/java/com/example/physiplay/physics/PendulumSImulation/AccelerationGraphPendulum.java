@@ -8,6 +8,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class AccelerationGraphPendulum extends Pane implements StartStopControllable {
     private static final int MAX_POINTS = 1000;
     private static final double WINDOW_SIZE = 10;
@@ -16,23 +19,28 @@ public class AccelerationGraphPendulum extends Pane implements StartStopControll
     private AnimationTimer timer;
     private Pendulum pendulum;
     private boolean running = true;
+    private String langCode;
 
     public AccelerationGraphPendulum(Pendulum pendulum, String langCode) {
         this.pendulum = pendulum;
-        initializeChart();
+        this.langCode = langCode;
+        initializeChart(langCode);
         startAnimation();
     }
 
-    private void initializeChart() {
+    private void initializeChart(String langCode) {
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+
         NumberAxis xAxis = new NumberAxis(0, WINDOW_SIZE, 1);
-        xAxis.setLabel("Time (s)");
+        xAxis.setLabel(bundle.getString("axis.time"));
         xAxis.setAutoRanging(false);
 
         NumberAxis yAxis = new NumberAxis(-10, 10, 2); // Approx default
-        yAxis.setLabel("Angular Acceleration (rad/s²)");
+        yAxis.setLabel(bundle.getString("axis.angularAcceleration"));
 
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Pendulum Angular Acceleration vs Time");
+        lineChart.setTitle(bundle.getString("title.pendulumAngularAccelerationVsTime"));
         lineChart.setPrefSize(600, 200);
         lineChart.setCreateSymbols(true);
         lineChart.setLegendVisible(false);
