@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 /**
  * Controller for the main menu screen. Handles navigation to other screens such as
  * play mode, instructions, settings, and physics concepts. Also manages application exit.
@@ -71,11 +73,11 @@ public class MainMenuController {
     public void switchScene(String sceneType, String cssUrl) {
         try {
             if (sceneType == "play") physiplayController.translation();
-            if (SettingsSingleton.getInstance().getTheme()=="baw"){
+            if (Objects.equals(SettingsSingleton.getInstance().getTheme(), "baw")){
                 String css = switch (sceneType) {
                     case "instructions" -> "/css/instructionsStylesheet.css";
                     case "settings" -> "/css/settingsStylesheet.css";
-                    case "physicsConcepts" -> "/css/sahon_saha.css";
+                    case "physicsConcepts" -> "/css/sahon_sahaBAW.css";
                     default -> "/css/stylesheetsBAW.css";
                 };
                 ScreenController.getInstance().activate(sceneType, css, SettingsSingleton.getInstance().language);
