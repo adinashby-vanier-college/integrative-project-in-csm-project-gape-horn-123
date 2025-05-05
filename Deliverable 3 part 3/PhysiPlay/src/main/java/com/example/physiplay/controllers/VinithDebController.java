@@ -73,6 +73,7 @@ public class VinithDebController {
 		this.langCode = langCode;
 		this.locale = new Locale(langCode);
 		this.bundle = ResourceBundle.getBundle("languages.messages", this.locale);
+		momentumSimulation.setLanguage(langCode);
     }
 	
 	public void initialize() {
@@ -162,14 +163,14 @@ public class VinithDebController {
 			for (StartStopControllable controllable : controllables) {
 				controllable.play();
 			}
-		}, "Start Simulation");
+		}, bundle.getString("button.startSimulation"));
 
 		Button pauseButton = new Button();
 		makeButton(pauseButton, event -> {
 			for (StartStopControllable controllable : controllables) {
 				controllable.pause();
 			}
-		}, "Pause Simulation");
+		}, bundle.getString("button.pauseSimulation"));
 		
 		controlsChildren.addAll(playButton, pauseButton);
 		return controls;

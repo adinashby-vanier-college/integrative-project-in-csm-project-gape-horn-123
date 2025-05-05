@@ -12,6 +12,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class MomentumSimulation {
     private static final int BOX_X = 0;
     private static final int BOX_Y = 0;
@@ -26,6 +29,9 @@ public class MomentumSimulation {
     private Timeline animation;
     private Pane simulationPane;
     private Circle ball1, ball2;
+    public Label speedLabel1,speedLabel2, massLabel1, massLabel2;
+    public Button startButton, stopButton;
+    private String langCode = "en";
 
     public MomentumSimulation() {
         simulationPane = new Pane();
@@ -46,21 +52,25 @@ public class MomentumSimulation {
     }
 
     public VBox getControlPane() {
+
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+
         // Sliders for speed
-        Label speedLabel1 = new Label("Ball 1 Speed (red):");
+        speedLabel1 = new Label(bundle.getString("label.speed1"));
         Slider speedSlider1 = createSlider(1, 10, dx1);
-        Label speedLabel2 = new Label("Ball 2 Speed (blue):");
+        speedLabel2 = new Label(bundle.getString("label.speed2"));
         Slider speedSlider2 = createSlider(1, 10, dx2);
 
         // Sliders for mass
-        Label massLabel1 = new Label("Ball 1 Mass (red):");
+        massLabel1 = new Label(bundle.getString("label.mass1"));
         Slider massSlider1 = createSlider(0.5, 5, mass1);
-        Label massLabel2 = new Label("Ball 2 Mass (blue):");
+        massLabel2 = new Label(bundle.getString("label.mass2"));
         Slider massSlider2 = createSlider(0.5, 5, mass2);
 
         // Buttons
-        Button startButton = new Button("Start Simulation");
-        Button stopButton = new Button("Stop Simulation");
+        startButton = new Button(bundle.getString("button.startSimulation"));
+        stopButton = new Button(bundle.getString("button.stopSimulation"));
 
         startButton.setOnAction(e -> startSimulation(speedSlider1, speedSlider2, massSlider1, massSlider2));
         stopButton.setOnAction(e -> stopSimulation());
@@ -163,4 +173,9 @@ public class MomentumSimulation {
             dy2 = v2yNew;
         }
     }
+
+    public void setLanguage(String langCode){
+        this.langCode = langCode;
+    }
+
 }
