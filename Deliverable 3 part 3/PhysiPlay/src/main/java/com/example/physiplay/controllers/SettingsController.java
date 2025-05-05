@@ -34,6 +34,9 @@ public class SettingsController {
     String lang;
     String stylesheet = getClass().getResource("/css/stylesheets.css").toExternalForm();
 
+    final String defaultKey = "string.default";
+    final String bwKey = "string.blackAndWhite";
+
     public SettingsController(Stage stage, Scene scene, String lang) {
         this.stage = stage;
         this.scene = scene;
@@ -63,9 +66,10 @@ public class SettingsController {
     private void setUpComboBox(){
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
-        comboBoxThemes.getItems().add(bundle.getString("string.default"));
-        comboBoxThemes.getItems().add(bundle.getString("string.blackAndWhite"));
-        comboBoxThemes.setValue(bundle.getString("string.default"));
+        String defaultLabel = bundle.getString(defaultKey);
+        String bwLabel = bundle.getString(bwKey);
+        comboBoxThemes.getItems().addAll(defaultLabel, bwLabel);
+        comboBoxThemes.setValue(bundle.getString(defaultKey));
 
         comboBoxThemes.setOnAction(event -> {
             String selected = comboBoxThemes.getValue();
@@ -73,7 +77,7 @@ public class SettingsController {
 
             scene.getStylesheets().clear();
 
-            if ("Black and White".equals(selected)) {
+            if (bwLabel.equals(selected)) {
                 stylesheet = getClass().getResource("/css/stylesheetsBAW.css").toExternalForm();
                 scene.getStylesheets().add(stylesheet);
             } else {
