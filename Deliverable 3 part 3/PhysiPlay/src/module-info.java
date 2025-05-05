@@ -4,8 +4,10 @@ module com.example.physiplay {
     requires jbox2d.library;
 	requires javafx.graphics;
     requires com.google.gson;
+    requires org.junit.jupiter.api;
+    requires org.junit.jupiter.params;
 
-    opens com.example.physiplay to javafx.fxml;
+    opens com.example.physiplay to javafx.fxml, org.junit.platform.commons;
     exports com.example.physiplay;
     exports com.example.physiplay.components;
     opens com.example.physiplay.components to com.google.gson;

@@ -42,4 +42,8 @@ public class Vector2
         this.x += v2.x;
         this.y += v2.y;
     }
+
+    public double dot(Vector2 v2) {
+        return this.x * v2.x + this.y * v2.y;
+    }
 }
