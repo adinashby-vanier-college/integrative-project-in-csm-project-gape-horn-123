@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+.label {
+    -fx-font-family: "Madimi One" !important;
+    -fx-font-size: 20px !important;
+}
+
+.color-picker-label {
+    -fx-font-size: 15px !important;
+}
+
+.tab-pane {
+    -fx-font-family: "Madimi One";
+    -fx-font-size: 20px;
+}
+.tab-label {
+    -fx-font-size: 20px;
+}
+.button{
+    -fx-font: 25px "Madimi One";
+}

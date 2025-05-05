@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+.label{
+    -fx-font: 50px "Madimi One";
+}
+
+.button{
+    -fx-background-color: #6A5D7B;
+}
+
+#instructionsTitle{
+    -fx-font: 100px "Madimi One";
+}

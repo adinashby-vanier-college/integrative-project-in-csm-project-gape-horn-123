@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
+
+.button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font: 20px "Madimi One";
+    -fx-border-color: white;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+.button:hover {
+    -fx-background-color: white;
+    -fx-cursor: hand;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+}
+
+.button:pressed {
+    -fx-background-color: #e1e1e1; /* light gray */
+    -fx-cursor: pointer;
+    -fx-text-fill: black;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+    transition: 0.1s;
+}
+
+.label {
+    -fx-font: 16px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.chart-title {
+    -fx-font: 16px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.axis-label {
+    -fx-font: 14px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.axis .text {
+    -fx-font: 12px "Madimi One";
+    -fx-text-fill: black;
+}
+
+.tooltip {
+    -fx-font: 12px "Madimi One";
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.hbox, .vbox {
+    -fx-background-color: white;
+    -fx-opacity: 1;
+}
+
+#playButton, #pauseButton {
+    -fx-font: 16px "Madimi One";
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}

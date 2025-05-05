@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="900.0" prefWidth="305.0" style="-fx-background-color: #D5C9DF;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="263.0">
+               <children>
+                  <Polygon fill="DODGERBLUE" points="47.0, -31.0, 54.0, -60.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Polygon>
+                  <Label fx:id="gameObjectName" prefHeight="50.0" prefWidth="168.0" text="GameObject">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <VBox>
+               <children>
+                  <TabPane prefHeight="799.0" prefWidth="305.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="Transform">
+                           <content>
+                              <ScrollPane hbarPolicy="NEVER" prefWidth="305.0" vbarPolicy="NEVER">
+                                 <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="305.0">
+                                       <children>
+                                          <VBox prefHeight="800.0" prefWidth="309.0">
+                                             <children>
+                                                <VBox prefHeight="843.0" prefWidth="309.0" style="-fx-background-color: #D5C9DF;">
+                                                   <children>
+                                                      <Label fx:id="positionLabel" text="Position:">
+                                                         <font>
+                                                            <Font size="15.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets left="10.0" top="30.0" />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <HBox prefHeight="47.0" prefWidth="480.0">
+                                                         <children>
+                                                            <Label text="x:" fx:id="xLabel" />
+                                                            <TextField fx:id="positionXField" prefHeight="25.0" prefWidth="237.0">
+                                                               <HBox.margin>
+                                                                  <Insets left="20.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox prefHeight="56.0" prefWidth="480.0">
+                                                         <children>
+                                                            <Label fx:id="yLabel" text="y:" />
+                                                            <TextField fx:id="positionYField" prefHeight="25.0" prefWidth="238.0">
+                                                               <HBox.margin>
+                                                                  <Insets left="20.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Label fx:id="rotationLabel" text="Rotation:">
+                                                         <padding>
+                                                            <Insets bottom="10.0" left="10.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font size="17.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <VBox prefHeight="41.0" prefWidth="500.0">
+                                                         <children>
+                                                            <HBox prefHeight="56.0" prefWidth="480.0">
+                                                               <children>
+                                                                  <TextField fx:id="rotationField" prefHeight="25.0" prefWidth="242.0">
+                                                                     <HBox.margin>
+                                                                        <Insets bottom="20.0" left="50.0" />
+                                                                     </HBox.margin>
+                                                                  </TextField>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <Label fx:id="scaleLabel" text="Scale:">
+                                                         <font>
+                                                            <Font size="19.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" left="10.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <HBox prefHeight="47.0" prefWidth="480.0">
+                                                         <children>
+                                                            <Label text="x:" fx:id="xScaleLabel" />
+                                                            <TextField fx:id="scaleXField" prefHeight="25.0" prefWidth="241.0">
+                                                               <HBox.margin>
+                                                                  <Insets left="20.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox prefHeight="56.0" prefWidth="480.0">
+                                                         <children>
+                                                            <Label fx:id="yScaleLabel" text="y:" />
+                                                            <TextField fx:id="scaleYField" prefHeight="25.0" prefWidth="240.0">
+                                                               <HBox.margin>
+                                                                  <Insets left="20.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Rigid Body">
+                           <content>
+                              <VBox prefHeight="564.0" prefWidth="305.0">
+                                 <children>
+                                    <CheckBox fx:id="gravityCheckBox" mnemonicParsing="false" text="Gravity">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="autoMassCheckBox" mnemonicParsing="false" text="Auto Mass">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="staticCheckBox" mnemonicParsing="false" text="Static" />
+                                    <VBox spacing="20.0">
+                                       <children>
+                                          <Label fx:id="massLabel" text="Mass: " />
+                                          <TextField prefHeight="25.0" prefWidth="220.0" />
+                                          <Label fx:id="restitutionLabel" text="Restitution: " />
+                                          <TextField prefHeight="25.0" prefWidth="188.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <Label fx:id="velocityLabel" prefHeight="17.0" prefWidth="120.0" text="Velocity:">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox prefHeight="56.0" prefWidth="285.0">
+                                       <children>
+                                          <Label text="x:" fx:id="xVelocityLabel" />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="54.0" prefWidth="285.0">
+                                       <children>
+                                          <Label fx:id="yVelocityLabel" text="y:" />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="torqueLabel" text="Torque" />
+                                    <TextField />
+                                    <Label fx:id="frictionLabel" text="Friction" />
+                                    <TextField />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" top="30.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Shape">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+        <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #D5C9DF;" />
+         </children>
+      </VBox>
+   </children>
+</Pane>

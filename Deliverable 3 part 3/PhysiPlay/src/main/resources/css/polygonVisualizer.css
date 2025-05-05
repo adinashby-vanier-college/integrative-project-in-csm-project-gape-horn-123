@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+/* Button Base Style */
+.button {
+    -fx-background-color: #6A5D7B;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-border-color: transparent;
+}
+
+/* Hover Effect */
+.button:hover{
+    -fx-background-color: #7A6C8F;
+}
+
+/* Pressed Effect */
+.button:pressed{
+    -fx-background-color: #594f6a;
+    -fx-translate-y: 1;
+}
+
+/* Base style for TextArea */
+
+.text-area{
+    -fx-font: 16px "Madimi One";
+    -fx-text-fill: #333333;
+}
+
+.text-area .content{
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 10;
+    -fx-border-color: #6A5D7B;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+/* Focused TextArea (active input) */
+.textarea:focused {
+    -fx-border-color: #7A6C8F;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(106, 93, 123, 0.4), 6, 0, 0, 2);
+}

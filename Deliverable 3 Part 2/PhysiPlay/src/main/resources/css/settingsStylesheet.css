@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+* {
+    -fx-darkest-gray-color: #323232;
+}
+.label {
+    -fx-font: 50px "Madimi One";
+}
+
+#generalSettings {
+    -fx-font: 30px "Madimi One";
+}
+
+.check-box {
+    -fx-font: 16px "Madimi One";
+    -fx-font-weight: bold;
+}
+
+.radio-button {
+    -fx-font: 16px "Madimi One";
+}
+
+.check-box .mark {
+    -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: -fx-darkest-gray-color;
+    -fx-border-radius: 0;
+}
+
+.check-box:hover .box {
+    -fx-background-color: rgb(225, 225, 225);
+    -fx-cursor: hand;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -fx-darkest-gray-color;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="980.0" style="-fx-background-color: #D5C9DF;" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox prefHeight="980.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
+         <children>
+            <Label text="Create Preset:">
+               <opaqueInsets>
+                  <Insets left="20.0" top="100.0" />
+               </opaqueInsets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #D5C9DF;">
+               <children>
+                  <Polygon fill="DODGERBLUE" points="47.0, -31.0, 54.0, -60.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Polygon>
+                  <TextField fx:id="presetNameField" prefHeight="35.0" prefWidth="374.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <TabPane fx:id="componentTabPane" prefHeight="413.0" prefWidth="500.0">
+               <tabs>
+                  <Tab closable="false" text="Transform">
+                     <content>
+                        <Pane>
+                           <children>
+                              <VBox prefHeight="324.0" prefWidth="500.0" style="-fx-background-color: #D5C9DF;">
+                                 <children>
+                                    <Label text="Rotation:">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <VBox prefHeight="41.0" prefWidth="500.0">
+                                       <children>
+                                          <HBox prefHeight="56.0" prefWidth="480.0">
+                                             <children>
+                                                <TextField fx:id="rotationField" prefHeight="25.0" prefWidth="421.0">
+                                                   <HBox.margin>
+                                                      <Insets left="50.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="30.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </Pane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <HBox alignment="CENTER" prefHeight="98.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="addComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="356.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+            <VBox fx:id="componentsVBox">
+               <children>
+                  <TreeView fx:id="componentsTreeView" prefHeight="429.0" prefWidth="500.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="attachComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="347.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Attach component" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="225.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="createPresetButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Create Preset" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets top="1000.0" />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <TreeView fx:id="hierarchyView" prefHeight="998.0" prefWidth="360.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox prefHeight="854.0" prefWidth="308.0" style="-fx-background-color: #D5C9DF;" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane fx:id="tabPane" prefHeight="791.0" prefWidth="308.0" />
+         </children>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox prefHeight="257.0" prefWidth="1920.0" style="-fx-border-color: black; -fx-background-color: #BCA9CC;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="1755.0">
+               <children>
+                  <VBox prefHeight="197.0" prefWidth="1761.0">
+                     <children>
+                        <Label fx:id="labelPresets" text="%label.presets" />
+                        <ScrollPane fx:id="presetScrollPane" prefHeight="292.0" prefWidth="1755.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
+                           <content>
+                              <FlowPane fx:id="presetFlowPane" prefHeight="203.0" prefWidth="1734.0" style="-fx-background-color: #BCA9CC; -fx-border-color: #BCA9CC;">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </FlowPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="197.0" prefWidth="138.0">
+               <children>
+                  <Button fx:id="createPresetButton" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-radius: 1000000000; -fx-border-width: 0px; -fx-background-color: #749C75;" text="+" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <StackPane prefHeight="35.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar maxHeight="100.0" minHeight="13.0" prefHeight="13.0" prefWidth="1920.0" style="-fx-background-color: #5D4A66;">
+               <menus>
+                  <Menu fx:id="menuFile" mnemonicParsing="false" style="-fx-text-fill: white;" text="%menu.file">
+                     <items>
+                        <MenuItem fx:id="menuItemNew" mnemonicParsing="false" text="New File" />
+                        <MenuItem fx:id="menuItemOpen" mnemonicParsing="false" text="Open File" />
+                        <MenuItem fx:id="menuItemSave" mnemonicParsing="false" text="Save" />
+                        <MenuItem fx:id="menuItemLoad" mnemonicParsing="false" text="Load" />
+                        <MenuItem fx:id="menuItemClose" mnemonicParsing="false" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuEdit" mnemonicParsing="false" text="%menu.edit">
+                     <items>
+                        <MenuItem fx:id="menuItemClear" mnemonicParsing="false" text="Clear All" />
+                        <MenuItem fx:id="menuItemSettings" mnemonicParsing="false" text="Project Settings" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuView" mnemonicParsing="false" text="%menu.view">
+                     <items>
+                        <Menu fx:id="menuCameraReset" mnemonicParsing="false" text="menuCameraReset">
+                          <items>
+                            <MenuItem fx:id="menuItemPositionCamReset" mnemonicParsing="false" text="Position" />
+                              <MenuItem fx:id="menuItemScale" mnemonicParsing="false" text="Scale" />
+                          </items>
+                        </Menu>
+                        <CheckMenuItem fx:id="checkMenuItemCanvasView" mnemonicParsing="false" text="Canvas View" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuWindow" mnemonicParsing="false" text="%menu.window">
+                     <items>
+                        <MenuItem fx:id="menuItemFullScreen" mnemonicParsing="false" text="Fullscreen" />
+                        <MenuItem fx:id="menuItemHomeScreen" mnemonicParsing="false" text="Home Screen" />
+                        <MenuItem fx:id="menuItemPolygonVisualizer" mnemonicParsing="false" text="Polygon Visualizer" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuHelp" mnemonicParsing="false" text="%menu.help">
+                     <items>
+                        <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <HBox alignment="CENTER" maxWidth="500.0" minHeight="25.0" minWidth="464.0" prefHeight="25.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="startButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="⏵" textFill="WHITE" />
+                  <Button fx:id="pauseButton" contentDisplay="CENTER" maxHeight="25.0" maxWidth="75.0" minHeight="25.0" minWidth="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="⏸" textFill="WHITE" />
+                  <Button fx:id="stopButton" maxHeight="25.0" maxWidth="75.0" minHeight="25.0" minWidth="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #5D4A66; -fx-border-color: white; -fx-background-radius: 10000000; -fx-border-radius: 10000000;" text="⏹" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+   </top>
+   <center>
+      <VBox prefHeight="617.0" prefWidth="1124.0" BorderPane.alignment="CENTER">
+         <children>
+            <Canvas fx:id="canvas" height="797.0" width="1256.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
