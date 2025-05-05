@@ -48,29 +48,25 @@ public final class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         //For Main Menu
-
         Scene scene = new Scene(new Pane(), 1920, 1080);
         // CSS File
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/stylesheets.css")).toExternalForm());
+            loadScenes(stage, scene);
 
-        loadScenes(stage, scene);
+            ScreenController.getInstance()
+                    .setMainScene(scene)
+                    .activate("login", SettingsSingleton.getInstance().language)
+                    .printCurrentSceneName();
 
-        ScreenController.getInstance()
-                .setMainScene(scene)
-                .activate("login", SettingsSingleton.getInstance().language)
-                .printCurrentSceneName();
+            scene.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.F && !stage.isFullScreen()) stage.setFullScreen(true);
+                else stage.setFullScreen(false);
+            });
+            stage.setTitle("PhysiPlay");
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.show();
 
-
-        scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F && !stage.isFullScreen()) stage.setFullScreen(true);
-            else stage.setFullScreen(false);
-        });
-
-        stage.setTitle("PhysiPlay");
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
     }
 }

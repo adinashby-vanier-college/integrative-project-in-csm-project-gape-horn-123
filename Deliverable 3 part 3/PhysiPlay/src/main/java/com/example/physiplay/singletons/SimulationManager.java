@@ -7,7 +7,6 @@ import javafx.animation.AnimationTimer;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
