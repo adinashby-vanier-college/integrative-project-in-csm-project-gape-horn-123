@@ -39,6 +39,10 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Controller for the Create Preset window.
+ * Allows users to build a preset object by attaching components and dragging it into the canvas.
+ */
 public class CreatePresetController {
     @FXML
     public TextField presetNameField;
@@ -47,6 +51,7 @@ public class CreatePresetController {
 
     public Button addComponentButton;
 
+    // Data references for managing simulation objects
     ArrayList<SimulationObject> presetList;
     ArrayList<SimulationObject> objectsList;
     HBox presetHBox;
