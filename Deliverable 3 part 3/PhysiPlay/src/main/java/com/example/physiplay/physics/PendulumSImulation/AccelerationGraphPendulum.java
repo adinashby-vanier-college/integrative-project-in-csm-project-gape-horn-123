@@ -101,13 +101,14 @@ public class AccelerationGraphPendulum extends Pane implements StartStopControll
                     }
                 });
 
-                // Auto adjust Y-axis range
+                // Auto adjust Y-axis range based on current max acceleration
                 NumberAxis yAxis = (NumberAxis) lineChart.getYAxis();
                 double maxAccel = Math.abs((Pendulum.GRAVITY / lengthMeters)) + 1;
                 maxAccel = Math.max(maxAccel, 2);
                 yAxis.setLowerBound(-maxAccel);
                 yAxis.setUpperBound(maxAccel);
-
+                
+                // scrolls x axis as time progresses
                 NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
                 if (t > WINDOW_SIZE) {
                     xAxis.setLowerBound(t - WINDOW_SIZE);
