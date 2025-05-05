@@ -21,98 +21,99 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Spring extends Pane implements StartStopControllable {
-    private static final double WIDTH = 600;
-    private static final double HEIGHT = 500;
-    private static final double ANCHOR_X = WIDTH / 2;
-    private static final double ANCHOR_Y = 60;
-    private static final double SPRING_LENGTH = 200;
-    private static final double MASS_RADIUS = 20;
 
-    public static final double PIXELS_PER_METER = 100.0;
+    // ui and physics constants
+    private static final double WIDTH = 600;       // width of the spring simulation window
+    private static final double HEIGHT = 500;      // height of the spring simulation window
+    private static final double ANCHOR_X = WIDTH / 2;   // Horizontal center of the screen 
+    private static final double ANCHOR_Y = 60;          // vertical offset from the top fro the spring's anchor
+    private static final double SPRING_LENGTH = 200;    //default un-stretched length of the spring in pixels before displacement is added
+    private static final double MASS_RADIUS = 20;       // Radius of the circular mass at the bottom of the spring
+
+    public static final double PIXELS_PER_METER = 100.0;  // conversion factor: 1 meter = 100 pixels
+
+    // physics properties (modifiable via sliders)
     public static double MAX_DISPLACEMENT = 1.0 * PIXELS_PER_METER;
     private static double springConstant = 20;
     private static double massValue = 2;
-    public static double OMEGA = Math.sqrt(springConstant / massValue);
+    public static double OMEGA = Math.sqrt(springConstant / massValue);  // Angular frequency:  ω = √(k/m)
 
-    private double time = 0;
-    private Circle mass;
-    private Polyline spring;
+    // Simulation state variables
+    private double time = 0;        // time tracking fo rsimulation
+    private Circle mass;            
+    private Polyline spring;        // visual spring drawn as zigzag 
     private AnimationTimer timer;
-    private boolean running = true;
+    private boolean running = true;   //keeps tracking of if the simulation is running
     private Slider amplitudeSlider, springConstantSlider, massSlider;
-    private long lastTime = 0;
-    private String langCode = "en";
+    private long lastTime = 0;        // time of the previous frame, used to calculate deltatime
+    private String langCode = "en";   //language code 
 
+    // UI controls
     private Label amplitudeLabel;
     private Label springLabel;
     private Label massLabel;
 
-    /**
-     * Constructs the spring simulation with default size and physics properties.
-     */
+    
     public Spring() {
         this.setPrefSize(WIDTH, HEIGHT);
-        initializeSpring();
-        initializeSliders();
-        startAnimation();
+        initializeSpring();  // setup mass and spring visuals
+        initializeSliders();  // setup control sliders
+        startAnimation();     // start real time animation
     }
 
-    /**
-     * Initializes the visual components of the spring and mass.
-     */
+    
     private void initializeSpring() {
-        mass = new Circle(MASS_RADIUS, Color.BLUE);
-        spring = new Polyline();
+        mass = new Circle(MASS_RADIUS, Color.BLUE);   // mass bob
+        spring = new Polyline();       // zigzag spring
         spring.setStroke(Color.BLACK);
         spring.setStrokeWidth(3);
 
-        double startY = ANCHOR_Y + SPRING_LENGTH + MAX_DISPLACEMENT;
+        double startY = ANCHOR_Y + SPRING_LENGTH + MAX_DISPLACEMENT; //initial vertical position of mass
 
         mass.setCenterX(ANCHOR_X);
         mass.setCenterY(startY);
-        updateSpringShape(startY);
+        updateSpringShape(startY);  // draw the zigzag shape 
 
         this.getChildren().addAll(spring, mass);
     }
 
-    /**
-     * Returns the current displacement of the mass in the spring system.
-     * @return the current displacement in pixels
-     */
+    
+     //Returns the current displacement of the mass in the spring system.
     public double getCurrentDisplacement() {
         return MAX_DISPLACEMENT * Math.cos(OMEGA * time);
     }
 
-    /**
-     * Gets the current simulation time.
-     * @return the time in seconds
-     */
+    
+    //return the time in seconds
     public double getTime() {
         return time;
     }
 
-    /**
-     * Initializes control sliders for amplitude, spring constant, and mass.
-     */
+    
     private void initializeSliders() {
-        amplitudeLabel = new Label("Amplitude (m)");
-        amplitudeSlider = new Slider(0.1, 2.0, MAX_DISPLACEMENT / PIXELS_PER_METER);
-        amplitudeSlider.setShowTickMarks(true);
-        amplitudeSlider.setShowTickLabels(true);
-        amplitudeSlider.setMajorTickUnit(0.5);
 
+        // amplitude slider that controls how far the spring stretched from equilibrium
+        amplitudeLabel = new Label("Amplitude (m)");
+        amplitudeSlider = new Slider(0.1, 2.0, MAX_DISPLACEMENT / PIXELS_PER_METER);  //Range 0.1m to 2.0m
+        amplitudeSlider.setShowTickMarks(true);    //Show tick marks on the track
+        amplitudeSlider.setShowTickLabels(true);   // Show numeric labels
+        amplitudeSlider.setMajorTickUnit(0.5);     // Big ticks every 0.5 m
+
+        // spring constant slider that adjusts stiffness of the spring(k)
         springLabel = new Label("Spring Constant (N/m)");
-        springConstantSlider = new Slider(5, 100, springConstant);
+        springConstantSlider = new Slider(5, 100, springConstant);  // Range: 5 to 100 N/m
         springConstantSlider.setShowTickMarks(true);
         springConstantSlider.setShowTickLabels(true);
-        springConstantSlider.setMajorTickUnit(20);
-
+        springConstantSlider.setMajorTickUnit(20);      // Big ticks every 20 N/m
+        
+        // Mass slider that sets the mass attached to the spring (m)
         massLabel = new Label("Mass (kg)");
-        massSlider = new Slider(0.5, 10, massValue);
+        massSlider = new Slider(0.5, 10, massValue);  // Range: 0.5 kg to 10 kg
         massSlider.setShowTickMarks(true);
         massSlider.setShowTickLabels(true);
-        massSlider.setMajorTickUnit(2);
+        massSlider.setMajorTickUnit(2);          // Big ticks every 2kg
 
+        // Event listeners: update physics on change
         amplitudeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             MAX_DISPLACEMENT = newVal.doubleValue() * PIXELS_PER_METER;
         });
@@ -123,6 +124,7 @@ public class Spring extends Pane implements StartStopControllable {
             updateOmega(springConstant, newVal.doubleValue());
         });
 
+        // layout the slider box
         VBox sliderBox = new VBox(10, amplitudeLabel, amplitudeSlider, springLabel, springConstantSlider, massLabel, massSlider);
         sliderBox.setLayoutX(10);
         sliderBox.setLayoutY(10);
@@ -130,11 +132,7 @@ public class Spring extends Pane implements StartStopControllable {
         this.getChildren().add(sliderBox);
     }
 
-    /**
-     * Updates the angular frequency OMEGA based on the spring constant and mass.
-     * @param k spring constant
-     * @param m mass
-     */
+    // Recalculates ω when spring or mass values change
     private void updateOmega(double k, double m) {
         springConstant = k;
         massValue = m;
@@ -147,18 +145,19 @@ public class Spring extends Pane implements StartStopControllable {
      */
     private void updateSpringShape(double endY) {
         spring.getPoints().clear();
-        spring.getPoints().addAll(ANCHOR_X, ANCHOR_Y);
+        spring.getPoints().addAll(ANCHOR_X, ANCHOR_Y);  // starts of spring
 
         int coilCount = 15;
         double coilWidth = 20;
         double dynamicSpacing = (endY - ANCHOR_Y) / coilCount;
 
+        //create zigzag coil pattern
         for (int i = 1; i <= coilCount; i++) {
             double xOffset = (i % 2 == 0) ? coilWidth : -coilWidth;
             double y = ANCHOR_Y + i * dynamicSpacing;
             spring.getPoints().addAll(ANCHOR_X + xOffset, y);
         }
-        spring.getPoints().addAll(ANCHOR_X, endY);
+        spring.getPoints().addAll(ANCHOR_X, endY); //end of the sprimg
     }
 
     @Override
@@ -169,7 +168,7 @@ public class Spring extends Pane implements StartStopControllable {
 
     @Override
     public void play() {
-        lastTime = 0;
+        lastTime = 0;  //reset timing
         timer.start();
         running = true;
     }
@@ -198,10 +197,11 @@ public class Spring extends Pane implements StartStopControllable {
                 lastTime = now;
                 time += deltaTime;
 
+                //position of mass: y = equilibrium + Acos(ωt)
                 double y = ANCHOR_Y + SPRING_LENGTH + MAX_DISPLACEMENT * Math.cos(OMEGA * time);
 
-                mass.setCenterY(y);
-                updateSpringShape(y);
+                mass.setCenterY(y);    // move the mass
+                updateSpringShape(y);   // update spring shape accordingly
             }
         };
 
