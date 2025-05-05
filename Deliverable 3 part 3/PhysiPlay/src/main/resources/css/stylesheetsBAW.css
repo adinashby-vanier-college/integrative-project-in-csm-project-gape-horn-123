@@ -2,7 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
 
 .pane{
-    -fx-background-color: black;
+    -fx-background-color: white;
+}
+#backgroundPane{
+    -fx-background-color: white;
+}
+
+.border-pane{
+    -fx-background-color: white;
+}
+
+.root{
+    -fx-background-color: white;
 }
 
 .button {
@@ -129,8 +140,4 @@
 #initialPositionLabel, #initialRotationLabel {
     -fx-font: 22px "Madimi One";
     -fx-text-fill: black;
-}
-
-#backgroundPane{
-    -fx-background-color: black;
 }
