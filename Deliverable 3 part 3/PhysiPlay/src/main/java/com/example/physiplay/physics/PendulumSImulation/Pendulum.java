@@ -11,6 +11,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 
 public class Pendulum extends Pane implements StartStopControllable{
     private static final double WIDTH = 600;
@@ -39,6 +42,11 @@ public class Pendulum extends Pane implements StartStopControllable{
     private Slider angleSlider;
     private Slider lengthSlider;
     private Slider gravitySlider;
+    private Label lengthLabel;
+    private Label angleLabel;
+    private Label gravityLabel;
+
+    private String langCode = "en";
 
     public Pendulum() {
         this.setPrefSize(WIDTH, HEIGHT);
@@ -78,19 +86,22 @@ public class Pendulum extends Pane implements StartStopControllable{
 
 
     private void initializeSliders() {
-        Label angleLabel = new Label("Max Angle (°)");
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+
+        angleLabel = new Label(bundle.getString("label.maxAngle"));
         angleSlider = new Slider(5, 90, Math.toDegrees(MAX_ANGLE));
         angleSlider.setShowTickMarks(true);
         angleSlider.setShowTickLabels(true);
         angleSlider.setMajorTickUnit(15);
 
-        Label lengthLabel = new Label("Length (cm)");
+        lengthLabel = new Label(bundle.getString("label.length"));
         lengthSlider = new Slider(50, 250, LENGTH);
         lengthSlider.setShowTickMarks(true);
         lengthSlider.setShowTickLabels(true);
         lengthSlider.setMajorTickUnit(50);
 
-        Label gravityLabel = new Label("Gravity (m/s²)");
+        gravityLabel = new Label(bundle.getString("label.gravity"));
         gravitySlider = new Slider(1, 20, GRAVITY);
         gravitySlider.setShowTickMarks(true);
         gravitySlider.setShowTickLabels(true);
@@ -177,5 +188,14 @@ public class Pendulum extends Pane implements StartStopControllable{
 
     public boolean isRunning() {
         return running;
+    }
+
+    public void switchLanguage(String langCode) {
+        this.langCode = langCode;
+        Locale locale = new Locale(langCode);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
+        lengthLabel.setText(bundle.getString("label.length"));
+        angleLabel.setText(bundle.getString("label.maxAngle"));
+        gravityLabel.setText(bundle.getString("label.gravity"));
     }
 }
