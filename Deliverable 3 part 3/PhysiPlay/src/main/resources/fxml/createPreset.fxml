@@ -91,7 +91,7 @@
             </TabPane>
             <HBox alignment="CENTER" prefHeight="98.0" prefWidth="500.0">
                <children>
-                  <Button fx:id="addComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="356.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Add Component" textFill="WHITE">
+                  <Button fx:id="addComponentButton" minHeight="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="356.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="%button.addComponent" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
@@ -109,7 +109,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="225.0" prefWidth="500.0">
                <children>
-                  <Button fx:id="createPresetButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="Create Preset" textFill="WHITE">
+                  <Button fx:id="createPresetButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="327.0" style="-fx-background-color: #749C75; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10;" text="%button.createPreset" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
