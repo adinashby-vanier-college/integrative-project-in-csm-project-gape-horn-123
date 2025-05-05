@@ -1,7 +1,15 @@
+/**
+ * A JavaFX Pane that displays a live-updating line chart representing the displacement
+ * of a spring over time. This class uses {@link AnimationTimer} to simulate and
+ * visualize spring motion in real time.
+ *
+ * <p>The graph updates dynamically as the simulation progresses, showing a windowed
+ * view of the last few seconds of motion. The X-axis represents time in seconds,
+ * and the Y-axis represents displacement in meters.</p>
+ */
 package com.example.physiplay.physics.SpringSimulation;
 
 import com.example.physiplay.physics.PendulumSImulation.StartStopControllable;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.chart.LineChart;
@@ -13,7 +21,7 @@ import javafx.scene.layout.Pane;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class PositionGraphSpring extends Pane implements StartStopControllable{
+public class PositionGraphSpring extends Pane implements StartStopControllable {
     private static final int MAX_POINTS = 1000;
     private static final double WINDOW_SIZE = 10;
 
@@ -23,12 +31,23 @@ public class PositionGraphSpring extends Pane implements StartStopControllable{
     private Spring spring;
     private boolean running = true;
 
+    /**
+     * Constructs a new PositionGraphSpring instance for visualizing spring displacement.
+     *
+     * @param spring   the Spring object that provides simulation data
+     * @param langCode the language code used to localize chart labels and titles
+     */
     public PositionGraphSpring(Spring spring, String langCode) {
         this.spring = spring;
         initializeChart(langCode);
         startAnimation();
     }
 
+    /**
+     * Initializes the chart with localized labels and appropriate axis configurations.
+     *
+     * @param langCode the language code for localization
+     */
     private void initializeChart(String langCode) {
         Locale locale = new Locale(langCode);
         ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", locale);
@@ -43,8 +62,6 @@ public class PositionGraphSpring extends Pane implements StartStopControllable{
         lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle(bundle.getString("title.springDisplacementVsTime"));
         lineChart.setPrefSize(600, 200);
-
-        // Enable symbols so tooltips work, but we’ll hide them later
         lineChart.setCreateSymbols(true);
 
         series = new XYChart.Series<>();
@@ -52,15 +69,25 @@ public class PositionGraphSpring extends Pane implements StartStopControllable{
         this.getChildren().add(lineChart);
     }
 
+    /**
+     * Pauses the animation timer, effectively stopping the graph updates.
+     */
     public void pause() {
         timer.stop();
     }
 
+    /**
+     * Starts or resumes the animation timer to continue updating the graph.
+     */
     public void play() {
         timer.start();
         running = true;
     }
 
+    /**
+     * Starts the animation timer and handles periodic updates to the chart based on
+     * the spring's current displacement and time.
+     */
     private void startAnimation() {
         timer = new AnimationTimer() {
             @Override
@@ -70,7 +97,6 @@ public class PositionGraphSpring extends Pane implements StartStopControllable{
                 double omega = Spring.OMEGA;
                 double value = (A * Math.cos(omega * t)) / Spring.PIXELS_PER_METER;
 
-                // Create and add data point
                 XYChart.Data<Number, Number> point = new XYChart.Data<>(t, value);
                 series.getData().add(point);
 
@@ -78,26 +104,22 @@ public class PositionGraphSpring extends Pane implements StartStopControllable{
                     series.getData().remove(0);
                 }
 
-                // Install tooltip + hide the visible dot
                 String tooltipText = String.format("t = %.2f s\ny = %.2f m", t, value);
                 Tooltip tooltip = new Tooltip(tooltipText);
                 tooltip.setStyle("-fx-font-size: 12px;");
 
                 Platform.runLater(() -> {
                     if (point.getNode() != null) {
-                        // Hide the dot but keep it hoverable
                         point.getNode().setStyle("-fx-background-color: transparent; -fx-padding: 3px;");
                         Tooltip.install(point.getNode(), tooltip);
                     }
                 });
 
-                // Lock Y-axis range based on amplitude (in meters)
                 double maxDisp = A / Spring.PIXELS_PER_METER;
                 NumberAxis yAxis = (NumberAxis) lineChart.getYAxis();
                 yAxis.setLowerBound(-maxDisp);
                 yAxis.setUpperBound(maxDisp);
 
-                // Scroll X-axis forward with time
                 NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
                 if (t > WINDOW_SIZE) {
                     xAxis.setLowerBound(t - WINDOW_SIZE);
