@@ -32,7 +32,7 @@ public class SettingsController {
     ComboBox<String> comboBoxThemes;
 
     String lang;
-    String stylesheet;
+    String stylesheet = getClass().getResource("/css/stylesheets.css").toExternalForm();
 
     public SettingsController(Stage stage, Scene scene, String lang) {
         this.stage = stage;
@@ -108,12 +108,10 @@ public class SettingsController {
     public void switchEnglish(){
         SettingsSingleton.getInstance().setLanguage("en");
         ScreenController.getInstance().activate("settings", "en");
-        System.out.println(SettingsSingleton.getInstance().language);
     }
 
     public void switchFrench(){
         SettingsSingleton.getInstance().setLanguage("fr");
         ScreenController.getInstance().activate("settings", "fr");
-        System.out.println(SettingsSingleton.getInstance().language);
     }
 }

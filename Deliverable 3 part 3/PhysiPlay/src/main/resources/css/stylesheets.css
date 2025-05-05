@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols:wght@100..900&display=swap');
 
+#backgroundPane{
+    -fx-background-color: #749C75;
+}
+
 .button{
     -fx-background-color: #6A5D7B;
     -fx-text-fill: white;
